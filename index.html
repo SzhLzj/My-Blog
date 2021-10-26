@@ -1,119 +1,169 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"> -->
-    <link rel="icon" type="images/x-icon" href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
-    <title>SzhLzj's Blog</title>
-    <style>
-      *{
-        margin: 0;
-      }
-      html,body{
-        position: relative;
-      }
-      .width{ 
-        position: absolute;
-        left: 50%;
-        margin-left: -212.75px;
-      }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/x-icon"
+    href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
+  <title>SzhLzj's Blog</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    html,
+    body {
+      position: relative;
+    }
+
+    .width {
+      position: absolute;
+      left: 50%;
+      margin-left: -212.75px;
+    }
+
+    .Hello {
+      font: italic 170px Verdana;
+      position: fixed;
+      transition: font-size 0.3s;
+    }
+
+    .Hello:nth-of-type(1) {
+      z-index: 0;
+      color: rgba(44, 200, 184, 1);
+      /* margin-top: 548px; */
+      /* margin-left: 1044px; */
+      margin-top: -3px;
+      margin-left: 6px;
+    }
+
+    .Hello:nth-of-type(2) {
+      z-index: 1;
+      color: rgba(255, 255, 0, 1);
+      /* margin-top: 551px; */
+      /* margin-left: 1038px; */
+    }
+
+    .Hello:nth-of-type(3) {
+      z-index: 2;
+      color: rgba(255, 255, 255, 1);
+      /* margin-top: 554px; */
+      /* margin-left: 1041px; */
+      margin-top: 3px;
+      margin-left: 3px;
+    }
+
+    #box {
+      position: relative;
+      margin-top: 15%;
+    }
+
+    #box>div {
+      border: none;
+      width: 100%;
+      max-width: 425.5px;
+    }
+  </style>
 </head>
 
 <body>
-<!-- 背景颜色----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- 背景颜色----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    <div style="
+  <div style="
     background-image: linear-gradient(rgba(12,15,27,1), rgba(6,11,27,1));
-    width: 2560px; /* 482.453 */
+    width: 2560px;  /* 482.453 */
     height: 1336px; /* 234 */
     position: fixed;
     z-index: -99;
     margin-top: -15%
     "></div>
 
-<!-- Hello字体----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- Hello字体----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-      <div style="position: relative; margin-top: 15%;" id="box">
-        <div style="border: none; width: 100%; max-width: 425.5px;">
-          <div 
-            onmouseover="GomOver()" onmouseout="GomOut()"
-            class="Hello"
-            style="
-            font: italic 170px Verdana;
-            position: fixed;
-            z-index: 0;
-            color: rgba(44,200,184,1);
-            /* margin-top: 548px; */
-            /* margin-left: 1044px; */
-            margin-top: -3px;
-            margin-left: 6px;
-            "
-            >Hello
-          </div>
-
-          <div 
-            onmouseover="GomOver()" onmouseout="GomOut()"
-            class="Hello"
-            style="
-            font: italic 170px Verdana;
-            position: fixed;
-            z-index: 1;
-            color: rgba(255,255,0,1);
-            /* margin-top: 551px; */
-            /* margin-left: 1038px; */
-            "
-            >Hello
-          </div>
-
-          <div 
-            onclick="location.href='https://www.baidu.com'"
-            onmouseover="GomOver()" onmouseout="GomOut()"
-            class="Hello"
-            style="
-            font: italic 170px Verdana;
-            position: fixed;
-            z-index: 2;
-            color: rgba(255,255,255,1);
-            /* margin-top: 554px; */
-            /* margin-left: 1041px; */
-            margin-top: 3px;
-            margin-left: 3px;
-            "
-            >Hello
-          </div>
-        </div>
+  <div id="box">
+    <div>
+      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">Hello</div>
+      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">Hello</div>
+      <div onclick="location.href='https://www.baidu.com'" onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">
+        Hello
       </div>
+    </div>
+  </div>
 
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script> -->
 
   <script>
+    //Hello转Go
     function GomOver() {
       let a = document.getElementsByClassName("Hello");
-        for (let x = 0; x < a.length; x++) {
-          a[x].innerHTML = "&nbsp;Go!&nbsp;"
-      }
-    }
-    function GomOut() {
-      let a = document.getElementsByClassName("Hello");
-        for (let x = 0; x < a.length; x++) {
-          a[x].innerHTML = "Hello"
-      }
+      //Hello淡出
+      for (let index = 0; index < 10; index++) {
+        setTimeout(function () {
+
+          for (let x = 0; x < a.length; x++) {
+            a[x].style.opacity = 1 - (index * 0.1);
+            a[x].style.fontSize = "210px";
+          };
+
+        }, index * 30);
+      };
+
+      //Go淡入
+      setTimeout(function () {
+        for (let index = 0; index < 10; index++) {
+          setTimeout(function () {
+            for (let x = 0; x < a.length; x++) {
+              a[x].style.opacity = 0.1 + (index * 0.1);
+              a[x].innerHTML = "&nbsp;Go!&nbsp;";
+              a[x].style.font = `italic ${170 + (index * 4)}px Verdana;`;
+            };
+          }, index * 30);
+        };
+      }, 350);
     }
 
-    function getInsideArr(){   
-      var width=window.innerWidth || document.documentElement.clientWidth ;
-      document.getElementById("box").style.width=width+"px";
-      if(width>425.5){
-        document.getElementById("box").style.width=425.5+"px";
+
+    //Go转Hello
+    function GomOut() {
+      let a = document.getElementsByClassName("Hello");
+      //Go淡出
+      for (let index = 0; index < 10; index++) {
+        setTimeout(function () {
+          for (let x = 0; x < a.length; x++) {
+            a[x].style.opacity = 1 - (index * 0.1);
+            a[x].innerHTML = "&nbsp;Go!&nbsp;";
+            a[x].style.fontSize = "170px";
+          };
+        }, index * 30);
+      };
+
+      //Hello淡入
+      setTimeout(function () {
+        for (let index = 0; index < 10; index++) {
+          setTimeout(function () {
+            for (let x = 0; x < a.length; x++) {
+              a[x].innerHTML = "Hello";
+              a[x].style.opacity = 0.1 + (index * 0.1);
+            };
+          }, index * 30);
+        };
+      }, 350);
+    }
+
+    function getInsideArr() {
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      document.getElementById("box").style.width = width + "px";
+      if (width > 425.5) {
+        document.getElementById("box").style.width = 425.5 + "px";
         var div = document.getElementById('box');
         div.setAttribute("class", "width");
       };
-    };   
+    };
     getInsideArr();
   </script>
 </body>
+
 </html>
