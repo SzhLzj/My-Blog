@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/x-icon"
+    href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
+  <title>SzhLzj's Blog - Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none
+    }
+
+    ul {
+      margin: 50px auto;
+      position: relative;
+      width: 95vw;
+      height: 80vh;
+    }
+
+    ul li {
+      float: left;
+      width: 25%;
+      cursor: pointer;
+      padding: 10px;
+      box-sizing: border-box;
+      height: 33%
+    }
+
+    ul img {
+      height: 100%;
+      width: 100%;
+      box-shadow: 0 3px 4px rgba(102, 102, 102, 0.5);
+      object-fit: cover;
+    }
+
+    /* ------------------------------------------------------------------------------------------------------------ */
+
+    body {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-image: linear-gradient(rgba(12, 15, 27, 1), rgba(6, 11, 27, 1));
+    }
+
+    h1 {
+      font-size: 31px;
+      background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.1), rgba(0, 255, 255, 1));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0px;
+    }
+
+    #Search_Box {
+      position: absolute;
+      left: 50%;
+      margin-left: -259px;
+      width: 91px;
+      height: 31px;
+      border: 3px solid aqua;
+      border-top-color: rgba(255, 255, 255, 0.3);
+      border-bottom-color: rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      outline: none;
+      transition: width 1s;
+    }
+
+    #Search_Box:focus {
+      width: 510px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Welcome to My Bolg</h1>
+  <input type="text" placeholder="请输入搜索内容  -还没做呢，别搜了" id="Search_Box">
+
+  <!-- ************************************************************ -->
+
+  <ul>
+    <li index="0"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_match%2F0%2F6783604325%2F0.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637908982&t=5cfee176116cfd065fcc694897cb2ca5"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" /></li>
+    <li index="1"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F55e2ca9642ec5726e08db586036b4f6c55a2deb7.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909061&t=e1fce797c6c06d74a586bd4b8cb88c61"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" /></li>
+    <li index="2"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F599539516c171.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909081&t=a09d866d224c252c5534b9941b175a94"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="3"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2Fff2e2dababd8baee4625b3171c3e1678e33e8580.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909102&t=52ab8ae6670c8d48bc22096d6aa4e52e"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="4"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg13.51tietu.net%2Fpic%2F20200116%2F2hst2wt1s1q2hst2wt1s1q.jpg&refer=http%3A%2F%2Fimg13.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909164&t=1273dcc6a544168bdba99665b1932370"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="5"><img src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="6"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-23%2F5a669a701d209.png%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909743&t=e28be0b558f48147d76413b8e14bfe02"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="7"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-12-17%2F5c176178ecec9.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637910146&t=24788720b40a18c783c05980707c2b3f"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="8"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F59b25b30d5a68.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909505&t=c7f703151e19cbc885a69f7e3d4a8d53"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="9"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F299867268c9a0b27990bfb6bf91ce0a22bc5aa19.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909546&t=b42a7104eac7252aef9d1c23876dc471"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" />
+    </li>
+    <li index="10"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fb%2F599a9601468a9.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909580&t=866054acc4639907708399ef0b2e4228"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" /></li>
+    <li index="11"><img
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-12-29%2F5e0813c63818c.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637910205&t=c66c500cc5eb1282060efa16a4c29e65"
+        title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" /></li>
+  </ul>
+
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+      var ps = { L: [], R: [], T: [], B: [] };
+      for (var i = 11; i >= 0; i--) {
+        var oLi = $('li').eq(i),
+          gLi = oLi.get(0);
+        oLi.css({ 'left': gLi.offsetLeft + 'px', 'top': gLi.offsetTop + 'px', 'position': 'absolute', 'margin': 0 });
+        ps.L.push(gLi.offsetLeft);
+        ps.T.push(gLi.offsetTop);
+        ps.R.push(gLi.offsetLeft + gLi.offsetWidth);
+        ps.B.push(gLi.offsetTop + gLi.offsetHeight);
+      };
+      ps.L = ps.L.reverse();
+      ps.R = ps.R.reverse();
+      ps.T = ps.T.reverse();
+      ps.B = ps.B.reverse();  //储存位置                   
+      //初始化
+      var b = 0;
+      $(document).on('mousedown', 'li', function (e) {
+        e.preventDefault();
+        var _this = this;
+        if (_this.setCapture) { _this.setCapture() };
+        var X = e.clientX - _this.offsetLeft,
+          Y = e.clientY - _this.offsetTop,
+          oList = $('li'),
+          attr = [];
+        my_index = $(_this).attr('index');     //初始保存一个原来的Index,回到原来的数组(位置)
+        $(_this).css({ 'opacity': 0.9, 'zIndex': 1 });
+        document.index = my_index;             //目的是为了脱离变量作用域
+        $('li').each(function () {
+          attr.push($(this).attr('index'))
+        });
+        $(document).on('mousemove', function (e) {
+          var lt = e.clientX - X,
+            tp = e.clientY - Y,
+            screen_l = e.clientX - _this.parentNode.offsetLeft,
+            screen_t = e.clientY - _this.parentNode.offsetTop;
+          $(_this).css({ 'left': lt + 'px', 'top': tp + 'px' });
+          for (var i = 0; i < 12; i++) {
+            var he_index = parseInt(oList.eq(i).attr('index'));
+            if (screen_l > ps.L[he_index] && screen_l < ps.R[he_index] && screen_t > ps.T[he_index] && screen_t < ps.B[he_index]) {
+              var i_index = parseInt($(_this).attr('index'));
+              if (he_index == i_index) continue;
+              document.index = he_index;              //当找到元素保存要抵达的位置的index
+              document.flag = false;
+              var test = function (num, j) {
+                var he_Li = $('li[index=' + j + ']');
+                $(he_Li).stop();
+                he_Li.animate({
+                  left: ps.L[j + num],
+                  top: ps.T[j + num]
+                }, 'fast');
+                he_Li.attr('index', j + num);
+              };
+              //利用属性选择器找到对应index(也就是找到数组相应位置)的元素;并且变换属性index到相应的数组索引；
+              if (i_index > he_index) {
+                for (var j = i_index - 1; j >= he_index; j--) {
+                  test(1, j);
+                }
+              } else {
+                for (var j = i_index + 1; j < he_index + 1; j++) {
+                  test(-1, j);
+                }
+              };
+              $(_this).attr('index', he_index);  //变换_this的index
+              document.flag = true;
+            } else {
+              if (document.flag) {
+                var parent = _this.parentNode,
+                  parent_X = e.clientX - parent.offsetLeft,
+                  parent_Y = e.clientY - parent.offsetTop;
+                if (parent_X < 0 || parent_X > parent.offsetWidth || parent_Y < 0 || parent_Y > parent.offsetHeight) {
+                  oList.not(_this).each(function (index, element) {
+                    var a = $(element).index();
+                    $(element).animate({
+                      left: ps.L[attr[a]],
+                      top: ps.T[attr[a]]
+                    }, 'fast').attr('index', attr[a])
+                  });
+                  document.index = my_index;
+                  $(_this).attr('index', my_index);
+                  document.flag = false;
+                  //当移出父节点还原
+                }
+              }
+            };
+          };
+        }); $(document).on('mouseup', function () {
+          if (_this.releaseCapture) {
+            _this.releaseCapture();
+          };
+          $(this).off('mousemove');
+          $(this).off('mouseup');
+          $(_this).animate({
+            left: ps.L[document.index],
+            top: ps.T[document.index]
+          }, 'fast', function () {
+            $(_this).css({ 'opacity': 1, 'zIndex': 0 })
+          });
+          delete document.index;
+          delete document.flag;
+        });
+      });
+    })
+  </script>
+</body>
+
+</html>
