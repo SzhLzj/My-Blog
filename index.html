@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,6 +34,10 @@
       transition: font-size 0.3s;
       cursor: pointer;
       margin-top: 15%;
+      
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .Hello:nth-of-type(1) {
@@ -107,10 +110,10 @@
 
   <!-- //Hello字体--------------------------------------------------------------------------------------------------------- -->
   <div id="box">
-    <div>
+    <div onselectstart="return flase">
       <div class="Hello">Hello</div>
       <div class="Hello">Hello</div>
-      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello" onclick='location.href="https://www.baidu.com"'>
+      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello" onclick='location.href="search.html"'>
         Hello
       </div>
     </div>
@@ -194,5 +197,4 @@
     }
   </script>
 </body>
-
 </html>
