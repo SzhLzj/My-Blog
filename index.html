@@ -11,11 +11,16 @@
   <style>
     * {
       margin: 0;
+      /* padding: 0; */
     }
 
     html,
     body {
       position: relative;
+      overflow: hidden;
+      background-image: linear-gradient(rgba(12, 15, 27, 1), rgba(6, 11, 27, 1));
+      width: 100vw;
+      height: 100vh;
     }
 
     .width {
@@ -28,6 +33,8 @@
       font: italic 170px Verdana;
       position: fixed;
       transition: font-size 0.3s;
+      cursor: pointer;
+      margin-top: 15%;
     }
 
     .Hello:nth-of-type(1) {
@@ -35,8 +42,8 @@
       color: rgba(44, 200, 184, 1);
       /* margin-top: 548px; */
       /* margin-left: 1044px; */
-      margin-top: -3px;
-      margin-left: 6px;
+      padding-top: -3px;
+      padding-left: 6px;
     }
 
     .Hello:nth-of-type(2) {
@@ -51,13 +58,8 @@
       color: rgba(255, 255, 255, 1);
       /* margin-top: 554px; */
       /* margin-left: 1041px; */
-      margin-top: 3px;
-      margin-left: 3px;
-    }
-
-    #box {
-      position: relative;
-      margin-top: 15%;
+      padding-top: 3px;
+      padding-left: 3px;
     }
 
     #box>div {
@@ -65,49 +67,67 @@
       width: 100%;
       max-width: 425.5px;
     }
+
+    hr:not(.thunder) {
+      width: 31px;
+      border-color: transparent;
+      border-right-color: rgba(255, 255, 255, 0.3);
+      border-right-width: 100px;
+      position: absolute;
+      bottom: 100%;
+      transform-origin: 100% 50%;
+      animation-name: rain;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes rain {
+      from {
+        transform: rotate(105deg) translateX(0);
+      }
+
+      to {
+        transform: rotate(105deg) translateX(calc(100vh + 20px));
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- 背景颜色----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <div style="
+  <!-- 背景颜色---------------------------------------------------------------------------------------------------------- -->
+  <!-- <div style="
     background-image: linear-gradient(rgba(12,15,27,1), rgba(6,11,27,1));
     width: 2560px;  /* 482.453 */
     height: 1336px; /* 234 */
     position: fixed;
     z-index: -99;
-    margin-top: -15%
-    "></div>
+    margin-top: -15%;
+    "></div> -->
 
-  <!-- Hello字体----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
+  <!-- //Hello字体--------------------------------------------------------------------------------------------------------- -->
   <div id="box">
     <div>
-      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">Hello</div>
-      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">Hello</div>
-      <div onclick="location.href='https://www.baidu.com'" onmouseover="GomOver()" onmouseout="GomOut()" class="Hello">
+      <div class="Hello">Hello</div>
+      <div class="Hello">Hello</div>
+      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello" onclick='location.href="https://www.baidu.com"'>
         Hello
       </div>
     </div>
   </div>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script> -->
-
   <script>
-    //Hello转Go
+    let a = document.getElementsByClassName("Hello");
+
+    //Hello转Go---------------------------------------------------
     function GomOver() {
-      let a = document.getElementsByClassName("Hello");
       //Hello淡出
       for (let index = 0; index < 10; index++) {
         setTimeout(function () {
-
           for (let x = 0; x < a.length; x++) {
             a[x].style.opacity = 1 - (index * 0.1);
-            a[x].style.fontSize = "210px";
+            a[x].style.fontSize = "180px";
           };
-
         }, index * 30);
       };
 
@@ -118,17 +138,14 @@
             for (let x = 0; x < a.length; x++) {
               a[x].style.opacity = 0.1 + (index * 0.1);
               a[x].innerHTML = "&nbsp;Go!&nbsp;";
-              a[x].style.font = `italic ${170 + (index * 4)}px Verdana;`;
             };
           }, index * 30);
         };
       }, 350);
     }
 
-
-    //Go转Hello
+    //Go转Hello---------------------------------------------------
     function GomOut() {
-      let a = document.getElementsByClassName("Hello");
       //Go淡出
       for (let index = 0; index < 10; index++) {
         setTimeout(function () {
@@ -153,6 +170,7 @@
       }, 350);
     }
 
+    //屏幕自适应---------------------------------------------------
     function getInsideArr() {
       var width = window.innerWidth || document.documentElement.clientWidth;
       document.getElementById("box").style.width = width + "px";
@@ -163,6 +181,17 @@
       };
     };
     getInsideArr();
+
+    //特效--------------------------------------------------------
+    let hrs;
+    let counter = 31;
+    for (let i = 0; i < counter; i++) {
+      hrs = document.createElement("HR");
+      hrs.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      hrs.style.animationDuration = 0.5 + Math.random() * 0.3 + "s";
+      hrs.style.animationDelay = Math.random() * 3 + "s";
+      document.body.appendChild(hrs);
+    }
   </script>
 </body>
 
