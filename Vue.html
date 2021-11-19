@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/x-icon"
+    href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
+  <link rel='icon'  type="images/x-icon" href="/img/szh.jpg"></link>
+  <title>Vue</title>
+  <style>
+    body{
+      margin: 0px;
+      background-color: whitesmoke;
+    }
+
+    #frame {
+      width: 1350px;
+      margin: auto;
+      padding: 0px 10px;
+      border-style: none solid none solid;
+      border-width: 1px;
+      font-size: 200%;
+    }
+
+    #h1{
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      padding: 24.12px 0px 0px 0px;
+      margin-bottom: 24px;
+      background-color: whitesmoke;
+      height: 50px;
+      z-index: 999;
+    }
+
+    #h1>h1{
+      background-color: whitesmoke;
+      margin: 0px;
+    }
+
+    #zoom {
+      position: relative;
+      top: -42px;
+      left: 231px;
+      height: 31px;
+      width: 151px;
+      border-radius: 8px;
+      transition: width 1s;
+    }
+
+    /* 使zoom无加减器（微调控件） */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    /* 好像没用，忘记为啥写这个了 */
+    /* input[type="number"] {
+      -moz-appearance: textfield;
+      -webkit-appearance: textfield;
+      appearance: textfield;
+    } */
+
+    #zoom:focus {
+      width: 230px;
+    }
+
+    a {
+      color: brown;
+    }
+
+    .code_1{
+      font-size: 150%;
+      color: white;
+      background-color: rgb(49, 63, 65);
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    #jsst{
+      color: red;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="frame">
+    <div id="h1">
+      <h1>Vue 笔记</h1>
+      <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦" onchange="trigger(this.value)">
+    </div>
+    <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ：1204184336，邮箱：1204184336@qq.com</p>
+    <a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
+    <p>Vue是一套用于<strong>构建用户界面</strong>的<strong>渐进式</strong>框架</p>
+    <p>学习Vue需要掌握哪些JavaScript知识呢？</p>
+    <p>Es6语法规范、Es6模块化、包管理器、原型、原型链、数组的常用方法、axios、promise等等 ^_^ 不会也没事，临时抱佛脚吧</p>
+    <hr>
+    <h2>Vue的特点</h2>
+    <h3>1.组件化</h3>
+    <p>Vue文件中包含了html、css、js代码，因此一个<strong>用户界面</strong>可以由多个Vue文件拼接起来，提高了代码的复用性和可维护性</p>
+    <h3>2.声明式</h3>
+    <p>声明式编程，相比于传统的命令式编程，无需直接操作DOM，更具有效率</p>
+    <h3>3.虚拟DOM</h3>
+    <p>使用了虚拟DOM+Diff算法，尽可能的复用了DOM节点，用内存换取了速度</p>
+
+    <hr>
+    <!-- 1 11/18 -->
+    <h2>第一个Vue实例 - Vue模板语法：{{}} -插值语法</h2>
+    <pre class="code_1">  
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="zh"&gt;
+
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;第一次嗷&lt;/title&gt;
+      &lt;/head&gt;
+
+      &lt;body&gt;
+        &lt;div id="root"&gt;
+          &lt;h1&gt;Hello {{name}}&lt;/h1&gt; &lt;!-- {{}}为Vue特有的插值语法，他会拿着{{}}里面的<strong id="jsst">js表达式</strong>去绑定的Vue实例中匹配属性并取值 --&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 引入Vue2.6.14  crossorigin、integrity是为了防止cdn被劫持而进行的校验，有兴趣可以百度了解一下 --&gt;
+        &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+          crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+        &lt;script&gt;
+          new Vue({            //new 一个Vue实例
+            el: '#root',       //将Vue实例绑定在#root容器上 其实还可以这样写 document.getElementById('root')当然 知道就行 不推荐
+            data: {            //data用于储存数据，供el绑定的容器使用
+              name: 'World'    //被匹配的那个属性
+            },
+          })
+
+        &lt;/script&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    <p>总结</p>
+    <p>1.首先要new个Vue实例, 然后用el绑定容器, 在data里写好键值对, 随后用插值语法实现<strong>响应式编程</strong>, 因为{{}}可以读取到<strong>data里面所有的键值对</strong>, 并自动对其实时更新。</p>
+    <p>2.容器#root的大部分语法依旧符合html规范, 只是混入了一些Vue的语法。</p>
+    <p>3.容器#root里的代码被称为【Vue模板】。</p>
+    <p>4.容器和实例只能一一对应, 哪怕多个实例匹配的id是同一个容器的, Vue也不会解析第二个实例的内容, 反之亦然。（当然class也不行, 纯爱党的胜利）。</p>
+    <p>5.注意到了吗, 在上面我说{{}}里写的是js的表达式, 因为在{{}}中你写data里面没有的东西他其实也能解析出来, 但仅限于js表达式, 比如说你写个{{Date.now()}}。</p>
+    <p>6.真实开发中只有一个Vue实例, 并且会配合组件一起使用。</p>
+    
+    <hr>
+    <!-- 2 11/18 -->
+    <h2>Vue模板语法：v-bind -指令语法</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+            &lt;h1&gt;Hello {{index_url}}&lt;/h1&gt;
+            &lt;h1&gt;Hello {{search_url}}&lt;/h1&gt;
+            &lt;a v-bind:href="index_url"&gt;{{blog.name}}Blog欢迎页&lt;/a&gt;   &lt;!-- v-bing:会把后面的字符串("index_url")当成变量(js表达式)来解析 --&gt;
+            &lt;a :href="search_url"&gt;{{blog.name}}Blog分类页&lt;/a&gt;        &lt;!-- v-bing:可以简写成: --&gt;
+          &lt;/div&gt;
+  
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            new Vue({
+              el: '#root',
+              data: {
+                name: 'World',
+                index_url: 'https://szhlzj.github.io/My-Blog/index.html',
+                search_url: 'https://szhlzj.github.io/My-Blog/search.html',
+                blog: {
+                  name: 'SzhLzj',  //假如你难以取名，需要两个一样名字的属性，你可以像这样把第二个name包起来使用。
+                },
+              },
+            })
+  
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>总结</p>
+    <p>1.{{}}会在"内容"(Content)当中被解析, 而v-bind会在"属性"(Attribute)当中被解析。</p>
+    <p>2.{{}}可以读取到<strong>data里面所有的键值对</strong>，并且v-bind也可以读取到<strong>data里面所有的键值对。</strong></p>
+    <p>3.{{}}是插值语法，v-bind是指令语法，指令语法有很多，指令语法会在"标签"(Tag)当中被解析(标签包括："内容"(Content)、"属性"(Attribute)、绑定事件等等。。。)</p>
+    <p>4.data里还可以创建新的对象，这样可以重复使用对象名，调用方式为"新对象.对象名"</p>
+
+    <hr>
+    <!-- 3 11/19 -->
+    <h2>Vue模板语法：v-model -指令语法</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            单向数据绑定：&lt;input type="text" v-bind:value="name"&gt;  &lt;!-- v-bind只能实现单向绑定(从data流向input) --&gt;
+            &lt;br&gt;
+            双向数据绑定：&lt;input type="text" v-model:value="name"&gt; &lt;!-- v-model能实现双向绑定(不仅能从data流向input，还能从input流向data) --&gt;
+            &lt;br&gt;
+            双向数据绑定：&lt;input type="text" v-model="name"&gt;       &lt;!-- v-model:value可以简写为v-model,因为v-model默认收集的就是value --&gt;
+            &lt;br&gt;
+            &lt;h1 v-model:x='name'&gt;但是v-model不是哪里都可以使用的，他只能使用在表单类(输入类元素)元素上,就像这行h1，你打开控制台就会发现他在报错。&lt;/h1&gt;
+          &lt;/div&gt;
+  
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            new Vue({
+              el: '#root',
+              data: {
+                name: 'World',
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 4 11/19 -->
+    <h2>el和data的两种写法</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+          &lt;/div&gt;
+      
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+      
+          &lt;script&gt;
+            const x = new Vue({
+              el: '#root',     //el的第一种写法
+      
+              data: {          //data的第一种写法,对象式
+                name: 'World',
+              },
+      
+              data:function(){ //data的第二种写法,函数式,可以去掉:function简写成data(){}但是不能使用箭头函数,因为this的指向会变化
+                return{
+                  name: 'World',
+                }
+              }
+            })
+      
+            x.$mount('#root');  //el的第二种写法
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 5 11/19 -->
+    <h2>数据代理</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;script&gt;
+            let number = 19;
+            let person = { //先建一个对象
+              name:"张三",
+              sex:"男",
+            }
+
+            //我们先复习一下Object.defineProperty,Object.defineProperty方法会直接在一个对象上定义一个新属性,或者修改一个对象的现有属性,并返回此对象。
+            Object.defineProperty(person,'age',{ //三个重要的参数，目标对象，新建的属性名，属性值和各种配置项，配置项有很多，详细信息可以去MDN查询
+              // value: 18, //这时，对象person就被创建了一个属性叫age，value等于18
+              // enumerable: true, //这个配置项用于让age可以被枚举，因为enumerable的默认值是false
+              // 接下来让我们注释掉value和enumerable，因为一个描述符同时拥有 value 或 writable 和 get 或 set 键，则会产生一个异常。
+
+              get(){ //在person的age被读取时，会触发get(getter)函数
+                return number;
+              },
+
+              set(value){ //在person的age被修改时，会触发set(setter)函数
+                number = value;
+              }
+            })
+            console.log(person.age); //控制台是不是打印了19
+            person.age = 31;         //让我们尝试改变这个值
+            console.log(person.age); //控制台是不是打印了31
+            //在Object.defineProperty的帮助下，本来毫无关联的number和person却实现了数据代理，这就是今天要讲的数据代理
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 6 11/19 -->
+    <h2>Vue中的数据代理</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+          &lt;/div&gt;
+
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {  //data里面的属性会做数据劫持+数据代理
+                name: 'World',
+              },
+            })
+
+            console.log(vm);
+            console.log(vm.name);        //控制台是不是打印了World
+            console.log(vm._data.name);  //控制台是不是打印了World
+            //vm是Vue实例没问题，但为什么vm.name和vm._data.name都打印了World呢？
+            //实际上，vm._data的值就是vm实例中的data对象，他们之间做了一个数据劫持，你问我啥叫数据劫持？为的是自动更新{{}}的内容，详细的以后再说
+            //简单来说，数据劫持指的是在访问或者修改对象的某个属性时,通过一段代码拦截这个行为,进行额外的操作或者修改返回结果
+            //你可能会说这数据劫持怎么和数据代理这么像啊，你是不是在忽悠我啊，不忽悠！但是现在的你们只需要知道vm._data的值就是vm实例中的data对象即可
+            //所以vm._data.name打印出的是World
+            //再来说说为什么vm.name是哪来的,因为Vue在这里做了一个数据代理(今天的主题！),将vm._data.name和vm.name之间用Object.defineProperty联系了起来
+            //不信你可以看看console.log(vm);下面是不是有两个函数叫get name: ƒ proxyGetter()和set name: ƒ proxySetter(val)
+            //你不要和我说vm._data下面也有，以后再说！
+            //Vue为什么要做这个数据代理呢，因为如果没有这个数据代理，你在{{}}里就要写_data.name而不是name，这是为了方便你们而做的
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 7 11/19 -->
+    <h2>Vue模板语法：v-on -指令语法 事件处理</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+  
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+  
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+            &lt;button v-on:click="showInfo($event,33)"&gt;点我&lt;/button&gt;  &lt;!-- v-on专门处理事件，括号里可以传参,其实$event不需要可以去写,因为他是默认的 --&gt;
+            &lt;button @click="showInfo($event,55)"&gt;点我&lt;/button&gt;  &lt;!-- v-on简写为@ --&gt;
+          &lt;/div&gt;
+
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name: 'World',
+              },
+              methods:{
+                showInfo(event,a){ //对象中写方法可以省略function直接写方法名，Es6语法https://262.ecma-international.org/6.0/ 
+                  console.log(vm.showInfo);//showInfo在哪？他还是在vm里
+                  console.log(event); //可以直接获取到点击的对象,也就是button
+                  console.log(a); //传进来的参数  
+                  console.log(this); //实例里的this都是指vm或组件实例对象，不包括箭头函数的this
+                }
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+  </div>
+
+  
+  <script>
+    let frame = document.getElementById("frame");
+    function trigger(value) {
+      console.log(value);
+      frame.style.fontSize = `${value}%`;
+    }
+  </script>
+</body>
+</html>

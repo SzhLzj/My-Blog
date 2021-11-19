@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/x-icon"
+    href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
+  <link rel='icon'  type="images/x-icon" href="/img/szh.jpg"></link>
   <title>HTML</title>
   <style>
     body{
@@ -55,6 +58,7 @@
       transition: width 1s;
     }
 
+    /* 使zoom无加减器 */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -208,20 +212,19 @@
       <h1>HTML 笔记</h1>
       <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦" onchange="trigger(this.value)">
     </div>
+    <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ：1204184336，邮箱：1204184336@qq.com</p>
     <a href="https://www.w3cschool.cn/" title="W3cSchool-亿动">W3cSchool教程网站</a>
     <a href="https://www.w3school.com.cn/index.html" title="W3cSchool-赢科" class="url">W3cSchool教程网站</a>
     <a href="https://developer.mozilla.org/zh-CN/" title="MDN Web Docs" class="url">MDN Web Docs</a>
     <p>超文本标记语言 (英语：Hypertext Markup Language , 简称：HTML ) 是一种用来结构化 Web 网页及其内容的标记语言。</p>
     <hr>
-    <div>
-      <h2>零、准备工作</h2>
-      <p>想要编写HTML很简单 , 不需要很复杂的环境变量 , 也不需要IDE、乱七八糟的框架、组件、编译器等等 , 他只需要一个文档编写器 , 剩下的 , 交给浏览器即可。</p>
-      <p>如果你只是想尝鲜 , 亦或是懒到巅峰 , 你可以直接使用Windows自带的记事本编写 , 当然 , 懒是有代价的 笑~。</p>
-      <p>推荐Chrome浏览器。</p>
-      <p>推荐文档编辑器 , Visual Studio Code , 一个轻量级 , UI又好看 , 插件又多的编辑器 , 不会用没关系 , 现在的你只需要使用最简单的文档编辑功能即可。</p>
-      <p>新建一个文件，将文件后缀改为html，什么？你问我什么叫文件后缀？百度！搜狗！Google！Yahoo！Bing！</p>
-      <p>用记事本或VsCode打开你刚建的文件夹</p>
-    </div>
+    <h2>零、准备工作</h2>
+    <p>想要编写HTML很简单 , 不需要很复杂的环境变量 , 也不需要IDE、乱七八糟的框架、组件、编译器等等 , 他只需要一个文档编写器 , 剩下的 , 交给浏览器即可。</p>
+    <p>如果你只是想尝鲜 , 抑或是懒到巅峰 , 你可以直接使用Windows自带的记事本编写 , 当然 , 懒是有代价的 笑~。</p>
+    <p>推荐Chrome浏览器。</p>
+    <p>推荐文档编辑器 , Visual Studio Code , 一个轻量级 , UI又好看 , 插件又多的编辑器 , 不会用没关系 , 现在的你只需要使用最简单的文档编辑功能即可。</p>
+    <p>新建一个文件，将文件后缀改为html，什么？你问我什么叫文件后缀？百度！搜狗！Google！Yahoo！Bing！</p>
+    <p>用记事本或VsCode打开你刚建的文件夹</p>
     <hr>
     <h2>一、HTML的元素</h2>
     <p>HTML 由一系列的元素(Elements)组成。</p>
@@ -243,14 +246,14 @@
     &lt;!DOCTYPE html&gt;           &lt;!-- 这个标签的作用是声明文档类型,告诉浏览器这是HTML5文档,没错,是HTML5,简洁明了 --&gt;
     &lt;html lang="zh"&gt;          &lt;!-- 这个标签声明了本html文档是中文文档,英文是en,日文是ja,俄语是ru,由ISO 639-1规定 --&gt;
     
-    &lt;head&gt;                    &lt;!-- 这个标签定义了文档的头部,&lt;head&gt;中的元素可以引用脚本、引用样式表、提供元信息等等 --&gt;
-      &lt;meta charset="UTF-8"&gt;  &lt;!-- 这个标签定义了文档的编码方式为"UTF-8",注意!meta就是元信息(meta-information) --&gt;
-      &lt;title&gt;  &lt;/title&gt;       &lt;!-- 这个标签定义了该html文档的标题 --&gt;
-    &lt;/head&gt;                   &lt;!-- head的闭合（结束）标签 --&gt;
+      &lt;head&gt;                    &lt;!-- 这个标签定义了文档的头部,&lt;head&gt;中的元素可以引用脚本、样式表、提供元信息等等 --&gt;
+        &lt;meta charset="UTF-8"&gt;  &lt;!-- 这个标签定义了文档的编码方式为"UTF-8",注意!meta就是元信息(meta-information) --&gt;
+        &lt;title&gt;  &lt;/title&gt;       &lt;!-- 这个标签定义了该html文档的标题 --&gt;
+      &lt;/head&gt;                   &lt;!-- head的闭合（结束）标签 --&gt;
 
-    &lt;body&gt;                    &lt;!-- 这个标签定义了文档的主体,&lt;body&gt;中的元素可以定义文本、超链接、图像、列表等等 --&gt;
+      &lt;body&gt;                    &lt;!-- 这个标签定义了文档的主体,&lt;body&gt;中的元素可以定义文本、超链接、图像、列表等等 --&gt;
 
-    &lt;/body&gt;                   &lt;!-- body的闭合（结束）标签 --&gt;
+      &lt;/body&gt;                   &lt;!-- body的闭合（结束）标签 --&gt;
     &lt;/html&gt;                   &lt;!-- html的闭合（结束）标签 --&gt;
     </pre>
     <p>让我们开始写第一个HTML吧</p>
@@ -258,14 +261,14 @@
     &lt;!DOCTYPE html&gt;
     &lt;html lang="zh"&gt;
 
-    &lt;head&gt;
-      &lt;meta charset="UTF-8"&gt;
-      &lt;title&gt;没错，我就是标题&lt;/title&gt;
-    &lt;/head&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;没错，我就是标题&lt;/title&gt;
+      &lt;/head&gt;
 
-    &lt;body&gt;
-      &lt;h1&gt;Hello World！&lt;/h1&gt; &lt;!-- 经典Hello World！ --&gt;
-    &lt;/body&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Hello World！&lt;/h1&gt; &lt;!-- 经典Hello World！ --&gt;
+      &lt;/body&gt;
     &lt;/html&gt;
     </pre>
     <p>先猜猜上面的代码会在浏览器中编译出什么 , 再将上面的代码复制进你之前新建的html文件中 , 双击打开看看和你猜的是否一样吧</p>
