@@ -64,7 +64,7 @@
     } */
 
     #zoom:focus {
-      width: 230px;
+      width: 280px;
     }
 
     a {
@@ -90,7 +90,7 @@
   <div id="frame">
     <div id="h1">
       <h1>Vue 笔记</h1>
-      <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦" onchange="trigger(this.value)">
+      <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦 , 默认200%" onchange="trigger(this.value)">
     </div>
     <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ：1204184336，邮箱：1204184336@qq.com</p>
     <a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
@@ -351,7 +351,7 @@
             console.log(vm.name);        //控制台是不是打印了World
             console.log(vm._data.name);  //控制台是不是打印了World
             //vm是Vue实例没问题，但为什么vm.name和vm._data.name都打印了World呢？
-            //实际上，vm._data的值就是vm实例中的data对象，他们之间做了一个数据劫持，你问我啥叫数据劫持？为的是自动更新{{}}的内容，详细的以后再说
+            //实际上，vm._data就是vm实例中的data对象，他们之间做了一个数据劫持，你问我啥叫数据劫持？为的是自动更新{{}}的内容，详细的以后再说
             //简单来说，数据劫持指的是在访问或者修改对象的某个属性时,通过一段代码拦截这个行为,进行额外的操作或者修改返回结果
             //你可能会说这数据劫持怎么和数据代理这么像啊，你是不是在忽悠我啊，不忽悠！但是现在的你们只需要知道vm._data的值就是vm实例中的data对象即可
             //所以vm._data.name打印出的是World
@@ -395,7 +395,7 @@
               },
               methods:{
                 showInfo(event,a){ //对象中写方法可以省略function直接写方法名，Es6语法https://262.ecma-international.org/6.0/ 
-                  console.log(vm.showInfo);//showInfo在哪？他还是在vm里
+                  console.log(vm.showInfo);//showInfo在哪？他还是在vm里,输出console.log(vm)就可以看到
                   console.log(event); //可以直接获取到点击的对象,也就是button
                   console.log(a); //传进来的参数  
                   console.log(this); //实例里的this都是指vm或组件实例对象，不包括箭头函数的this
@@ -407,9 +407,217 @@
       &lt;/html&gt;
     </pre>
     <p>无总结</p>
+
+    <hr>
+    <!-- 8 11/22 -->
+    <h2>Vueの事件修饰符</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+            &lt;a href="https://www.baidu.com" @click.prevent="showInfo($event,55)"&gt;点我&lt;/a&gt;  &lt;!-- prevent就是事件修饰符，他能阻止a标签的跳转事件 --&gt;
+            &lt;p&gt;
+              Vue中有六个事件修饰符;&lt;br&gt;
+              .prevent -阻止默认事件&lt;br&gt;
+              .stop -阻止事件冒泡&lt;br&gt;
+              .once -事件只触发一次&lt;br&gt;
+              .capture -使用事件捕获模式&lt;br&gt;
+              .self -只有event.target是当前操作的元素时才触发事件&lt;br&gt;
+              .passive -passive能保证的只有一点，那就是使调用 preventDefault()无效&lt;br&gt;
+            &lt;/p&gt;
+            &lt;!-- .prevent -阻止默认事件 --&gt;
+            &lt;a href="https://www.baidu.com" @click.prevent="showInfo($event,55)"&gt;点我.prevent&lt;/a&gt;
+
+            &lt;!-- .stop -阻止事件冒泡 --&gt;
+            &lt;div @click="stop(3)"&gt;
+              &lt;div @click="stop(2)"&gt;
+                &lt;div @click.stop="stop(1)"&gt;点我.stop&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- .once -事件只触发一次 --&gt;
+            &lt;div @click.once="once()"&gt;点我.once&lt;/div&gt;
+
+            &lt;!-- .capture -使用事件捕获模式 --&gt;
+            &lt;div @click.capture="stop(3)"&gt;
+              &lt;div @click.capture="stop(2)"&gt;
+                &lt;div @click="stop(1)"&gt;点我.capture&lt;/div&gt; &lt;!-- 还记得吗，事件的流程是先捕获后冒泡，捕获是由外往内，冒泡是由内往外 --&gt;
+                &lt;!-- 所以按照标准流程，上面三个事件应该是先捕获3，2，1 然后再冒泡1，2，3 --&gt;
+                &lt;!-- 而使用了.capture后，程序会在冒泡阶段优先执行，如果有多个capture，执行顺序由外到内。 --&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- .self -只有event.target是当前操作的元素才触发事件，是不是感觉看不懂，看console.log你就知道了 --&gt;
+            &lt;div @click="self($event,3)"&gt;
+              &lt;div @click.self="self($event,2)"&gt;
+                &lt;div @click="self($event,1)"&gt;点我.self&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- .passive -passive能保证的只有一点，那就是调用 preventDefault() 无效 --&gt;
+            &lt;button @click="passive($event)"&gt;点我.无passive&lt;/button&gt;
+            &lt;button @click.passive="passive($event)"&gt;点我.有passive&lt;/button&gt;
+
+            &lt;!-- 事件修饰符可以连写，但是要注意顺序，顺序不一样，可能！，会有不一样的效果 --&gt;
+            &lt;div @click="stop(3)"&gt;
+              &lt;div @click="stop(2)"&gt;
+                &lt;a href="https://www.baidu.com" @click.stop.prevent="stop(1)"&gt;点我.修饰符连写&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name: 'World',
+              },
+              methods:{
+                showInfo(event,a){ 
+                  alert("a标签不会跳转,"+a);
+                },
+                stop(a){
+                  alert(`第${a}次冒泡`);
+                },
+                once(){
+                  alert("我只会出现一次，再点我就没用了");
+                },
+                self(event,a){
+                  // alert(`event${a}.target是${event.target}`);
+                  alert(`我会第${a}次冒泡，不会第2次冒泡`);
+                  console.log(event.target);
+                  console.log('可以看出，虽然是冒泡上去了，但是event.target是不变的');
+                  console.log('所以我们可以得出结论，self会阻止非event.target元素的事件');
+                },
+                passive(event){
+                  console.log(`event.preventDefault()是${event.defaultPrevented}`); // false
+                  event.preventDefault();
+                  console.log(`event.preventDefault()是${event.defaultPrevented}`); // 还是 false，因为preventDefault()无效了
+                },
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 9 11/22 -->
+    <h2>Vue的按键修饰符</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            input{
+              height: 31px;
+              width: 310px;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+            &lt;p&gt;
+              Vue中有九个常用的按键修饰符;&lt;br&gt;
+              .enter -回车&lt;br&gt;
+              .delete -退格或删除都能捕获到&lt;br&gt;
+              .esc -退出&lt;br&gt;
+              .tap -制表符&lt;br&gt;
+              .up -上&lt;br&gt;
+              .down -下&lt;br&gt;
+              .left -左&lt;br&gt;
+              .right -右&lt;br&gt;
+            &lt;/p&gt;
+            &lt;!-- 由于篇幅限制，9个就不一一测试了，自行替换尝试吧 --&gt;
+            &lt;input type="text" placeholder="按下对应的修饰符按键后在控制台查看输出" @keyup.enter="showInfo"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;!-- 这里的.enter就是按键修饰符，这是Vue的别名，所以可以使用小写e开头 --&gt;
+      
+            &lt;!-- 但是不常用不代表不会用，万一我们遇到了这9个之外的，可以用下面的方法 --&gt;
+            &lt;input type="text" placeholder="按下你需要的按键在控制台查看输出" @keydown="check"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;!-- 找到名字之后，你可以直接@keyup.名字就可以触发了，包括9个常用的也可以使用名字来触发，但是要注意大小写，如@keyup.Enter="check" --&gt;
+            &lt;!-- 找到键码之后，你可以直接@keyup.键码就可以触发了，包括9个常用的也可以使用键码来触发，如@keyup.13="check" 不推荐使用，原因在同下 --&gt;
+            &lt;!-- 主要是因为现在的键盘五花八门，主要按键的键码是一样的，但总有一些按键键码不太统一，所以现在推荐使用名字来触发 --&gt;
+            &lt;!-- 注意，有些按键名字的组成不止一个单词，如CapsLock,这种应写成caps-lock，如@keyup.caps-lock="check" --&gt;
+            &lt;!-- Tap，Ctrl，Alt，Meta 最好都配合keydown使用，keyup支持的不太好用 --&gt;
+
+            &lt;!-- Vue还支持我们给按键起别名，这其实也不太推荐，有点影响可读性 --&gt;
+            &lt;input type="text" placeholder="按下你需要的按键在控制台查看输出" @keydown.huiche="check"&gt;&lt;br&gt;&lt;br&gt;
+
+            &lt;!-- 按键修饰符可以连写，但是要注意顺序，顺序不一样，可能！，会有不一样的效果 --&gt;
+            &lt;input type="text" placeholder="按下你需要的按键在控制台查看输出" @keydown.ctrl.y="check"&gt;&lt;br&gt;&lt;br&gt;
+          &lt;/div&gt;
+
+          &lt;script integrity="sha384-2u1og8lTeZnItjWoZIz1rg9odMcYMhz/DaSMh5ePJJ2yBAAHZvQ2Dhh3/SwNoOLs"
+            crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.14/vue.common.dev.js"&gt;&lt;/script&gt;
+
+          &lt;script&gt;
+            Vue.config.keyCodes.huiche = 13;
+
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name: 'World',
+              },
+              methods:{
+                showInfo(event){
+                  // if (event.keyCode !== 13) return; //keyCode已废弃,一些浏览器仍然支持,但请谨慎使用,原先需要使用这种方法,Vue为我们提供按键修饰符
+                  console.log(event.target.value);
+                },
+                check(e){
+                  console.log(e.key,e.keyCode);
+                }
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
-  
   <script>
     let frame = document.getElementById("frame");
     function trigger(value) {
