@@ -11,7 +11,11 @@
   <title>不好意思啊</title>
   <style>
     h1 {
-      font-size: 51px;
+      font-size: 0.51rem;
+      text-align: center;
+    }
+    h3{
+      font-size: 0.31rem;
       text-align: center;
     }
   </style>
@@ -19,6 +23,55 @@
 
 <body>
   <h1>不好意思啊，太懒了，还没做</h1>
-</body>
+  <h3 id="widthc"></h3>
+  <h3 id="heightc"></h3>
+  <h3 id="widthp"></h3>
+  <h3 id="heightp"></h3>
+  <!-- <h3 id="widtht"></h3> -->
+  <!-- <h3 id="heightt"></h3> -->
+  <!-- <h3 id="widths"></h3> -->
+  <!-- <h3 id="heights"></h3> -->
 
+
+  <script src="./js/rem.js"></script>
+  <script>
+    document.getElementById("widthc").innerHTML = `可视宽${document.documentElement.clientWidth}px`;
+    document.getElementById("heightc").innerHTML = `可视高${document.documentElement.clientHeight}px`;
+    document.getElementById("widthp").innerHTML = `屏幕宽${window.screen.width}px`;
+    document.getElementById("heightp").innerHTML = `屏幕高${window.screen.height}px`;
+    // document.getElementById("widtht").innerHTML = `可视宽${document.body.clientWidth}px`;
+    // document.getElementById("heightt").innerHTML = `可视高${document.body.clientHeight}px`;
+    // document.getElementById("widths").innerHTML = `实际宽${document.body.scrollWidth}px`;
+    // document.getElementById("heights").innerHTML = `实际高${document.body.scrollHeight}px`;
+  </script>
+</body>
 </html>
+
+<!-- 
+获取当前浏览器宽高
+
+JQuery获取：
+console.log($(window).width()); //浏览器当前窗口可视区域宽度
+console.log($(window).height()); //浏览器当前窗口可视区域高度
+console.log($(document).width());//浏览器当前窗口文档对象宽度
+console.log($(document).height()); //浏览器当前窗口文档的高度
+console.log($(document.body).width());//浏览器当前窗口文档body的宽度
+console.log($(document.body).height());//浏览器当前窗口文档body的高度
+console.log($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin
+console.log($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
+
+JS获取：
+窗口可视区域宽度： document.documentElement.clientWidth || document.body.clientWidth;
+窗口可视区域高度： document.documentElement.clientHeight || document.body.clientHeight;
+窗口可视区域宽度+边线和滚动条： document.body.offsetWidth ;
+窗口可视区域高度+边线和滚动条： document.body.offsetHeight ;
+实际内容的宽度： document.body.scrollWidth;
+实际内容的高度： document.body.scrollHeight;
+滚动条下拉被卷起来的距离：document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+滚动条侧拉被卷起来的距离：document.body.scrollLeft || document.documentElement.scrollLeft ;
+网页正文部分上：window.screenTop;
+网页正文部分左：window.screenLeft;
+元素的宽度：obj.offsetWidth;
+元素的高度：obj.offsetHeight;
+相对于父元素的上位移：obj.offsetTop;（在元素的包含元素不含滚动条的情况下）
+相对于父元素的左位移：obj.offsetLeft;（在元素的包含元素不含滚动条的情况下） -->

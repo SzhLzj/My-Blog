@@ -10,7 +10,7 @@
   <link rel='icon'  type="images/x-icon" href="/img/szh.jpg"></link>
   <title>SzhLzj's Blog - Search</title>
   <!-- https://www.xftsoft.com/tool/integrity -integrity sha384 生成器 -->
-  <script crossorigin="anonymous" integrity="sha384-t1tHLsbM7bYMJCXlhr0//00jSs7ZhsAhxgm191xFsyzvieTMCbUWKMhFg9I6ci8q" src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- <script crossorigin="anonymous" integrity="sha384-t1tHLsbM7bYMJCXlhr0//00jSs7ZhsAhxgm191xFsyzvieTMCbUWKMhFg9I6ci8q" src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
   <style>
     * {
       padding: 0;
@@ -19,14 +19,17 @@
     }
 
     ul {
-      margin: 50px auto;
+      margin: 0.5rem auto 0px;
       position: relative;
+      /* 修改ul宽度 */
       width: 95vw;
-      height: 80vh;
+      height: 95vh;
+      /* height: 100%; */
     }
 
     ul li {
       float: left;
+      /* 修改li宽度，可以改变每行图片数量 */
       width: 25%;
       cursor: pointer;
       padding: 10px;
@@ -59,36 +62,35 @@
       background-image: linear-gradient(rgba(12, 15, 27, 1), rgba(6, 11, 27, 1));
     }
 
-    h1 {
-      font-size: 31px;
-      background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.1), rgba(0, 255, 255, 1));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0px;
-    }
+    /* h1 { */
+      /* font-size: 31px; */
+      /* background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.1), rgba(0, 255, 255, 1)); */
+      /* -webkit-background-clip: text; */
+      /* background-clip: text; */
+      /* -webkit-text-fill-color: transparent; */
+      /* margin: 0px; */
+    /* } */
 
-    #Search_Box {
-      position: absolute;
-      left: 50%;
-      margin-left: -259px;
-      width: 91px;
-      height: 31px;
-      border: 3px solid aqua;
-      border-top-color: rgba(255, 255, 255, 0.3);
-      border-bottom-color: rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
-      outline: none;
-      transition: width 1s;
-    }
+    /* #Search_Box { */
+      /* position: absolute; */
+      /* left: 30%; */
+      /* width: 91px; */
+      /* height: 31px; */
+      /* border: 3px solid aqua; */
+      /* border-top-color: rgba(255, 255, 255, 0.3); */
+      /* border-bottom-color: rgba(255, 255, 255, 0.3); */
+      /* border-radius: 5px; */
+      /* outline: none; */
+      /* transition: width 1s; */
+    /* } */
 
-    #Search_Box:focus {
-      width: 510px;
-    }
+    /* #Search_Box:focus { */
+      /* width: 510px; */
+    /* } */
 
     p {
       position: absolute;
-      font-size: 91px;
+      font-size: 0.91rem;
       color: white;
       text-align: center;
       bottom: 5px;
@@ -97,15 +99,49 @@
       /* background-clip: text; */
       /* -webkit-background-clip: text; */
       /* -webkit-text-fill-color: transparent; */
-      font-family:'STXingkai';
+      font-family:'STXingkai','Brush Script MT';
+    }
+
+    /* @media only screen and (max-width: 450px){ */
+      /* #Search_Box { */
+        /* left: 20%; */
+      /* } */
+
+      /* #Search_Box:focus { */
+        /* width: 250px; */
+      /* } */
+
+      /* p{ */
+        /* font-size: 2rem; */
+      /* } */
+    /* } */
+
+    @media only screen and (max-width: 450px){
+      body{
+        overflow: auto;
+      }
+      ul{
+        margin: 10px auto;
+        height: 100%;
+      }
+      ul li{
+        width: 100%;
+      }
+      p{
+        font-size: 3rem;
+      }
+      @font-face{
+        font-family:'STXingkai';
+        src: url(./font/STXingkai.ttf);
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>SzhLzj</h1>
-  <input type="text" placeholder="请输入搜索内容  -还没做呢，别搜了" id="Search_Box">
+  <!-- <h1>SzhLzj</h1> -->
+  <!-- <input type="text" placeholder="请输入搜索内容  -还没做呢，别搜了" id="Search_Box"> -->
 
   <!-- ************************************************************ -->
 
@@ -137,53 +173,55 @@
     <li index="4"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg13.51tietu.net%2Fpic%2F20200116%2F2hst2wt1s1q2hst2wt1s1q.jpg&refer=http%3A%2F%2Fimg13.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909164&t=1273dcc6a544168bdba99665b1932370"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>没</p>
+        <p>React</p>
     </li>
 
     <li index="5"><img src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>想</p>
+        <p></p>
     </li>
 
     <li index="6"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-23%2F5a669a701d209.png%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909743&t=e28be0b558f48147d76413b8e14bfe02"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>好</p>
+        <p></p>
     </li>
 
     <li index="7"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-12-17%2F5c176178ecec9.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637910146&t=24788720b40a18c783c05980707c2b3f"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>敬</p>
+        <p></p>
     </li>
 
     <li index="8"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F59b25b30d5a68.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909505&t=c7f703151e19cbc885a69f7e3d4a8d53"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>请</p>
+        <p></p>
     </li>
 
     <li index="9"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F299867268c9a0b27990bfb6bf91ce0a22bc5aa19.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909546&t=b42a7104eac7252aef9d1c23876dc471"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>期</p>
+        <p></p>
     </li>
 
     <li index="10"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fb%2F599a9601468a9.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637909580&t=866054acc4639907708399ef0b2e4228"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>待</p>
+        <p></p>
     </li>
 
     <li index="11"><img
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-12-29%2F5e0813c63818c.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637910205&t=c66c500cc5eb1282060efa16a4c29e65"
         title="你问我为啥里面什么都没有？ 这还需要理由？ 因为我懒啊" alt="哎呀，图像崩了呢" onclick="javascript:location.href='not.html'"/>
-        <p>吧</p>
+        <p>Code base</p>
     </li>
   </ul>
 
-  <script crossorigin="anonymous" integrity="sha384-wciR07FV6RBcI+YEVsZy/bInxpyn0uefUp6Yi9R5r46Qv/yk/osR5nzY31koh9Uq" src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script crossorigin="anonymous" integrity="sha384-sy44Z3QovzAAZqlzAPgB19IcXkRx1uBtP8/6rrufTXAwmv/NQBnnftWoyqYB12il" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <!-- <script crossorigin="anonymous" integrity="sha384-wciR07FV6RBcI+YEVsZy/bInxpyn0uefUp6Yi9R5r46Qv/yk/osR5nzY31koh9Uq" src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
+  <!-- <script crossorigin="anonymous" integrity="sha384-sy44Z3QovzAAZqlzAPgB19IcXkRx1uBtP8/6rrufTXAwmv/NQBnnftWoyqYB12il" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
+  <script src="./js/jQuery min 3.6.0.js"></script>
+  <script src="./js/rem.js"></script>
   <script>
     $(function () {
       var ps = { L: [], R: [], T: [], B: [] };

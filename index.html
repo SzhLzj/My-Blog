@@ -23,18 +23,11 @@
       height: 100vh;
     }
 
-    .width {
-      position: absolute;
-      left: 50%;
-      margin-left: -212.75px;
-    }
-
     .Hello {
-      font: italic 170px Verdana;
+      font: italic 1.7rem Verdana;
       position: fixed;
       transition: font-size 0.3s;
       cursor: pointer;
-      margin-top: 15%;
       
       -webkit-user-select: none;
       -ms-user-select: none;
@@ -44,39 +37,43 @@
     .Hello:nth-of-type(1) {
       z-index: 0;
       color: rgba(44, 200, 184, 1);
-      /* margin-top: 548px; */
-      /* margin-left: 1044px; */
-      padding-top: -3px;
-      padding-left: 6px;
+      /* padding-bottom: 0.3rem; */
+      padding-left: 0.06rem;
     }
 
     .Hello:nth-of-type(2) {
       z-index: 1;
       color: rgba(255, 255, 0, 1);
-      /* margin-top: 551px; */
-      /* margin-left: 1038px; */
+      padding-top: 0.03rem;
     }
 
     .Hello:nth-of-type(3) {
       z-index: 2;
       color: rgba(255, 255, 255, 1);
-      /* margin-top: 554px; */
-      /* margin-left: 1041px; */
-      padding-top: 3px;
-      padding-left: 3px;
+      padding-top: 0.06rem;
+      padding-left: 0.03rem;
+    }
+
+    #box{
+      display: flex;
+      width: 100vw;
+      height: 100%;
+      justify-content: center;
     }
 
     #box>div {
       border: none;
-      width: 100%;
-      max-width: 425.5px;
+      width: 4.255rem;
+      height: 2.072rem;
+      position: absolute;
+      bottom: 60%;
     }
 
     hr:not(.thunder) {
-      width: 31px;
+      width: 0.31rem;
       border-color: transparent;
       border-right-color: rgba(255, 255, 255, 0.3);
-      border-right-width: 100px;
+      border-right-width: 1rem;
       position: absolute;
       bottom: 100%;
       transform-origin: 100% 50%;
@@ -92,23 +89,13 @@
       }
 
       to {
-        transform: rotate(105deg) translateX(calc(100vh + 20px));
+        transform: rotate(105deg) translateX(calc(100vh + 10px));
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- 背景颜色---------------------------------------------------------------------------------------------------------- -->
-  <!-- <div style="
-    background-image: linear-gradient(rgba(12,15,27,1), rgba(6,11,27,1));
-    width: 2560px;  /* 482.453 */
-    height: 1336px; /* 234 */
-    position: fixed;
-    z-index: -99;
-    margin-top: -15%;
-    "></div> -->
-
   <!-- //Hello字体--------------------------------------------------------------------------------------------------------- -->
   <div id="box">
     <div onselectstart="return flase">
@@ -120,6 +107,7 @@
     </div>
   </div>
 
+  <script src="./js/rem.js"></script>
   <script>
     let a = document.getElementsByClassName("Hello");
 
@@ -130,7 +118,7 @@
         setTimeout(function () {
           for (let x = 0; x < a.length; x++) {
             a[x].style.opacity = 1 - (index * 0.1);
-            a[x].style.fontSize = "180px";
+            a[x].style.fontSize = "1.8rem";
           };
         }, index * 30);
       };
@@ -156,7 +144,7 @@
           for (let x = 0; x < a.length; x++) {
             a[x].style.opacity = 1 - (index * 0.1);
             a[x].innerHTML = "&nbsp;Go!&nbsp;";
-            a[x].style.fontSize = "170px";
+            a[x].style.fontSize = "1.7rem";
           };
         }, index * 30);
       };
@@ -174,17 +162,24 @@
       }, 350);
     }
 
+    //限制最小根大小-----------------------------------------------
+    let f = document.documentElement.style.fontSize;
+    let fn = f.replace('px','');
+    if (fn<50) {
+      document.documentElement.style.fontSize = '50px';
+    }
+
     //屏幕自适应---------------------------------------------------
-    function getInsideArr() {
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      document.getElementById("box").style.width = width + "px";
-      if (width > 425.5) {
-        document.getElementById("box").style.width = 425.5 + "px";
-        var div = document.getElementById('box');
-        div.setAttribute("class", "width");
-      };
-    };
-    getInsideArr();
+    // function getInsideArr() {
+      // var width = window.innerWidth || document.documentElement.clientWidth;
+      // document.getElementById("box").style.width = width + "px";
+      // if (width > 425.5) {
+        // document.getElementById("box").style.width = 425.5 + "px";
+        // var div = document.getElementById('box');
+        // div.setAttribute("class", "width");
+      // };
+    // };
+    // getInsideArr();
 
     //特效--------------------------------------------------------
     let hrs;

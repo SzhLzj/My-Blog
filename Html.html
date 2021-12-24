@@ -21,7 +21,7 @@
       padding: 0px 10px;
       border-style: none solid none solid;
       border-width: 1px;
-      font-size: 100%;
+      font-size: 190%;
     }
 
     a {
@@ -29,14 +29,17 @@
     }
 
     #h1{
-      position: -webkit-sticky;
-      position: sticky;
+      /* position: -webkit-sticky; */
+      /* position: sticky; */
+      position: relative;
       top: 0;
       padding: 24.12px 0px 0px 0px;
-      margin-bottom: 24px;
+      /* margin-bottom: 24px; */
       background-color: whitesmoke;
       height: 50px;
       z-index: 999;
+      display: flex;
+      align-items: center;
     }
 
     #h1>h1{
@@ -49,13 +52,15 @@
     }
 
     #zoom {
-      position: relative;
-      top: -42px;
-      left: 231px;
+      /* position: absolute; */
+      /* top: 19px; */
+      /* left: 231px; */
+      margin-left: 20px;
       height: 31px;
       width: 151px;
       border-radius: 8px;
       transition: width 1s;
+      font-size: 12px;
     }
 
     /* 使zoom无加减器 */
@@ -349,7 +354,7 @@
 
   </div>
 
-  
+  <!-- <script src="./js/rem.js"></script> -->
   <script>
     let frame = document.getElementById("frame");
     function trigger(value) {
