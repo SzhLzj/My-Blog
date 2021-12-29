@@ -21,7 +21,7 @@
       padding: 0px 10px;
       border-style: none solid none solid;
       border-width: 1px;
-      font-size: 200%;
+      font-size: 130%;
     }
 
     #h1{
@@ -596,9 +596,159 @@
     </pre>
     <p>无总结</p>
 
+    <hr>
+    <!-- 10 12/28 -->
+    <h2>computed(计算属性)</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            input{
+              height: 31px;
+              width: 310px;
+            }
+            div{
+              width: 310px;
+              margin: 0px auto;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;插值语法实现&lt;/h1&gt;
+            姓 &lt;input type="text" v-model="firstname"&gt;&lt;br&gt;&lt;br&gt;
+            名 &lt;input type="text" v-model="lastname"&gt;&lt;br&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ firstname.slice(0 , 3) }} - {{ lastname }}&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      
+            &lt;h1&gt;methods(方法)实现&lt;/h1&gt;
+            姓 &lt;input type="text" v-model="firstname"&gt;&lt;br&gt;&lt;br&gt;
+            名 &lt;input type="text" v-model="lastname"&gt;&lt;br&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ fullname() }}&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      
+            &lt;h1&gt;computed(计算属性)实现&lt;/h1&gt;
+            姓 &lt;input type="text" v-model="firstname"&gt;&lt;br&gt;&lt;br&gt;
+            名 &lt;input type="text" v-model="lastname"&gt;&lt;br&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
+            姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+            &lt;span&gt;
+              你是不是在想我脑子抽了，为啥要写四遍，因为我想告诉你，get()函数只被调用了一次，
+              打开控制台你就会发现，至于为什么他只调用了一次，那是因为Vue有个缓存机制，
+              有经验的小伙伴可能会想，有缓存不行啊，再想改变数据就不会更新了吗，
+              没关系，在这里，get()在两种情况下会被调用，第一是初次访问fullname2的时候，
+              第二是所依赖的数据发生变动的时候，不信你可以尝试改变firstname或lastname，
+              看看控制台会不会有相应的变化，这个默认的缓存机制只在computed(计算属性)有，
+              methods(方法)就没有，因此在某些情况下，computed(计算属性)比methods(方法)
+              效率要高
+            &lt;/span&gt;
+            &lt;br&gt;&lt;br&gt;
+      
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                firstname: '张',
+                lastname: '三',
+              },
+              methods:{
+                fullname() {
+                  return `${this.firstname} - ${this.lastname}`;
+                }
+              },
+              computed:{
+                //还记得吗，data里的firstname和lastname都会出现在vm._data里
+                //因为他们之间做了数据劫持，并且在做了数据代理后，vm里面也有了firstname和lastname
+                //那fullname2在哪里呢？
+                //fullname2也可以在vm里找到，不过在控制台，你看不出fullname2与data里面的属性之间的区别
+                //借助Vue开发者工具你可以分辨出谁是data(属性) 谁是computed(计算属性)
+                //虽然vm里能找到fullname2，但是_data里是不会出现fullname2的，这个好理解的吧
+                fullname2: {
+                  //还记得get()吗，忘记的回去看看数据代理那一篇
+                  get(){
+                    console.log('依赖的数据不发生变动的时候，get()只被调用了一次');
+                    //你可能会想为什么这里的this是vm，而不是get(),因为Vue已经帮您配置好了
+                    return `${this.firstname} - ${this.lastname}`;
+                  }
+                  //如果你想根据姓名来改变姓和名，你就需要用到set(),忘记的依旧回去看数据代理那一篇
+                }
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
 
+    <hr>
+    <!-- 11 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
 
+    </pre>
+    <p>无总结</p>
 
+    <hr>
+    <!-- 12 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 10 12/28 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
 
 
 
