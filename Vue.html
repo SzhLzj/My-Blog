@@ -97,7 +97,7 @@
       <h1>Vue 笔记</h1>
       <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦 , 默认200%" onchange="trigger(this.value)">
     </div>
-    <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ：1204184336，邮箱：1204184336@qq.com</p>
+    <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ:1204184336，邮箱:1204184336@qq.com</p>
     <a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
     <p>Vue是一套用于<strong>构建用户界面</strong>的<strong>渐进式</strong>框架</p>
     <p>学习Vue需要掌握哪些JavaScript知识呢？</p>
@@ -113,7 +113,7 @@
 
     <hr>
     <!-- 1 11/18 -->
-    <h2>第一个Vue实例 - Vue模板语法：{{}} -插值语法</h2>
+    <h2>第一个Vue实例 - Vue模板语法:{{}} -插值语法</h2>
     <pre class="code_1">  
     &lt;!DOCTYPE html&gt;
     &lt;html lang="zh"&gt;
@@ -154,7 +154,7 @@
     
     <hr>
     <!-- 2 11/18 -->
-    <h2>Vue模板语法：v-bind -指令语法</h2>
+    <h2>Vue模板语法:v-bind -指令语法</h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -196,12 +196,12 @@
     <p>总结</p>
     <p>1.{{}}会在"内容"(Content)当中被解析, 而v-bind会在"属性"(Attribute)当中被解析。</p>
     <p>2.{{}}可以读取到<strong>data里面所有的键值对</strong>，并且v-bind也可以读取到<strong>data里面所有的键值对。</strong></p>
-    <p>3.{{}}是插值语法，v-bind是指令语法，指令语法有很多，指令语法会在"标签"(Tag)当中被解析(标签包括："内容"(Content)、"属性"(Attribute)、绑定事件等等。。。)</p>
+    <p>3.{{}}是插值语法，v-bind是指令语法，指令语法有很多，指令语法会在"标签"(Tag)当中被解析(标签包括:"内容"(Content)、"属性"(Attribute)、绑定事件等等。。。)</p>
     <p>4.data里还可以创建新的对象，这样可以重复使用对象名，调用方式为"新对象.对象名"</p>
 
     <hr>
     <!-- 3 11/19 -->
-    <h2>Vue模板语法：v-model -指令语法</h2>
+    <h2>Vue模板语法:v-model -指令语法</h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -213,11 +213,11 @@
   
         &lt;body&gt;
           &lt;div id="root"&gt;
-            单向数据绑定：&lt;input type="text" v-bind:value="name"&gt;  &lt;!-- v-bind只能实现单向绑定(从data流向input) --&gt;
+            单向数据绑定:&lt;input type="text" v-bind:value="name"&gt;  &lt;!-- v-bind只能实现单向绑定(从data流向input) --&gt;
             &lt;br&gt;
-            双向数据绑定：&lt;input type="text" v-model:value="name"&gt; &lt;!-- v-model能实现双向绑定(不仅能从data流向input，还能从input流向data) --&gt;
+            双向数据绑定:&lt;input type="text" v-model:value="name"&gt; &lt;!-- v-model能实现双向绑定(不仅能从data流向input，还能从input流向data) --&gt;
             &lt;br&gt;
-            双向数据绑定：&lt;input type="text" v-model="name"&gt;       &lt;!-- v-model:value可以简写为v-model,因为v-model默认收集的就是value --&gt;
+            双向数据绑定:&lt;input type="text" v-model="name"&gt;       &lt;!-- v-model:value可以简写为v-model,因为v-model默认收集的就是value --&gt;
             &lt;br&gt;
             &lt;h1 v-model:x='name'&gt;但是v-model不是哪里都可以使用的，他只能使用在表单类(输入类元素)元素上,就像这行h1，你打开控制台就会发现他在报错。&lt;/h1&gt;
           &lt;/div&gt;
@@ -358,11 +358,11 @@
             //vm是Vue实例没问题，但为什么vm.name和vm._data.name都打印了World呢？
             //实际上，vm._data就是vm实例中的data对象，他们之间做了一个数据劫持，你问我啥叫数据劫持？为的是自动更新{{}}的内容，详细的以后再说
             //简单来说，数据劫持指的是在访问或者修改对象的某个属性时,通过一段代码拦截这个行为,进行额外的操作或者修改返回结果
-            //你可能会说这数据劫持怎么和数据代理这么像啊，你是不是在忽悠我啊，不忽悠！但是现在的你们只需要知道vm._data的值就是vm实例中的data对象即可
+            //你可能会说这数据劫持怎么和数据代理这么像啊，你是不是在忽悠我啊，不忽悠!但是现在的你们只需要知道vm._data的值就是vm实例中的data对象即可
             //所以vm._data.name打印出的是World
-            //再来说说为什么vm.name是哪来的,因为Vue在这里做了一个数据代理(今天的主题！),将vm._data.name和vm.name之间用Object.defineProperty联系了起来
+            //再来说说为什么vm.name是哪来的,因为Vue在这里做了一个数据代理(今天的主题!),将vm._data.name和vm.name之间用Object.defineProperty联系了起来
             //不信你可以看看console.log(vm);下面是不是有两个函数叫get name: ƒ proxyGetter()和set name: ƒ proxySetter(val)
-            //你不要和我说vm._data下面也有，以后再说！
+            //你不要和我说vm._data下面也有，以后再说!
             //Vue为什么要做这个数据代理呢，因为如果没有这个数据代理，你在{{}}里就要写_data.name而不是name，这是为了方便你们而做的
           &lt;/script&gt;
         &lt;/body&gt;
@@ -372,7 +372,7 @@
 
     <hr>
     <!-- 7 11/19 -->
-    <h2>Vue模板语法：v-on -指令语法 事件处理</h2>
+    <h2>Vue模板语法:v-on -指令语法 事件处理</h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -471,7 +471,7 @@
             &lt;button @click="passive($event)"&gt;点我.无passive&lt;/button&gt;
             &lt;button @click.passive="passive($event)"&gt;点我.有passive&lt;/button&gt;
 
-            &lt;!-- 事件修饰符可以连写，但是要注意顺序，顺序不一样，可能！，会有不一样的效果 --&gt;
+            &lt;!-- 事件修饰符可以连写，但是要注意顺序，顺序不一样，可能!，会有不一样的效果 --&gt;
             &lt;div @click="stop(3)"&gt;
               &lt;div @click="stop(2)"&gt;
                 &lt;a href="https://www.baidu.com" @click.stop.prevent="stop(1)"&gt;点我.修饰符连写&lt;/a&gt;
@@ -565,7 +565,7 @@
             &lt;!-- Vue还支持我们给按键起别名，这其实也不太推荐，有点影响可读性 --&gt;
             &lt;input type="text" placeholder="按下你需要的按键在控制台查看输出" @keydown.huiche="check"&gt;&lt;br&gt;&lt;br&gt;
 
-            &lt;!-- 按键修饰符可以连写，但是要注意顺序，顺序不一样，可能！，会有不一样的效果 --&gt;
+            &lt;!-- 按键修饰符可以连写，但是要注意顺序，顺序不一样，可能!，会有不一样的效果 --&gt;
             &lt;input type="text" placeholder="按下你需要的按键在控制台查看输出" @keydown.ctrl.y="check"&gt;&lt;br&gt;&lt;br&gt;
           &lt;/div&gt;
 
@@ -597,7 +597,7 @@
     <p>无总结</p>
 
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 10 12/29 -->
     <h2>computed(计算属性)</h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
@@ -646,7 +646,8 @@
               效率要高
             &lt;/span&gt;
             &lt;br&gt;&lt;br&gt;
-      
+            fullname3姓名: &lt;span&gt;{{ fullname3 }}&lt;/span&gt;&lt;br&gt;
+            fullname4姓名: &lt;span&gt;{{ fullname4 }}&lt;/span&gt;&lt;br&gt;
           &lt;/div&gt;
       
           &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
@@ -675,8 +676,23 @@
                     console.log('依赖的数据不发生变动的时候，get()只被调用了一次');
                     //你可能会想为什么这里的this是vm，而不是get(),因为Vue已经帮您配置好了
                     return `${this.firstname} - ${this.lastname}`;
-                  }
+                  },
                   //如果你想根据姓名来改变姓和名，你就需要用到set(),忘记的依旧回去看数据代理那一篇
+                  set(value){
+                    console.log('set',value)
+                    const arr = value.split('-')
+                    this.firstname = arr[0]
+                    this.lastname = arr[1]
+                  }
+                },
+                //如果你确定你不需要修改计算属性的结果时(也就是不要set时)，可以不用写的像上面这么麻烦,下面是简写的示例
+                fullname3: function () {
+                  return `${this.firstname} - ${this.lastname}`;
+                },
+                //如上所示，function()相当于是get()
+                //还可以再简写,注意哦,这不是说fullnanme4就是函数,这依旧是计算属性,只是被简写了
+                fullname4 () {
+                  return `${this.firstname} - ${this.lastname}`;
                 }
               }
             })
@@ -687,23 +703,502 @@
     <p>无总结</p>
 
     <hr>
-    <!-- 11 12/28 -->
-    <h2></h2>
+    <!-- 11 12/29 -->
+    <h2>监视属性</h2>
     <pre class="code_1">
-
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            input{
+              height: 31px;
+              width: 310px;
+            }
+            div{
+              width: 310px;
+              margin: 0px auto;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1&gt;今天天气? {{ hot ? '针不戳' : '鬼天气' }}&lt;/h1&gt;
+            &lt;h1&gt;计算属性 - 今天天气? {{ chot }}&lt;/h1&gt;
+            &lt;button @click="change"&gt;切换天气&lt;/button&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                hot: true,
+              },
+              methods:{
+                change() {
+                  this.hot = !this.hot;
+                }
+              },
+              computed:{
+                chot (){
+                  return this.hot ? '针不戳' : '鬼天气'
+                }
+              },
+              watch:{
+                //这里写你要监视的属性
+                hot:{
+                  //immediate会在初始化的时候就编译一下handler
+                  immediate: true,
+                  //开启深度监视
+                  deep: true,
+                  //handler，一个回调函数，监听到变化时会自动执行的函数
+                  handler(newValue,oldValue){
+                    console.log('变天了',newValue,oldValue);
+                  }
+                },
+                //同计算属性，当年不需要其他配置项时(immediate和deep)，可以简写
+                hot(newValue,oldValue){
+                  console.log('变天了',newValue,oldValue);
+                }
+              }
+            })
+      
+            //第二种写法，通过api调用
+            vm.$watch('hot',{
+              immediate: true,
+              deep: true,
+              handler(newValue,oldValue){
+                console.log('变天了',newValue,oldValue);
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
     </pre>
     <p>无总结</p>
 
     <hr>
-    <!-- 12 12/28 -->
-    <h2></h2>
+    <!-- 12 12/30 -->
+    <h2>样式绑定</h2>
     <pre class="code_1">
-
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 310px;
+              height: 310px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            .root2{
+              border: 5px solid rgb(255, 0, 0);
+            }
+            .root3{
+              border: 5px solid rgb(0, 255, 42);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root" v-on:click="on" v-bind:class="a"&gt;&lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                a:'root1'
+              },
+              methods:{
+                //用普通的判断来完成确定数量和确定样式的绑定
+                //用数组可以完成不确定数量的绑定
+                //用对象可以完成不确定数量和不确定样式的绑定
+                on(){
+                  if (this.a == 'root3') {
+                    this.a = 'root1';
+                    return;
+                  }
+                  if (this.a == 'root1') {
+                    this.a = 'root2';
+                  }else{
+                    this.a = 'root3';
+                    return;
+                  }
+                }
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
     </pre>
     <p>无总结</p>
 
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 13 12/30 -->
+    <h2>条件渲染 v-if</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;&gt;
+            div{
+              width: 1031px;
+              height: 700px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            h3{
+              text-align: center;
+            }
+            h1{
+              font-size: 30px;
+              text-align: center;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root root1"&gt;
+            &lt;h3&gt; v-show=a&gt;{{ name }}&lt;/h3&gt;
+            &lt;h3&gt; v-show="1 == 1"&gt;{{ name }}&lt;/h3&gt;
+            &lt;h3&gt; v-show="1 == 2"&gt;{{ name }}&lt;/h3&gt;&lt;br&gt;&lt;br&gt;
+      
+            &lt;h3&gt; v-if=a&gt;{{ name }}&lt;/h3&gt;
+            &lt;h3&gt; v-if="1 == 1"&gt;{{ name }}&lt;/h3&gt;
+            &lt;h3&gt; v-if="1 == 2"&gt;{{ name }}&lt;/h3&gt;&lt;br&gt;&lt;br&gt;
+      
+            &lt;h1&gt; v-on:click= "n++"&gt;点我: {{ n }}&lt;/h1&gt;
+            &lt;h3 v-if="n == 1"&gt;1&lt;/h3&gt;
+            &lt;h3&gt; v-else-if="n == 2"&gt;2&lt;/h3&gt;
+            &lt;h3&gt; v-else-if="n == 3"&gt;3&lt;/h3&gt;
+            &lt;h3&gt; v-else&gt;我是else&lt;/h3&gt;&lt;br&gt;&lt;br&gt;
+      
+            &lt;!-- template不影响布局，但只能和v-if配合 --&gt;
+            &lt;template v-if="1 == 1"&gt;
+              &lt;h3&gt;打开控制台你会发现template不见了&lt;/h3&gt;
+              &lt;h3&gt;打开控制台你会发现template不见了&lt;/h3&gt;
+              &lt;h3&gt;打开控制台你会发现template不见了&lt;/h3&gt;
+              &lt;h3&gt;打开控制台你会发现template不见了&lt;/h3&gt;
+            &lt;/template&gt;
+          &lt;/div&gt;
+      
+          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name: 
+                '打开控制台会发现，v-show="1==2"渲染了，只是用了display:none隐藏了，\
+                而v-if="1==2"直接就没有渲染，在某些情况下，v-if的效率更高，但是在某些情况，\
+                v-if会导致元素无法获取到',
+                a: 'ture',
+                n: 1,
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 14 12/30 -->
+    <h2>列表渲染 v-for</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1031px;
+              height: 700px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            h3{
+              text-align: center;
+            }
+            h1{
+              font-size: 30px;
+              text-align: center;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root root1"&gt;
+            &lt;!-- 遍历数组 --&gt;
+            &lt;ul&gt;
+              &lt;!-- 
+              index是对象自带的下标,可以随p(数组中的对象)一起获取,key相当于是标识符，为了给Vue定位元素而设置的，
+              key提高效率的同时，还能保证数据不容易出错，key要用唯一标识符，如果不写key，默认添加index为key
+               --&gt;
+              &lt;li v-for="(p,index) in n" :key="p.id"&gt;{{index}} --- {{p.id}} --- {{p.name}} --- {{p.age}}&lt;/li&gt;
+            &lt;/ul&gt;
+      
+            &lt;!-- 遍历对象 --&gt;
+            &lt;ul&gt;
+              &lt;!-- 
+              index是对象自带的下标,可以随p(数组中的对象)一起获取,key相当于是标识符，为了给Vue定位元素而设置的，
+              key提高效率的同时，还能保证数据不容易出错，key要用唯一标识符，如果不写key，默认添加index为key
+               --&gt;
+              &lt;li v-for="(p,k) in n2" :key="k"&gt;{{k}} --- {{p}}&lt;/li&gt;
+            &lt;/ul&gt;
+      
+            &lt;!-- 遍历字符串 --&gt;
+            &lt;ul&gt;
+              &lt;!-- 
+              index是对象自带的下标,可以随p(数组中的对象)一起获取,key相当于是标识符，为了给Vue定位元素而设置的，
+              key提高效率的同时，还能保证数据不容易出错，key要用唯一标识符，如果不写key，默认添加index为key
+               --&gt;
+              &lt;li v-for="(p,k) in str"&gt;{{k}} --- {{p}}&lt;/li&gt;
+            &lt;/ul&gt;
+      
+            &lt;!-- 遍历指定次数 --&gt;
+            &lt;ul&gt;
+              &lt;!-- 
+              index是对象自带的下标,可以随p(数组中的对象)一起获取,key相当于是标识符，为了给Vue定位元素而设置的，
+              key提高效率的同时，还能保证数据不容易出错，key要用唯一标识符，如果不写key，默认添加index为key
+               --&gt;
+              &lt;li v-for="(p,k) in 10"&gt;{{k}} --- {{p}}&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                n:[
+                  {id:4,name:'张三',age:'18'},
+                  {id:3,name:'张四',age:'19'},
+                  {id:2,name:'张五',age:'20'},
+                  {id:1,name:'张六',age:'21'},
+                ],
+                n2:{
+                  name:'wyz',
+                  age:'19',
+                  gender:'man',
+                },
+                str:'wyzszhlzj'
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 15 12/31 -->
+    <h2>列表过滤</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 231px;
+              height: 210px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            h3{
+              text-align: center;
+            }
+            h1{
+              font-size: 30px;
+              text-align: center;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root root1"&gt;
+            &lt;!-- watch写法 --&gt;
+            &lt;input type="text" placeholder="请输入名字" v-model:val='keyword'&gt;
+            &lt;ul&gt;
+              &lt;li v-for="(p,index) in perspn" :key="p.id"&gt;
+                {{p.name}} ---- {{p.age}} ---- {{p.sex}} ---- {{p.gender}}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+      
+            &lt;!-- computed写法 --&gt;
+            &lt;input type="text" placeholder="请输入名字" v-model:val='keyword2'&gt;
+            &lt;ul&gt;
+              &lt;li v-for="(p,index) in pons" :key="p.id"&gt;
+                {{p.name}} ---- {{p.age}} ---- {{p.sex}} ---- {{p.gender}}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                perspns:[
+                  {id:4,name:'张三',age:'18',sex:"male",gender:'man'},
+                  {id:3,name:'张四',age:'19',sex:"male",gender:'man'},
+                  {id:2,name:'张五',age:'20',sex:"male",gender:'man'},
+                  {id:1,name:'张六',age:'21',sex:"male",gender:'man'},
+                ],
+                perspn:[],
+                keyword: '',
+                keyword2: '',
+              },
+              //computed写法
+              computed:{
+                pons(){
+                  return this.perspns.filter(p=&gt;{
+                    return p.name.indexOf(this.keyword2) !== -1;
+                  })
+                }
+              },
+              //watch写法
+              watch:{
+                keyword:{
+                  //先执行一遍，因为任何字符串都含有空字符，所以可以显示出列表的全部数据
+                  immediate:true,
+                  handler(val){
+                    this.perspn = this.perspns.filter(p=&gt;{
+                      return p.name.indexOf(val) !== -1;
+                    })
+                  }
+                }
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 16 12/31 -->
+    <h2>列表排序</h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;&gt;
+            div{
+              width: 531px;
+              height: 310px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            h3{
+              text-align: center;
+            }
+            h1{
+              font-size: 30px;
+              text-align: center;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root root1"&gt;
+            &lt;input type="text" placeholder="请输入名字" v-model:val='keyword'&gt;
+            &lt;button&gt; @click="sortType = 2"&gt;查询年龄升序&lt;/button&gt;
+            &lt;button&gt; @click="sortType = 1"&gt;查询年龄降序&lt;/button&gt;
+            &lt;button&gt; @click="sortType = 0"&gt;查询年龄原序&lt;/button&gt;
+            &lt;ul&gt;
+              &lt;li&gt; v-for="(p,index) in pons" :key="p.id"&gt;
+                {{p.name}} ---- {{p.age}} ---- {{p.sex}} ---- {{p.gender}}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+      
+          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                perspns:[
+                  {id:4,name:'张三',age:'31',sex:"male",gender:'man'},
+                  {id:3,name:'张四',age:'14',sex:"male",gender:'man'},
+                  {id:2,name:'张五',age:'15',sex:"male",gender:'man'},
+                  {id:1,name:'张六',age:'61',sex:"male",gender:'man'},
+                  {id:6,name:'李五',age:'55',sex:"male",gender:'man'},
+                  {id:7,name:'李四',age:'44',sex:"male",gender:'man'},
+                  {id:8,name:'李三',age:'33',sex:"male",gender:'man'},
+                  {id:9,name:'李六',age:'66',sex:"male",gender:'man'},
+                ],
+                keyword: '',
+                sortType: 0, //0:原序、1:降序、2:升序
+              },
+              methods:{
+                
+              },
+              computed:{
+                pons(){
+                  // a就是perspns里的各各对象，filter匹配到的对象将组成一个新的数组，然后传给arr保存
+                  // console.log(a);
+                  const arr = this.perspns.filter(a=&gt;{
+                    //返回匹配到的字符或字符串的位置
+                    // console.log(a.name.indexOf(this.keyword));
+                    return a.name.indexOf(this.keyword) !== -1;
+                  })
+                  //只要sortType为ture
+                  if (this.sortType) {
+                    //排序函数，直接改变原数组
+                    arr.sort((p1,p2)=&gt;{
+                      // console.log(p1.age);
+                      // console.log(p2.age);
+                      return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age;
+                    })
+                  }
+                  //排序后的新数组返回给调用者
+                  return arr;
+                }
+              },
+              watch:{
+      
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 17 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
@@ -711,7 +1206,7 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 18 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
@@ -719,7 +1214,7 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 18 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
@@ -727,7 +1222,7 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 18 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
@@ -735,7 +1230,7 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 18 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
@@ -743,41 +1238,163 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 10 12/28 -->
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
+    <h2></h2>
+    <pre class="code_1">
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 12/31 -->
     <h2></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
+  </div>    
 
   <!-- <script src="./js/rem.js"></script> -->
   <script>
     let frame = document.getElementById("frame");
     function trigger(value) {
-      console.log(value);
       frame.style.fontSize = `${value}%`;
     }
   </script>
