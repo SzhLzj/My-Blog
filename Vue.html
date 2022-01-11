@@ -86,6 +86,17 @@
       background-color: rgb(49, 63, 65);
       word-wrap: break-word;
       white-space: pre-wrap;
+      border-radius: 20px;
+      border: rgb(49, 63, 65) solid 5px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+    }
+    .copy{
+      background-color: #e7e7e7;
+      border: none;
+      text-align: center;
+      float: right;
+      margin: 10px;
+      display: none;
     }
     #jsst{
       color: red;
@@ -112,11 +123,11 @@
   <div id="frame">
     <div id="h1">
       <h1>Vue 笔记</h1>
-      <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦 , 默认200%" onchange="trigger(this.value)">
+      <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦 , 默认123%" onchange="trigger(this.value)">
       <button id="yjzk" onclick="sqzk(this)">一键展开所有下拉栏↓</button>
     </div>
     <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ:1204184336，邮箱:1204184336@qq.com</p>
-    <a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
+    <span>视频学习推荐: </span><a href="https://www.bilibili.com/video/BV1Zy4y1K7SH?spm_id_from=333.999.0.0">尚硅谷Vue2.0+Vue3.0全套教程</a>
     <p>Vue是一套用于<strong>构建用户界面</strong>的<strong>渐进式</strong>框架</p>
     <p>学习Vue需要掌握哪些JavaScript知识呢？</p>
     <p>Es6语法规范、Es6模块化、包管理器、原型、原型链、数组的常用方法、axios、promise等等 ^_^ 不会也没事，临时抱佛脚吧</p>
@@ -132,7 +143,8 @@
     <hr>
     <!-- 1 11/18 -->
     <h2>第一个Vue实例 - Vue模板语法:{{}} -插值语法 <span class="down" onclick="clickondown(this)">\/<span id="tips1">←这是下拉栏</span></span></h2>
-    <pre class="code_1"><button class="copy">复制</button>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
     &lt;!DOCTYPE html&gt;
     &lt;html lang="zh"&gt;
 
@@ -173,6 +185,7 @@
     <hr>
     <!-- 2 11/18 -->
     <h2>Vue模板语法:v-bind -指令语法 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -220,6 +233,7 @@
     <hr>
     <!-- 3 11/19 -->
     <h2>Vue模板语法:v-model -指令语法 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -259,6 +273,7 @@
     <hr>
     <!-- 4 11/19 -->
     <h2>el和data的两种写法 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -301,6 +316,7 @@
     <hr>
     <!-- 5 11/19 -->
     <h2>数据代理 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -345,6 +361,7 @@
     <hr>
     <!-- 6 11/19 -->
     <h2>Vue中的数据代理 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -391,6 +408,7 @@
     <hr>
     <!-- 7 11/19 -->
     <h2>Vue模板语法:v-on -指令语法 事件处理 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -434,6 +452,7 @@
     <hr>
     <!-- 8 11/22 -->
     <h2>Vueの事件修饰符 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -539,6 +558,7 @@
     <hr>
     <!-- 9 11/22 -->
     <h2>Vue的按键修饰符 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -617,6 +637,7 @@
     <hr>
     <!-- 10 12/29 -->
     <h2>computed(计算属性) <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -723,6 +744,7 @@
     <hr>
     <!-- 11 12/29 -->
     <h2>监视属性 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -800,6 +822,7 @@
     <hr>
     <!-- 12 12/30 -->
     <h2>样式绑定 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -863,6 +886,7 @@
     <hr>
     <!-- 13 12/30 -->
     <h2>条件渲染 v-if <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -937,6 +961,7 @@
     <hr>
     <!-- 14 12/30 -->
     <h2>列表渲染 v-for <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1031,6 +1056,7 @@
     <hr>
     <!-- 15 12/31 -->
     <h2>列表过滤 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1122,6 +1148,7 @@
     <hr>
     <!-- 16 12/31 -->
     <h2>列表排序 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1218,6 +1245,7 @@
     <hr>
     <!-- 17 1/5 -->
     <h2>Vue更新时的一个问题 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1323,32 +1351,33 @@
         &lt;/body&gt;
       &lt;/html&gt;
     </pre>
-    <pre style="font-size: 20px;">
-      vue监视数据的原理:
-        1. vue会监视data中所有层次的数据。
-
-        2．如何监测对象中的数据?
-          通过setter实现监视，且要在new Vue时就传入要监测的数据。
-            (1).对象中后追加的属性,Vue默认不做响应式处理
-            (2).如需给后添加的属性做响应式,请使用如下API:
+    <p style="font-size: 20px;">
+      vue监视数据的原理:<br>
+        1. vue会监视data中所有层次的数据。<br>
+        <br>
+        2．如何监测对象中的数据?<br>
+          通过setter实现监视，且要在new Vue时就传入要监测的数据。<br>
+            (1).对象中后追加的属性,Vue默认不做响应式处理<br>
+            (2).如需给后添加的属性做响应式,请使用如下API:<br>
               Vue.set(target,propertyName/index.value）或
-              vm.$set(target.propertyName/index,value)
-
-        3．如何监测数组中的数据?
-          通过包裹数组更新元素的方法实现,本质就是做了两件事:
-            (1).调用原生对应的方法对数组进行更新。
-            (2).重新解析模板,进而更新页面。
-
-        4.在Vue修改数组中的某个元素一定要用如下方法:
-          1.使用这些API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()
-          2.vue.set()或vm.$set()
-
-        特别注意:Vue.set()和 vm.$set(）不能给vm 或 vm的根数据对象添加属性!!
-    </pre>
+              vm.$set(target.propertyName/index,value)<br>
+        <br>
+        3．如何监测数组中的数据?<br>
+          通过包裹数组更新元素的方法实现,本质就是做了两件事:<br>
+            (1).调用原生对应的方法对数组进行更新。<br>
+            (2).重新解析模板,进而更新页面。<br>
+        <br>
+        4.在Vue修改数组中的某个元素一定要用如下方法:<br>
+          1.使用这些API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()<br>
+          2.vue.set()或vm.$set()<br>
+        <br>
+        特别注意:Vue.set()和 vm.$set(）不能给vm 或 vm的根数据对象添加属性!!<br>
+    </p>
     
     <hr>
     <!-- 18 1/5 -->
     <h2>v-model的修饰符和表单收集数据 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1437,8 +1466,9 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 18 1/8 -->
+    <!-- 19 1/8 -->
     <h2>过滤器 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1543,8 +1573,9 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 18 1/8 -->
+    <!-- 20 1/8 -->
     <h2>v-text <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1591,8 +1622,9 @@
     <p>无总结</p>
     
     <hr>
-    <!-- 18 1/10 -->
+    <!-- 21 1/10 -->
     <h2>v-html <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
       &lt;html lang="zh"&gt;
@@ -1614,8 +1646,8 @@
             &lt;div v-html='name2'&gt;我写不写都一样，反正你看不到&lt;/div&gt;
             &lt;!-- 跟v-text相比，v-html会解析标签，并且也会替代整个标签的内容 --&gt;
             &lt;p&gt;跟v-text相比，v-html会解析标签，并且也会替代整个标签的内容&lt;/p&gt;
-            &lt;p&gt;注意！任何动态渲染任何html是很危险的，这可能会导致xss攻击&lt;/p&gt;
-            &lt;h1&gt;xss攻击，安全隐患！&lt;/h1&gt;
+            &lt;p&gt;注意! 任何动态渲染任何html是很危险的，这可能会导致xss攻击&lt;/p&gt;
+            &lt;h1&gt;xss攻击，安全隐患! &lt;/h1&gt;
             &lt;p&gt;为了演示，假装，我这个页面是有登录系统的(去application=&gt;cookies里双击随便写点东西)&lt;/p&gt;
             &lt;button @click="add" style="width: 310px; height: 50px; font-size: 31px;"&gt;按我添加cookie信息&lt;/button&gt;
             &lt;p&gt;可以看到，假cookie已经被添加进网页了&lt;/p&gt;
@@ -1681,8 +1713,170 @@
     <p>无总结</p>
     
     <hr>
+    <!-- 22 1/11 -->
+    <h2>v-cloak <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+            [v-cloak]{
+              display: none;
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;span v-cloak&gt;{{ name }}&lt;/span&gt;&lt;span id="a" style="margin-left: 123px;"&gt; ← 这个有v-cloak&lt;/span&gt;&lt;br&gt;
+            &lt;span&gt;{{ name }}&lt;/span&gt;&lt;span id="b"&gt;&nbsp;&nbsp;&nbsp;&nbsp; ← 这个没有v-cloak&lt;/span&gt;
+            &lt;p&gt;现在这个页面中模拟了因为网速问题，Vue.js还没加载完的现象，插值语法直接暴露在了页面中&lt;/p&gt;
+            &lt;p&gt;v-cloak是个特殊的属性，Vue接管了容器后，会删除v-cloak&lt;/p&gt;
+            &lt;p&gt;他本身并没有特别的含义，但是他经常被拿来做阻塞用，点击下面按钮后，演示效果如上&lt;/p&gt;
+            &lt;button onclick="Delayedloading()"&gt;点我延迟1秒后加载Vue.js文件&lt;/button&gt;
+            &lt;p&gt;可以看到，在vue.js加载完之后，由Vue接管了容器root，并且v-cloak被删除了，相比于没有v-cloak，页面不会显得杂乱&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;script&gt;
+            function Delayedloading(){
+              setTimeout(() =&gt; {
+                let getscript = document.createElement('script');
+                document.head.appendChild(getscript);
+                getscript.src = "./js/vue.js";
+                document.getElementById('a').style.display = 'none';
+                document.getElementById('b').style.display = 'none';
+              }, 1000);
+      
+              setTimeout(() =&gt; {
+                const vm = new Vue({
+                  el: '#root',
+                  data: {
+                    name:'现在你看到我了',
+                  },
+                })
+              }, 1100);
+            }
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 23 1/11 -->
+    <h2>v-once <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;p v-once&gt;初始值:{{ num }}&lt;/p&gt;
+            &lt;p&gt;现值:{{ num }}&lt;/p&gt;
+            &lt;button @click= "num++"&gt;++&lt;/button&gt;
+      
+            &lt;p&gt;可以看到，你按++，v-once不为所动，因为在初次动态渲染之后，v-once所在就被视为静态页面&lt;/p&gt;
+          &lt;/div&gt;
+        
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+        
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                num:'1',
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 24 1/11 -->
+    <h2>v-pre <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;p&gt; v-pre&gt;初始值:{{ num }}&lt;/p&gt;
+            &lt;p&gt; v-pre&gt;现值:{{ num }}&lt;/p&gt;
+            &lt;p&gt;{{ num }}&lt;/p&gt;
+            &lt;button&gt; v-pre @click="num++"&gt;++&lt;/button&gt;
+            &lt;p&gt;可以看到，Vue不为所动，插值语法都没渲染&lt;/p&gt;
+            &lt;p&gt;因为v-pre会跳过所在节点的编译，在不需要Vue编译的地方写v-pre可以提升性能（略微&lt;/p&gt;
+            &lt;p&gt;注意，第三个插值语法之所以没有v-pre却也没有渲染，是因为++按钮写上了v-pre导致Vue直接炸了&lt;/p&gt;
+          &lt;/div&gt;
+        
+          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;&gt;
+        
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                num:'1',
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1691,6 +1885,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1699,6 +1894,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1707,6 +1903,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1715,6 +1912,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1723,6 +1921,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1731,6 +1930,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1739,6 +1939,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1747,6 +1948,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1755,6 +1957,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1763,6 +1966,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1771,6 +1975,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1779,6 +1984,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1787,6 +1993,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1795,6 +2002,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1803,30 +2011,7 @@
     <hr>
     <!-- 18 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
     </pre>
@@ -1838,9 +2023,10 @@
   <script>
     let frame = document.getElementById("frame");
     let down = document.getElementsByClassName('down');
+    let copys = document.getElementsByClassName('copy');
     let code_1 = document.getElementsByClassName('code_1');
 
-    // 给所有code_1添加下标
+    // 给所有下拉按钮添加index下标
     for(let i=0; i<down.length; i++){
       down[i].setAttribute("index",i);
     }
@@ -1857,10 +2043,12 @@
       }
       if (code_1[classIndex].style.display == 'none'){
         code_1[classIndex].style.display = 'block';
+        copys[classIndex].style.display = 'block';//显示复制按钮
         val.innerHTML = '/\\';
       }
       else{
         code_1[classIndex].style.display = 'none';
+        copys[classIndex].style.display = 'none';//隐藏复制按钮
         val.innerHTML = '\\/';
       }
     }
@@ -1869,6 +2057,7 @@
       if (val.innerHTML == "一键展开所有下拉栏↓") {
         for(let i=0; i<down.length; i++){
           code_1[i].style.display = 'block';
+          copys[i].style.display = 'block';//显示复制按钮
           down[i].innerHTML = '/\\';
         }
         val.innerHTML = "一键收起所有下拉栏↑";
@@ -1878,6 +2067,7 @@
       if (val.innerHTML == "一键收起所有下拉栏↑") {
         for(let i=0; i<down.length; i++){
           code_1[i].style.display = 'none';
+          copys[i].style.display = 'none';//隐藏复制按钮
           down[i].innerHTML = '\\/';
         }
         val.innerHTML = "一键展开所有下拉栏↓";
@@ -1885,10 +2075,19 @@
         return;
       }
     }
-    // 复制code_1内容
-    function name(params) {
-      console.log(code_1[0].innerHTML);
-      
+    // 复制code_1的内容，async异步 不是必须的的，写入系统剪贴板指令为navigator.clipboard.writeText()
+    async function copy(th) {
+      console.log();
+      let text = th.nextSibling.nextSibling.innerHTML.replace(/&lt;/g, "<")
+      try {
+        await navigator.clipboard.writeText(text.replace(/&gt;/g, ">"));
+        th.innerHTML = '复制成功';
+        setTimeout(() => {
+          th.innerHTML = '复制';
+        }, 3000);
+      } catch (err) {
+        alert('复制失败,您的浏览器可能不支持这个功能', err);
+      }
     }
   </script>
 </body>
