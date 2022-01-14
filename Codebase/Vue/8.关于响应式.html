@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+  <style>
+    div{
+      font-size: 51px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-6">
+    <p>{{ message.data1 }}</p>
+    <p></p>
+    <p>{{ message.data2 }}</p>
+    <p>{{ message.data3 }}</p>
+    <input v-model="message.data1" style="height: 30px; width: 500px;"><br>
+    <button v-on:click="reverseMessage">点此用普通方法新增 property</button><br>
+    <button v-on:click="reverseMessage2">点此用Vue set方法新增 property</button>
+    <button v-on:click="reverseMessage3">点此用Object.freeze()方法冻结 message</button>
+    <p>计算属性是基于它们的响应式依赖进行缓存的，而方法没有缓存</p>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: {
+          data1: '这里是响应式的,可以在input里改变我',
+        }
+      },
+      methods: {
+        reverseMessage: function () {
+          document.getElementById("app-6").childNodes[2].innerHTML = '是不是只看到了我';
+          this.message.data2 = '这里不是响应式的，我之前没有被实时解析';
+        },
+        reverseMessage2: function () {
+          this.$set(this.message,'data3','现在你可以看到全部内容了，因为只有当实例被创建时就已经存在于 data 中的 property 才是响应式的');
+        },
+        reverseMessage3: function () {
+          this.message.data1 = '现在我被冻结了';
+          Object.freeze(this.message);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+  <style>
+    div{
+      font-size: 51px;
+      text-align: center;
+      width: 500px;
+      margin: 0px auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>  
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: '学习 JavaScript' },
+          { text: '学习 Vue' },
+          { text: '整个牛项目' }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

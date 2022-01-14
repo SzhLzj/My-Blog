@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插值语法</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    div{
+      font-size: 31px;
+      text-align: center;
+    }
+    input{
+      width: 300px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+    <input v-model="message"><br>
+    <span v-once>{{ msg }}</span><br>
+    <input v-model="msg"><br>
+    <span>
+      插值语法会将数据解释为普通文本，如下<br>
+      {{ ms }}<br>
+      如果内容是代码，请用v-html: <br>
+      <span v-html="ms"></span></span><br>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello World!',
+        msg: '我带有v-once，不会被改变',
+        ms: '<span style="color: red">This should be red.</span>',
+      }
+    })
+  </script>
+</body>
+</html>

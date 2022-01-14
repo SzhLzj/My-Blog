@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+  <style>
+    div{
+      font-size: 51px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Hello World!'
+      }
+    })
+  </script>
+</body>
+</html>

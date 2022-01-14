@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上下左右滑动</title>
+  <style>
+    html,body{
+      height:100%;
+      margin: 0px auto;
+      max-width: 960px;
+      position: relative;
+    }
+    #index{
+      background-color: aqua;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="index">
+    调出手机模式滑动查看效果
+  </div>
+
+  <script>
+    const EventUtil = {
+      addHandler: function (element, type, handler) {
+        if (element.addEventListener)
+          element.addEventListener(type, handler, false);
+        else if (element.attachEvent)
+          element.attachEvent("on" + type, handler);
+        else
+          element["on" + type] = handler;
+      },
+      removeHandler: function (element, type, handler) {
+        if(element.removeEventListener)
+          element.removeEventListener(type, handler, false);
+        else if(element.detachEvent)
+          element.detachEvent("on" + type, handler);
+        else
+          element["on" + type] = handler;
+      },
+      /*
+       * event的类型
+       * touchstart: 当手指触摸屏幕时触发
+       * touchend: 当手指从屏幕上移开时触发
+       * touchmove: 当手指在屏幕上滑动时连续触发
+       * touchcancel: 当系统停止跟踪触摸时触发
+       * 
+       * event用于跟踪触摸的属性
+       * touches: 表示当前跟踪的触摸操作的Touch对象的数组
+       * targetTouches: 特定于事件目标的Touch对象数组
+       * changeTouches: 表示子上次触摸以来发生了什么改变的Touch对象的数组  注意：在touchend事件发生时，event的touches对象中就没有元素了，需要到changeTouches中去获取触摸离开时的位置信息
+       * 
+       * Touch对象包含的数组
+       * clentX: 触摸目标在窗口中的x坐标
+       * clientY: 触摸目标在窗口中的y坐标
+       * identifier: 标识触摸的唯一ID
+       * pageX： 触摸目标在页面中的x坐标
+       * pageY： 触摸目标在页面中的y坐标
+       * screenX： 触摸目标在屏幕中的x坐标
+       * screenY： 触摸目标在屏幕中的y坐标
+       * target：触摸的DOM节点目标
+       * 
+       * 监听触摸的方向
+       * @param target            要绑定监听的目标元素
+       * @param isPreventDefault  是否屏蔽掉触摸滑动的默认行为（例如页面的上下滚动，缩放等）
+       * @param upCallback        向上滑动的监听回调（若不关心，可以不传，或传false）
+       * @param rightCallback     向右滑动的监听回调（若不关心，可以不传，或传false）
+       * @param downCallback      向下滑动的监听回调（若不关心，可以不传，或传false）
+       * @param leftCallback      向左滑动的监听回调（若不关心，可以不传，或传false）
+       */
+      listenTouchDirection: function (target, isPreventDefault, upCallback, rightCallback, downCallback, leftCallback) {
+        this.addHandler(target, "touchstart", handleTouchEvent);//touchstart: 当手指触摸屏幕时触发
+        this.addHandler(target, "touchend", handleTouchEvent);  //touchend: 当手指从屏幕上移开时触发
+        this.addHandler(target, "touchmove", handleTouchEvent); //touchmove: 当手指在屏幕上滑动时连续触发  //不一定用得到 - touchcancel: 当系统停止跟踪触摸时触发
+        var startX;
+        var startY;
+        function handleTouchEvent(event) {
+          switch (event.type){
+            case "touchstart":
+              startX = event.touches[0].pageX; 
+              startY = event.touches[0].pageY; //touches: 表示当前跟踪的触摸操作的Touch对象的数组
+              break;
+
+            case "touchend":
+              var spanX = event.changedTouches[0].pageX - startX;
+              var spanY = event.changedTouches[0].pageY - startY;
+              if(Math.abs(spanX) > Math.abs(spanY)){      //认定为水平方向滑动
+                if(spanX > 30){         //向右
+                  if(rightCallback)
+                    rightCallback();
+                } else if(spanX < -30){ //向左
+                  if(leftCallback)
+                    leftCallback();
+                }
+              } else {                                    //认定为垂直方向滑动
+                if(spanY > 30){         //向下
+                  if(downCallback)
+                    downCallback();
+                } else if(spanY < -30) {//向上
+                  if(upCallback)
+                    upCallback();
+                }
+              }
+              break;
+
+            case "touchmove":
+              //阻止默认行为
+              if(isPreventDefault)
+                event.preventDefault();
+              break;
+          }
+        }
+      }
+    };
+
+    //监听index 若只写一个document 就是监听整个DOM。 up, right, down, left为四个回调函数，分别处理上下左右的滑动事件
+    EventUtil.listenTouchDirection(document, false, up, right, down, left);
+
+    function up() {
+      console.log("上划啦");
+    }
+    function down() {
+      console.log('下滑啦');
+    }
+    function right() {
+      console.log('右滑啦');
+    }
+    function left() {
+      console.log('左滑啦');
+    }
+  </script>
+</body>
+</html>
