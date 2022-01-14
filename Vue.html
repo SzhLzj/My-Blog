@@ -670,6 +670,7 @@
             &lt;h1&gt;computed(计算属性)实现&lt;/h1&gt;
             姓 &lt;input type="text" v-model="firstname"&gt;&lt;br&gt;&lt;br&gt;
             名 &lt;input type="text" v-model="lastname"&gt;&lt;br&gt;&lt;br&gt;
+            &lt;!-- 只要呼唤一下计算属性的名字，他就被调用了，并返回值 --&gt;
             姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
             姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
             姓名: &lt;span&gt;{{ fullname2 }}&lt;/span&gt;&lt;br&gt;
@@ -893,7 +894,7 @@
         &lt;head&gt;
           &lt;meta charset="UTF-8"&gt;
           &lt;title&gt;没错，我就是标题&lt;/title&gt;
-          &lt;style&gt;&gt;
+          &lt;style&gt;
             div{
               width: 1031px;
               height: 700px;
@@ -939,8 +940,8 @@
             &lt;/template&gt;
           &lt;/div&gt;
       
-          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
-          &lt;script&gt;&gt;
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
             const vm = new Vue({
               el: '#root',
               data: {
@@ -954,7 +955,7 @@
             })
           &lt;/script&gt;
         &lt;/body&gt;
-      &lt;/html&gt;
+      &lt;/html&gt;      
     </pre>
     <p>无总结</p>
     
@@ -1155,7 +1156,7 @@
         &lt;head&gt;
           &lt;meta charset="UTF-8"&gt;
           &lt;title&gt;没错，我就是标题&lt;/title&gt;
-          &lt;style&gt;&gt;
+          &lt;style&gt;
             div{
               width: 531px;
               height: 310px;
@@ -1189,8 +1190,8 @@
             &lt;/ul&gt;
           &lt;/div&gt;
       
-          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
-          &lt;script&gt;&gt;
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
             const vm = new Vue({
               el: '#root',
               data: {
@@ -1238,7 +1239,7 @@
             })
           &lt;/script&gt;
         &lt;/body&gt;
-      &lt;/html&gt;
+      &lt;/html&gt;      
     </pre>
     <p>无总结</p>
     
@@ -1830,7 +1831,7 @@
         &lt;head&gt;
           &lt;meta charset="UTF-8"&gt;
           &lt;title&gt;没错，我就是标题&lt;/title&gt;
-          &lt;style&gt;&gt;
+          &lt;style&gt;
             div{
               width: 1050px;
               margin: 0px auto;
@@ -1841,18 +1842,17 @@
         &lt;/head&gt;
         &lt;body&gt;
           &lt;div id="root"&gt;
-            &lt;p&gt; v-pre&gt;初始值:{{ num }}&lt;/p&gt;
-            &lt;p&gt; v-pre&gt;现值:{{ num }}&lt;/p&gt;
+            &lt;p v-pre&gt;初始值:{{ num }}&lt;/p&gt;
+            &lt;p v-pre&gt;现值:{{ num }}&lt;/p&gt;
             &lt;p&gt;{{ num }}&lt;/p&gt;
-            &lt;button&gt; v-pre @click="num++"&gt;++&lt;/button&gt;
+            &lt;button v-pre @click="num++"&gt;++&lt;/button&gt;
             &lt;p&gt;可以看到，Vue不为所动，插值语法都没渲染&lt;/p&gt;
             &lt;p&gt;因为v-pre会跳过所在节点的编译，在不需要Vue编译的地方写v-pre可以提升性能（略微&lt;/p&gt;
             &lt;p&gt;注意，第三个插值语法之所以没有v-pre却也没有渲染，是因为++按钮写上了v-pre导致Vue直接炸了&lt;/p&gt;
           &lt;/div&gt;
         
-          &lt;script&gt; src="./js/vue.js"&gt;&lt;/script&gt;
-          &lt;script&gt;&gt;
-        
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
             const vm = new Vue({
               el: '#root',
               data: {
@@ -1869,25 +1869,210 @@
             })
           &lt;/script&gt;
         &lt;/body&gt;
+      &lt;/html&gt;      
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <!-- 25 1/12 -->
+    <h2>自定义指令 <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h3&gt;需求1&lt;/h3&gt;
+            &lt;span&gt;初始值:&lt;/span&gt;&lt;span v-text="num"&gt;&lt;/span&gt;&lt;br&gt;
+            &lt;span&gt;放大值:&lt;/span&gt;&lt;span v-big1="num"&gt;&lt;/span&gt;&lt;br&gt;
+            &lt;span&gt;放大值:&lt;/span&gt;&lt;span v-big999999-q="num"&gt;&lt;/span&gt;&lt;br&gt;
+            &lt;button @click="num++"&gt;++&lt;/button&gt;
+            &lt;br&gt;
+            &lt;br&gt;
+            &lt;br&gt;
+            &lt;br&gt;
+            &lt;h3&gt;需求2&lt;/h3&gt;
+            &lt;input v-fbind:value="1"&gt; 
+      
+            &lt;p&gt;自定义指令的坑&lt;/p&gt;
+            &lt;p&gt;1.命名时不能用大写，不然会被Vue转成小写而报错&lt;/p&gt;
+            &lt;p&gt;
+              2.不能写大写意味着不能用驼峰式命名，官方推荐是使用"-"来间隔，但是"-"可以用在模板里，
+              却不能用在函数里在函数里用"-"就会导致编译器报错,所以在函数里要用""包裹，比如"big-apple"。
+              但是你用了""可就不能用简写形式的自定义指令咯，所以这里要注意一下(听别人说的，但是我自己试了试好像可以用啊)
+            &lt;/p&gt;
+            &lt;p&gt;3.自定义指令里的this都是Windows全局对象!&lt;/p&gt;
+            &lt;pre style="font-weight: bold;"&gt;
+      4.自定义指令也可以像过滤器一样写成全局形式
+      对象式
+      Vue.directive("fbind",{
+        bind(xxx,xxx){xxx},
+        inserted(xxx,xxx){xxx},
+        update(xxx,xxx){xxx},
+      })
+      函数式
+      Vue.directive("big",function(xxx,xxx){
+        element.innerText = binding.value * 10;
+      })
+            &lt;/pre&gt;
+            &lt;p&gt;5.定义指令的时候不需要写v-，使用时必须要写v-&lt;/p&gt;
+          &lt;/div&gt;
+        
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+        
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                num:'1',
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+              directives:{
+                // &lt;!-- 需求1:定义一个叫v-big的指令，其功能类似v-text，但是v-big的值会放大10倍 --&gt;
+                big1:function(element,binding){ //自定义指令可以是函数式的
+                  //那这指令怎么定义呢，玄机在函数接收的值里
+                  console.log(element,binding);
+                  //通过console.log，可以看到，element就是指令绑定的DOM本身，binding是一些关于指令的参数
+                  //接下来实现需求1就很明确了
+                  element.innerText = binding.value * 10;
+                },
+                "big999999-q"(element,binding){ element.innerText = binding.value * 10; }, //js的语法精简，没忘吧
+                //现在有个新问题，big1什么时候会被调用呢？
+                //通过测试我们会发现，big在模板被解析时（不管几次），都会重新调用
+      
+      
+                // 需求2:定义一个叫v-fbind的指令，其功能类似v-bind，但可以让其绑定的元素自动获取焦点
+                fbind:{ //自定义指令还可以是对象式的(最完整的写法)，所以说上面的函数式其实是简写
+      
+                  //对象式里可以写很多函数，而且还可以在不同的周期调用不同的函数
+                  //但是这种内定函数的名字你可不能乱打
+      
+                  bind(element,binding){ //指令与元素绑定成功时调用
+                    element.value = binding.value;
+                  },
+                  inserted(element,binding){ //指令所在的元素被插入页面时调用
+                    element.focus();
+                  },
+                  update(element,binding){ //指令所在的模板被重新解析时调用
+                    element.value = binding.value;
+                  },
+                },
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
       &lt;/html&gt;
     </pre>
     <p>无总结</p>
     
     <hr>
-    <!-- 18 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <!-- 26 1/12 -->
+    <h2>生命周期 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 18 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <button class="copy" onclick="copy(this)">复制</button>
-    <pre class="code_1">
-
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1480px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+            &lt;h1 :style="{opacity: opacity}"&gt;生命周期&lt;/h1&gt;
+            &lt;!-- 还可以利用js语法简写 --&gt;
+            &lt;h1 :style="{opacity}"&gt;SzhLzj&lt;/h1&gt;
+            &lt;p&gt;好了，我们成功利用生命周期的mounted实现了类似windows.onload的效果&lt;/p&gt;
+            &lt;p&gt;下面我引用尚硅谷-张天禹老师的生命周期注解图&lt;/p&gt;
+            &lt;img src="./img/生命周期.png" alt=""&gt;
+            &lt;p style="font-size: 61px;"&gt;通过这个生命周期注解图，想必大家已经有了自己的理解，打开控制台看看实际运行顺序是否一致吧&lt;/p&gt;
+          &lt;/div&gt;
+        
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+        
+            const vm = new Vue({
+              el: '#root',
+              data: {
+                opacity:'1',
+                timer: '',
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+              directives:{
+              },
+              //学习的第一个生命周期钩子,在页面完成模板的解析,并把初始的真实DOM放入页面中后（挂载完毕后）,Vue会自动调用mounted
+              mounted(){ //这个名字是Vue定的，不能改，mounted与data、methods同级！
+                this.timer = setInterval (() =&gt; {
+                  this.opacity -= 0.01; //这里的this同样是因为Vue帮您重定向过，this is vm
+                  if (this.opacity &lt;= 0) {
+                    this.opacity = 1;
+                  }
+                }, 31);
+                console.log('mounted已启动');
+              },
+              beforeCreate() {
+                console.log('beforeCreate已启动');
+              },
+              created() {
+                console.log('created已启动');
+              },
+              beforeMount() {
+                console.log('beforeMount已启动');
+              },
+              beforeUpdate() {
+                console.log('beforeUpdate已启动');
+              },
+              updated() {
+                console.log('updated已启动');
+                clearInterval(this.timer);
+                this.$destroy(); //销毁程序
+              },
+              beforeDestroy() {
+                console.log('beforeDestroy已启动');
+                console.log('开始运行this.$destroy()，vm开始自毁程序');
+              },
+              destroyed() {
+                console.log('destroyed已启动');
+                console.log('vm已自毁');
+                console.log('你可能会问，为什么页面上的东西都还在呢？因为这是人家的遗产！');
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
     </pre>
     <p>无总结</p>
     
@@ -2038,7 +2223,7 @@
     function clickondown(val) {
       let classIndex = val.getAttribute("index"); // 当前操作的class下标
 
-      if (code_1[classIndex].style.display !== 'none' && code_1[classIndex].style.display !== 'block') {
+      if (code_1[classIndex].style.display != 'none' && code_1[classIndex].style.display != 'block') {
         code_1[classIndex].style.display = 'none';
       }
       if (code_1[classIndex].style.display == 'none'){
