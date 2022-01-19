@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <style>
+    body{
+      /* background-color: rgba(129, 129, 129, 0.726); */
+      background-image: url(https://webstatic.mihoyo.com/upload/puzzle/2021/11/23/b2bd206536b3e286633bdfc178c6fb19_8380204415745770741.jpg);
+    }
+    h1 {
+      font-size: 51px;
+      text-align: center;
+    }
+    .button {
+      background-color: #69f0bc; /* 绿色 */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button:nth-of-type(2){
+      background-color: #f06969; /* 绿色 */
+      position: absolute;
+      /* top: 919px; */
+      /* left: 1803px; */
+    }
+    div{
+      width: 263px;
+      margin: 1px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <h1>请问，Php是最好的语言吗</h1> -->
+  <h1>领取原神礼包码</h1>
+  <div>
+    <!-- <button class="button" onclick="alert('对对对')">&nbsp;&nbsp;是&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+    <!-- <button class="button" onclick="alert('哦呦，点到了呢')" onmouseover='run(this)'>不是</button> -->
+    <button class="button" onclick="alert('那我走')">&nbsp;&nbsp;不要&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="alert('礼包码：QAQTHJNY35HW')" onmouseover='run(this)'>点击领取</button>
+  </div>
+
+  <script>
+    let button = document.getElementsByClassName('button');
+    function run(th) {
+      // th.style.top = `${Math.floor(Math.random() * 53)}px`;
+      // th.style.left = `${Math.floor(Math.random() * 98)}px`;
+      let w = window.screen.width - 117;
+      let h = window.screen.height - 161;
+      console.log(w);
+      console.log(h);
+      //将随机数取整
+      th.style.top = `${Math.floor(Math.random() * h)}px`;
+      th.style.left = `${Math.floor(Math.random() * w)}px`;
+    }
+    document.onkeydown = function HandleTabKey(evt) {undefined
+      if (evt.keyCode == 9) {undefined
+        alert('别按了，没用的');
+        if (evt.preventDefault) {undefined
+          evt.preventDefault();
+        }
+        else {undefined
+          evt.returnValue = false;
+        }
+      }
+    }
+    // function exit() {
+      // export const closeWindow = () => {
+        // let userAgent = navigator.userAgent;
+        // alert('那我走');
+        // if (userAgent.indexOf('Firefox') !== -1 || userAgent.indexOf('Chrome') !== -1) {
+          // window.location.replace('about:blank');
+        // } else {
+          // window.opener = null;
+          // window.open('', '_self');
+        // }
+        // window.close();
+      // }
+    // }
+
+  </script>
+</body>
+
+</html>

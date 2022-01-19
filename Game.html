@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codebase</title>
+  <style>
+    a{
+      font-size: 31px;
+    }
+    h3{
+      font-size: 51px;
+    }
+    .as{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h3>Game <span class="down" onclick="clickondown(this)">\/</span></h3>
+  <div class="as">
+    <a href="./Game/双击打开领取原神礼包码.html">1.双击打开领取原神礼包码</a><br>
+    <a href="./Game/Mikutap/MikuTap.html">2.MikuTap</a><br>
+    <a href="./Codebase/">3.</a><br>
+    <a href="./Codebase/">4.</a><br>
+    <a href="./Codebase/">5.</a><br>
+    <a href="./Codebase/">6.</a><br>
+    <a href="./Codebase/">7.</a><br>
+    <a href="./Codebase/">8.</a><br>
+    <a href="./Codebase/">9.</a><br>
+    <a href="./Codebase"></a><br>
+    <a href="./Codebase"></a><br>
+  </div>
+
+  <script>
+    let down = document.getElementsByClassName('down');
+    let as = document.getElementsByClassName('as');
+
+    // 给所有下拉按钮添加index下标
+    for(let i=0; i<down.length; i++){
+      down[i].setAttribute("index",i);
+    }
+
+    function clickondown(val) {
+      let classIndex = val.getAttribute("index"); // 当前操作的class下标
+
+      if (as[classIndex].style.display != 'none' && as[classIndex].style.display != 'block') {
+        as[classIndex].style.display = 'none';
+      }
+      if (as[classIndex].style.display == 'none'){
+        as[classIndex].style.display = 'block';
+        val.innerHTML = '/\\';
+      }
+      else{
+        as[classIndex].style.display = 'none';
+        val.innerHTML = '\\/';
+      }
+    }
+  </script>
+</body>
+</html>
