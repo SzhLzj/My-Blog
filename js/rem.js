@@ -1,7 +1,7 @@
 //JS监听浏览器文字大小代码
 (function(doc, win) {
   setRem();
-  var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+  let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
   recalc = function() {
     setRem();
   };
@@ -12,8 +12,8 @@
 })(document, window);
 
 function setRem() {
-  var docEl = document.documentElement;
-  var clientWidth = docEl.clientWidth;
+  let docEl = document.documentElement;
+  let clientWidth = docEl.clientWidth;
   if (!clientWidth) {
     return;
   }
