@@ -102,7 +102,7 @@
 <body>
   <!-- //Hello字体--------------------------------------------------------------------------------------------------------- -->
   <div id="box">
-    <div onselectstart="return flase">
+    <div onselectstart='re()'>
       <div class="Hello">Hello</div>
       <div class="Hello">Hello</div>
       <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello" onclick='location.href="search.html"'>
@@ -114,56 +114,89 @@
   <script src="./js/rem.js"></script>
   <script>
     let a = document.getElementsByClassName("Hello");
+    // let time = '';
+    // let State1 = 0;
+    // let State2 = 0;
 
     //Hello转Go---------------------------------------------------
     function GomOver() {
-      //Hello淡出
-      for (let index = 0; index < 10; index++) {
-        setTimeout(function () {
-          for (let x = 0; x < a.length; x++) {
-            a[x].style.opacity = 1 - (index * 0.1);
-            a[x].style.fontSize = "1.8rem";
-          };
-        }, index * 30);
-      };
+      // if (Date.now() - time > 2000 && State2 == 0) {
+        // time = Date.now();
+        // State1 = 1;
 
-      //Go淡入
-      setTimeout(function () {
+        //Hello淡出
         for (let index = 0; index < 10; index++) {
           setTimeout(function () {
             for (let x = 0; x < a.length; x++) {
-              a[x].style.opacity = 0.1 + (index * 0.1);
-              a[x].innerHTML = "&nbsp;Go!&nbsp;";
+              a[x].style.opacity = 1 - (index * 0.1);
+              a[x].style.fontSize = "1.8rem";
             };
           }, index * 30);
         };
-      }, 350);
+
+        //Go淡入
+        setTimeout(function () {
+          for (let index = 0; index < 10; index++) {
+            setTimeout(function () {
+              for (let x = 0; x < a.length; x++) {
+                a[x].style.opacity = 0.1 + (index * 0.1);
+                a[x].innerHTML = "&nbsp;Go!&nbsp;";
+              };
+            }, index * 30);
+          };
+          // State1 = 0;
+          // console.log(State1);
+        }, 350);
+      // }else{
+        // return;
+      // }
     }
+
+
+    // function aState() {
+      // State2 = 1;
+      // console.log(State1);
+      // if (State1 == 0) {
+        // GomOut();
+      // }else{
+        // setTimeout(() => {
+          // aState();
+        // }, 200);
+      // }
+    // }
+
 
     //Go转Hello---------------------------------------------------
     function GomOut() {
-      //Go淡出
-      for (let index = 0; index < 10; index++) {
-        setTimeout(function () {
-          for (let x = 0; x < a.length; x++) {
-            a[x].style.opacity = 1 - (index * 0.1);
-            a[x].innerHTML = "&nbsp;Go!&nbsp;";
-            a[x].style.fontSize = "1.7rem";
-          };
-        }, index * 30);
-      };
-
-      //Hello淡入
-      setTimeout(function () {
+      // if (Date.now() - time > 1000) {
+        // time = Date.now();
+        // console.log(Date.now());
+        //Go淡出
         for (let index = 0; index < 10; index++) {
           setTimeout(function () {
             for (let x = 0; x < a.length; x++) {
-              a[x].innerHTML = "Hello";
-              a[x].style.opacity = 0.1 + (index * 0.1);
+              a[x].style.opacity = 1 - (index * 0.1);
+              a[x].innerHTML = "&nbsp;Go!&nbsp;";
+              a[x].style.fontSize = "1.7rem";
             };
           }, index * 30);
         };
-      }, 350);
+      
+        //Hello淡入
+        setTimeout(function () {
+          for (let index = 0; index < 10; index++) {
+            setTimeout(function () {
+              for (let x = 0; x < a.length; x++) {
+                a[x].innerHTML = "Hello";
+                a[x].style.opacity = 0.1 + (index * 0.1);
+              };
+            }, index * 30);
+          };
+        }, 350);
+      // }else{
+        // return;
+      // }
+      // State2 = 0;
     }
 
     //限制最小根大小-----------------------------------------------
@@ -171,6 +204,11 @@
     let fn = f.replace('px','');
     if (fn<50) {
       document.documentElement.style.fontSize = '50px';
+    }
+
+    //re
+    function re(){
+      return flase;
     }
 
     //屏幕自适应---------------------------------------------------
