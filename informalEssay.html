@@ -819,19 +819,11 @@
       left: -50vh;
       margin-left: 50vw;
     </p>
-    <p></p>
-    <p></p>
-    <p></p>
 
     <hr>
-    <h2>z-index</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <h2>input type=file 同一个文件做两次上传操作，第二次无效解决方法</h2>
+    <p>因为是通过onchange来触发函数，同一个文件的值是一样的，因此第二次的时候onchange未触发</p>
+    <p>解决方案：在每次上传文件的值处理完后，用e.target.value='';来清除掉上一次留下的值</p>
 
     <hr>
     <h2>z-index</h2>
