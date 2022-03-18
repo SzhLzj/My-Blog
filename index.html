@@ -14,8 +14,7 @@
       /* padding: 0; */
     }
 
-    html,
-    body {
+    html,body {
       position: relative;
       overflow: hidden;
       background-image: linear-gradient(rgba(12, 15, 27, 1), rgba(6, 11, 27, 1));
@@ -23,11 +22,26 @@
       height: 100vh;
     }
 
+    #box{
+      display: flex;
+      width: 100vw;
+      height: 100%;
+      justify-content: center;
+    }
+
+    #box>#Hellos {
+      border: none;
+      width: 4.255rem;
+      height: 2.072rem;
+      position: absolute;
+      bottom: 60%;
+    }
+
     .Hello {
       font: italic 1.7rem Verdana;
       position: fixed;
-      transition: font-size 0.3s;
-      cursor: pointer;
+      /* transition: font-size 0.3s; */
+      cursor: pointer; /* 将鼠标变成小手 */
       
       -webkit-user-select: none;
       -ms-user-select: none;
@@ -57,21 +71,62 @@
       padding-top: 0.06rem;
       padding-left: 0.03rem;
     }
-
-    #box{
-      display: flex;
-      width: 100vw;
-      height: 100%;
-      justify-content: center;
+    #Hellos{
+      animation-delay: 0s;
+      animation-direction: alternate;
+      animation-duration: 0.5s;
+      animation-fill-mode: backwards;
+      animation-iteration-count: 2;
+      animation-play-state: running;
+      animation-timing-function: linear;
+    }
+    @keyframes HG {
+      from {opacity: 1;}
+      to {opacity: 0;}
+    }
+    @keyframes GH {
+      from {opacity: 1;}
+      to {opacity: 0;}
     }
 
-    #box>div {
+    #box>#Times {
+      /* width: 320px; */
+      /* width: 3rem; */
+      height: 0.3rem;
       border: none;
-      width: 4.255rem;
-      height: 2.072rem;
       position: absolute;
-      bottom: 60%;
+      bottom: 0.5rem;
+      left: 0.5rem;
     }
+
+    .Time {
+      font: italic 0.2rem Verdana;
+      position: fixed;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+    }
+    .Time:nth-of-type(1) {
+      z-index: 0;
+      color: rgba(44, 200, 184, 1);
+      padding-left: 0.01rem;
+    }
+    .Time:nth-of-type(2) {
+      z-index: 1;
+      color: rgba(255, 255, 0, 1);
+      padding-top: 0.01rem;
+    }
+    .Time:nth-of-type(3) {
+      z-index: 2;
+      color: rgba(255, 255, 255, 1);
+      padding-top: 0.01rem;
+      padding-left: 0.01rem;
+    }
+
+
 
     hr:not(.thunder) {
       width: 0.31rem;
@@ -102,102 +157,55 @@
 <body>
   <!-- //Hello字体--------------------------------------------------------------------------------------------------------- -->
   <div id="box">
-    <div onselectstart='re()'>
+    <div id="Hellos" onselectstart='re()'>
       <div class="Hello">Hello</div>
       <div class="Hello">Hello</div>
-      <div onmouseover="GomOver()" onmouseout="GomOut()" class="Hello" onclick='location.href="search.html"'>
-        Hello
-      </div>
+      <div class="Hello" onmouseover="areplace()" onmouseout="breplace()" onclick='location.href="search.html"'>Hello</div>
+    </div>
+
+    <div id="Times">
+      <div class="Time"></div>
+      <div class="Time"></div>
+      <div class="Time"></div>
     </div>
   </div>
 
   <script src="./js/rem.js"></script>
   <script>
-    let a = document.getElementsByClassName("Hello");
-    // let time = '';
-    // let State1 = 0;
-    // let State2 = 0;
-
-    //Hello转Go---------------------------------------------------
-    function GomOver() {
-      // if (Date.now() - time > 2000 && State2 == 0) {
-        // time = Date.now();
-        // State1 = 1;
-
-        //Hello淡出
-        for (let index = 0; index < 10; index++) {
-          setTimeout(function () {
-            for (let x = 0; x < a.length; x++) {
-              a[x].style.opacity = 1 - (index * 0.1);
-              a[x].style.fontSize = "1.8rem";
-            };
-          }, index * 30);
-        };
-
-        //Go淡入
-        setTimeout(function () {
-          for (let index = 0; index < 10; index++) {
-            setTimeout(function () {
-              for (let x = 0; x < a.length; x++) {
-                a[x].style.opacity = 0.1 + (index * 0.1);
-                a[x].innerHTML = "&nbsp;Go!&nbsp;";
-              };
-            }, index * 30);
-          };
-          // State1 = 0;
-          // console.log(State1);
-        }, 350);
-      // }else{
-        // return;
-      // }
+    //新Hello淡出，Go淡入
+    function areplace() {
+      let a = document.getElementsByClassName("Hello");
+      let as = document.getElementById('Hellos');
+      as.style.animationName = 'HG';
+      setTimeout(() => {
+        a[0].innerHTML = "&nbsp;Go!&nbsp;";
+        a[1].innerHTML = "&nbsp;Go!&nbsp;";
+        a[2].innerHTML = "&nbsp;Go!&nbsp;";
+      }, 500);
+    }
+    //新Go淡出，Hello淡入
+    function breplace() {
+      let a = document.getElementsByClassName("Hello");
+      let as = document.getElementById('Hellos');
+      as.style.animationName = 'GH';
+      setTimeout(() => {
+        a[0].innerHTML = "Hello";
+        a[1].innerHTML = "Hello";
+        a[2].innerHTML = "Hello";
+      }, 500);
     }
 
-
-    // function aState() {
-      // State2 = 1;
-      // console.log(State1);
-      // if (State1 == 0) {
-        // GomOut();
-      // }else{
-        // setTimeout(() => {
-          // aState();
-        // }, 200);
-      // }
-    // }
-
-
-    //Go转Hello---------------------------------------------------
-    function GomOut() {
-      // if (Date.now() - time > 1000) {
-        // time = Date.now();
-        // console.log(Date.now());
-        //Go淡出
-        for (let index = 0; index < 10; index++) {
-          setTimeout(function () {
-            for (let x = 0; x < a.length; x++) {
-              a[x].style.opacity = 1 - (index * 0.1);
-              a[x].innerHTML = "&nbsp;Go!&nbsp;";
-              a[x].style.fontSize = "1.7rem";
-            };
-          }, index * 30);
-        };
-      
-        //Hello淡入
-        setTimeout(function () {
-          for (let index = 0; index < 10; index++) {
-            setTimeout(function () {
-              for (let x = 0; x < a.length; x++) {
-                a[x].innerHTML = "Hello";
-                a[x].style.opacity = 0.1 + (index * 0.1);
-              };
-            }, index * 30);
-          };
-        }, 350);
-      // }else{
-        // return;
-      // }
-      // State2 = 0;
+    //Time
+    // console.log(new Date(2002, 01, 06).getTime());
+    // console.log(new Date().getTime());
+    let soFar = (new Date().getTime() - new Date(2002, 01, 06).getTime())/86400000;
+    console.log(soFar);
+    let t = `现在是: ${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} , 距离 2002-01-06 已过去 ${soFar.toFixed(0)-1} 天`;
+    let atime = document.getElementsByClassName("Time");
+    for (let index = 0; index < atime.length; index++) {
+      atime[index].innerHTML = t;
     }
+
 
     //限制最小根大小-----------------------------------------------
     let f = document.documentElement.style.fontSize;
@@ -206,24 +214,12 @@
       document.documentElement.style.fontSize = '50px';
     }
 
-    //re
+    //点我无用
     function re(){
       return flase;
     }
 
-    //屏幕自适应---------------------------------------------------
-    // function getInsideArr() {
-      // var width = window.innerWidth || document.documentElement.clientWidth;
-      // document.getElementById("box").style.width = width + "px";
-      // if (width > 425.5) {
-        // document.getElementById("box").style.width = 425.5 + "px";
-        // var div = document.getElementById('box');
-        // div.setAttribute("class", "width");
-      // };
-    // };
-    // getInsideArr();
-
-    //特效--------------------------------------------------------
+    //落雨?特效--------------------------------------------------------
     let hrs;
     let counter = 31;
     for (let i = 0; i < counter; i++) {
@@ -232,6 +228,71 @@
       hrs.style.animationDuration = 0.5 + Math.random() * 0.3 + "s";
       hrs.style.animationDelay = Math.random() * 3 + "s";
       document.body.appendChild(hrs);
+    }
+
+
+
+    //优化后的废弃代码
+    function 废弃() {
+      // //Hello转Go---------------------------------------------------
+      // function GomOver() {
+      //   //Hello淡出
+      //   for (let index = 0; index < 10; index++) {
+      //     setTimeout(function () {
+      //       for (let x = 0; x < a.length; x++) {
+      //         a[x].style.opacity = 1 - (index * 0.1);
+      //         a[x].style.fontSize = "1.8rem";
+      //       };
+      //     }, index * 30);
+      //   };
+      //   //Go淡入
+      //   setTimeout(function () {
+      //     for (let index = 0; index < 10; index++) {
+      //       setTimeout(function () {
+      //         for (let x = 0; x < a.length; x++) {
+      //           a[x].style.opacity = 0.1 + (index * 0.1);
+      //           a[x].innerHTML = "&nbsp;Go!&nbsp;";
+      //         };
+      //       }, index * 30);
+      //     };
+      //   }, 350);
+      // }
+      // //Go转Hello---------------------------------------------------
+      // function GomOut() {
+      //   //Go淡出
+      //   for (let index = 0; index < 10; index++) {
+      //     setTimeout(function () {
+      //       for (let x = 0; x < a.length; x++) {
+      //         a[x].style.opacity = 1 - (index * 0.1);
+      //         a[x].innerHTML = "&nbsp;Go!&nbsp;";
+      //         a[x].style.fontSize = "1.7rem";
+      //       };
+      //     }, index * 30);
+      //   };
+      //   //Hello淡入
+      //   setTimeout(function () {
+      //     for (let index = 0; index < 10; index++) {
+      //       setTimeout(function () {
+      //         for (let x = 0; x < a.length; x++) {
+      //           a[x].innerHTML = "Hello";
+      //           a[x].style.opacity = 0.1 + (index * 0.1);
+      //         };
+      //       }, index * 30);
+      //     };
+      //   }, 350);
+      // }
+
+      //屏幕自适应---------------------------------------------------
+      // function getInsideArr() {
+        // var width = window.innerWidth || document.documentElement.clientWidth;
+        // document.getElementById("box").style.width = width + "px";
+        // if (width > 425.5) {
+          // document.getElementById("box").style.width = 425.5 + "px";
+          // var div = document.getElementById('box');
+          // div.setAttribute("class", "width");
+        // };
+      // };
+      // getInsideArr();
     }
   </script>
 </body>
