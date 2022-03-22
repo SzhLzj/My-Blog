@@ -1002,6 +1002,52 @@
     <p>确定即可</p>
 
     <hr>
+    <h2>番外：html引入vue的基本格式规范</h2>
+    <pre>
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="zh"&gt;
+        &lt;head&gt;
+          &lt;meta charset="UTF-8"&gt;
+          &lt;title&gt;没错，我就是标题&lt;/title&gt;
+          &lt;style&gt;
+            div{
+              width: 1050px;
+              margin: 0px auto;
+              font-size: 20px;
+              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+            }
+          &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;div id="root"&gt;
+          
+          &lt;/div&gt;
+          
+          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            const vm = new Vue({
+              el: '#root',
+              data: {
+              },
+              methods:{
+              },
+              computed:{
+              },
+              watch:{
+              },
+              filters:{ 
+              },
+            })
+          &lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;    
+    </pre>
+
+    <hr>
+    <h2>debugger</h2>
+    <p>在某一行写上debugger; 即可卡断点</p>
+
+    <hr>
     <h2>z-index</h2>
     <p></p>
     <p></p>
@@ -1020,7 +1066,6 @@
     <p></p>
     <p></p>
     <p></p>
-
 
 
 
