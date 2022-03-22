@@ -2033,8 +2033,8 @@
               },
               directives:{
               },
-              //学习的第一个生命周期钩子,在页面完成模板的解析,并把初始的真实DOM放入页面中后（挂载完毕后）,Vue会自动调用mounted
               mounted(){ //这个名字是Vue定的，不能改，mounted与data、methods同级！
+                //学习的第一个生命周期钩子,在页面完成模板的解析,并把初始的真实DOM放入页面中后（挂载完毕后）,Vue会自动调用mounted
                 this.timer = setInterval (() =&gt; {
                   this.opacity -= 0.01; //这里的this同样是因为Vue帮您重定向过，this is vm
                   if (this.opacity &lt;= 0) {

@@ -829,31 +829,177 @@
     <h2>三元表达式</h2>
     <p>表达式 (expr1) ? (expr2) : (expr3)</p>
     <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
 
     <hr>
-    <h2>z-index</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <h2>Vue-cli 从零搭建</h2>
+    <p>一、首先需要一些环境，1.node.js(必选) 2.webpack(必选) 3.淘宝镜像(非必选)</p>
+    <br>
+    <p>二、新建文件夹，取好名，在地址栏中直接打上cmd，打开命令行(cmd)后，输入"vue create 项目名称xxx"，<br>
+      他会弹出三个选项<br>
+      1.默认的vue2<br>
+      2.默认的vue3<br>
+      3.自定义<br>
+      此案例使用vue2作为演示<br>
+      然后等待安装（从远程仓库拉取默认的vue cli代码）</p>
+    <br>
+    <p>三、先认识一下里面的各各文件夹以及文件都是什么<br>
+      1.node_modules文件夹<br>
+      &emsp;这里面放置着项目的依赖，上传代码时不需要将这些“庞然大物”上传，只需要在拉取代码完毕后使用npm install重新安装一下依赖即可<br>
+      &emsp;例如里面的babel，可以将ES6的语法“翻译”成ES5，使兼容性更佳<br>
+      2.public文件夹<br>
+      &emsp;public文件夹里面一般放置一些静态资源，例如图片，ico，index等等<br>
+      &emsp;注意：在public文件夹中的静态资源，在被webpack进行打包时，会原封不动的打包到dist文件夹中，<br>
+      3.src文件夹<br>
+      &emsp;这里面放置着我们写的源代码，里面的文件夹有点多，挑一些说道说道<br>
+      &emsp;1.assets文件夹：一般放置一些组件共用的静态资源（例如rem.js在每个组件中都会用到）<br>
+      &emsp;注意：在assets文件夹中的静态资源，在被webpack进行打包时，webpack会把静态资源当做一个模块，打包在Js文件中<br>
+      &emsp;2.components文件夹：一般放置非路由组件或全局组件<br>
+      &emsp;3.pages|views文件夹：一般放置路由组件<br>
+      &emsp;4.App.vue：整个项目中唯一的根组件<br>
+      &emsp;5.main.js：项目程序的入口文件，也是整个项目最先执行的文件<br>
+      4.gitignore文件<br>
+      &emsp;git忽略文件，里面写着git上传时要忽略掉的文件，因此你不必每次上传都要删除node_modules文件夹，git会按该文件忽略node_modules文件夹，一般不碰，了解即可<br>
+      5.babel.config.js文件<br>
+      &emsp;这是一个跟babel相关的配置文件，一般不碰，了解即可<br>
+      6.package.json文件<br>
+      &emsp;这个文件记录着这个项目的详细信息，例如name:项目名称，version:版本，scripts:怎么运行，以及有哪些依赖等等。<br>
+      7.package-lock.json文件<br>
+      &emsp;这是一个缓存性的文件，记录着你依赖的一些缓存，使下次安装时更快，可以删除，也可以不删<br>
+      8.README.md文件<br>
+      &emsp;整个项目的说明文件<br>
+      &emsp;里面一般写着怎么安装，怎么运行等等信息<br>
+    </p>
+    <br>
+    <p>四、一些项目常用的其他配置<br>
+      1.项目运行完毕时，自动打开浏览器<br>
+      &emsp;先打开package.json文件，<br>
+      &emsp;在scripts代码块中的指令最后添加一个" --open"，注意！别遗漏了前面的空格<br>
+      &emsp;例如在这句中，将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
+      &emsp;这样，npm run serve完后就会自动打开浏览器<br>
+      2.eslint校验功能的关闭<br>
+      &emsp;这个eslint是个好东西，他可以检测你的代码是否有错误<br>
+      &emsp;但是他有点死脑筋，比如说你声明了一个变量a，但没用他，eslint就会报错说你没用变量a，这不行<br>
+      &emsp;关键是他报错也就算了，他还不让你继续解析，你的浏览器页面就出现了灰色报错，因此有时候并不需要他<br>
+      &emsp;怎么关闭呢，很简单，在项目的根目录下，创建一个vue.config.js文件（必须是这个名）<br>
+      &emsp;里面写：<br>
+      &emsp;module.exports = {<br>
+      &emsp;&emsp;lintOnSave: false;<br>
+      &emsp;}<br>
+      3.配置文件夹的别名<br>
+      &emsp;以src文件夹为例<br>
+      &emsp;在项目的根目录下，创建一个jsconfig.json文件<br>
+      &emsp;里面写上<br>
+      &emsp;{<br>
+      &emsp;&emsp;"compilerOptions": {<br>
+      &emsp;&emsp;&emsp;"baseUrl": "./",<br>
+      &emsp;&emsp;&emsp;"paths": {<br>
+      &emsp;&emsp;&emsp;&emsp;"@/*": ["src/*"]<br>
+      &emsp;&emsp;&emsp;}<br>
+      &emsp;&emsp;},<br>
+      &emsp;&emsp;"exclude": ["node_modules","dist"]<br>
+      &emsp;}<br>
+      &emsp;注意！@在node_modules和dist文件夹中不能使用<br>
+      &emsp;<br>
+      &emsp;<br>
+      &emsp;<br>
+    </p>
+    <br>
+    <p>番外：vue组件的格式规范</p>
+    <pre>
+      &lt;template&gt;
+     
+      &lt;/template&gt;
+      
+      &lt;script&gt;
+        export default {
+          name: '',
+          
+          mixins: [],
+          
+          components: {},
+          
+          props: {},
+          
+          data () {
+            return {}
+          },
+      
+          computed: {},
+          
+          watch: {},
+          
+          created () {},
+          
+          mounted () {},
+          
+          destroyed () {},
+          
+          methods: {}
+        }
+      &lt;/script&gt;
+      
+      &lt;style scoped&gt;
+      
+      &lt;/style&gt;
+    </pre>
+    <br>
+    <p>五、使用组件的步骤<br>
+    &emsp;1.创建与定义：即使用html和css绘制成.vue的组件<br>
+    &emsp;2.引入：在需要引入的vue组件中，例如在App.vue的script中，写上import xxx from './components/xxx'<br>
+    &emsp;3.注册：在需要引入的vue组件中，例如在App.vue > script的export default{}中，写上components:{ xxx },这里用了ES6语法，kv一致省略v<br>
+    &emsp;4.使用：在需要引入的vue组件中，例如在App.vue的template中，写上&lt;xxx&gt;&lt;/xxx&gt;，即是使用了xxx组件<br>
+
+    </p>
+    <br>
+    <p>六、路由组件的搭建<br>
+    &emsp;1.安装 vue-router<br>
+    &emsp;2.创建与定义：即使用html和css绘制成.vue的组件<br>
+    &emsp;3.一般来说，路由组件都会放置在pages|views文件夹中，所以放进去吧<br>
+    &emsp;4.一般来说，项目中配置的路由一般放在router文件夹中，所以在这里新建吧<br>
+    &emsp;5.引入：在router文件夹的index.js中<br>
+    &emsp;先引入Vue，import Vue from 'vue'<br>
+    &emsp;再引入Router，import VueRouter from 'vue-router'<br>
+    &emsp;再引入需要路由的组件，写上import xxx from '@/pages或views/xxx'<br>
+    &emsp;6.使用'vue-router'插件，Vue.use(VueRouter);<br>
+    &emsp;7.配置路由：<br>
+    <pre>
+      export default new Vuerouter({
+        routes:[
+          {
+            path: '/xxx', //路径是啥
+            component: xxx //哪个组件
+          }
+        ]
+      })
+    </pre>
+    &emsp;8.注册：去main.js中写上import router from '@/router'<br>
+    &emsp;在new Vue里写上router,  (这里用了ES6语法，kv一致省略v)注册<br>
+    &emsp;9.使用：去App.vue写上路由组件出口<br>
+    &emsp;在使用组件的地方写上router-view标签<br>
+    </p>
+    <p>总结</p>
+    <pre>
+      路由组件与非路由组件的区别?
+      1:路由组件一般放置在pages|views文件夹，非路由组件一般放置components文件夹中
+      2:;路由组件一般需要在router文件夹中进行注册（使用的即为组件的名字)，非路由组件在使用的时候，一般都是以标签的形式使用
+      3:注册完路由，不管路由路由组件、还是非路由组件身上都有$route、$router属性
+      $route:一般获取路由信息【路径、query、params等等】
+      $router:一般进行编程式导航进行路由跳转【push|replace】
+      5.3路由的跳转?
+      路由的跳转有两种形式;
+      声明式导航router-link,可以进行路由的跳转
+      编程式导航push|replace，可以进行路由跳转
+      编程式导航:声明式导航能做的，编程式导航都能在，
+      但是编程式导航除了可以进行路由跳转，还可以做一些其他的业务逻辑。
+    </pre>
 
     <hr>
-    <h2>z-index</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <h2>配置vue文件的标签自动补全</h2>
+    <p>先下载一个插件，叫HTML Snippets</p>
+    <p>然后去设置找到Files: Associations</p>
+    <p>项填：*.vue</p>
+    <p>值填：html</p>
+    <p>确定即可</p>
 
     <hr>
     <h2>z-index</h2>
