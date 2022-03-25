@@ -79,7 +79,18 @@
       width: 230px;
     }
 
-    .code_1 {
+    .down{
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      font-weight: bold;
+      user-select:none;
+      -moz-user-select: none;
+      -o-user-select:none;
+      -khtml-user-select:none;
+      -webkit-user-select:none;
+      -ms-user-select:none;
+    }
+    .code_2 {
       font-size: 150%;
       color: white;
       background-color: rgb(49, 63, 65);
@@ -89,7 +100,21 @@
       border-radius: 20px;
       border: rgb(49, 63, 65) solid 5px;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
-
+    }
+    .code_1{
+      display: none;
+    }
+    #yjzk{
+      background-color: #e7e7e7;
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 0px 0px 3px 3rem;
     }
   </style>
 </head>
@@ -99,31 +124,23 @@
     <div id="h1">
       <h1>informalEssay</h1>
       <input type="number" max="200" min="75" id="zoom" placeholder="输入数字可以控制文字大小 , 自带 % 哦" onchange="trigger(this.value)">
+      <button id="yjzk" onclick="sqzk(this)">一键展开所有下拉栏↓</button>
     </div>
     <p>如果我哪里疏忽大意,抑或是你有更好建议,可以联系QQ:1204184336,邮箱:1204184336@qq.com</p>
-    <!-- <a href="https://www.w3cschool.cn/" title="W3cSchool-亿动">W3cSchool教程网站</a> -->
-    <!-- <a href="https://www.w3school.com.cn/index.html" title="W3cSchool-赢科" class="url">W3cSchool教程网站</a> -->
-    <!-- <a href="https://developer.mozilla.org/zh-CN/" title="MDN Web Docs" class="url">MDN Web Docs</a> -->
     <p>这里汇总了一些工作中遇到的困难,便于以后查阅。</p>
     
-    <!-- 模板 -->
-    <!-- <hr> -->
-    <!-- <h2></h2> -->
-    <!-- <p></p> -->
-    <!-- <p></p> -->
-    <!-- <p></p> -->
-    <!-- <pre class="code_1"></pre> -->
-    
     <hr>
-    <h2>JavaScript事件循环机制 event-loop Chrome篇 其他浏览器有不同顺序 没时间验证</h2>
-    <p>JavaScript是一个单线程语言,他有一条主线程(script)和一条任务队列 task.</p>
-    <p>主线程(script)的任务最先进入执行栈中执行,执行栈中的任务清空后,会去任务队列看一下有没有事情,如果没有就开始休息,如果有就开始执行任务队列的事件</p>
-    <p>当然,他不会只看一次任务队列,他会休息一会,就去看一眼,休息一会,去看一眼,循环往复,因此被称为事件循环</p>
-    <p>任务队列task又分为两种,分别是Macro Task (宏任务)和 Micro Task(微任务)</p>
-    <p>相对于Macro Task,Micro Task总是优先执行</p>
-    <p>因此,执行顺序总是script → Micro Task → Macro Task ... → Micro Task → Macro Task</p>
-    <p>例如: setTimeout、setInterval、setImmediate、I/O、UI交互事件、UI rendering 等等 都属于Macro Task</p>
-    <p>例如: Promise 等等 属于Micro Task</p>
+    <h2>JavaScript事件循环机制 event-loop Chrome篇 其他浏览器有不同顺序 没时间验证<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>JavaScript是一个单线程语言,他有一条主线程(script)和一条任务队列 task.</p>
+      <p>主线程(script)的任务最先进入执行栈中执行,执行栈中的任务清空后,会去任务队列看一下有没有事情,如果没有就开始休息,如果有就开始执行任务队列的事件</p>
+      <p>当然,他不会只看一次任务队列,他会休息一会,就去看一眼,休息一会,去看一眼,循环往复,因此被称为事件循环</p>
+      <p>任务队列task又分为两种,分别是Macro Task (宏任务)和 Micro Task(微任务)</p>
+      <p>相对于Macro Task,Micro Task总是优先执行</p>
+      <p>因此,执行顺序总是script → Micro Task → Macro Task ... → Micro Task → Macro Task</p>
+      <p>例如: setTimeout、setInterval、setImmediate、I/O、UI交互事件、UI rendering 等等 都属于Macro Task</p>
+      <p>例如: Promise 等等 属于Micro Task</p>
+    </div>
 
     <!-- <hr>
     <h2>JavaScript事件循环机制 event-loop</h2>
@@ -137,938 +154,993 @@
     <p>例如: Promise.then、Object.observe、MutaionObserver、process.nextTick 属于Micro Task</p> -->
 
     <hr>
-    <h2>模板字符串</h2>
-    <p>字符串被``包裹</p>
-    <p>字符串中的${}内填写变量</p>
-    <p>例： `我是第${index}个人`</p>
-    <p>模板字符串用于替代传统的字符串拼接,例如：'a'+'b'</p>
-
-    <hr>
-    <h2>JSON.parse()</h2>
-    <p>ajax从服务器请求到的参数res(success:function (res))一般是一串字符串</p>
-    <p>可以使用JSON.parse(a,b)方法将数据转换为 JavaScript 对象</p>
-    <p>就像这样：let a = JSON.parse(res);</p>
-
-    <hr>
-    <h2>beforeSend</h2>
-    <p>$.ajax({})中,beforeSend: function(){xxx}, 会比success先执行</p>
-    <p>这个函数可用于消息提醒,比如提醒用户等待</p>
-    <p>前提是async为true(默认为true),也就是异步</p>
-
-    <hr>
-    <h2>图片上传选项框及即时缩略图显示</h2>
-    <p>HTML</p>
-    <pre class="code_1">
-      &lt;div style="position: absolute; width: 100px; height: 120px; left: 27px; top: 54px; border: 1px solid rgb(136, 136, 136);"&gt;
-        &lt;p style="position: relative; left: 27px; top: 54px;"&gt;点击上传&lt;/p&gt;
-        &lt;img src="" id="OneInchPhoto" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; visibility: hidden;"&gt;
-        &lt;input type="file" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; opacity: 0;" onchange="up(this)"&gt;
-      &lt;/div&gt;
-    </pre>
-    <p>原js</p>
-    <pre class="code_1">
-      let x = new FileReader;
-      document.forms[0].elements[0].onchange=function(){
-        x.readAsDataURL(this.files[0]);
-      }
-      x.onloadend=function(){
-        document.images[0].src=this.result;
-      }
-    </pre>
-    <p>适应性修改</p>
-    <pre class="code_1">
-      let x = new FileReader;
-      function up(that){
-        x.readAsDataURL(that.files[0]);
-      }
-      x.onloadend=function(){
-        let OneInchPhoto = document.getElementById('OneInchPhoto');
-        OneInchPhoto.src = this.result;
-        OneInchPhoto.style.visibility = 'visible';
-      }
-    </pre>
-
-    <hr>
-    <h2>取消点击a标签出现的阴影</h2>
-    <p>1.css添加:-webkit-tap-highlight-color: transparent;</p>
-    <pre>2.CSS配置即可：
-      body{
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-      }
-      a{
-        outline:none;
-        -moz-outline-style:none;
-      }
-    </pre>
-
-    <hr>
-    <h2>js元素对象的方法</h2>
-    <p>内容部分来源：https://www.runoob.com/jsref/dom-obj-all.html</p>
-    <pre>
-      element.appendChild()                        为元素添加一个新的子元素
-      element.childNodes                           返回元素的一个子节点的数组,会返回文本节点和空白节点
-      element.children                             返回元素的子元素的集合,只返回元素节点 ie6-8还是跟childNodes一样,推荐用这个
-      element.accessKey                            设置或返回accesskey一个元素      
-      element.firstElementChild                    返回元素的第一个子元素
-      element.firstChild                           返回元素的第一个子节点
-      element.getElementsByTagName()               返回指定标签名的所有子元素集合
-      element.hasChildNodes()                      返回一个元素是否具有任何子元素
-      element.insertBefore()                       现有的子元素之前插入一个新的子元素
-      element.lastChild                            返回最后一个子节点
-      element.lastElementChild                     返回指定元素的最后一个子元素
-      element.querySelector()                      返回匹配指定 CSS 选择器元素的第一个子元素
-      document.querySelectorAll()                  返回匹配指定 CSS 选择器元素的所有子元素节点列表
-      element.removeChild()                        删除一个子元素
-      element.replaceChild()                       替换一个子元素
-
-      element.parentNode                           返回元素的父节点
-      element.parentElement                        返回元素的父节点 这个是ie的标准
-
-      element.nextElementSibling                   返回指定元素之后的下一个兄弟元素(相同节点树层中的下一个元素节点)。
-      element.nextSibling                          返回指定元素之后的下一个兄弟元素,会匹配字符,包括换行和空格
-      element.previousElementSibling               返回指定元素的前一个兄弟元素(相同节点树层中的前一个元素节点)。
-      element.previousSibling                      返回指定元素的前一个兄弟元素,会匹配字符,包括换行和空格
-
-      element.attributes                           返回一个元素的属性数组
-      element.getAttribute()                       返回指定元素的属性值
-      element.getAttributeNode()                   返回指定属性节点
-      element.hasAttribute()                       如果元素中存在指定的属性返回 true,否则返回false。
-      element.hasAttributes()                      如果元素有任何属性返回true,否则返回false。
-      element.removeAttribute()                    从元素中删除指定的属性
-      element.removeAttributeNode()                删除指定属性节点并返回移除后的节点。
-      element.setAttribute()                       设置或者改变指定属性并指定值。
-      element.setAttributeNode()                   设置或者改变指定属性节点。
-
-      element.clientTop                            表示一个元素的顶部边框的宽度,以像素表示。
-      element.clientLeft                           表示一个元素的左边框的宽度,以像素表示。
-      element.clientHeight                         在页面上返回内容的可视高度(高度包含内边距(padding),不包含边框(border),外边距(margin)和滚动条)
-      element.clientWidth                          在页面上返回内容的可视宽度(宽度包含内边距(padding),不包含边框(border),外边距(margin)和滚动条)
-      element.offsetHeight                         返回任何一个元素的高度包括边框(border)和内边距(padding),但不包含外边距(margin)
-      element.offsetWidth                          返回元素的宽度,包括边框(border)和内边距(padding),但不包含外边距(margin)
-      element.offsetLeft                           返回当前元素的相对水平偏移位置的偏移容器
-      element.offsetParent                         返回元素的偏移容器
-      element.offsetTop                            返回当前元素的相对垂直偏移位置的偏移容器
-      element.scrollHeight                         返回整个元素的高度(包括带滚动条的隐蔽的地方)
-      element.scrollLeft                           返回当前视图中的实际元素的左边缘和左边缘之间的距离
-      element.scrollTop                            返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离
-      element.scrollWidth                          返回元素的整个宽度(包括带滚动条的隐蔽的地方)
-
-      element.addEventListener()                   向指定元素添加事件句柄
-      element.removeEventListener()                移除由 addEventListener() 方法添加的事件句柄
-
-      element.style                                设置或返回元素的样式属性
-      element.title                                设置或返回元素的title属性
-
-      element.classList                            返回元素的类名,作为 DOMTokenList 对象。
-      element.className                            设置或返回元素的class属性
-      element.cloneNode()                          克隆某个元素
-      element.compareDocumentPosition()            比较两个元素的文档位置。
-      element.contentEditable                      设置或返回元素的内容是否可编辑
-      element.dir                                  设置或返回一个元素中的文本方向
-      element.focus()                              设置文档或元素获取焦点
-      element.getElementsByClassName()             返回文档中所有指定类名的元素集合,作为 NodeList 对象。
-      element.getFeature()                         返回指定特征的执行APIs对象。
-      element.getUserData()                        返回一个元素中关联键值的对象。
-      element.hasFocus()                           返回布尔值,检测文档或元素是否获取焦点
-      element.id                                   设置或者返回元素的 id。
-      element.innerHTML                            设置或者返回元素的内容。
-      element.isContentEditable                    如果元素内容可编辑返回 true,否则返回false
-      element.isDefaultNamespace()                 如果指定了namespaceURI 返回 true,否则返回 false。
-      element.isEqualNode()                        检查两个元素是否相等
-      element.isSameNode()                         检查两个元素所有有相同节点。
-      element.isSupported()                        如果在元素中支持指定特征返回 true。
-      element.lang                                 设置或者返回一个元素的语言。
-      element.matches()                            如果元素匹配指定的 CSS 选择器,matches() 方法就返回 true,否则返回 false。
-      element.namespaceURI                         返回命名空间的 URI。
-      element.nextSibling                          返回该元素紧跟的一个节点
-      element.nodeName                             返回元素的标记名(大写)
-      element.nodeType                             返回元素的节点类型
-      element.nodeValue                            返回元素的节点值
-      element.normalize()                          使得此成为一个"normal"的形式,其中只有结构(如元素,注释,处理指令,CDATA节和实体引用)隔开Text节点,即元素(包括属性)下面的所有文本节点,既没有相邻的文本节点也没有空的文本节点
-      element.ownerDocument                        返回元素的根元素(文档对象)
-      element.previousSibling                      返回某个元素紧接之前元素
-      element.setIdAttribute()                     
-      element.setIdAttributeNode()                 
-      element.setUserData()                        在元素中为指定键值关联对象。
-      element.tabIndex                             设置或返回元素的标签顺序。
-      element.tagName                              作为一个字符串返回某个元素的标记名(大写)
-      element.textContent                          设置或返回一个节点和它的文本内容
-      element.toString()                           一个元素转换成字符串
-      nodelist.item()                              返回某个元素基于文档树的索引
-      nodelist.length                              返回节点列表的节点数目。
-    </pre>
-
-    <hr>
-    <h2>script的可选属性</h2>
-    <p>我觉得这个知识点肯定有人遗漏,所以我拿出来讲讲,才不是因为我遗漏了呢</p>
-    <p>script：会阻碍 HTML 解析,只有下载好并执行完脚本才会继续解析 HTML。</p>
-    <p>script async：解析 HTML 过程中异步下载脚本,下载成功立马执行,执行脚本时阻碍 HTML 的解析。</p>
-    <p>script defer：解析 HTML 过程中异步下载脚本,不会阻碍 HTML 的解析, HTML 解析完成之后再按照顺序执行脚本。</p>
-
-    <hr>
-    <h2>什么叫迭代</h2>
-    <p>官方定义：迭代是重复反馈过程的活动,其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”,而每一次迭代得到的结果会作为下一次迭代的初始值。</p>
-    <p>最容易理解的迭代应该就是for循环了</p>
-    <p>for (let i = 0; i < 10; i++)</p>
-    <p>其中i会不停的迭代,直到i = 11,迭代停止</p>
-
-    <hr>
-    <h2>什么叫递归</h2>
-    <p>递归就是在运行的过程中调用自己,子问题须与原始问题为同样的事,且更为简单,不能无限制地调用本身,须有个出口</p>
-    <p>好像懂了,但是又没懂,还是懵逼,给你打个比方：</p>
-    <p>1.你在学习DNS是怎么解析的,发现网上说DNS解析是个一个递归 + 迭代的过程</p>
-    <p>2.你懵逼了一会,不知道什么是递归,然后你去查递归是什么意思</p>
-    <p>3.然后网上说递归就是一种算法,然后你更懵了,然后你去查算法</p>
-    <p>3.一天后,你放弃了完全搞懂算法的念头</p>
-    <p>2.然后你不小心的就看到了我这篇文章,顿时大悟,何为递归</p>
-    <p>1.你理解了什么叫DNS解析</p>
-    <p>看,是不是很形象,上面的过程可以理解为1函数调用了2函数,2调用了3,3return结果给2,2return结果给1,最后得出答案</p>
-    <p>但是1、2、3的函数体应该是一件事,而非不同的事,下面说个是同一个函数体的例子</p>
-    <p>初始数为0,你可以+1或者+2,你的对手也可以在你答案的基础上再次+1或+2,谁先到20谁就获胜,求解,怎样才一定能获胜</p>
-    <p>你可能会模拟一下,你1他2,你2他1,你1他1 ... 相信你很快就会被大量的可能性吞没,这就好比让你在围棋还没开始前就决定必胜下法一般,不太可能</p>
-    <p>这是因为你的解题思路错了,这题的解法应该是先不管前面怎么样,你必须先17,他只能18或19,那你一定能获取胜利</p>
-    <p>然后开始想怎么样才能抢到17,一直到1或者2,这就是开始分解问题</p>
-    <p>我们可以用for循环来解这道题(循环真好用呢)</p>
-    <p>for (let i = 20; i > 0; i-=3){</p>
-    <p>console.log(i);</p>
-    <p>}</p>
-    <p>打印结果为20、17、14、11、8、5、2</p>
-    <p>思考一下,是不是发现只要你率先拿到上面除20的任意一数,接下来的节奏就由你把控了,进入了必胜局面</p>
-    <p>你可能会想,这不就是迭代吗？跟递归有什么关系</p>
-    <p>那是为了方便你理解,下面就是递归的正常写法</p>
-    <pre>
-      let num = 20;
-      let d = [];
-      function a(b){
-        if(b > 2){
-          b -= 3;
-          d.push(b);
-          a(b);
-        }
-        return d;
-      }
-      console.log(a(num));
-    </pre>
-    <p>哼哼,是不是瞬间不想读了,下面总结一下吧</p>
-    <p>1.递归中一定有迭代,但是迭代中不一定有递归,因此你把所有的递归笼统的称为迭代也没大错</p>
-    <p>2.迭代是逐渐逼近,用新值覆盖旧值,直到满足条件后结束,不保存中间值,空间利用率高</p>
-    <p>就比如这个for (let i = 0; i < 10; i++),中间的1-10没有意义,因为我的要求就是要大于10,所以i在不断的逼近11,最后得到了11,完成了计算</p>
-    <p>3.递归是将一个问题分解为若干相对小一点的问题,遇到递归出口再原路返回,因此必须保存相关的中间值,这些中间值压入栈保存,问题规模较大时会占用大量内存。</p>
-    <p>以上面的为例子,我将问题如何先到20,拆成了如何先到17,确保我必定到20,然后接着拆,拆到最后,我得到了答案是2,但是中间的数据就无意义了吗？</p>
-    <p>不,中间的数据依旧有着意义,因为你拿到2是为了抢5,拿到5是为了抢8,下面这的内容应该能帮您更加深刻的理解上面的例子</p>
-    <pre>
-      为了抢到20
-          推导出17必定能抢到20,所以开始递归-3
-              得到答案要抢17,17不满足等于1或2
-           \      继续递归调用-3
-             \        得到答案要抢14,14不满足等于1或2
-               \          继续递归调用-3
-                 \            得到答案要抢11,11不满足等于1或2
-            递     \/             继续递归调用-3
-                                      得到答案要抢8,8不满足等于1或2
-                                          继续递归调用-3
-                                              得到答案要抢5,5不满足等于1或2
-                      /                           继续递归调用-3
-                    /                                 得到答案要抢2,2满足等于1或2
-                  /   归                      返回抢到2就必定能抢到5
-                /                     返回抢到5就必定能抢到8
-             \/               返回抢到8就必定能抢到11
-                      返回抢到11就必定能抢到14
-              返回抢到14就必定能抢到17
-      返回抢到17就必定能抢到20
-    </pre>
-
-    <hr>
-    <h2>URL的输入到浏览器解析的一系列事件</h2>
-    <p>1.DNS解析,将域名解析成 IP 地址</p>
-    <p>2.发起TCP连接,TCP 三次握手</p>
-    <p>3.发送HTTP请求</p>
-    <p>4.服务器处理请求并返回HTTP报文</p>
-    <p>5.浏览器解析渲染页面</p>
-    <p>6.连接结束,TCP 四次挥手</p>
-    <p>-------------</p>
-    <p>1..DNS解析的过程</p>
-    <p>DNS 查询是一个递归 + 迭代的过程</p>
-    <p>DNS有常见的两种查询顺序(还有不常见的)</p>
-    <pre>
-      1.递归 + 迭代
-      主机先向本地DNS服务器查询IP, →递归查询
-      若本地DNS服务器没有该域名的缓存记录,则向根DNS服务器查询IP,        →迭代查询
-      若根DNS服务器也没有,本地DNS服务器就再问顶级(TLD)DNS服务器查询,    →迭代查询
-      若顶级(TLD)DNS服务器也没有,本地DNS服务器就再问权威DNS服务器查询,  →迭代查询
-
-        根DNS服务器     顶级(TLD)DNS服务器
-             2↑ ↓3      4↑ ↓5
-             
-               本地DNS服务器  6→ 权威DNS服务器
-                             7←
-                  1↑ ↓8     
-                   主机
-
-
-
-
-      2.递归 少数情况
-      主机先向本地DNS服务器查询IP, →递归查询
-      若本地DNS服务器没有该域名的缓存记录,则向根DNS服务器查询IP,              →递归查询
-      若根DNS服务器也没有,根DNS服务器就再问顶级(TLD)DNS服务器查询,            →递归查询
-      若顶级(TLD)DNS服务器也没有,顶级(TLD)DNS服务器就再问权威DNS服务器查询,   →递归查询
-
-
-                                 权威DNS服务器
-                                    4↑ ↓5
-                               顶级(TLD)DNS服务器
-                                    3↑ ↓6
-                                  根DNS服务器
-                                    2↑ ↓7
-                                 本地DNS服务器
-                                    1↑ ↓8
-                                     主机
-
-    </pre>
-    <p>DNS 有缓存机制,有了缓存,大多数 DNS 查询都绕过了根 DNS 服务器,需要向根 DNS 服务器发起查询的请求很少。</p>
-    <p>DNS的多级缓存 ：浏览器缓存,系统缓存,路由器缓存,IPS服务器缓存,根域名服务器缓存,顶级域名服务器缓存,主域名服务器缓存</p>
-    <p>DNS负载均衡：你访问baidu.com的时候,每次响应的并非是同一个服务器(IP地址不同),一般大公司都有成百上千台服务器来支撑访问,
-       DNS可以返回一个合适的机器的IP给用户,例如可以根据每台机器的负载量,该机器离用户地理位置的距离等等,这种过程就是DNS负载均衡</p>
-    <p>-------------</p>
-    <p>2.TCP连接,三次握手</p>
-    <p>TCP：首部的数据格式 https://juejin.cn/post/6844903832435032072#heading-6</p>
-    <p>三次握手</p>
-    <p>1.客户端发送syn包(Seq=x)到服务器,并进入SYN_SEND状态,等待服务器确认；</p>
-    <p>2.服务器收到syn包,必须确认客户的SYN(ack=x+1),同时自己也发送一个SYN包(Seq=y),即SYN+ACK包,此时服务器进入SYN_RECV状态；</p>
-    <p>3.客户端收到服务器的SYN＋ACK包,向服务器发送确认包ACK(ack=y+1),此包发送完毕,客户端和服务器进入ESTABLISHED状态,完成三次握手。</p>
-    <p>为什么不是二次或四次握手？</p>
-    <p>参考：红军协同对抗蓝军问题</p>
-    <p>处于两地的红军A与红军B要与蓝军作战,红1和红2联合必定能战胜蓝方,单打独斗是必输的局面,在通信信道不完全可靠的情况下,如何设计出完全可靠的通信协议,使红军必胜</p>
-    <pre>
-      红1          红2
-       |明日午时进攻 |
-       |      →     | 第一次握手
-       |   OK,收到  |
-       |     ←      | 第二次握手(若只有两次,第二次报文可能并未发出,导致红2独自进攻而失败)
-       |   OK,收到  |
-       |      →     | 第三次握手
-       |   OK,收到  |
-       |      ←     | 第四次握手(若是四次,前三次足矣说明情况,第四次显得鸡肋,不能显著提高可靠性,浪费性能)
-       |            |
-    </pre>
-
-    <p>6.TCP断开连接,四次挥手</p>
-    <p>1.客户端发送一个FIN,用来关闭客户端到服务器的数据传送,也就是客户端告诉服务器：我已经不 会再给你发数据了(当然,在fin包之前发送出去的数据,如果没有收到对应的ack确认报文,客户端依然会重发这些数据),
-      但是,此时客户端还可 以接受数据。FIN=1,其序列号为seq=u(等于前面已经传送过来的数据的最后一个字节的序号加1),此时,客户端进入FIN-WAIT-1(终止等待1)状态。 TCP规定,FIN报文段即使不携带数据,也要消耗一个序号。</p>
-    <p>2.服务器收到FIN包后,发送一个ACK给对方并且带上自己的序列号seq,确认序号为收到序号+1(与SYN相同,一个FIN占用一个序号)。此时,服务端就进入了CLOSE-WAIT(关闭等待)状态。TCP服务器通知高层的应用进程,客户端向服务器的方向就释放了,
-      这时候处于半关闭状态,即客户端已经没有数据要发送了,但是服务器若发送数据,客户端依然要接受。这个状态还要持续一段时间,也就是整个CLOSE-WAIT状态持续的时间。此时,客户端就进入FIN-WAIT-2(终止等待2)状态,等待服务器发送连接释放报文(在这之前还需要接受服务器发送的最后的数据)。</p>
-    <p>3.服务器发送一个FIN,用来关闭服务器到客户端的数据传送,也就是告诉客户端,我的数据也发送完了,不会再给你发数据了。由于在半关闭状态,服务器很可能又发送了一些数据,假定此时的序列号为seq=w,此时,服务器就进入了LAST-ACK(最后确认)状态,等待客户端的确认。</p>
-    <p>4.主动关闭方收到FIN后,发送一个ACK给被动关闭方,确认序号为收到序号+1,此时,客户端就进入了TIME-WAIT(时间等待)状态。注意此时TCP连接还没有释放,必须经过2∗MSL(最长报文段寿命)的时间后,当客户端撤销相应的TCB后,才进入CLOSED状态。
-      服务器只要收到了客户端发出的确认,立即进入CLOSED状态。同样,撤销TCB后,就结束了这次的TCP连接。可以看到,服务器结束TCP连接的时间要比客户端早一些。</p>
-
-    <hr>
-    <h2>Css 属性 box-sizing</h2>
-    <p>box-sizing:content-box 将元素盒模型设置为标准盒模型</p>
-    <p>box-sizing:border-box  将元素盒模型设置为IE(替代)盒模型</p>
-    <p>IE盒模型的好处：</p>
-    <p>如果在标准盒模型下,当一行左右各有一个div,他们的width都为50%,也就是说content都是50%</p>
-    <p>这时,来了一个新需求,两个div都要有边框,且两个div依旧是各占50%</p>
-    <p>这时候,标准盒模型content的50%就需要把border考虑进去了,这样会很麻烦,因为一个是%,一个px,自适应变的无比难解</p>
-    <p>这时候,IE盒模型的优势就体现出来了,这大概也是大多数UI库用的都是IE盒模型的原因</p>
-
-    <hr>
-    <h2>Css 选择器</h2>
-    <p>类型选择器	               h1 {  }	                  类型选择器</p>
-    <p>通配选择器	               * {  }	                    通配选择器</p>
-    <p>类选择器	                 .box {  }	                类选择器</p>
-    <p>ID选择器	                 #unique { }	              ID选择器</p>
-    <p>标签属性选择器	           a[title] {  }	             标签属性选择器</p>
-    <p>伪类选择器	               p:first-child { }	         伪类</p>
-    <p>伪元素选择器	             p::first-line { }	         伪元素</p>
-    <p>后代选择器	               article p	                 后代运算符</p>
-    <p>子代选择器	               article > p	               子代选择器</p>
-    <p>相邻兄弟选择器	           h1 + p	                      相邻兄弟</p>
-    <p>通用兄弟选择器	           h1 ~ p	                      通用兄弟</p>
-
-    <hr>
-    <h2>Css 优先级</h2>
-    <p>内联 > ID选择器 > 类选择器 > 标签选择器</p>
-    <p>上面这个顺序应该是众所周知的吧</p>
-    <p>除了上面这些会影响优先级以外,还有个大大大佬,叫!important</p>
-    <p>他一出马,通配都能战胜内联,用法很简单,就像这样,background-color: black !important;</p>
-    <p>因为是计算机,所以肯定有一种计算优先级的公式,这个公式就是 EABCD (好吧(╯▽╰),ABCD是我瞎写的,具体的含义理解就行)</p>
-    <p>A代表是否为内联样式,若为内联样式,则为1,否则为0</p>
-    <p>B代表ID选择器的个数,有几个,就是几</p>
-    <p>C代表类选择器、属性选择器、伪类选择器的个数,有几个,就是几</p>
-    <p>D代表标签选择器、伪元素选择器的个数,有几个,就是几</p>
-    <p>Ps:一些选择器有和没有一个样,不参与优先级计算,比如说*,通配选择器</p>
-    <p>猜猜E是谁,没错,就是大大大佬,!important,有!important即为1,没有就是0</p>
-    <p>想必你应该知道优先级怎么比较了吧,没错,就是比大小,</p>
-    <p>比如说现在有两个选择器,一个是#a>#b>.c>*[href]>:hover>div>p::before,另一个是内联样式</p>
-    <p>经过辛苦计算,第一个选择器的分数为00232,而第二个选择器的分数为01000,一千肯定比232要大嘛,理所应当的,第二个选择器胜出</p>
-
-    <hr>
-    <h2>回流和重绘</h2>
-    <p>一、浏览器从零开始渲染至结束的过程</p>
-    <p>1.解析HTML,生成DOM树,解析CSS,生成CSSOM树</p>
-    <p>2.从DOM树的根节点开始遍历每个可见节点</p>
-    <p>3.对于每个可见的节点,找到CSSOM树中对应的规则,并应用它们</p>
-    <p>4.根据每个可见节点以及其对应的样式,组合生成,也就是将DOM树和CSSOM树结合,生成渲染树(Render Tree)(不包括不可见节点哦)</p>
-    <p>5.Layout(回流):根据生成的渲染树,进行回流(Layout),得到节点的几何信息(位置,大小)</p>
-    <p>6.Painting(重绘):根据渲染树以及回流得到的几何信息,得到节点的绝对像素</p>
-    <p>7.Display:将像素发送给GPU,展示在页面上。(这一步其实还有很多内容,比如会在GPU将多个合成层合并为同一个层,并展示在页面中。而css3硬件加速的原理则是新建合成层,有兴趣自己百度)</p>
-    <p>-----------------------------</p>
-    <p>二、上面说到可见节点,那哪些是可见的节点？哪些是不可见的节点呢？</p>
-    <p>答:除了script、meta、link等不会参与渲染的标签外,还有一个display:none;也是不可见的节点,其余全是可见的,包括利用visibility和opacity隐藏的节点</p>
-    <p>-----------------------------</p>
-    <p>三、什么是回流</p>
-    <p>通过构造渲染树,我们将可见DOM节点以及它对应的样式结合起来,可是我们还需要计算它们在设备视口(viewport)内的确切位置和大小,这个计算的阶段就是回流</p>
-    <p>-----------------------------</p>
-    <p>四、什么是重绘</p>
-    <p>通过渲染树和回流阶段,我们知道了哪些节点是可见的,以及可见节点的样式和具体的几何信息(位置、大小),那么我们就可以将渲染树的每个节点都转换为屏幕上的实际像素,这个阶段就叫做重绘节点</p>
-    <p>-----------------------------</p>
-    <p>五、注意:回流一定会触发重绘,而重绘不一定会回流</p>
-    <p>-----------------------------</p>
-    <p>六、那什么时候会发生回流呢</p>
-    <p>前面说过,回流这一阶段主要是计算节点的位置和几何信息,那么当页面布局和几何信息发生变化的时候,就需要回流,比如下面的情况</p>
-    <p>1.添加或删除可见的DOM元素</p>
-    <p>2.元素的位置发生变化</p>
-    <p>3.元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）</p>
-    <p>4.内容发生变化,比如文本变化或图片被另一个不同尺寸的图片所替代。</p>
-    <p>5.页面一开始渲染的时候（这肯定避免不了）</p>
-    <p>6.浏览器的窗口尺寸变化（因为回流是根据视口的大小来计算元素的位置和大小的）</p>
-    <p>-----------------------------</p>
-    <p>七、现代浏览器的优化机制</p>
-    <p>现代的浏览器都是很聪明的,由于每次重排都会造成额外的计算消耗,因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程</p>
-    <p>浏览器会将修改操作放入到队列里,直到过了一段时间或者操作达到了一个阈值,才清空队列。</p>
-    <p>但是！当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法：</p>
-    <p>1.offsetTop、offsetLeft、offsetWidth、offsetHeight</p>
-    <p>2.scrollTop、scrollLeft、scrollWidth、scrollHeight</p>
-    <p>3.clientTop、clientLeft、clientWidth、clientHeight</p>
-    <p>4.getComputedStyle()</p>
-    <p>5.getBoundingClientRect</p>
-    <p>以上属性和方法都需要返回最新的布局信息,因此浏览器不得不清空队列,触发回流重绘来返回正确的值</p>
-    <p>我们在修改样式的时候,最好避免使用上面列出的属性,他们都会刷新渲染队列。如果要使用它们,最好将值缓存起来</p>
-    <p>-----------------------------</p>
-    <p>八、如何减少回流和重绘</p>
-    <p>1.使用cssText</p>
-    <pre>
-      以往我都是这样写的
-      const main = document.getElementById('main');
-      main.style.padding = '5px';
-      main.style.borderLeft = '1px';
-      main.style.borderRight = '2px';
-      当然,那是因为我不知道有cssText这么好用的东西
-      现在我知道了,是时候跟上一下时代了,你可以直接这样写
-      main.style.cssText += 'border-left: 1px; border-right: 2px; padding: 5px;';
-      卧槽都无法形容我现在的感受,卧槽！太强了
-    </pre>
-    <p>2.添加或删除class来改变样式</p>
-    <p>main.className += ' metamorphosis';</p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    
-    <hr>
-    <h2>获取一些可视区的数据</h2>
-    <p>BODY对象宽度： document.body.clientWidth</p>
-    <p>BODY对象高度： document.body.clientHeight</p>
-    <p>可见区域宽度： document.documentElement.clientWidth </p>
-    <p>可见区域高度： document.documentElement.clientHeight </p>
-    <p>若是body没有margin和padding,BODY对象的宽高等同于可视区域的宽高</p>
-    <p>---------------------</p>
-    <p>网页可见区域宽： document.body.offsetWidth (包括边线的宽)</p>
-    <p>网页可见区域高： document.body.offsetHeight (包括边线的高)</p>
-    <p>网页正文部分上： window.screenTop</p>
-    <p>网页正文部分左： window.screenLeft</p>
-    <p>屏幕分辨率的高： window.screen.height</p>
-    <p>屏幕分辨率的宽： window.screen.width</p>
-    <p>屏幕可用工作区高度： window.screen.availHeight</p>
-    <p>屏幕可用工作区宽度： window.screen.availWidth</p>
-    <p>-----------------------------</p>
-    <p>// 部分jQuery函数</p>
-    <p>$(window).height() 　//浏览器时下窗口可视区域高度</p>
-    <p>$(document).height()　　　　//浏览器时下窗口文档的高度</p>
-    <p>$(document.body).height()　　　　　　//浏览器时下窗口文档body的高度</p>
-    <p>$(document.body).outerHeight(true)　//浏览器时下窗口文档body的总高度 包括border padding margin</p>
-    <p>$(window).width() 　//浏览器时下窗口可视区域宽度</p>
-    <p>$(document).width()//浏览器时下窗口文档对于象宽度</p>
-    <p>$(document.body).width()　　　　　　//浏览器时下窗口文档body的高度</p>
-    <p>$(document.body).outerWidth(true)　//浏览器时下窗口文档body的总宽度 包括border padding</p>
-    <p>-----------------------------</p>
-    <p>HTML精确定位:scrollLeft,scrollWidth,clientWidth,offsetWidth</p>
-    <p>scrollHeight: 获取对象的滚动高度。</p>
-    <p>scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离</p>
-    <p>scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离</p>
-    <p>scrollWidth:获取对象的滚动宽度</p>
-    <p>offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度</p>
-    <p>offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置</p>
-    <p>offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置</p>
-    <p>event.clientX 相对文档的水平座标</p>
-    <p>event.clientY 相对文档的垂直座标</p>
-    <p>event.offsetX 相对容器的水平坐标</p>
-    <p>event.offsetY 相对容器的垂直坐标</p>
-    <p>document.documentElement.scrollTop 垂直方向滚动的值</p>
-    <p>event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量</p>
-
-    <hr>
-    <h2>js控制页面方法大全</h2>
-    <p>1.reload --语法：location.reload([bForceGet]) 相当于客户端点击 F5("刷新")</p>
-    <p>参数：bForceGet,可选参数</p>
-    <p>默认为false,从客户端缓存里取当前页。</p>
-    <p>true, 则以 GET 方式,从服务端取最新的页面,</p>
-    <p>------</p>
-    <p>2.replace 方法,该方法通过指定URL替换当前缓存在历史里（客户端）的项目,因此当使用replace方法之后,你不能通过“前进”和“后退”来访问已经被替换的URL。
-    <p>语法： location.replace(URL)</p>
-    <p>通常使用： location.reload() 或者是 history.go(0) 来做。</p>
-    <p>此方法类似客户端点F5刷新页面,所以页面method="post"时,会出现"网页过期"的提示。</p>
-    <p>因为Session的安全保护机制。</p>
-    <p>当调用 location.reload() 方法时, aspx页面此时在服务端内存里已经存在, 因此必定是 IsPostback 的。</p>
-    <p>如果有这种应用： 需要重新加载该页面,也就是说期望页面能够在服务端重新被创建,期望是 Not IsPostback 的。</p>
-    <p>这里,location.replace() 就可以完成此任务。被replace的页面每次都在服务端重新生成。</p>
-    <p>代码： location.replace(location.href);</p>
-    <p>------</p>
-    <p>3.返回并刷新页面</p>
-    <p>location.replace(document.referrer);</p>
-    <p>document.referrer //前一个页面的URL</p>
-    <p>不要用 history.go(-1),或 history.back();来返回并刷新页面,这两种方法不会刷新页面。</p>
-    <p>------</p>
-    <p>4.Javascript刷新页面的几种方法：</p>
-    <p>1,history.go(0)</p>
-    <p>2,location.reload()</p>
-    <p>3,location=location</p>
-    <p>4,location.assign(location)</p>
-    <p>5,document.execCommand('Refresh')</p>
-    <p>6,window.navigate(location)</p>
-    <p>7,location.replace(location)</p>
-    <p>8,document.URL=location.href</p>
-    <p>------</p>
-    <p>5.自动刷新页面的方法: 把如下代码加入 head 区域中</p>
-    <p>&lt;meta http-equiv="refresh" content="20"&gt;</p>
-    <p>------</p>
-    <p>6.页面自动跳转：把如下代码加入 head 区域中</p>
-    <p>&lt;meta http-equiv="refresh" content="20;url=https://www.jb51.net"&gt;</p>
-    <p>------</p>
-    <p>7.页面自动刷新js版</p>
-    <pre>
-      &lt;script language="JavaScript"&gt;
-        function myrefresh()
-        {
-           window.location.reload();
-        }
-        setTimeout('myrefresh()',1000); //指定1秒刷新一次
-      &lt;/script&gt;
-    </pre>
-    <p>------</p>
-    <p>8.JS刷新框架的脚本语句</p>
-    <pre>
-      //刷新包含该框架的页面用  
-      &lt;script language=JavaScript&gt;
-         parent.location.reload();
-      &lt;/script&gt;
-      //子窗口刷新父窗口
-      &lt;script language=JavaScript&gt;
-          self.opener.location.reload();
-      &lt;/script&gt;
-      (　或　&lt;a href="javascript:opener.location.reload()"&gt;刷新&lt;/a&gt;   )
-      //刷新另一个框架的页面用  
-      &lt;script language=JavaScript&gt;
-         parent.另一FrameID.location.reload();
-      &lt;/script&gt;
-    </pre>
-    <p>------</p>
-    <p>9.如果想关闭窗口时刷新或想开窗时刷新，在 body 中调用以下语句即可。</p>
-    <pre>
-      &lt;body onload="opener.location.reload()"&gt; 开窗时刷新
-      &lt;body onUnload="opener.location.reload()"&gt; 关闭时刷新
-      &lt;script language="javascript"&gt;
-        window.opener.document.location.reload()
-      &lt;/script&gt;
-    </pre>
-    <p>------</p>
-    <p>10.父框架中，第一个top子框架对第二个bottom子框架的刷新方式</p>
-    <pre>
-      下列代码位于top子框架中
-      &lt;input type=button value="刷新1" onclick="window.parent.frames[1].location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新2" onclick="window.parent.frames.bottom.location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新3" onclick="window.parent.frames['bottom'].location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新4" onclick="window.parent.frames.item(1).location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新5" onclick="window.parent.frames.item('bottom').location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新6" onclick="window.parent.bottom.location.reload()"&gt;&lt;br&gt;
-      &lt;input type=button value="刷新7" onclick="window.parent['bottom'].location.reload()"&gt;&lt;br&gt;
-    </pre>
-    <p>------</p>
-    <p>11.如何刷新包含该框架的页面用</p>
-    <pre>
-      &lt;script language=JavaScript&gt;
-        parent.location.reload();
-      &lt;/script&gt;
-    </pre>
-    <p>------</p>
-    <p>12.子窗口刷新父窗口</p>
-    <pre>
-      &lt;script language=JavaScript&gt;
-        self.opener.location.reload();
-        &lt;/script&gt;
-    </pre>
-
-    <hr>
-    <h2>居中方式</h2>
-    <p>1.已知父元素和子元素宽高</p>
-    <p>margin、position、padding等等 根据已知的宽高写死</p>
-    <p>------</p>
-    <p>2.父元素宽高未知，子元素宽高已知</p>
-    <p>子元素css</p>
-    <p>定位 + margin-top + margin-left方案</p>
-    <pre>
-      width: 200px; 
-      height: 100px;
-      position: absolute; 
-      left: 50%; 
-      top: 50%;
-      margin-top: -50px;    /* 高度的一半 */
-      margin-left: -100px;    /* 宽度的一半 */
-    </pre>
-    <p>子元素css</p>
-    <p>定位 + margin方案</p>
-    <pre>
-      width: 100px;
-      height: 100px;
-      position: absolute; 
-      left: 0; 
-      top: 0; 
-      right: 0; 
-      bottom: 0;
-      margin: auto;
-    </pre>
-    <p>------</p>
-    <p>3.啥都未知</p>
-    <p>子元素css</p>
-    <p>transform 方案: 存在兼容问题：比如元素已经被transform旋转过后，再使用这个方案会导致transform重复使用，transform属性会相互覆盖</p>
-    <pre>
-      position: relative; 
-      left: 50%; 
-      top: 50%;
-      transform: translate(-50%, -50%);    
-    </pre>
-    <p>父元素css</p>
-    <p>flexbox 方案: 存在兼容问题</p>
-    <pre>
-      display: -webkit-flex;
-      display: -moz-flex;
-      display: -ms-flex;
-      display: -o-flex;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    </pre>
-    <p>父元素css</p>
-    <p>display: table-cell 无兼容性问题</p>
-    <pre>
-      position: relative;
-      width: 300px;
-      height: 300px;
-      border: 1px solid red;
-      display: table-cell;	
-      text-align: center;	
-      vertical-align: middle;
-    </pre>
-
-    <hr>
-    <h2>你不知道的z-index</h2>
-    <p>如果我说，一个z-index为1的元素会被一个z-index为auto的元素盖住，你相信吗</p>
-    <p>你可能不信，但是实现的方法很简单，只需要在z-index:1元素的父元素的css中再加一个小于1的opacity即可</p>
-    <p>就像这样</p>
-    <div style="position: relative;">
-      <div style="width: 100%; opacity: 0.99;">
-        <div style="width: 48%; height: 51px; position:absolute; top: 0px; display: inline-block; background-color:  red; z-index: 1;">1</div>
-      </div>
-      <div style="width: 100%;">
-        <div style="width: 50%; height: 51px; position:absolute; top: 10px; display: inline-block; background-color: aqua;">2</div>
-      </div>
+    <h2>模板字符串<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>字符串被``包裹</p>
+      <p>字符串中的${}内填写变量</p>
+      <p>例： `我是第${index}个人`</p>
+      <p>模板字符串用于替代传统的字符串拼接,例如：'a'+'b'</p>
     </div>
-    <p style="height: 60px;"></p>
-    <pre>
-      &lt;div style="width: 100%; opacity: 0.99;"&gt;
-        &lt;div style="width: 48%; height: 51px; position:absolute; top: 0px; display: inline-block; background-color:  red; z-index: 1;"&gt;1&lt;/div&gt;
-      &lt;/div&gt;
-    
-      &lt;div style="width: 100%;"&gt;
-        &lt;div style="width: 50%; height: 51px; position:absolute; top: 10px; display: inline-block; background-color: aqua;"&gt;2&lt;/div&gt;
-      &lt;/div&gt;
-    </pre>
-    <p>上面是代码片段</p>
-    <p>现象已经出现，源头是父元素的opacity，那为什么父元素的opacity会影响子元素的堆叠呢</p>
-    <p>原因其实也很简单</p>
-    <p>同一个父元素下面的元素会受父元素的堆叠顺序影响</p>
-    <p>我们可以简单的将父元素和子元素的集合理解为一层，不同的父元素是不同的层</p>
-    <!-- <p>那问题来了，为什么红色和其父元素是一层，而蓝色与父元素不是同一层呢</p> -->
 
     <hr>
-    <h2>横竖屏都能保持横版图片全覆盖</h2>
-    <p>横版css</p>
-    <p>map.style.cssText = 'height: 100vh; width: 100vw; transform: rotate(0deg); position: absolute; top: 0!important; left: 0!important; margin-top: 0!important; margin-left: 0!important;';</p>
-    <p>竖版css</p>
-    <p>
-      width: 100vh;
-      height: 100vw;
-      transform: rotate(90deg);
-      position: absolute;
-      top: 50vh;
-      margin-top: -50vw;
-      left: -50vh;
-      margin-left: 50vw;
-    </p>
+    <h2>JSON.parse()<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>ajax从服务器请求到的参数res(success:function (res))一般是一串字符串</p>
+      <p>可以使用JSON.parse(a,b)方法将数据转换为 JavaScript 对象</p>
+      <p>就像这样：let a = JSON.parse(res);</p>
+    </div>
 
     <hr>
-    <h2>input type=file 同一个文件做两次上传操作，第二次无效解决方法</h2>
-    <p>因为是通过onchange来触发函数，同一个文件的值是一样的，因此第二次的时候onchange未触发</p>
-    <p>解决方案：在每次上传文件的值处理完后，用e.target.value='';来清除掉上一次留下的值</p>
+    <h2>beforeSend<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>$.ajax({})中,beforeSend: function(){xxx}, 会比success先执行</p>
+      <p>这个函数可用于消息提醒,比如提醒用户等待</p>
+      <p>前提是async为true(默认为true),也就是异步</p>
+    </div>
 
     <hr>
-    <h2>三元表达式</h2>
-    <p>表达式 (expr1) ? (expr2) : (expr3)</p>
-    <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p>
-
-    <hr>
-    <h2>Vue-cli 从零搭建</h2>
-    <p>一、首先需要一些环境，1.node.js(必选) 2.webpack(必选) 3.淘宝镜像(非必选)</p>
-    <br>
-    <p>二、新建文件夹，取好名，在地址栏中直接打上cmd，打开命令行(cmd)后，输入"vue create 项目名称xxx"，<br>
-      他会弹出三个选项<br>
-      1.默认的vue2<br>
-      2.默认的vue3<br>
-      3.自定义<br>
-      此案例使用vue2作为演示<br>
-      然后等待安装（从远程仓库拉取默认的vue cli代码）</p>
-    <br>
-    <p>三、先认识一下里面的各各文件夹以及文件都是什么<br>
-      1.node_modules文件夹<br>
-      &emsp;这里面放置着项目的依赖，上传代码时不需要将这些“庞然大物”上传，只需要在拉取代码完毕后使用npm install重新安装一下依赖即可<br>
-      &emsp;例如里面的babel，可以将ES6的语法“翻译”成ES5，使兼容性更佳<br>
-      2.public文件夹<br>
-      &emsp;public文件夹里面一般放置一些静态资源，例如图片，ico，index等等<br>
-      &emsp;注意：在public文件夹中的静态资源，在被webpack进行打包时，会原封不动的打包到dist文件夹中，<br>
-      3.src文件夹<br>
-      &emsp;这里面放置着我们写的源代码，里面的文件夹有点多，挑一些说道说道<br>
-      &emsp;1.assets文件夹：一般放置一些组件共用的静态资源（例如rem.js在每个组件中都会用到）<br>
-      &emsp;注意：在assets文件夹中的静态资源，在被webpack进行打包时，webpack会把静态资源当做一个模块，打包在Js文件中<br>
-      &emsp;2.components文件夹：一般放置非路由组件或全局组件<br>
-      &emsp;3.pages|views文件夹：一般放置路由组件<br>
-      &emsp;4.App.vue：整个项目中唯一的根组件<br>
-      &emsp;5.main.js：项目程序的入口文件，也是整个项目最先执行的文件<br>
-      4.gitignore文件<br>
-      &emsp;git忽略文件，里面写着git上传时要忽略掉的文件，因此你不必每次上传都要删除node_modules文件夹，git会按该文件忽略node_modules文件夹，一般不碰，了解即可<br>
-      5.babel.config.js文件<br>
-      &emsp;这是一个跟babel相关的配置文件，一般不碰，了解即可<br>
-      6.package.json文件<br>
-      &emsp;这个文件记录着这个项目的详细信息，例如name:项目名称，version:版本，scripts:怎么运行，以及有哪些依赖等等。<br>
-      7.package-lock.json文件<br>
-      &emsp;这是一个缓存性的文件，记录着你依赖的一些缓存，使下次安装时更快，可以删除，也可以不删<br>
-      8.README.md文件<br>
-      &emsp;整个项目的说明文件<br>
-      &emsp;里面一般写着怎么安装，怎么运行等等信息<br>
-    </p>
-    <br>
-    <p>四、一些项目常用的其他配置<br>
-      1.项目运行完毕时，自动打开浏览器<br>
-      &emsp;先打开package.json文件，<br>
-      &emsp;在scripts代码块中的指令最后添加一个" --open"，注意！别遗漏了前面的空格<br>
-      &emsp;例如在这句中，将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
-      &emsp;这样，npm run serve完后就会自动打开浏览器<br>
-      2.eslint校验功能的关闭<br>
-      &emsp;这个eslint是个好东西，他可以检测你的代码是否有错误<br>
-      &emsp;但是他有点死脑筋，比如说你声明了一个变量a，但没用他，eslint就会报错说你没用变量a，这不行<br>
-      &emsp;关键是他报错也就算了，他还不让你继续解析，你的浏览器页面就出现了灰色报错，因此有时候并不需要他<br>
-      &emsp;怎么关闭呢，很简单，在项目的根目录下，创建一个vue.config.js文件（必须是这个名）<br>
-      &emsp;里面写：<br>
-      &emsp;module.exports = {<br>
-      &emsp;&emsp;lintOnSave: false;<br>
-      &emsp;}<br>
-      3.配置文件夹的别名<br>
-      &emsp;以src文件夹为例<br>
-      &emsp;在项目的根目录下，创建一个jsconfig.json文件<br>
-      &emsp;里面写上<br>
-      &emsp;{<br>
-      &emsp;&emsp;"compilerOptions": {<br>
-      &emsp;&emsp;&emsp;"baseUrl": "./",<br>
-      &emsp;&emsp;&emsp;"paths": {<br>
-      &emsp;&emsp;&emsp;&emsp;"@/*": ["src/*"]<br>
-      &emsp;&emsp;&emsp;}<br>
-      &emsp;&emsp;},<br>
-      &emsp;&emsp;"exclude": ["node_modules","dist"]<br>
-      &emsp;}<br>
-      &emsp;注意！@在node_modules和dist文件夹中不能使用<br>
-      &emsp;<br>
-      &emsp;<br>
-      &emsp;<br>
-    </p>
-    <br>
-    <p>番外：vue组件的格式规范</p>
-    <pre>
-      &lt;template&gt;
-     
-      &lt;/template&gt;
-      
-      &lt;script&gt;
-        export default {
-          name: '',
-          
-          mixins: [],
-          
-          components: {},
-          
-          props: {},
-          
-          data () {
-            return {}
-          },
-      
-          computed: {},
-          
-          watch: {},
-          
-          created () {},
-          
-          mounted () {},
-          
-          destroyed () {},
-          
-          methods: {}
+    <h2>图片上传选项框及即时缩略图显示<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>HTML</p>
+      <pre class="code_2">
+        &lt;div style="position: absolute; width: 100px; height: 120px; left: 27px; top: 54px; border: 1px solid rgb(136, 136, 136);"&gt;
+          &lt;p style="position: relative; left: 27px; top: 54px;"&gt;点击上传&lt;/p&gt;
+          &lt;img src="" id="OneInchPhoto" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; visibility: hidden;"&gt;
+          &lt;input type="file" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; opacity: 0;" onchange="up(this)"&gt;
+        &lt;/div&gt;
+      </pre>
+      <p>原js</p>
+      <pre class="code_2">
+        let x = new FileReader;
+        document.forms[0].elements[0].onchange=function(){
+          x.readAsDataURL(this.files[0]);
         }
-      &lt;/script&gt;
-      
-      &lt;style scoped&gt;
-      
-      &lt;/style&gt;
-    </pre>
-    <br>
-    <p>五、使用组件的步骤<br>
-    &emsp;1.创建与定义：即使用html和css绘制成.vue的组件<br>
-    &emsp;2.引入：在需要引入的vue组件中，例如在App.vue的script中，写上import xxx from './components/xxx'<br>
-    &emsp;3.注册：在需要引入的vue组件中，例如在App.vue > script的export default{}中，写上components:{ xxx },这里用了ES6语法，kv一致省略v<br>
-    &emsp;4.使用：在需要引入的vue组件中，例如在App.vue的template中，写上&lt;xxx&gt;&lt;/xxx&gt;，即是使用了xxx组件<br>
+        x.onloadend=function(){
+          document.images[0].src=this.result;
+        }
+      </pre>
+      <p>适应性修改</p>
+      <pre class="code_2">
+        let x = new FileReader;
+        function up(that){
+          x.readAsDataURL(that.files[0]);
+        }
+        x.onloadend=function(){
+          let OneInchPhoto = document.getElementById('OneInchPhoto');
+          OneInchPhoto.src = this.result;
+          OneInchPhoto.style.visibility = 'visible';
+        }
+      </pre>
+    </div>
 
-    </p>
-    <br>
-    <p>六、路由组件的搭建<br>
-    &emsp;1.安装 vue-router<br>
-    &emsp;2.创建与定义：即使用html和css绘制成.vue的组件<br>
-    &emsp;3.一般来说，路由组件都会放置在pages|views文件夹中，所以放进去吧<br>
-    &emsp;4.一般来说，项目中配置的路由一般放在router文件夹中，所以在这里新建吧<br>
-    &emsp;5.引入：在router文件夹的index.js中<br>
-    &emsp;先引入Vue，import Vue from 'vue'<br>
-    &emsp;再引入Router，import VueRouter from 'vue-router'<br>
-    &emsp;再引入需要路由的组件，写上import xxx from '@/pages或views/xxx'<br>
-    &emsp;6.使用'vue-router'插件，Vue.use(VueRouter);<br>
-    &emsp;7.配置路由：<br>
-    <pre>
-      export default new Vuerouter({
-        routes:[
-          {
-            path: '/xxx', //路径是啥
-            component: xxx //哪个组件
+    <hr>
+    <h2>取消点击a标签出现的阴影<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>1.css添加:-webkit-tap-highlight-color: transparent;</p>
+      <pre>2.CSS配置即可：
+        body{
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        a{
+          outline:none;
+          -moz-outline-style:none;
+        }
+      </pre>
+    </div>
+
+    <hr>
+    <h2>js元素对象的方法<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>内容部分来源：https://www.runoob.com/jsref/dom-obj-all.html</p>
+      <pre>
+        element.appendChild()                        为元素添加一个新的子元素
+        element.childNodes                           返回元素的一个子节点的数组,会返回文本节点和空白节点
+        element.children                             返回元素的子元素的集合,只返回元素节点 ie6-8还是跟childNodes一样,推荐用这个
+        element.accessKey                            设置或返回accesskey一个元素      
+        element.firstElementChild                    返回元素的第一个子元素
+        element.firstChild                           返回元素的第一个子节点
+        element.getElementsByTagName()               返回指定标签名的所有子元素集合
+        element.hasChildNodes()                      返回一个元素是否具有任何子元素
+        element.insertBefore()                       现有的子元素之前插入一个新的子元素
+        element.lastChild                            返回最后一个子节点
+        element.lastElementChild                     返回指定元素的最后一个子元素
+        element.querySelector()                      返回匹配指定 CSS 选择器元素的第一个子元素
+        document.querySelectorAll()                  返回匹配指定 CSS 选择器元素的所有子元素节点列表
+        element.removeChild()                        删除一个子元素
+        element.replaceChild()                       替换一个子元素
+
+        element.parentNode                           返回元素的父节点
+        element.parentElement                        返回元素的父节点 这个是ie的标准
+
+        element.nextElementSibling                   返回指定元素之后的下一个兄弟元素(相同节点树层中的下一个元素节点)。
+        element.nextSibling                          返回指定元素之后的下一个兄弟元素,会匹配字符,包括换行和空格
+        element.previousElementSibling               返回指定元素的前一个兄弟元素(相同节点树层中的前一个元素节点)。
+        element.previousSibling                      返回指定元素的前一个兄弟元素,会匹配字符,包括换行和空格
+
+        element.attributes                           返回一个元素的属性数组
+        element.getAttribute()                       返回指定元素的属性值
+        element.getAttributeNode()                   返回指定属性节点
+        element.hasAttribute()                       如果元素中存在指定的属性返回 true,否则返回false。
+        element.hasAttributes()                      如果元素有任何属性返回true,否则返回false。
+        element.removeAttribute()                    从元素中删除指定的属性
+        element.removeAttributeNode()                删除指定属性节点并返回移除后的节点。
+        element.setAttribute()                       设置或者改变指定属性并指定值。
+        element.setAttributeNode()                   设置或者改变指定属性节点。
+
+        element.clientTop                            表示一个元素的顶部边框的宽度,以像素表示。
+        element.clientLeft                           表示一个元素的左边框的宽度,以像素表示。
+        element.clientHeight                         在页面上返回内容的可视高度(高度包含内边距(padding),不包含边框(border),外边距(margin)和滚动条)
+        element.clientWidth                          在页面上返回内容的可视宽度(宽度包含内边距(padding),不包含边框(border),外边距(margin)和滚动条)
+        element.offsetHeight                         返回任何一个元素的高度包括边框(border)和内边距(padding),但不包含外边距(margin)
+        element.offsetWidth                          返回元素的宽度,包括边框(border)和内边距(padding),但不包含外边距(margin)
+        element.offsetLeft                           返回当前元素的相对水平偏移位置的偏移容器
+        element.offsetParent                         返回元素的偏移容器
+        element.offsetTop                            返回当前元素的相对垂直偏移位置的偏移容器
+        element.scrollHeight                         返回整个元素的高度(包括带滚动条的隐蔽的地方)
+        element.scrollLeft                           返回当前视图中的实际元素的左边缘和左边缘之间的距离
+        element.scrollTop                            返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离
+        element.scrollWidth                          返回元素的整个宽度(包括带滚动条的隐蔽的地方)
+
+        element.addEventListener()                   向指定元素添加事件句柄
+        element.removeEventListener()                移除由 addEventListener() 方法添加的事件句柄
+
+        element.style                                设置或返回元素的样式属性
+        element.title                                设置或返回元素的title属性
+
+        element.classList                            返回元素的类名,作为 DOMTokenList 对象。
+        element.className                            设置或返回元素的class属性
+        element.cloneNode()                          克隆某个元素
+        element.compareDocumentPosition()            比较两个元素的文档位置。
+        element.contentEditable                      设置或返回元素的内容是否可编辑
+        element.dir                                  设置或返回一个元素中的文本方向
+        element.focus()                              设置文档或元素获取焦点
+        element.getElementsByClassName()             返回文档中所有指定类名的元素集合,作为 NodeList 对象。
+        element.getFeature()                         返回指定特征的执行APIs对象。
+        element.getUserData()                        返回一个元素中关联键值的对象。
+        element.hasFocus()                           返回布尔值,检测文档或元素是否获取焦点
+        element.id                                   设置或者返回元素的 id。
+        element.innerHTML                            设置或者返回元素的内容。
+        element.isContentEditable                    如果元素内容可编辑返回 true,否则返回false
+        element.isDefaultNamespace()                 如果指定了namespaceURI 返回 true,否则返回 false。
+        element.isEqualNode()                        检查两个元素是否相等
+        element.isSameNode()                         检查两个元素所有有相同节点。
+        element.isSupported()                        如果在元素中支持指定特征返回 true。
+        element.lang                                 设置或者返回一个元素的语言。
+        element.matches()                            如果元素匹配指定的 CSS 选择器,matches() 方法就返回 true,否则返回 false。
+        element.namespaceURI                         返回命名空间的 URI。
+        element.nextSibling                          返回该元素紧跟的一个节点
+        element.nodeName                             返回元素的标记名(大写)
+        element.nodeType                             返回元素的节点类型
+        element.nodeValue                            返回元素的节点值
+        element.normalize()                          使得此成为一个"normal"的形式,其中只有结构(如元素,注释,处理指令,CDATA节和实体引用)隔开Text节点,即元素(包括属性)下面的所有文本节点,既没有相邻的文本节点也没有空的文本节点
+        element.ownerDocument                        返回元素的根元素(文档对象)
+        element.previousSibling                      返回某个元素紧接之前元素
+        element.setIdAttribute()                     
+        element.setIdAttributeNode()                 
+        element.setUserData()                        在元素中为指定键值关联对象。
+        element.tabIndex                             设置或返回元素的标签顺序。
+        element.tagName                              作为一个字符串返回某个元素的标记名(大写)
+        element.textContent                          设置或返回一个节点和它的文本内容
+        element.toString()                           一个元素转换成字符串
+        nodelist.item()                              返回某个元素基于文档树的索引
+        nodelist.length                              返回节点列表的节点数目。
+      </pre>
+    </div>
+
+    <hr>
+    <h2>script的可选属性<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>我觉得这个知识点肯定有人遗漏,所以我拿出来讲讲,才不是因为我遗漏了呢</p>
+      <p>script：会阻碍 HTML 解析,只有下载好并执行完脚本才会继续解析 HTML。</p>
+      <p>script async：解析 HTML 过程中异步下载脚本,下载成功立马执行,执行脚本时阻碍 HTML 的解析。</p>
+      <p>script defer：解析 HTML 过程中异步下载脚本,不会阻碍 HTML 的解析, HTML 解析完成之后再按照顺序执行脚本。</p>
+    </div>
+
+    <hr>
+    <h2>什么叫迭代<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>官方定义：迭代是重复反馈过程的活动,其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”,而每一次迭代得到的结果会作为下一次迭代的初始值。</p>
+      <p>最容易理解的迭代应该就是for循环了</p>
+      <p>for (let i = 0; i < 10; i++)</p>
+      <p>其中i会不停的迭代,直到i = 11,迭代停止</p>
+    </div>
+
+    <hr>
+    <h2>什么叫递归<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>递归就是在运行的过程中调用自己,子问题须与原始问题为同样的事,且更为简单,不能无限制地调用本身,须有个出口</p>
+      <p>好像懂了,但是又没懂,还是懵逼,给你打个比方：</p>
+      <p>1.你在学习DNS是怎么解析的,发现网上说DNS解析是个一个递归 + 迭代的过程</p>
+      <p>2.你懵逼了一会,不知道什么是递归,然后你去查递归是什么意思</p>
+      <p>3.然后网上说递归就是一种算法,然后你更懵了,然后你去查算法</p>
+      <p>3.一天后,你放弃了完全搞懂算法的念头</p>
+      <p>2.然后你不小心的就看到了我这篇文章,顿时大悟,何为递归</p>
+      <p>1.你理解了什么叫DNS解析</p>
+      <p>看,是不是很形象,上面的过程可以理解为1函数调用了2函数,2调用了3,3return结果给2,2return结果给1,最后得出答案</p>
+      <p>但是1、2、3的函数体应该是一件事,而非不同的事,下面说个是同一个函数体的例子</p>
+      <p>初始数为0,你可以+1或者+2,你的对手也可以在你答案的基础上再次+1或+2,谁先到20谁就获胜,求解,怎样才一定能获胜</p>
+      <p>你可能会模拟一下,你1他2,你2他1,你1他1 ... 相信你很快就会被大量的可能性吞没,这就好比让你在围棋还没开始前就决定必胜下法一般,不太可能</p>
+      <p>这是因为你的解题思路错了,这题的解法应该是先不管前面怎么样,你必须先17,他只能18或19,那你一定能获取胜利</p>
+      <p>然后开始想怎么样才能抢到17,一直到1或者2,这就是开始分解问题</p>
+      <p>我们可以用for循环来解这道题(循环真好用呢)</p>
+      <p>for (let i = 20; i > 0; i-=3){</p>
+      <p>console.log(i);</p>
+      <p>}</p>
+      <p>打印结果为20、17、14、11、8、5、2</p>
+      <p>思考一下,是不是发现只要你率先拿到上面除20的任意一数,接下来的节奏就由你把控了,进入了必胜局面</p>
+      <p>你可能会想,这不就是迭代吗？跟递归有什么关系</p>
+      <p>那是为了方便你理解,下面就是递归的正常写法</p>
+      <pre>
+        let num = 20;
+        let d = [];
+        function a(b){
+          if(b > 2){
+            b -= 3;
+            d.push(b);
+            a(b);
           }
-        ]
-      })
-    </pre>
-    &emsp;8.注册：去main.js中写上import router from '@/router'<br>
-    &emsp;在new Vue里写上router,  (这里用了ES6语法，kv一致省略v)注册<br>
-    &emsp;9.使用：去App.vue写上路由组件出口<br>
-    &emsp;在使用组件的地方写上router-view标签<br>
-    </p>
-    <p>总结</p>
-    <pre>
-      路由组件与非路由组件的区别?
-      1:路由组件一般放置在pages|views文件夹，非路由组件一般放置components文件夹中
-      2:;路由组件一般需要在router文件夹中进行注册（使用的即为组件的名字)，非路由组件在使用的时候，一般都是以标签的形式使用
-      3:注册完路由，不管路由路由组件、还是非路由组件身上都有$route、$router属性
-      $route:一般获取路由信息【路径、query、params等等】
-      $router:一般进行编程式导航进行路由跳转【push|replace】
-      5.3路由的跳转?
-      路由的跳转有两种形式;
-      声明式导航router-link,可以进行路由的跳转
-      编程式导航push|replace，可以进行路由跳转
-      编程式导航:声明式导航能做的，编程式导航都能在，
-      但是编程式导航除了可以进行路由跳转，还可以做一些其他的业务逻辑。
-    </pre>
+          return d;
+        }
+        console.log(a(num));
+      </pre>
+      <p>哼哼,是不是瞬间不想读了,下面总结一下吧</p>
+      <p>1.递归中一定有迭代,但是迭代中不一定有递归,因此你把所有的递归笼统的称为迭代也没大错</p>
+      <p>2.迭代是逐渐逼近,用新值覆盖旧值,直到满足条件后结束,不保存中间值,空间利用率高</p>
+      <p>就比如这个for (let i = 0; i < 10; i++),中间的1-10没有意义,因为我的要求就是要大于10,所以i在不断的逼近11,最后得到了11,完成了计算</p>
+      <p>3.递归是将一个问题分解为若干相对小一点的问题,遇到递归出口再原路返回,因此必须保存相关的中间值,这些中间值压入栈保存,问题规模较大时会占用大量内存。</p>
+      <p>以上面的为例子,我将问题如何先到20,拆成了如何先到17,确保我必定到20,然后接着拆,拆到最后,我得到了答案是2,但是中间的数据就无意义了吗？</p>
+      <p>不,中间的数据依旧有着意义,因为你拿到2是为了抢5,拿到5是为了抢8,下面这的内容应该能帮您更加深刻的理解上面的例子</p>
+      <pre>
+        为了抢到20
+            推导出17必定能抢到20,所以开始递归-3
+                得到答案要抢17,17不满足等于1或2
+             \      继续递归调用-3
+               \        得到答案要抢14,14不满足等于1或2
+                 \          继续递归调用-3
+                   \            得到答案要抢11,11不满足等于1或2
+              递     \/             继续递归调用-3
+                                        得到答案要抢8,8不满足等于1或2
+                                            继续递归调用-3
+                                                得到答案要抢5,5不满足等于1或2
+                        /                           继续递归调用-3
+                      /                                 得到答案要抢2,2满足等于1或2
+                    /   归                      返回抢到2就必定能抢到5
+                  /                     返回抢到5就必定能抢到8
+               \/               返回抢到8就必定能抢到11
+                        返回抢到11就必定能抢到14
+                返回抢到14就必定能抢到17
+        返回抢到17就必定能抢到20
+      </pre>
+    </div>
 
     <hr>
-    <h2>配置vue文件的标签自动补全</h2>
-    <p>先下载一个插件，叫HTML Snippets</p>
-    <p>然后去设置找到Files: Associations</p>
-    <p>项填：*.vue</p>
-    <p>值填：html</p>
-    <p>确定即可</p>
+    <h2>URL的输入到浏览器解析的一系列事件<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>1.DNS解析,将域名解析成 IP 地址</p>
+      <p>2.发起TCP连接,TCP 三次握手</p>
+      <p>3.发送HTTP请求</p>
+      <p>4.服务器处理请求并返回HTTP报文</p>
+      <p>5.浏览器解析渲染页面</p>
+      <p>6.连接结束,TCP 四次挥手</p>
+      <p>-------------</p>
+      <p>1..DNS解析的过程</p>
+      <p>DNS 查询是一个递归 + 迭代的过程</p>
+      <p>DNS有常见的两种查询顺序(还有不常见的)</p>
+      <pre>
+        1.递归 + 迭代
+        主机先向本地DNS服务器查询IP, →递归查询
+        若本地DNS服务器没有该域名的缓存记录,则向根DNS服务器查询IP,        →迭代查询
+        若根DNS服务器也没有,本地DNS服务器就再问顶级(TLD)DNS服务器查询,    →迭代查询
+        若顶级(TLD)DNS服务器也没有,本地DNS服务器就再问权威DNS服务器查询,  →迭代查询
+
+          根DNS服务器     顶级(TLD)DNS服务器
+               2↑ ↓3      4↑ ↓5
+
+                 本地DNS服务器  6→ 权威DNS服务器
+                               7←
+                    1↑ ↓8     
+                     主机
+
+
+
+
+        2.递归 少数情况
+        主机先向本地DNS服务器查询IP, →递归查询
+        若本地DNS服务器没有该域名的缓存记录,则向根DNS服务器查询IP,              →递归查询
+        若根DNS服务器也没有,根DNS服务器就再问顶级(TLD)DNS服务器查询,            →递归查询
+        若顶级(TLD)DNS服务器也没有,顶级(TLD)DNS服务器就再问权威DNS服务器查询,   →递归查询
+
+
+                                   权威DNS服务器
+                                      4↑ ↓5
+                                 顶级(TLD)DNS服务器
+                                      3↑ ↓6
+                                    根DNS服务器
+                                      2↑ ↓7
+                                   本地DNS服务器
+                                      1↑ ↓8
+                                       主机
+
+      </pre>
+      <p>DNS 有缓存机制,有了缓存,大多数 DNS 查询都绕过了根 DNS 服务器,需要向根 DNS 服务器发起查询的请求很少。</p>
+      <p>DNS的多级缓存 ：浏览器缓存,系统缓存,路由器缓存,IPS服务器缓存,根域名服务器缓存,顶级域名服务器缓存,主域名服务器缓存</p>
+      <p>DNS负载均衡：你访问baidu.com的时候,每次响应的并非是同一个服务器(IP地址不同),一般大公司都有成百上千台服务器来支撑访问,
+         DNS可以返回一个合适的机器的IP给用户,例如可以根据每台机器的负载量,该机器离用户地理位置的距离等等,这种过程就是DNS负载均衡</p>
+      <p>-------------</p>
+      <p>2.TCP连接,三次握手</p>
+      <p>TCP：首部的数据格式 https://juejin.cn/post/6844903832435032072#heading-6</p>
+      <p>三次握手</p>
+      <p>1.客户端发送syn包(Seq=x)到服务器,并进入SYN_SEND状态,等待服务器确认；</p>
+      <p>2.服务器收到syn包,必须确认客户的SYN(ack=x+1),同时自己也发送一个SYN包(Seq=y),即SYN+ACK包,此时服务器进入SYN_RECV状态；</p>
+      <p>3.客户端收到服务器的SYN＋ACK包,向服务器发送确认包ACK(ack=y+1),此包发送完毕,客户端和服务器进入ESTABLISHED状态,完成三次握手。</p>
+      <p>为什么不是二次或四次握手？</p>
+      <p>参考：红军协同对抗蓝军问题</p>
+      <p>处于两地的红军A与红军B要与蓝军作战,红1和红2联合必定能战胜蓝方,单打独斗是必输的局面,在通信信道不完全可靠的情况下,如何设计出完全可靠的通信协议,使红军必胜</p>
+      <pre>
+        红1          红2
+         |明日午时进攻 |
+         |      →     | 第一次握手
+         |   OK,收到  |
+         |     ←      | 第二次握手(若只有两次,第二次报文可能并未发出,导致红2独自进攻而失败)
+         |   OK,收到  |
+         |      →     | 第三次握手
+         |   OK,收到  |
+         |      ←     | 第四次握手(若是四次,前三次足矣说明情况,第四次显得鸡肋,不能显著提高可靠性,浪费性能)
+         |            |
+      </pre>
+
+      <p>6.TCP断开连接,四次挥手</p>
+      <p>1.客户端发送一个FIN,用来关闭客户端到服务器的数据传送,也就是客户端告诉服务器：我已经不 会再给你发数据了(当然,在fin包之前发送出去的数据,如果没有收到对应的ack确认报文,客户端依然会重发这些数据),
+        但是,此时客户端还可 以接受数据。FIN=1,其序列号为seq=u(等于前面已经传送过来的数据的最后一个字节的序号加1),此时,客户端进入FIN-WAIT-1(终止等待1)状态。 TCP规定,FIN报文段即使不携带数据,也要消耗一个序号。</p>
+      <p>2.服务器收到FIN包后,发送一个ACK给对方并且带上自己的序列号seq,确认序号为收到序号+1(与SYN相同,一个FIN占用一个序号)。此时,服务端就进入了CLOSE-WAIT(关闭等待)状态。TCP服务器通知高层的应用进程,客户端向服务器的方向就释放了,
+        这时候处于半关闭状态,即客户端已经没有数据要发送了,但是服务器若发送数据,客户端依然要接受。这个状态还要持续一段时间,也就是整个CLOSE-WAIT状态持续的时间。此时,客户端就进入FIN-WAIT-2(终止等待2)状态,等待服务器发送连接释放报文(在这之前还需要接受服务器发送的最后的数据)。</p>
+      <p>3.服务器发送一个FIN,用来关闭服务器到客户端的数据传送,也就是告诉客户端,我的数据也发送完了,不会再给你发数据了。由于在半关闭状态,服务器很可能又发送了一些数据,假定此时的序列号为seq=w,此时,服务器就进入了LAST-ACK(最后确认)状态,等待客户端的确认。</p>
+      <p>4.主动关闭方收到FIN后,发送一个ACK给被动关闭方,确认序号为收到序号+1,此时,客户端就进入了TIME-WAIT(时间等待)状态。注意此时TCP连接还没有释放,必须经过2∗MSL(最长报文段寿命)的时间后,当客户端撤销相应的TCB后,才进入CLOSED状态。
+        服务器只要收到了客户端发出的确认,立即进入CLOSED状态。同样,撤销TCB后,就结束了这次的TCP连接。可以看到,服务器结束TCP连接的时间要比客户端早一些。</p>
+    </div>
 
     <hr>
-    <h2>番外：html引入vue的基本格式规范</h2>
-    <pre>
-      &lt;!DOCTYPE html&gt;
-      &lt;html lang="zh"&gt;
-        &lt;head&gt;
-          &lt;meta charset="UTF-8"&gt;
-          &lt;title&gt;没错，我就是标题&lt;/title&gt;
-          &lt;style&gt;
-            div{
-              width: 1050px;
-              margin: 0px auto;
-              font-size: 20px;
-              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-            }
-          &lt;/style&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-          &lt;div id="root"&gt;
-          
-          &lt;/div&gt;
-          
-          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
-          &lt;script&gt;
-            const vm = new Vue({
-              el: '#root',
-              data: {
-              },
-              methods:{
-              },
-              computed:{
-              },
-              watch:{
-              },
-              filters:{ 
-              },
-            })
+    <h2>Css 属性 box-sizing<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>box-sizing:content-box 将元素盒模型设置为标准盒模型</p>
+      <p>box-sizing:border-box  将元素盒模型设置为IE(替代)盒模型</p>
+      <p>IE盒模型的好处：</p>
+      <p>如果在标准盒模型下,当一行左右各有一个div,他们的width都为50%,也就是说content都是50%</p>
+      <p>这时,来了一个新需求,两个div都要有边框,且两个div依旧是各占50%</p>
+      <p>这时候,标准盒模型content的50%就需要把border考虑进去了,这样会很麻烦,因为一个是%,一个px,自适应变的无比难解</p>
+      <p>这时候,IE盒模型的优势就体现出来了,这大概也是大多数UI库用的都是IE盒模型的原因</p>
+    </div>
+
+    <hr>
+    <h2>Css 选择器<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>类型选择器	               h1 {  }	                  类型选择器</p>
+      <p>通配选择器	               * {  }	                    通配选择器</p>
+      <p>类选择器	                 .box {  }	                类选择器</p>
+      <p>ID选择器	                 #unique { }	              ID选择器</p>
+      <p>标签属性选择器	           a[title] {  }	             标签属性选择器</p>
+      <p>伪类选择器	               p:first-child { }	         伪类</p>
+      <p>伪元素选择器	             p::first-line { }	         伪元素</p>
+      <p>后代选择器	               article p	                 后代运算符</p>
+      <p>子代选择器	               article > p	               子代选择器</p>
+      <p>相邻兄弟选择器	           h1 + p	                      相邻兄弟</p>
+      <p>通用兄弟选择器	           h1 ~ p	                      通用兄弟</p>
+    </div>
+
+    <hr>
+    <h2>Css 优先级<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>内联 > ID选择器 > 类选择器 > 标签选择器</p>
+      <p>上面这个顺序应该是众所周知的吧</p>
+      <p>除了上面这些会影响优先级以外,还有个大大大佬,叫!important</p>
+      <p>他一出马,通配都能战胜内联,用法很简单,就像这样,background-color: black !important;</p>
+      <p>因为是计算机,所以肯定有一种计算优先级的公式,这个公式就是 EABCD (好吧(╯▽╰),ABCD是我瞎写的,具体的含义理解就行)</p>
+      <p>A代表是否为内联样式,若为内联样式,则为1,否则为0</p>
+      <p>B代表ID选择器的个数,有几个,就是几</p>
+      <p>C代表类选择器、属性选择器、伪类选择器的个数,有几个,就是几</p>
+      <p>D代表标签选择器、伪元素选择器的个数,有几个,就是几</p>
+      <p>Ps:一些选择器有和没有一个样,不参与优先级计算,比如说*,通配选择器</p>
+      <p>猜猜E是谁,没错,就是大大大佬,!important,有!important即为1,没有就是0</p>
+      <p>想必你应该知道优先级怎么比较了吧,没错,就是比大小,</p>
+      <p>比如说现在有两个选择器,一个是#a>#b>.c>*[href]>:hover>div>p::before,另一个是内联样式</p>
+      <p>经过辛苦计算,第一个选择器的分数为00232,而第二个选择器的分数为01000,一千肯定比232要大嘛,理所应当的,第二个选择器胜出</p>
+    </div>
+
+    <hr>
+    <h2>回流和重绘<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>一、浏览器从零开始渲染至结束的过程</p>
+      <p>1.解析HTML,生成DOM树,解析CSS,生成CSSOM树</p>
+      <p>2.从DOM树的根节点开始遍历每个可见节点</p>
+      <p>3.对于每个可见的节点,找到CSSOM树中对应的规则,并应用它们</p>
+      <p>4.根据每个可见节点以及其对应的样式,组合生成,也就是将DOM树和CSSOM树结合,生成渲染树(Render Tree)(不包括不可见节点哦)</p>
+      <p>5.Layout(回流):根据生成的渲染树,进行回流(Layout),得到节点的几何信息(位置,大小)</p>
+      <p>6.Painting(重绘):根据渲染树以及回流得到的几何信息,得到节点的绝对像素</p>
+      <p>7.Display:将像素发送给GPU,展示在页面上。(这一步其实还有很多内容,比如会在GPU将多个合成层合并为同一个层,并展示在页面中。而css3硬件加速的原理则是新建合成层,有兴趣自己百度)</p>
+      <p>-----------------------------</p>
+      <p>二、上面说到可见节点,那哪些是可见的节点？哪些是不可见的节点呢？</p>
+      <p>答:除了script、meta、link等不会参与渲染的标签外,还有一个display:none;也是不可见的节点,其余全是可见的,包括利用visibility和opacity隐藏的节点</p>
+      <p>-----------------------------</p>
+      <p>三、什么是回流</p>
+      <p>通过构造渲染树,我们将可见DOM节点以及它对应的样式结合起来,可是我们还需要计算它们在设备视口(viewport)内的确切位置和大小,这个计算的阶段就是回流</p>
+      <p>-----------------------------</p>
+      <p>四、什么是重绘</p>
+      <p>通过渲染树和回流阶段,我们知道了哪些节点是可见的,以及可见节点的样式和具体的几何信息(位置、大小),那么我们就可以将渲染树的每个节点都转换为屏幕上的实际像素,这个阶段就叫做重绘节点</p>
+      <p>-----------------------------</p>
+      <p>五、注意:回流一定会触发重绘,而重绘不一定会回流</p>
+      <p>-----------------------------</p>
+      <p>六、那什么时候会发生回流呢</p>
+      <p>前面说过,回流这一阶段主要是计算节点的位置和几何信息,那么当页面布局和几何信息发生变化的时候,就需要回流,比如下面的情况</p>
+      <p>1.添加或删除可见的DOM元素</p>
+      <p>2.元素的位置发生变化</p>
+      <p>3.元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）</p>
+      <p>4.内容发生变化,比如文本变化或图片被另一个不同尺寸的图片所替代。</p>
+      <p>5.页面一开始渲染的时候（这肯定避免不了）</p>
+      <p>6.浏览器的窗口尺寸变化（因为回流是根据视口的大小来计算元素的位置和大小的）</p>
+      <p>-----------------------------</p>
+      <p>七、现代浏览器的优化机制</p>
+      <p>现代的浏览器都是很聪明的,由于每次重排都会造成额外的计算消耗,因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程</p>
+      <p>浏览器会将修改操作放入到队列里,直到过了一段时间或者操作达到了一个阈值,才清空队列。</p>
+      <p>但是！当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法：</p>
+      <p>1.offsetTop、offsetLeft、offsetWidth、offsetHeight</p>
+      <p>2.scrollTop、scrollLeft、scrollWidth、scrollHeight</p>
+      <p>3.clientTop、clientLeft、clientWidth、clientHeight</p>
+      <p>4.getComputedStyle()</p>
+      <p>5.getBoundingClientRect</p>
+      <p>以上属性和方法都需要返回最新的布局信息,因此浏览器不得不清空队列,触发回流重绘来返回正确的值</p>
+      <p>我们在修改样式的时候,最好避免使用上面列出的属性,他们都会刷新渲染队列。如果要使用它们,最好将值缓存起来</p>
+      <p>-----------------------------</p>
+      <p>八、如何减少回流和重绘</p>
+      <p>1.使用cssText</p>
+      <pre>
+        以往我都是这样写的
+        const main = document.getElementById('main');
+        main.style.padding = '5px';
+        main.style.borderLeft = '1px';
+        main.style.borderRight = '2px';
+        当然,那是因为我不知道有cssText这么好用的东西
+        现在我知道了,是时候跟上一下时代了,你可以直接这样写
+        main.style.cssText += 'border-left: 1px; border-right: 2px; padding: 5px;';
+        卧槽都无法形容我现在的感受,卧槽！太强了
+      </pre>
+      <p>2.添加或删除class来改变样式</p>
+      <p>main.className += ' metamorphosis';</p>
+    </div>
+    
+    <hr>
+    <h2>获取一些可视区的数据<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>BODY对象宽度： document.body.clientWidth</p>
+      <p>BODY对象高度： document.body.clientHeight</p>
+      <p>可见区域宽度： document.documentElement.clientWidth </p>
+      <p>可见区域高度： document.documentElement.clientHeight </p>
+      <p>若是body没有margin和padding,BODY对象的宽高等同于可视区域的宽高</p>
+      <p>---------------------</p>
+      <p>网页可见区域宽： document.body.offsetWidth (包括边线的宽)</p>
+      <p>网页可见区域高： document.body.offsetHeight (包括边线的高)</p>
+      <p>网页正文部分上： window.screenTop</p>
+      <p>网页正文部分左： window.screenLeft</p>
+      <p>屏幕分辨率的高： window.screen.height</p>
+      <p>屏幕分辨率的宽： window.screen.width</p>
+      <p>屏幕可用工作区高度： window.screen.availHeight</p>
+      <p>屏幕可用工作区宽度： window.screen.availWidth</p>
+      <p>-----------------------------</p>
+      <p>// 部分jQuery函数</p>
+      <p>$(window).height() 　//浏览器时下窗口可视区域高度</p>
+      <p>$(document).height()　　　　//浏览器时下窗口文档的高度</p>
+      <p>$(document.body).height()　　　　　　//浏览器时下窗口文档body的高度</p>
+      <p>$(document.body).outerHeight(true)　//浏览器时下窗口文档body的总高度 包括border padding margin</p>
+      <p>$(window).width() 　//浏览器时下窗口可视区域宽度</p>
+      <p>$(document).width()//浏览器时下窗口文档对于象宽度</p>
+      <p>$(document.body).width()　　　　　　//浏览器时下窗口文档body的高度</p>
+      <p>$(document.body).outerWidth(true)　//浏览器时下窗口文档body的总宽度 包括border padding</p>
+      <p>-----------------------------</p>
+      <p>HTML精确定位:scrollLeft,scrollWidth,clientWidth,offsetWidth</p>
+      <p>scrollHeight: 获取对象的滚动高度。</p>
+      <p>scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离</p>
+      <p>scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离</p>
+      <p>scrollWidth:获取对象的滚动宽度</p>
+      <p>offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度</p>
+      <p>offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置</p>
+      <p>offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置</p>
+      <p>event.clientX 相对文档的水平座标</p>
+      <p>event.clientY 相对文档的垂直座标</p>
+      <p>event.offsetX 相对容器的水平坐标</p>
+      <p>event.offsetY 相对容器的垂直坐标</p>
+      <p>document.documentElement.scrollTop 垂直方向滚动的值</p>
+      <p>event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量</p>
+    </div>
+
+    <hr>
+    <h2>js控制页面方法大全<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>1.reload --语法：location.reload([bForceGet]) 相当于客户端点击 F5("刷新")</p>
+      <p>参数：bForceGet,可选参数</p>
+      <p>默认为false,从客户端缓存里取当前页。</p>
+      <p>true, 则以 GET 方式,从服务端取最新的页面,</p>
+      <p>------</p>
+      <p>2.replace 方法,该方法通过指定URL替换当前缓存在历史里（客户端）的项目,因此当使用replace方法之后,你不能通过“前进”和“后退”来访问已经被替换的URL。
+      <p>语法： location.replace(URL)</p>
+      <p>通常使用： location.reload() 或者是 history.go(0) 来做。</p>
+      <p>此方法类似客户端点F5刷新页面,所以页面method="post"时,会出现"网页过期"的提示。</p>
+      <p>因为Session的安全保护机制。</p>
+      <p>当调用 location.reload() 方法时, aspx页面此时在服务端内存里已经存在, 因此必定是 IsPostback 的。</p>
+      <p>如果有这种应用： 需要重新加载该页面,也就是说期望页面能够在服务端重新被创建,期望是 Not IsPostback 的。</p>
+      <p>这里,location.replace() 就可以完成此任务。被replace的页面每次都在服务端重新生成。</p>
+      <p>代码： location.replace(location.href);</p>
+      <p>------</p>
+      <p>3.返回并刷新页面</p>
+      <p>location.replace(document.referrer);</p>
+      <p>document.referrer //前一个页面的URL</p>
+      <p>不要用 history.go(-1),或 history.back();来返回并刷新页面,这两种方法不会刷新页面。</p>
+      <p>------</p>
+      <p>4.Javascript刷新页面的几种方法：</p>
+      <p>1,history.go(0)</p>
+      <p>2,location.reload()</p>
+      <p>3,location=location</p>
+      <p>4,location.assign(location)</p>
+      <p>5,document.execCommand('Refresh')</p>
+      <p>6,window.navigate(location)</p>
+      <p>7,location.replace(location)</p>
+      <p>8,document.URL=location.href</p>
+      <p>------</p>
+      <p>5.自动刷新页面的方法: 把如下代码加入 head 区域中</p>
+      <p>&lt;meta http-equiv="refresh" content="20"&gt;</p>
+      <p>------</p>
+      <p>6.页面自动跳转：把如下代码加入 head 区域中</p>
+      <p>&lt;meta http-equiv="refresh" content="20;url=https://www.jb51.net"&gt;</p>
+      <p>------</p>
+      <p>7.页面自动刷新js版</p>
+      <pre>
+        &lt;script language="JavaScript"&gt;
+          function myrefresh()
+          {
+             window.location.reload();
+          }
+          setTimeout('myrefresh()',1000); //指定1秒刷新一次
+        &lt;/script&gt;
+      </pre>
+      <p>------</p>
+      <p>8.JS刷新框架的脚本语句</p>
+      <pre>
+        //刷新包含该框架的页面用  
+        &lt;script language=JavaScript&gt;
+           parent.location.reload();
+        &lt;/script&gt;
+        //子窗口刷新父窗口
+        &lt;script language=JavaScript&gt;
+            self.opener.location.reload();
+        &lt;/script&gt;
+        (　或　&lt;a href="javascript:opener.location.reload()"&gt;刷新&lt;/a&gt;   )
+        //刷新另一个框架的页面用  
+        &lt;script language=JavaScript&gt;
+           parent.另一FrameID.location.reload();
+        &lt;/script&gt;
+      </pre>
+      <p>------</p>
+      <p>9.如果想关闭窗口时刷新或想开窗时刷新，在 body 中调用以下语句即可。</p>
+      <pre>
+        &lt;body onload="opener.location.reload()"&gt; 开窗时刷新
+        &lt;body onUnload="opener.location.reload()"&gt; 关闭时刷新
+        &lt;script language="javascript"&gt;
+          window.opener.document.location.reload()
+        &lt;/script&gt;
+      </pre>
+      <p>------</p>
+      <p>10.父框架中，第一个top子框架对第二个bottom子框架的刷新方式</p>
+      <pre>
+        下列代码位于top子框架中
+        &lt;input type=button value="刷新1" onclick="window.parent.frames[1].location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新2" onclick="window.parent.frames.bottom.location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新3" onclick="window.parent.frames['bottom'].location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新4" onclick="window.parent.frames.item(1).location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新5" onclick="window.parent.frames.item('bottom').location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新6" onclick="window.parent.bottom.location.reload()"&gt;&lt;br&gt;
+        &lt;input type=button value="刷新7" onclick="window.parent['bottom'].location.reload()"&gt;&lt;br&gt;
+      </pre>
+      <p>------</p>
+      <p>11.如何刷新包含该框架的页面用</p>
+      <pre>
+        &lt;script language=JavaScript&gt;
+          parent.location.reload();
+        &lt;/script&gt;
+      </pre>
+      <p>------</p>
+      <p>12.子窗口刷新父窗口</p>
+      <pre>
+        &lt;script language=JavaScript&gt;
+          self.opener.location.reload();
           &lt;/script&gt;
-        &lt;/body&gt;
-      &lt;/html&gt;    
-    </pre>
+      </pre>
+    </div>
 
     <hr>
-    <h2>debugger</h2>
-    <p>在某一行写上debugger; 即可卡断点</p>
+    <h2>居中方式<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>1.已知父元素和子元素宽高</p>
+      <p>margin、position、padding等等 根据已知的宽高写死</p>
+      <p>------</p>
+      <p>2.父元素宽高未知，子元素宽高已知</p>
+      <p>子元素css</p>
+      <p>定位 + margin-top + margin-left方案</p>
+      <pre>
+        width: 200px; 
+        height: 100px;
+        position: absolute; 
+        left: 50%; 
+        top: 50%;
+        margin-top: -50px;    /* 高度的一半 */
+        margin-left: -100px;    /* 宽度的一半 */
+      </pre>
+      <p>子元素css</p>
+      <p>定位 + margin方案</p>
+      <pre>
+        width: 100px;
+        height: 100px;
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        right: 0; 
+        bottom: 0;
+        margin: auto;
+      </pre>
+      <p>------</p>
+      <p>3.啥都未知</p>
+      <p>子元素css</p>
+      <p>transform 方案: 存在兼容问题：比如元素已经被transform旋转过后，再使用这个方案会导致transform重复使用，transform属性会相互覆盖</p>
+      <pre>
+        position: relative; 
+        left: 50%; 
+        top: 50%;
+        transform: translate(-50%, -50%);    
+      </pre>
+      <p>父元素css</p>
+      <p>flexbox 方案: 存在兼容问题</p>
+      <pre>
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      </pre>
+      <p>父元素css</p>
+      <p>display: table-cell 无兼容性问题</p>
+      <pre>
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border: 1px solid red;
+        display: table-cell;	
+        text-align: center;	
+        vertical-align: middle;
+      </pre>
+    </div>
 
     <hr>
-    <h2>z-index</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <h2>你不知道的z-index<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>如果我说，一个z-index为1的元素会被一个z-index为auto的元素盖住，你相信吗</p>
+      <p>你可能不信，但是实现的方法很简单，只需要在z-index:1元素的父元素的css中再加一个小于1的opacity即可</p>
+      <p>就像这样</p>
+      <div style="position: relative;">
+        <div style="width: 100%; opacity: 0.99;">
+          <div style="width: 48%; height: 51px; position:absolute; top: 0px; display: inline-block; background-color:  red; z-index: 1;">1</div>
+        </div>
+        <div style="width: 100%;">
+          <div style="width: 50%; height: 51px; position:absolute; top: 10px; display: inline-block; background-color: aqua;">2</div>
+        </div>
+      </div>
+      <p style="height: 60px;"></p>
+      <pre>
+        &lt;div style="width: 100%; opacity: 0.99;"&gt;
+          &lt;div style="width: 48%; height: 51px; position:absolute; top: 0px; display: inline-block; background-color:  red; z-index: 1;"&gt;1&lt;/div&gt;
+        &lt;/div&gt;
+      
+        &lt;div style="width: 100%;"&gt;
+          &lt;div style="width: 50%; height: 51px; position:absolute; top: 10px; display: inline-block; background-color: aqua;"&gt;2&lt;/div&gt;
+        &lt;/div&gt;
+      </pre>
+      <p>上面是代码片段</p>
+      <p>现象已经出现，源头是父元素的opacity，那为什么父元素的opacity会影响子元素的堆叠呢</p>
+      <p>原因其实也很简单</p>
+      <p>同一个父元素下面的元素会受父元素的堆叠顺序影响</p>
+      <p>我们可以简单的将父元素和子元素的集合理解为一层，不同的父元素是不同的层</p>
+      <!-- <p>那问题来了，为什么红色和其父元素是一层，而蓝色与父元素不是同一层呢</p> -->
+    </div>
 
     <hr>
-    <h2>z-index</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <h2>横竖屏都能保持横版图片全覆盖<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>横版css</p>
+      <p>map.style.cssText = 'height: 100vh; width: 100vw; transform: rotate(0deg); position: absolute; top: 0!important; left: 0!important; margin-top: 0!important; margin-left: 0!important;';</p>
+      <p>竖版css</p>
+      <p>
+        width: 100vh;
+        height: 100vw;
+        transform: rotate(90deg);
+        position: absolute;
+        top: 50vh;
+        margin-top: -50vw;
+        left: -50vh;
+        margin-left: 50vw;
+      </p>
+    </div>
 
+    <hr>
+    <h2>input type=file 同一个文件做两次上传操作，第二次无效解决方法<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>因为是通过onchange来触发函数，同一个文件的值是一样的，因此第二次的时候onchange未触发</p>
+      <p>解决方案：在每次上传文件的值处理完后，用e.target.value='';来清除掉上一次留下的值</p>
+    </div>
 
+    <hr>
+    <h2>三元表达式<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>表达式 (expr1) ? (expr2) : (expr3)</p>
+      <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p>
+    </div>
 
+    <hr>
+    <h2>Vue-cli 从零搭建<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>一、首先需要一些环境，1.node.js(必选) 2.webpack(必选) 3.淘宝镜像(非必选)</p>
+      <br>
+      <p>二、新建文件夹，取好名，在地址栏中直接打上cmd，打开命令行(cmd)后，输入"vue create 项目名称xxx"，<br>
+        他会弹出三个选项<br>
+        1.默认的vue2<br>
+        2.默认的vue3<br>
+        3.自定义<br>
+        此案例使用vue2作为演示<br>
+        然后等待安装（从远程仓库拉取默认的vue cli代码）</p>
+      <br>
+      <p>三、先认识一下里面的各各文件夹以及文件都是什么<br>
+        1.node_modules文件夹<br>
+        &emsp;这里面放置着项目的依赖，上传代码时不需要将这些“庞然大物”上传，只需要在拉取代码完毕后使用npm install重新安装一下依赖即可<br>
+        &emsp;例如里面的babel，可以将ES6的语法“翻译”成ES5，使兼容性更佳<br>
+        2.public文件夹<br>
+        &emsp;public文件夹里面一般放置一些静态资源，例如图片，ico，index等等<br>
+        &emsp;注意：在public文件夹中的静态资源，在被webpack进行打包时，会原封不动的打包到dist文件夹中，<br>
+        3.src文件夹<br>
+        &emsp;这里面放置着我们写的源代码，里面的文件夹有点多，挑一些说道说道<br>
+        &emsp;1.assets文件夹：一般放置一些组件共用的静态资源（例如rem.js在每个组件中都会用到）<br>
+        &emsp;注意：在assets文件夹中的静态资源，在被webpack进行打包时，webpack会把静态资源当做一个模块，打包在Js文件中<br>
+        &emsp;2.components文件夹：一般放置非路由组件或全局组件<br>
+        &emsp;3.pages|views文件夹：一般放置路由组件<br>
+        &emsp;4.App.vue：整个项目中唯一的根组件<br>
+        &emsp;5.main.js：项目程序的入口文件，也是整个项目最先执行的文件<br>
+        4.gitignore文件<br>
+        &emsp;git忽略文件，里面写着git上传时要忽略掉的文件，因此你不必每次上传都要删除node_modules文件夹，git会按该文件忽略node_modules文件夹，一般不碰，了解即可<br>
+        5.babel.config.js文件<br>
+        &emsp;这是一个跟babel相关的配置文件，一般不碰，了解即可<br>
+        6.package.json文件<br>
+        &emsp;这个文件记录着这个项目的详细信息，例如name:项目名称，version:版本，scripts:怎么运行，以及有哪些依赖等等。<br>
+        7.package-lock.json文件<br>
+        &emsp;这是一个缓存性的文件，记录着你依赖的一些缓存，使下次安装时更快，可以删除，也可以不删<br>
+        8.README.md文件<br>
+        &emsp;整个项目的说明文件<br>
+        &emsp;里面一般写着怎么安装，怎么运行等等信息<br>
+      </p>
+      <br>
+      <p>四、一些项目常用的其他配置<br>
+        1.项目运行完毕时，自动打开浏览器<br>
+        &emsp;先打开package.json文件，<br>
+        &emsp;在scripts代码块中的指令最后添加一个" --open"，注意！别遗漏了前面的空格<br>
+        &emsp;例如在这句中，将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
+        &emsp;这样，npm run serve完后就会自动打开浏览器<br>
+        2.eslint校验功能的关闭<br>
+        &emsp;这个eslint是个好东西，他可以检测你的代码是否有错误<br>
+        &emsp;但是他有点死脑筋，比如说你声明了一个变量a，但没用他，eslint就会报错说你没用变量a，这不行<br>
+        &emsp;关键是他报错也就算了，他还不让你继续解析，你的浏览器页面就出现了灰色报错，因此有时候并不需要他<br>
+        &emsp;怎么关闭呢，很简单，在项目的根目录下，创建一个vue.config.js文件（必须是这个名）<br>
+        &emsp;里面写：<br>
+        &emsp;module.exports = {<br>
+        &emsp;&emsp;lintOnSave: false;<br>
+        &emsp;}<br>
+        3.配置文件夹的别名<br>
+        &emsp;以src文件夹为例<br>
+        &emsp;在项目的根目录下，创建一个jsconfig.json文件<br>
+        &emsp;里面写上<br>
+        &emsp;{<br>
+        &emsp;&emsp;"compilerOptions": {<br>
+        &emsp;&emsp;&emsp;"baseUrl": "./",<br>
+        &emsp;&emsp;&emsp;"paths": {<br>
+        &emsp;&emsp;&emsp;&emsp;"@/*": ["src/*"]<br>
+        &emsp;&emsp;&emsp;}<br>
+        &emsp;&emsp;},<br>
+        &emsp;&emsp;"exclude": ["node_modules","dist"]<br>
+        &emsp;}<br>
+        &emsp;注意！@在node_modules和dist文件夹中不能使用<br>
+        &emsp;<br>
+        &emsp;<br>
+        &emsp;<br>
+      </p>
+      <br>
+      <p>番外：vue组件的格式规范</p>
+      <pre>
+        &lt;template&gt;
+      
+        &lt;/template&gt;
+
+        &lt;script&gt;
+          export default {
+            name: '',
+
+            mixins: [],
+
+            components: {},
+
+            props: {},
+
+            data () {
+              return {}
+            },
+          
+            computed: {},
+
+            watch: {},
+
+            created () {},
+
+            mounted () {},
+
+            destroyed () {},
+
+            methods: {}
+          }
+        &lt;/script&gt;
+        
+        &lt;style scoped&gt;
+        
+        &lt;/style&gt;
+      </pre>
+      <br>
+      <p>五、使用组件的步骤<br>
+      &emsp;1.创建与定义：即使用html和css绘制成.vue的组件<br>
+      &emsp;2.引入：在需要引入的vue组件中，例如在App.vue的script中，写上import xxx from './components/xxx'<br>
+      &emsp;3.注册：在需要引入的vue组件中，例如在App.vue > script的export default{}中，写上components:{ xxx },这里用了ES6语法，kv一致省略v<br>
+      &emsp;4.使用：在需要引入的vue组件中，例如在App.vue的template中，写上&lt;xxx&gt;&lt;/xxx&gt;，即是使用了xxx组件<br>
+
+      </p>
+      <br>
+      <p>六、路由组件的搭建<br>
+      &emsp;1.安装 vue-router<br>
+      &emsp;2.创建与定义：即使用html和css绘制成.vue的组件<br>
+      &emsp;3.一般来说，路由组件都会放置在pages|views文件夹中，所以放进去吧<br>
+      &emsp;4.一般来说，项目中配置的路由一般放在router文件夹中，所以在这里新建吧<br>
+      &emsp;5.引入：在router文件夹的index.js中<br>
+      &emsp;先引入Vue，import Vue from 'vue'<br>
+      &emsp;再引入Router，import VueRouter from 'vue-router'<br>
+      &emsp;再引入需要路由的组件，写上import xxx from '@/pages或views/xxx'<br>
+      &emsp;6.使用'vue-router'插件，Vue.use(VueRouter);<br>
+      &emsp;7.配置路由：<br>
+      <pre>
+        export default new Vuerouter({
+          routes:[
+            {
+              path: '/xxx', //路径是啥
+              component: xxx //哪个组件
+            }
+          ]
+        })
+      </pre>
+      &emsp;8.注册：去main.js中写上import router from '@/router'<br>
+      &emsp;在new Vue里写上router,  (这里用了ES6语法，kv一致省略v)注册<br>
+      &emsp;9.使用：去App.vue写上路由组件出口<br>
+      &emsp;在使用组件的地方写上router-view标签<br>
+      </p>
+      <p>总结</p>
+      <pre>
+        路由组件与非路由组件的区别?
+        1:路由组件一般放置在pages|views文件夹，非路由组件一般放置components文件夹中
+        2:;路由组件一般需要在router文件夹中进行注册（使用的即为组件的名字)，非路由组件在使用的时候，一般都是以标签的形式使用
+        3:注册完路由，不管路由路由组件、还是非路由组件身上都有$route、$router属性
+        $route:一般获取路由信息【路径、query、params等等】
+        $router:一般进行编程式导航进行路由跳转【push|replace】
+        5.3路由的跳转?
+        路由的跳转有两种形式;
+        声明式导航router-link,可以进行路由的跳转
+        编程式导航push|replace，可以进行路由跳转
+        编程式导航:声明式导航能做的，编程式导航都能在，
+        但是编程式导航除了可以进行路由跳转，还可以做一些其他的业务逻辑。
+      </pre>
+    </div>
+
+    <hr>
+    <h2>配置vue文件的标签自动补全<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>先下载一个插件，叫HTML Snippets</p>
+      <p>然后去设置找到Files: Associations</p>
+      <p>项填：*.vue</p>
+      <p>值填：html</p>
+      <p>确定即可</p>
+    </div>
+
+    <hr>
+    <h2>番外：html引入vue的基本格式规范<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="zh"&gt;
+          &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;title&gt;没错，我就是标题&lt;/title&gt;
+            &lt;style&gt;
+              div{
+                width: 1050px;
+                margin: 0px auto;
+                font-size: 20px;
+                box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+              }
+            &lt;/style&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;div id="root"&gt;
+            
+            &lt;/div&gt;
+            
+            &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+              const vm = new Vue({
+                el: '#root',
+                data: {
+                },
+                methods:{
+                },
+                computed:{
+                },
+                watch:{
+                },
+                filters:{ 
+                },
+              })
+            &lt;/script&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;    
+      </pre>
+    </div>
+
+    <hr>
+    <h2>debugger<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>在某一行写上debugger; 即可卡断点</p>
+    </div>
+
+    <hr>
+    <h2>.map<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        // 1.将字符串数组转化为数值型数组
+        let strArr = ["1", "2", "3"];
+        strArr.map(Number); // [1,2,3]  Number自动转换为number函数并把值传进去
+
+        // 2.将数值型数组转化为字符串数组
+        let numArr = [1, 2, 3];
+        numArr.map(String); //  ["1", "2", "3"]
+
+        // 3.将数值型数组转换为布尔值
+        let numArr = [0, 1, 0, 1, 1];
+        numArr.map(Boolean); // [false,true,false,true,true]
+
+        // 4.混合类型也可以转换
+        let newArr = [1, "2", "3", 4, 5];
+
+        newArr.map(Boolean); // [true,true,true,true,true]
+        newArr.map(String); //  ["1", "2", "3","4","5"]
+        newArr.map(Number); //  [1,2,3,4,5]
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
 
   </div>
 
@@ -1079,6 +1151,53 @@
       console.log(value);
       frame.style.fontSize = `${value}%`;
     }
+
+    // 给所有下拉按钮添加index下标
+    let down = document.getElementsByClassName('down');
+    for(let i=0; i<down.length; i++){
+      down[i].setAttribute("index",i);
+    }
+
+    //单独下拉与收起
+    let code_1 = document.getElementsByClassName('code_1');
+    function clickondown(val) {
+      let classIndex = val.getAttribute("index"); // 当前操作的class下标
+
+      if (code_1[classIndex].style.display != 'none' && code_1[classIndex].style.display != 'block') {
+        code_1[classIndex].style.display = 'none';
+      }
+      if (code_1[classIndex].style.display == 'none'){
+        code_1[classIndex].style.display = 'block';
+        val.innerHTML = '/\\';
+      }
+      else{
+        code_1[classIndex].style.display = 'none';
+        val.innerHTML = '\\/';
+      }
+    }
+
+    //一键全部下拉与收起
+    function sqzk(val) {
+      if (val.innerHTML == "一键展开所有下拉栏↓") {
+        for(let i=0; i<down.length; i++){
+          code_1[i].style.display = 'block';
+          down[i].innerHTML = '/\\';
+        }
+        val.innerHTML = "一键收起所有下拉栏↑";
+        val.style.backgroundColor = '#00FFFF';
+        return;
+      }
+      if (val.innerHTML == "一键收起所有下拉栏↑") {
+        for(let i=0; i<down.length; i++){
+          code_1[i].style.display = 'none';
+          down[i].innerHTML = '\\/';
+        }
+        val.innerHTML = "一键展开所有下拉栏↓";
+        val.style.backgroundColor = '#e7e7e7';
+        return;
+      }
+    }
+
   </script>
 </body>
 </html>

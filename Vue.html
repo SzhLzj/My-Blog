@@ -2178,7 +2178,7 @@ vm的一生
             // 创建vm
             let vm = new Vue({
               el: '#root', //大哥vm决定了小弟们（组件）应该服务于谁
-              components:{ //很重要的Vue api 用于"配置|注册"组件，这里的注册是局部注册哦
+              components:{ //很重要的方法 用于"配置|注册"组件，这里的注册是局部注册哦
                 school:xuexiao, //可以看出，上面定义的变量名只是用于中转，真正定义组件名的地方在components里
                                 //注意，如果不在脚手架中，组件名和自定义指令名一样，有可能！不能用大写
                 // student:student //换下面的写法
@@ -2192,15 +2192,15 @@ vm的一生
     <p>总结</p>
     <p>推荐的组件命名方式</p>
     <p>1.如果是单个单词，可以全小写，也可以首字母大写</p>
-    <p>2.如果是多个单词，可以全小写，或者在单词之间用"-"连接,注意，如果用"-"连接，在js语法中是不允许的，但我们可以通过包一层引号来解决，例如："my-blog</p>
+    <p>2.如果是多个单词，可以全小写，或者在单词之间用"-"连接,注意，如果用"-"连接，在js语法中是不允许的，但我们可以通过包一层引号来解决，例如："my-blog"</p>
     <p>3.如果是多个单词，也可以所有单词首字母大写，但是这必须在脚手架(cli)中使用，如果是html文件中引入vue的话，这方法是不行的</p>
     <p>4.组件还有一种命名方式，在创建组件的地方，也就是Vue.extend里，可以用name属性来定义一个命名，这个命名好像只在Vue开发者工具中生效，代码中无效，一般是第三方库或者大型项目开发会用到</p>
     <p>5.组件标签可以写成双标签&lt;xxx&gt;&lt;/xxx&gt;，也可以写成单标签&lt;xxx/&gt;,但是要注意，不在脚手架中写单标签的话，会导致后续组件不被渲染</p>
     <p>6.创建组件的简写方式 const school = Vue.extend(options) 可简写为 const school = options </p>
 
     <hr>
-    <!-- 2 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <!-- 28 3/23 -->
+    <h2>如何嵌套组件 <span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
       &lt;!DOCTYPE html&gt;
@@ -2218,78 +2218,137 @@ vm的一生
           &lt;/style&gt;
         &lt;/head&gt;
         &lt;body&gt;
-          &lt;div id="root"&gt;
 
+          &lt;div id="root"&gt;
+            &lt;!-- 使用组件 --&gt;
+            &lt;school&gt;&lt;/school&gt;
           &lt;/div&gt;
         
           &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
+      
           &lt;script&gt;
-            const vm = new Vue({
+            //先创建子组件，因为父组件要使用子组件的话，子组件需要先定义，否则会报错，但我这个为什么没报错？(虽然没报错，但是页面确实没显示)
+            let student = Vue.extend ({
+              template:
+              `
+              &lt;div&gt;
+                &lt;h3&gt;学生姓名: {{ StudentName }}&lt;/h3&gt;
+                &lt;h3&gt;学生年龄: {{ StudentAge }}&lt;/h3&gt;
+                &lt;h3&gt;学生性别: {{ StudentSex }}&lt;/h3&gt;
+                &lt;button @click="warning()"&gt;点我提示详细信息&lt;/button&gt;
+              &lt;/div&gt;
+              `,
+      
+              data() {
+                return {
+                  StudentName: '蕾比',
+                  StudentAge: 11,
+                  StudentSex: '女',
+                }
+              },
+              methods: {
+                warning(){
+                  alert('是蕾比哒');
+                },
+              }
+            })
+      
+      
+            //创建父组件
+            let xuexiao = Vue.extend ({
+              //在template这里面使用子组件哦
+              template:
+              `
+              &lt;div&gt;
+                &lt;h3&gt;学校名称: {{ SchoolName }}&lt;/h3&gt;
+                &lt;h3&gt;学校地址: {{ SchoolAddress }}&lt;/h3&gt;
+                &lt;student&gt;&lt;/student&gt;
+              &lt;/div&gt;
+              `,
+      
+              data() {
+                return {
+                  SchoolName: 'O v O 学院',
+                  SchoolAddress: 'O v O',
+                }
+              },
+              //既然使用了，肯定不能忘记注册组件呀，注意哦，是在使用了子组件的父组件里注册哦，全局注册也是可以的
+              components:{
+                student,
+              }
+            })
+      
+      
+            // 创建Vue实例
+            let vm = new Vue({
               el: '#root',
-              data: {
-              },
-              methods:{
-              },
-              computed:{
-              },
-              watch:{
-              },
-              filters:{ 
-              },
+              //注册父组件
+              components:{
+                school:xuexiao,
+              }
             })
           &lt;/script&gt;
         &lt;/body&gt;
       &lt;/html&gt;    
+    </pre>
+    <p>总结（番外）</p>
+    <p>关于 VueComponent</p>
+    <pre>
+      1.Vue组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的。
+      2.我们只需要写&lt;school/&gt;或&lt;school&gt;&lt;/school&gt;，Vue解析时会帮我们创建school组件的实例对象,即vue帮我们执行的:new VueComponent(options).
+      3.特别注意:每次调用Vue.extend，返回的都是一个全新的VueComponent! !!!
+      4.关于this指向:
+        (1).组件配置中:
+          data函数、methods中的函数、watch中的函数、computed中的函数它们的this均是【VueComponent实例对象】J
+        (2).new Vue()配置中:
+          data函数、methods中的函数、watch中的函数、computed中的函数它们的this均是【Vue实例对象】。
+      5.VueComponent的实例对象，以后简称vc（也可称之为:组件实例对象）。
+      Vue的实例对象,以后简称vm
+    </pre>
+    <p>原型链</p>
+    <p>关于 prototype</p>
+    <p>只要是一个函数，身上一定会有一个属性：prototype，中文名：显式原型属性</p>
+    <p>如果这个函数还是一个构造函数，那他缔造出来的实例对象，他身上也会有一个属性：__proto__，中文名：隐式原型属性</p>
+    <p>他们两都被指向了一个对象，原型对象，上面说的显式原型属性和隐式原型属性其实是一个东西，只是通过的路径不同，便于区分而取的不同名字</p>
+    <p>当获取实例的属性或者方法时，会先在自身的属性和方法进行寻找，如果找不到就会自动去隐式原型中寻找</p>
+    <pre>
+      //比如说你定义了一个构造函数
+      function Demo(){
+        this.a = 31;
+        this.b = 51;
+      }
+
+      //然后你用构造函数创建了一个实例对象
+      const c = new Demo();
+
+      //这个就是构造函数Demo的显式原型属性
+      console.log(Demo.prototype)
+
+      //这个就是c的隐式原型属性
+      console.log(c.__proto__)
+
+      //但是他们指向的都是同一个原型对象，因此返回的应该是true
+      console.log(Demo.prototype === c.__proto__)
+
+      //因此你通过显式原型对象向原型对象添加一个属性时，隐式原型属性也会看到这个新添加的属性
+      Demo.prototype.x = 5131;
+      console.log(c)
+      console.log(c.__proto__.x)
+    </pre>
+    <p>1.一个重要的内置关系:VueComponent.prototype.__proto__ === Vue.prototype</p>
+    <p>2.为什么要有这个关系:让组件实例对象(vc）可以访问到 Vue原型上的属性、方法。</p>
+
+    <hr>
+    <!-- 29 3/24 -->
+    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+
     </pre>
     <p>无总结</p>
     
     <hr>
     <!-- 2 1/8 -->
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <button class="copy" onclick="copy(this)">复制</button>
-    <pre class="code_1">
-      &lt;!DOCTYPE html&gt;
-      &lt;html lang="zh"&gt;
-        &lt;head&gt;
-          &lt;meta charset="UTF-8"&gt;
-          &lt;title&gt;没错，我就是标题&lt;/title&gt;
-          &lt;style&gt;
-            div{
-              width: 1050px;
-              margin: 0px auto;
-              font-size: 20px;
-              box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-            }
-          &lt;/style&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-          &lt;div id="root"&gt;
-
-          &lt;/div&gt;
-        
-          &lt;script src="./js/vue.js"&gt;&lt;/script&gt;
-          &lt;script&gt;
-            const vm = new Vue({
-              el: '#root',
-              data: {
-              },
-              methods:{
-              },
-              computed:{
-              },
-              watch:{
-              },
-              filters:{ 
-              },
-            })
-          &lt;/script&gt;
-        &lt;/body&gt;
-      &lt;/html&gt;    
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <!-- 3 1/8 -->
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
