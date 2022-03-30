@@ -1133,6 +1133,63 @@
     </div>
 
     <hr>
+    <h2>自己画个 ">" 这种样子的箭头<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        HTML
+        &lt;span class="right-arrow"&gt;&lt;/span&gt;
+
+
+        CSS
+        .right-arrow::after {
+          display: inline-block;
+          content: " ";
+          height: 13px;
+          width: 13px;
+          border-width: 3px 3px 0 0;
+          border-color: #0177ff;
+          border-style: solid;
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        }
+
+下面是效果图
+      </pre>
+      <span style="display: inline-block; content: ' '; height: 13px; width: 13px; border-width: 3px 3px 0 0; border-color: #0177ff; border-style: solid; transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);"></span>
+    </div>
+
+    <hr>
+    <h2>自己画个 向上 的三角形<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        HTML
+        &lt;div class="triangle"&gt;&lt;/div&gt;
+
+
+        CSS
+        .triangle{
+          width: 0px; /*设置宽高为0，所以div的内容为空，从才能形成三角形尖角，因为没有内容，边框才是三角形*/
+          height: 0px;
+          /* 去掉border-top即可得到下半部分的div */
+          border-bottom: 200px solid #00a3af;
+          border-left: 200px solid transparent; /*transparent 表示透明*/
+          border-right: 200px solid transparent; /* 隐藏了 left 和 right 后只剩bottom，即只剩一个三角形 */
+        }
+
+下面是效果图
+      </pre>
+      <div style="width: 0px; height: 0px; border-bottom: 20px solid #00a3af; border-left: 20px solid transparent; border-right: 20px solid transparent;"></div>
+    </div>
+
+    <hr>
+    <h2>letter-spacing 和 word-spacing<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        word-spacing（词间距，添加每个单词之间的空白）
+        letter-spacing（字间距，添加每个字母或汉字之间的空白）
+      </pre>
+    </div>
+
+    <hr>
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
     </div>
@@ -1141,7 +1198,16 @@
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
     </div>
+    
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
 
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
   </div>
 
   <!-- <script src="./js/rem.js"></script> -->
