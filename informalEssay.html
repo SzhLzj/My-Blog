@@ -183,10 +183,20 @@
     <div class="code_1">
       <p>HTML</p>
       <pre class="code_2">
+        &lt;!-- 第一种形状 --&gt;
         &lt;div style="position: absolute; width: 100px; height: 120px; left: 27px; top: 54px; border: 1px solid rgb(136, 136, 136);"&gt;
           &lt;p style="position: relative; left: 27px; top: 54px;"&gt;点击上传&lt;/p&gt;
           &lt;img src="" id="OneInchPhoto" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; visibility: hidden;"&gt;
           &lt;input type="file" style="position: absolute; left: 0px; top: 0px; width: 100px; height: 120px; opacity: 0;" onchange="up(this)"&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 第二种形状 --&gt;
+        &lt;div style="position: absolute; width: 0.92rem; height: 0.92rem; left: 4.32rem; top: 0; border: 1px solid #16BA63;"&gt;
+          &lt;div style="transform: matrix(0, 1, -1, 0, 6, -40);"&gt;
+            &lt;span style="font-size: 1.3rem; width: 0.92rem; height: 0.92rem; font-weight: 100; color: #16BA63;"&gt;+&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;img   style="position: absolute; left: 0px; top: 0px; width: 0.92rem; height: 0.92rem; visibility: hidden;" src="" id="OneInchPhoto"&gt;
+          &lt;input style="position: absolute; left: 0px; top: 0px; width: 0.92rem; height: 0.92rem; opacity: 0;" type="file" onchange="up(this)"&gt;
         &lt;/div&gt;
       </pre>
       <p>原js</p>
@@ -199,7 +209,7 @@
           document.images[0].src=this.result;
         }
       </pre>
-      <p>适应性修改</p>
+      <p>适应性修改，只有缩略图</p>
       <pre class="code_2">
         let x = new FileReader;
         function up(that){
@@ -209,6 +219,51 @@
           let OneInchPhoto = document.getElementById('OneInchPhoto');
           OneInchPhoto.src = this.result;
           OneInchPhoto.style.visibility = 'visible';
+        }
+      </pre>
+      <p>适应性修改，文件类型判断、文件大小判断、缩略图</p>
+      <pre class="code_2">
+        function up(that,Photoname) {
+          //判断文件类型
+          let filetypes =[".jpg",".png",".rar",".txt",".zip",".doc",".ppt",".xls",".pdf",".docx",".xlsx"];
+          let filepath = that.value;
+          if(filepath){
+            let isnext = false;
+            let fileend = filepath.substring(filepath.lastIndexOf("."));
+            if(filetypes && filetypes.length>0){
+              for(let i =0; i < filetypes.length;i++){
+                if(filetypes[i]==fileend){
+                  isnext = true;
+                  break;
+                }
+              }
+            }
+            if(!isnext){
+              alert("不接受此文件类型！");
+              that.value ="";
+              return false;
+            }
+          }else{
+            return false;
+          }
+    
+          //判断文件大小
+          let fileSize = that.files[0].size / 1048576;
+          console.log(fileSize);
+          if(fileSize > 10){
+            alert(`附件大小不能大于10MB,当前文件大小为${fileSize.toFixed(2)}MB`);
+            return false;
+          }
+    
+          //显示缩略图
+          let x = new FileReader;
+          x.readAsDataURL(that.files[0]);
+          x.onloadend=function(){
+            console.log(this);
+            let Photo = document.getElementById(Photoname);
+            Photo.src = this.result;
+            Photo.style.visibility = 'visible';
+          }
         }
       </pre>
     </div>
@@ -1181,11 +1236,131 @@
     </div>
 
     <hr>
+    <h2>自己画个radio 或 checkbox<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        HTML
+        &lt;input type="radio"&gt;
+        or
+        &lt;input type="checkbox"&gt;
+
+
+
+        Css
+        input{
+          visibility: hidden;
+        }
+        /* 改变checkbox底色 */
+        input[type=radio] {
+            cursor: pointer;
+            position: relative;
+            width: 0px;
+            height: 0px;
+            margin: 0px 0px;
+        }
+        /* 改变底样式 */
+        input[type=radio]::after {
+            position: absolute;
+            top: 0;
+            background-color: #ffffff;
+            color: #FF0000;
+            width: 0.29rem;
+            height: 0.29rem;
+            border-radius: 0.2rem;
+            border: 0.03rem solid #16BA63;
+            display: inline-block;
+            visibility: visible;
+            padding-left: 0px;
+            text-align: center;
+            content: ' ';
+        }
+        /* 改变勾子 */
+        input[type=radio]:checked::after {
+            content: "✓";
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+下面是效果图
+      </pre>
+      <input id="radio1286" type="radio">
+      <style>
+        #radio1286{visibility: hidden;}
+        #radio1286[type=radio]::after {background-color: #ffffff;color: #FF0000;width: 1.29rem;height: 1.29rem;
+          border-radius: 0.2rem;border: 0.03rem solid #16BA63;display: inline-block;visibility: visible;text-align: center;content: ' ';}
+        #radio1286[type=radio]:checked::after {content: "✓";font-size: 0.8rem;font-weight: bold;}
+      </style>
+    </div>
+
+    <hr>
     <h2>letter-spacing 和 word-spacing<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
         word-spacing（词间距，添加每个单词之间的空白）
         letter-spacing（字间距，添加每个字母或汉字之间的空白）
+      </pre>
+    </div>
+
+    <hr>
+    <h2>很常用的阴影<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <p>Css加上 box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); 即可</p>
+    </div>
+    
+    <hr>
+    <h2>类似点击生成新表单这种操作<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        let Module = document.getElementById('Module'); //新建母表单内容
+        let adddiv = document.createElement('div'); //新建子表单容器
+        let page = document.getElementById('page'); //表单父元素
+        adddiv.innerHTML = Module.innerHTML; //母表单内容 给到 子表单容器
+        page.appendChild(adddiv); //在表单父元素最后插入子表单
+      </pre>
+    </div>
+
+    <hr>
+    <h2>JS获取元素属性和自定义属性<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        获取元素的属性分为两种类型：
+        1-获取元素常见的属性（class,id,type,value……）
+        2-获取自定义的元素的属性（data-value,data-mess…….）
+        获取元素的属性，设置元素的属性：
+
+        1-原生JS
+        设置属性 .setAttribute("属性","值")
+        获取属性 .getAttribute("属性")
+              
+        2-jquery
+        设置属性 .attr("属性","值")
+        获取属性 .attr("属性")
+      </pre>
+    </div>
+
+    <hr>
+    <h2>jQuery 的ajax<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        $.ajax({
+          url:"http://www.microsoft.com",    //请求的url地址
+          dataType:"json",   //返回格式为json
+          async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+          data:{"id":"value"},    //参数值
+          type:"GET",   //请求方式
+          beforeSend:function(data){
+              //请求前的处理
+          },
+          success:function(req){
+              //请求成功时处理
+          },
+          complete:function(data){
+              //请求完成的处理
+          },
+          error:function(data){
+              //请求出错处理
+          }
+        });
       </pre>
     </div>
 
@@ -1198,7 +1373,7 @@
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
     </div>
-    
+
     <hr>
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -1208,6 +1383,12 @@
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
     </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+
   </div>
 
   <!-- <script src="./js/rem.js"></script> -->
