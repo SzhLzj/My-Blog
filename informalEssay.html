@@ -1398,13 +1398,46 @@
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>关于 vue中的 ref<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
+      <pre>
+        在标签中定义 ref 属性
+        例:&lt;div @click="likes(index,'cultivatelike')" ref="cultivatelike"&gt;&lt;/div&gt;
+
+        然后在script中即可使用this.$refs.cultivatelike获取到该元素的dom
+
+        如果你需要在script中动态的使用ref,则需要变.为[]  ,有时候可能要在[]的后面再加个[0]才能访问到dom
+        例:this.$refs[`${函数传的name}`][0]
+        如果你需要在script中动态的使用ref的同时,还有多个同样的ref时,将[0]改为index即可
+        例:this.$refs[`${函数传的name}`][index]
+      </pre>
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>关于一个div块中的一堆img之间会出现空隙<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
+      <p>解决方案:写成一排可以去掉img之间的空隙，也可以将父容器的font-size设置成0，二选一即可</p>
+
+      <div>
+        <p>示例1: 有空隙</p>
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+      </div>
+
+      <div>
+        <p>示例2: 写成一排</p>
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg"><img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg"><img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg"><img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+      </div>
+
+      <p>示例3: 把父容器的font-size设置成0</p>
+      <div style="font-size: 0px;">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+        <img style="width: 100px;" src="https://pic.rmb.bdstatic.com/a08efd7ab1f2fba9b6b35c73f218a0c5.jpeg">
+      </div>
     </div>
 
     <hr>
