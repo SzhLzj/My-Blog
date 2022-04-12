@@ -1441,6 +1441,106 @@
     </div>
 
     <hr>
+    <h2>关于Vue点击同一class时,如何知道点击对象的方法及传值,取值<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        可以先在某个点击事件上写 @click='data_id=item.id' data_id存在data中,item.id由标签提供,这样在别的地方就可以取到你需要的这个对象的值了
+
+      </pre>
+      <p>示例</p>
+
+      <pre>
+        &lt;div id="app" class="container"&gt;
+          &lt;table class="table table-hover"&gt;
+            &lt;tbody&gt;
+              &lt;tr&gt;
+                &lt;th&gt;id&lt;/th&gt;
+                &lt;th&gt;名称&lt;/th&gt;
+                &lt;th&gt;操作&lt;/th&gt;
+              &lt;/tr&gt;
+              &lt;tr v-for="item in formData"&gt;
+                &lt;th&gt;{{item.id}}&lt;/th&gt;
+                &lt;th&gt;{{item.name}}&lt;/th&gt;
+                &lt;th&gt;&lt;button data-toggle="modal" @click='current_id=item.id' data-target="#myModal"&gt;删除&lt;/button&gt;&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+          
+          &lt;!-- 弹出框 --&gt;
+          &lt;div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"&gt;
+            &lt;div class="modal-dialog" role="document"&gt;
+              &lt;div class="modal-content"&gt;
+                &lt;div class="modal-header"&gt;
+                  &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;
+                  &lt;h4 class="modal-title" id="myModalLabel"&gt;提示&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-body"&gt;
+                  你确定要删除吗？
+                &lt;/div&gt;
+                &lt;div class="modal-footer"&gt;
+                  &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;取消&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-primary" @click="clickMe"&gt;确定&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+          new Vue({
+            el:"#app",
+            data:{
+              current_id: 0,
+              formData:[
+                {
+                  id:1,
+                  name:"苹果"
+                },
+                {
+                  id:2,
+                  name:"西瓜"
+                },
+                {
+                  id:3,
+                  name:"葡萄"
+                },
+              ]
+            },
+            methods:{
+              clickMe:function(){
+                alert("你删除的id为：" + current_id); //这里要弹出我点删除的id为多少
+              }
+            }
+          })
+        &lt;/script&gt;
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+    
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+    
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+    
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+    </div>
+    
+    <hr>
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
     </div>
