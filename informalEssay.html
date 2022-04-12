@@ -901,7 +901,30 @@
       <p>现象已经出现，源头是父元素的opacity，那为什么父元素的opacity会影响子元素的堆叠呢</p>
       <p>原因其实也很简单</p>
       <p>同一个父元素下面的元素会受父元素的堆叠顺序影响</p>
-      <p>我们可以简单的将父元素和子元素的集合理解为一层，不同的父元素是不同的层</p>
+      <p>我们可以简单的将父元素和子元素的集合理解为一个阶级(层)，不同的父元素是不同的阶级(层)</p>
+      <p>而在计算机中,阶级划分的十分严格</p>
+      <p>比如.a爹牛逼,b爹不行,那a子就算是垃圾,也能站在b子的上面</p>
+
+      <pre>
+        CSS为盒模型的布局提供了三种不同的定位方案：
+
+        常规文档流
+        浮动
+        绝对定位
+
+        其中,最后一种定位方案将一个元素从常规流中移除，完全依赖开发者来确定元素显示的位置。
+        通过赋予top, left, bottom 和 right 属性值，可以在二维平面上放置元素，此外CSS也允许使用z-index属性以在第三维上放置元素。
+        
+        事实上在一个层叠上下文中一共可以有7种层叠等级，列举如下：
+
+        背景和边框 —— 形成层叠上下文的元素的背景和边框。 层叠上下文中的最低等级。
+        负z-index值 —— 层叠上下文内有着负z-index值的子元素。
+        块级盒 —— 文档流中非行内非定位子元素。
+        浮动盒 —— 非定位浮动元素。
+        行内盒 —— 文档流中行内级别非定位子元素。
+        z-index: 0 —— 定位元素。 这些元素形成了新的层叠上下文。
+        正z-index值 —— 定位元素。 层叠上下文中的最高等级
+      </pre>
       <!-- <p>那问题来了，为什么红色和其父元素是一层，而蓝色与父元素不是同一层呢</p> -->
     </div>
 
@@ -1312,6 +1335,36 @@
     </div>
 
     <hr>
+    <h2>自己画一个上下滚动,渐入渐出<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        css:
+        .InformationBartext{
+          margin: 0px;
+          font-size: 0.46rem;
+          font-family: Source Han Sans CN;
+          font-weight: 700;
+          color: #3B1003;
+          position: absolute;
+          top: 0.67rem;
+          left: 1.51rem;
+          transform: skew(0deg, 357deg);
+
+          animation-name: roll;
+          animation-duration: 5s;
+          animation-iteration-count: infinite;
+        }
+        @keyframes roll {
+          0%    {top:0.67rem; opacity: 1; transform:skew(0deg, 357deg) rotateX(0deg);}
+          60%   {top:0.67rem; opacity: 1; transform:skew(0deg, 357deg) rotateX(0deg);}
+          80%   {top:0.27rem; opacity: 0; transform:skew(0deg, 357deg) rotateX(40deg);}
+          81%   {top:1.07rem; opacity: 0; transform:skew(0deg, 357deg) rotateX(40deg);}
+          100%  {top:0.67rem; opacity: 1; transform:skew(0deg, 357deg) rotateX(0deg);}
+        }
+      </pre>
+    </div>
+
+    <hr>
     <h2>letter-spacing 和 word-spacing<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
@@ -1319,7 +1372,7 @@
         letter-spacing（字间距，添加每个字母或汉字之间的空白）
       </pre>
     </div>
-
+    
     <hr>
     <h2>很常用的阴影<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -1516,13 +1569,21 @@
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>清楚当前页面全部定时器的方法<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-    </div>
-
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
+      <pre>
+        &lt;script&gt;
+          function clerSettimeout(){
+            let id = setTimeout(() => {  }, 0);
+            while(id > 0){
+              window.clearTimeout(id)
+              id --;
+              console.log(1);
+            }
+          }
+          clerSettimeout();
+        &lt;/script&gt;
+      </pre>
     </div>
     
     <hr>
