@@ -1587,8 +1587,50 @@
     </div>
     
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>函数<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
+      <pre>
+        函数的四种定义方式
+        1.函数声明的方式（常用）
+        function sum (num1,num2) {
+          return num1 + num2;
+        }
+        注意函数定义最后没有加分号。必须有名字，会函数提升，在预解析阶段就已经创建，声明前后都可以调用。
+
+
+        2、函数表达式的方式
+        let sum = function(num1,num2) {
+          return num1 + num2;
+        };
+        一种变量赋值，函表达式可以没有名字（匿名函数）,没有函数提升。函数表达式创建方式和函数声明几乎是等价的，
+        这里代码定义了一个变量sum并将其初始化为一个函数, 这个函数可以通过sum来引用。注意这里函数末尾是有分号的, 与任何变量初始化语句一样。
+
+
+        3、箭头函数的方式
+        //多个参数需要括号
+        let sum = (num1,num2) => {
+            return num1 + num2;
+        };
+        //以下两种写法都有效, 只有一个参数可以不写括号
+        let double = (x) => { return 2 * x };
+        let double = x => { return 2 * x };
+        //没有参数需要括号
+        let getRandom = () => { return Math.random() };
+        注意：箭头函数在参数和箭头之间不能换行, 但是, 可以通过在 '=>' 之后换行, 或者用 '( )'、'{ }'来实现换行
+        任何可以使用函数表达式的地方, 都可以使用箭头函数。箭头函数语法简单, 非常适合嵌入函数的场景。
+        let ints = [1,2,3];
+        console.log(ints.map(function (i){
+          return i + 1
+        }));//[2,3,4]
+        console.log(ints.map(i => {return i + 1 }));//[2,3,4]
+        //map()方法定义在JavaScript的Array中, 它返回一个新的数组, 数组中的元素为原始数组调用函数处理后的值。
+
+
+        4、构造函数的方式(不推荐)
+        let sum = new Function("num1","num2","return num1 + num2");
+        不推荐使用这种语法定义, 因为这段代码会被解释两次: 第一次是把它作为常规ES代码, 第二次是解释传给构造函数的字符串。
+        这显然会影响性能。不过, 把函数想象为对象, 把函数名想象为指针这很重要。而上面的语法很好地诠释了这个概念。
+      </pre>
     </div>
     
     <hr>
