@@ -127,7 +127,7 @@
       <button id="yjzk" onclick="sqzk(this)">一键展开所有下拉栏↓</button>
     </div>
     <p>如果我哪里疏忽大意，抑或是你有更好建议，可以联系QQ:1204184336，邮箱:1204184336@qq.com</p>
-    <span>学习推荐: </span><a href="https://www.react-native.cn/docs/getting-started">React Native官方文档</a>
+    <span>学习推荐: </span><a href="https://www.react-native.cn/docs/getting-started">React Native 中文文档</a>
     <span>学习推荐: </span><a href="https://zhuanlan.zhihu.com/p/421606376">深入学习React Native之环境搭建</a>
     <!-- <p>Vue是一套用于<strong>构建用户界面</strong>的<strong>渐进式</strong>框架</p> -->
     <!-- <p>学习Vue需要掌握哪些JavaScript知识呢？</p> -->
@@ -167,6 +167,69 @@
     </pre>
     <p>无总结</p>
     
+
+    <hr>
+    <h2>react-native真机调试<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      在react-native中按照流程走一遍官网的文档 需要下载Android studio 上面会有模拟器用不了的可以用手机调试
+      搭建开发环境 React Native 中文网 https://reactnative.cn/docs/environment-setup
+
+      首先你需要一个真机用数据线链接电脑,打开USB调试模式
+
+      在文件夹中找到项目目录,地址栏cmd,输入adb devices
+
+      若是有 一串字符串 devices
+      即是连接成功
+
+      adb -s 一串字符串 reverse tcp:8081 tcp:8081
+
+      npx react-native run-android
+      react-native run-android
+
+      之后只要不卸载app，npm start运行，保证手机和电脑同一个无线，就可以运行调试，不再需要usb。
+      手机进app。摇一摇，点击Dev Settings可以设置端口号
+    </pre>
+    <p>无总结</p>
+    
+
+    <hr>
+    <h2>npx react-native run-android 报错<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      报错
+      Error:Unable to start the daemon process.
+      OpenJDK 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
+      Unrecognized VM option 'MaxPermSize=512m'
+
+      解决
+      https://blog.csdn.net/qq_42971035/article/details/122770951
+      在jdk8（含）以后，永久代被移除了，所以虚拟机的启动参数MaxPermSize（最大永久代大小）不可用。
+      通过全局搜索找到 类似这样的“org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m”
+      用#注释掉即可
+    </pre>
+    <p>无总结</p>
+
+
+    <hr>
+    <h2>npx react-native run-android 报错<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      报错
+      General error during semantic analysis: Unsupported class file major version 62
+
+      解决
+      https://blog.csdn.net/kimbing/article/details/119669087
+      可以看到上面的提示，说60版中没有 file 这个 class，根据 ReactNative 官方说明：https://reactnative.dev/docs/environment-setup，
+      可以更改 Gradle 的版本，
+      通过查看 Gradle 官方的发布版本 发现最新的是多少 https://gradle.org/releases/
+      目前是7.4.2
+      通过全局搜索找到 类似这样的“services.gradle.org/distributions/gradle-x.x.x-all.zip”
+      将x.x.x改为最新版本即可
+    </pre>
+    <p>无总结</p>
+    
+
     <hr>
     <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
