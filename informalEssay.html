@@ -209,7 +209,7 @@
           document.images[0].src=this.result;
         }
       </pre>
-      <p>适应性修改，只有缩略图</p>
+      <p>适应性修改,只有缩略图</p>
       <pre class="code_2">
         let x = new FileReader;
         function up(that){
@@ -221,7 +221,7 @@
           OneInchPhoto.style.visibility = 'visible';
         }
       </pre>
-      <p>适应性修改，文件类型判断、文件大小判断、缩略图</p>
+      <p>适应性修改,文件类型判断、文件大小判断、缩略图</p>
       <pre class="code_2">
         function up(that,Photoname) {
           //判断文件类型
@@ -1569,7 +1569,7 @@
     </div>
 
     <hr>
-    <h2>清楚当前页面全部定时器的方法<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>清除当前页面全部定时器的方法<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
         &lt;script&gt;
@@ -1634,18 +1634,143 @@
     </div>
     
     <hr>
+    <h2>将npm改成淘宝源<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        切换成淘宝源
+        npx nrm use taobao
+
+        切换成官方源
+        npx nrm use npm
+      </pre>
+    </div>
+    
+    <hr>
+    <h2>查看版本<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        xxx -version
+
+        xxx可以是npm、java、javac、yarn、python、node、React、React-native、vue、nvm、、、、、、、、、
+      </pre>
+    </div>
+    
+    <hr>
+    <h2>NVM实现不同nodejs版本的自由切换<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        1.将以前独立安装的node.js卸载 (如果后续nvm use时 报错The directory is not empty. 请转到 C:\Program Files\nodejs。然后将该文件夹重命名为 C:\Program Files\nodejsx。之后请检查“nvm use vvv”)
+        2. <a href="https://github.com/coreybutler/nvm-windows/releases">NVM项目地址</a>
+        3.安装nvm(注意路径不要出现中文和空格)
+        4.常用命令
+        nvm arch                          :显示node是运行在32位还是64位。
+        nvm install [version[] [arch]     :安装node, version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本,默认是系统位数。可以添加–insecure绕过远程服务器的SSL。
+        nvm list available                :显示已安装的列表。可选参数available,显示可安装的所有版本。list可简化为ls。
+        nvm on                            :开启node.js版本管理。
+        nvm off                           :关闭node.js版本管理。
+        nvm proxy [url]                   :设置下载代理。不加可选参数url,显示当前代理。将url设置为none则移除代理。
+        nvm node_mirror [url]             :设置node镜像。默认是https://nodejs.org/dist/。如果不写url,则使用默认url。设置后可至安装目录settings.txt文件查看,也可直接在该文件操作。
+        nvm npm_mirror [url]              :设置npm镜像。https://github.com/npm/cli/archive/。如果不写url,则使用默认url。设置后可至安装目录settings.txt文件查看,也可直接在该文件操作。
+        nvm uninstall [version]           :卸载指定版本node。
+        nvm use [version] [arch]          :使用制定版本node。可指定32/64位。
+        nvm root [path]                   :设置存储不同版本node的目录。如果未设置,默认使用当前目录。
+        nvm version                       :显示nvm版本。version可简化为v。
+      </pre>
+    </div>
+
+    <hr>
+    <h2>cmd改utf-8<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        chcp 65001
+
+        1258 越南语
+        1257 波罗的语
+        1256 阿拉伯语
+        1255 希伯来语
+        1254 土耳其语
+        1253 希腊语
+        1252 拉丁 1 字符 (ANSI)
+        1251 西里尔语
+        1250 中欧语言
+        950 繁体中文
+        949 朝鲜语
+        936 简体中文
+        932 日语
+        874 泰国
+        850 多语种 (MS-DOS Latin1)
+        437 MS-DOS 美国英语
+      </pre>
+    </div>
+
+    <hr>
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+   </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
     </div>
     
     <hr>
     <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-    </div>
-    
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
+      <pre>
+      </pre>
     </div>
 
   </div>
