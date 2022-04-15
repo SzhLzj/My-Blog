@@ -1659,12 +1659,20 @@
     <h2>NVM实现不同nodejs版本的自由切换<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        1.将以前独立安装的node.js卸载 (如果后续nvm use时 报错The directory is not empty. 请转到 C:\Program Files\nodejs。然后将该文件夹重命名为 C:\Program Files\nodejsx。之后请检查“nvm use vvv”)
+        1.将以前独立安装的node.js卸载 
+          (如果后续nvm use时 报错The directory is not empty. 请转到 C:\Program Files\nodejs。然后将该文件夹重命名为 C:\Program Files\nodejsx。之后请检查“nvm use vvv”)
+
         2. <a href="https://github.com/coreybutler/nvm-windows/releases">NVM项目地址</a>
+
         3.安装nvm(注意路径不要出现中文和空格)
-        4.常用命令
+
+        4.在安装目录找到 setting 加两句
+          node_mirror: https://npm.taobao.org/mirrors/node/
+          npm_mirror: https://npm.taobao.org/mirrors/npm/
+          
+        5.常用命令
         nvm arch                          :显示node是运行在32位还是64位。
-        nvm install [version[] [arch]     :安装node, version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本,默认是系统位数。可以添加–insecure绕过远程服务器的SSL。
+        nvm install [version] [arch]      :安装node, version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本,默认是系统位数。可以添加–insecure绕过远程服务器的SSL。
         nvm list available                :显示已安装的列表。可选参数available,显示可安装的所有版本。list可简化为ls。
         nvm on                            :开启node.js版本管理。
         nvm off                           :关闭node.js版本管理。

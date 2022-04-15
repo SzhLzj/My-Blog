@@ -164,6 +164,21 @@
       Nodejs >= 12
       <a style="color: aqua;" href="http://nodejs.cn/">官网</a>
       
+
+      以上软件版本都不可过高，jdk用1.8的，node用14.19.1的，android studio随意
+      配置变量
+      ANDROID_SDK_ROOT
+      C:\Users\你的名字\AppData\Local\Android\Sdk
+      JAVA_HOME
+      C:\Program Files\Java\jdkxxxx(jdk8u322-b06)
+      path里
+      C:\Program Files\Java\jdkxxxx\bin
+      C:\Users\你的名字\AppData\LocalAndroid\Sdk\platform-tools
+      %JAVA_HOME%\bin;
+      %ANDROID_HOME%\platform-tools;
+      %ANDROID_HOME%\emulator;
+      %ANDROID_HOME%\tools;
+      %ANDROID_HOME%\tools\bin;
     </pre>
     <p>无总结</p>
     
@@ -225,7 +240,10 @@
       通过查看 Gradle 官方的发布版本 发现最新的是多少 https://gradle.org/releases/
       目前是7.4.2
       通过全局搜索找到 类似这样的“services.gradle.org/distributions/gradle-x.x.x-all.zip”
-      将x.x.x改为最新版本即可
+      将x.x.x改为最新版本即可吗？
+
+      并不
+      是因为jdk版本太高(18),删了换成1.8(jdk8u322-b06)就可以了
     </pre>
     <p>无总结</p>
     
