@@ -149,7 +149,8 @@
     <pre class="code_1">
       需要的软件
       JDK == 1.8 
-      <a style="color: aqua;" href="https://www.oracle.com/java/technologies/downloads/">官网</a>
+      <a style="color: aqua;" href="https://www.oracle.com/java/technologies/downloads/">JDK官网</a>
+      <a style="color: aqua;" href="https://adoptium.net/temurin/releases">JDK8u322-b06 镜像?</a>
       <a style="color: aqua;" href="https://blog.csdn.net/weixin_42858422/article/details/121362885">JDK安装教程</a>
       JDK 安装后没有 jre 的解决方案
       进入命令控制台（必须使用管理员权限）
@@ -170,15 +171,18 @@
       ANDROID_SDK_ROOT
       C:\Users\你的名字\AppData\Local\Android\Sdk
       JAVA_HOME
-      C:\Program Files\Java\jdkxxxx(jdk8u322-b06)
+      C:\Program Files\Java\jdkxxxx(jdk8u322-b06) //可能不用
       path里
       C:\Program Files\Java\jdkxxxx\bin
       C:\Users\你的名字\AppData\LocalAndroid\Sdk\platform-tools
-      %JAVA_HOME%\bin;
-      %ANDROID_HOME%\platform-tools;
-      %ANDROID_HOME%\emulator;
-      %ANDROID_HOME%\tools;
-      %ANDROID_HOME%\tools\bin;
+      %JAVA_HOME%\bin; //可能不用
+      <!-- %ANDROID_HOME%\platform-tools; -->
+      <!-- %ANDROID_HOME%\emulator; -->
+      <!-- %ANDROID_HOME%\tools; -->
+      <!-- %ANDROID_HOME%\tools\bin; -->
+
+      用 javac -version 看看java环境ok没
+      npm install 安装依赖
     </pre>
     <p>无总结</p>
     
