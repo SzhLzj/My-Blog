@@ -1712,30 +1712,173 @@
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>不同的空格转义符<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        &`#32;    == 普通的英文半角空格
+        &`#160;   == &`nbsp; == &`#xA0; == no-break space （普通的英文半角空格但不换行）
+        &`#12288; == 中文全角空格 （一个中文宽度）
+        &`#8194;  == &`ensp; == en空格 （半个中文宽度）
+        &`#8195;  == &`emsp; == em空格 （一个中文宽度）
+        &`#8197;  == 四分之一em空格 （四分之一中文宽度）
       </pre>
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>快速构建<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        ! -快速生成Html基本构建
+        rcc -快速生成react native基本构建
       </pre>
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>fetch请求<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        在react native的函数式结构中,在const App = (props) => {};之后或之前即可调用fetch，其他框架还没用过
+
+        来源: https://www.gxlcms.com/JavaScript-252463.html
+
+        GET:
+        fetch('https://facebook.github.io/react-native/movies.json') //请求接口
+          .then((response) => response.json()) //response就是返回值,用.json()解析一下
+          .then((responseJson) => { //解析后的值(responseJson),就是完整的接口返回
+            console.error(responseJson);
+            console.error(responseJson.result);
+            return responseJson.result;
+          })
+          .catch((error) => {
+            console.error(error);
+        });
+
+        POST.1:
+        let url = "http://www.yousite.com/xxxx.ashx” 
+        let params = {"name":"admin","password":"admin"}; 
+        fetch(url, {
+         method: 'POST',
+         headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(params)
+        })
+
+        POST.2:
+        let url = "http://www.yousite.com/xxxx.ashx”; 
+        let params = "username=admin&password=admin”; 
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params,
+        }).then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        }).then((json) => {
+          console.log(json)
+        }).catch((error) => {
+          console.error(error);
+        });
+
+        POST.3(推荐):
+        let REQUEST_URL = 'http://www.yousite.com/xxxx.ashx';
+
+        // `首先我们需要自己创建一个FormData，来存请求参数`
+        
+        let parameters = new FormData();
+        parameters.append("mt", "30013");
+        parameters.append("pg", "1");
+        parameters.append('ps', '20');
+        
+        fetch(REQUEST_URL, {
+          method: 'POST',
+          body: parameters
+        }).then(
+          (result) => {
+            if (result.ok) {
+              console.log(result)
+              result.json().then(
+                (obj) => {
+                  console.log(obj)
+                }
+              )
+            }
+          }
+        ).catch((error) => {
+          console.log(error)
+          Alert.alert('Error')
+        })
+        推荐这种方法的好处还有一个, 就是可以在FormData中直接传递字节流实现上传图片的功能, 代码如下: 
+        uploadImage(){ 
+        let formData = new FormData(); 
+        let file = {uri: uri, type: 'multipart/form-data', name: 'a.jpg'}; 
+        
+        formData.append("images",file); 
+        
+        fetch(url,{ 
+          method:'POST', 
+          headers:{ 
+            'Content-Type':'multipart/form-data', 
+          }, 
+          body:formData, 
+        })
+
+        .then((response) => response.text() ) 
+
+        .then((responseData)=>{ 
+          console.log('responseData',responseData); 
+        })
+
+        .catch((error)=>{console.error('error',error)}); 
+        }
+        上面的例子演示了如何发起请求。很多情况下, 你还需要处理服务器回复的数据。
+        网络请求天然是一种异步操作, Fetch 方法会返回一个Promise, 这种模式可以简化异步风格的代码, 关于Promise, 请参考: Promise
+        处理服务器返回的数据, 我们已经在上面第二种和第三种的POST请求中实现了数据的处理。具体代码参考上面的实现代码。
+        默认情况下, iOS会阻止所有非https的请求。如果你请求的接口是http协议, 那么首先需要添加一个App Transport Security的例外。
       </pre>
     </div>
 
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>react native的组件传值<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        父组件 调用子组件时 传参数给子组件
+        1.在调用子组件的地方写上要传入的参数
+        例如：
+        实例&lt;Rotation imgsdata={imgs}/&gt;
+        解释&lt;子组件名 传入的名字={数据}/&gt;
+
+        2.在子组件中调用生命周期constructor
+        export default class Rotation extends Component {
+          constructor(props){
+            super(props)
+            this.rotationref = React.createRef()
+            console.log(this.props.imgsdata); //这里就是取到的数据了
+          };
+        }
+
+----------------------------------------------------------
+
+        A组件 跳转时 带参数给B组件
+        A组件
+        &lt;Pressable onPress={()=&gt;{props.navigation.navigate('DetailsPage',{ id: item.id, })}}&gt;
+
+        B组件
+        函数式：
+        在const App = (props) => {};return前
+        const navigation = this.props;
+        let id = navigation.getParam("id");
+
+        class式
+        constructor(props){
+          super(props);
+          const {navigation} = this.props;
+          let yy = navigation.getParam("params"); 
+        }
       </pre>
     </div>
 

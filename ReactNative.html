@@ -253,7 +253,37 @@
     
 
     <hr>
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>自定义组件<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <button class="copy" onclick="copy(this)">复制</button>
+    <pre class="code_1">
+      //先引入核心模块
+      impot React,{Component} from "react"
+      import { Text, View, StyleSheet } from 'react-native'; //用到的标签
+
+      //创建并导出组件                  //因为我在上面注册过了Component，所有'React.'其实是可以忽略的，两种写法一样
+      export default class XXX extends React.Component{
+
+        render(){
+          return{
+            &lt;View&gt;
+              &lt;Text style={ styles.txt1 }&gt;XXXXXXX&lt;/Text&gt;
+            &lt;/View&gt;
+          }
+        }
+      }
+
+      //样式代码
+      const styles = StyleSheet.create({
+        txt1:{
+          color:'red'
+        }
+      });
+
+    </pre>
+    <p>无总结</p>
+    
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
@@ -261,15 +291,7 @@
     <p>无总结</p>
     
     <hr>
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
-    <button class="copy" onclick="copy(this)">复制</button>
-    <pre class="code_1">
-
-    </pre>
-    <p>无总结</p>
-    
-    <hr>
-    <h2> <span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
     <button class="copy" onclick="copy(this)">复制</button>
     <pre class="code_1">
 
