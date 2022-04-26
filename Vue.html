@@ -474,6 +474,7 @@
               .capture -使用事件捕获模式&lt;br&gt;
               .self -只有event.target是当前操作的元素时才触发事件&lt;br&gt;
               .passive -passive能保证的只有一点，那就是使调用 preventDefault()无效&lt;br&gt;
+              .native 修饰符就是用来注册元素的原生事件而不是组件自定义事件的，例如elementUI里就可以用到这个
             &lt;/p&gt;
             &lt;!-- .prevent -阻止默认事件 --&gt;
             &lt;a href="https://www.baidu.com" @click.prevent="showInfo($event,55)"&gt;点我.prevent&lt;/a&gt;
