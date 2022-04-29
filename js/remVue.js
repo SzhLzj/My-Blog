@@ -1,3 +1,5 @@
+// Vue Cli import 引入版
+
 //JS监听浏览器文字大小代码
 const rem = 
   (function(doc, win) {
@@ -32,3 +34,52 @@ function setRem() {
 }
 
 export default rem;
+
+
+
+// ------------------------------------------------------------------
+// Vue Cli 内联版
+/*
+
+<script>
+export default {
+  name: "xxxx",
+  data() {
+    return{
+    };
+  },
+  methods:{
+    setRem() {
+      // console.log('setRem');
+      let docEl = document.documentElement;
+      let clientWidth = docEl.clientWidth;
+      if (!clientWidth) {
+        return;
+      }
+      docEl.style.fontSize = 100 * (clientWidth / 1920) + 'px';
+      let fs = document.documentElement.style.fontSize;
+      let fsn = fs.replace('px','');
+      if (fsn > 100) {
+        docEl.style.fontSize = '100px';
+      }
+    },
+    recalc() {
+      // console.log('recalc');
+      this.setRem();
+    },
+    orientationchange(doc, win) {
+      // console.log('orientationchange');
+      this.setRem();
+      let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      if (!doc.addEventListener)
+      return;
+      win.addEventListener(resizeEvt, this.recalc, false);
+    },
+  },
+  mounted(){
+    this.orientationchange(document, window);
+  },
+}
+</script>
+
+*/
