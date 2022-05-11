@@ -2144,23 +2144,42 @@
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>react native Android 键盘将底部导航栏/按钮顶起<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        找到文件 android/app/src/main/AndroidManifest.xml，修改android:windowSoftInputMode 属性值
+          1. 搜索：`android:windowSoftInputMode`
+          2. 原内容：
+            android:windowSoftInputMode="adjustResize"
+            修改后：
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+          3. 重启 Android Studio，即可生效喔喔喔 (这个是安卓的配置文件，需要重新生成apk才有效果)
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>文本溢出显示省略号<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        1、单行文本溢出显示省略号
+          overflow: hidden;（文字长度超出限定宽度，则隐藏超出的内容）
+          white-space: nowrap;（设置文字在一行显示，不能换行）
+          text-overflow: ellipsis;（规定当文本溢出时，显示省略符号来代表被修剪的文本）
+
+        2、多行文本溢出显示省略号
+          -webkit-line-clamp: 2;（用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性）
+          display: -webkit-box;（和 1 结合使用，将对象作为弹性伸缩盒子模型显示 ）
+          -webkit-box-orient: vertical;（和 1 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ）
+          overflow: hidden;（文本溢出限定的宽度就隐藏内容）
+          text-overflow: ellipsis;（多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本)
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>调试微信 PC 端的内置浏览器界面<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        https://blog.csdn.net/Jioho_chen/article/details/114756151
       </pre>
     </div>
         
