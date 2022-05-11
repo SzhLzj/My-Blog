@@ -2092,6 +2092,9 @@
         background-image: url('../img/背景3.jpg');
         background-repeat: no-repeat;
         background-size: cover;
+
+        background-attachment: fixed; //不随页面滚动
+        background-attachment: scroll; //随页面滚动
       </pre>
     </div>
 
@@ -2184,9 +2187,13 @@
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>js提交form表单<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        //用document.getElementById获取到要提交的表单
+        form = document.getElementById('test_form');
+        form.submit();
+        return true;
       </pre>
     </div>
         
