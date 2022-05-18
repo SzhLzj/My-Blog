@@ -1093,6 +1093,55 @@
         &lt;/style&gt;
       </pre>
       <br>
+      <p>番外：vue-cli 路由的格式规范</p>
+      <pre>
+        创建项目后
+        书写路由规则
+          const routes = [
+          {
+            path: '/',
+            redirect: '/home', // 重定向到/home路径
+          },
+          {
+            path: '/home',
+            component: Home // home组件页面（第一层）
+          },
+          {
+            path: '/about', // about组件页面（第一层）
+            component: () => import('../views/About.vue'),
+            children: [
+              { 
+              /* 
+              注意：path的写法
+              path: 'son1' -> 表示 /about/son1路径
+              path: '/son1' -> 表示 /son1 路径
+              path: '/about/son1' -> 表示/about/son1
+              */
+                path: 'son1',  // 第二层
+                component: () => import('../views/AboutSon1.vue'),
+                children: [
+                  {  // 第三层
+                  // 同理，这里也是一样的：表示/about/son1/sonson1
+                    path: 'sonson1',
+                    component: () => import('../views/AboutSonSon1.vue')
+                  },
+                  { // 第三层
+                  // 同理，这里也是一样的：表示/about/son1/sonson2
+                    path: 'sonson2',
+                    component: () => import('../views/AboutSonSon2.vue')
+                  }
+                ]
+              },
+              { 
+                path: 'son2', // 第二层
+                component: () => import('../views/AboutSon2.vue'),
+              }
+            ]
+          }
+        ]
+        可以无限套下去，但是记得一点：二层上有children子路由，那么记得在第二层那个组件上添加router-view以及路由跳转事件或其他方式来进行跳转
+      </pre>
+      <br>
       <p>五、使用组件的步骤<br>
       &emsp;1.创建与定义：即使用html和css绘制成.vue的组件<br>
       &emsp;2.引入：在需要引入的vue组件中，例如在App.vue的script中，写上import xxx from './components/xxx'<br>
@@ -2198,51 +2247,118 @@
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue 跳转刷新<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        @click.native='flushCom'
+        
+        flushCom:function(){
+          //router是路由实例,例如:var router = new Router({})
+          //router.go(n)是路由的一个方法，意思是在history记录中前进或者后退多少步，0就表示还是当前，类似window.history.go(n)
+          this.$router.go(0);
+        },
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>react native logcat报错提示<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        adb logcat -v time *:E
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>常用获取url地址的几种方法<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        1、设置或获取整个 URL 为字符串
+        window.location.href
+
+        2、设置或获取 URL 的协议部分
+        window.location.protocol
+
+        3、设置或获取 URL 的主机部分
+        window.location.host
+
+        4、设置或获取与 URL 关联的端口号码
+        window.location.port
+
+        5、设置或获取与 URL 的路径部分（就是文件地址）
+        window.location.pathname
+
+        6、设置或获取 href 属性中跟在问号后面的部分
+        window.location.search
+
+        7、设置或获取 href 属性中在井号“#”后面的分段
+        window.location.hash
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue 设置字体<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        1.创建一个放字体的文件夹
+
+        2.把字体文件放进去
+
+        3.在上面这个文件夹里创建一个css文件,例: font.css
+        在里面引入字体文件
+        例:
+        @font-face {
+          font-family: 'ZKGDH';
+          src: url('./站酷高端黑修订151105.ttf');
+        }
+
+        4.在src目录下的main.js中引入上面这个css文件
+        例:
+        import '@/assets/Font/font.css';
+
+        5.这样就全局定义好这个字体('ZKDGH')了
+        在需要的地方用font-family引用即可
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>番外: 免费商用字体<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        系统自带的黑体、宋体、仿宋、隶书、楷体、幼圆这六款字体属于通用字体，没有具体的著作权，可作商用
+        https://www.zcool.com.cn/special/zcoolfonts/
+        https://www.maoken.com/
+        https://www.5iyuyan.com/29204.html
+        https://www.fonts.net.cn/commercial-free/fonts-zh-1.html
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Chrome 自动播放政策<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        Chrome的自动播放政策
+          始终允许静音自动播放
+
+        在以下情况下, 允许自动播放声音
+          用户已与域进行了交互(单击, 点击等)
+          在桌面版chrome上, 已经超过了用户的“媒体参与度索引”阈值, 这意味着该用户以前曾播放有声视频
+          用户已将网站添加到移动设备上的主屏幕上, 或在桌面上安装了PWA
+          顶级框架可以将自动播放权限委派给其iframe, 以允许自动播放声音
+
+        在非遗中, 已用iframe实现自动播放音频
+        看了各各网站, iframe好像也可以实现自动播放视频
       </pre>
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue3打包后在本地运行<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        1.安装本地访问服务插件serve
+        npm install -g serve
+
+        2.在dist文件夹里，运行
+        npm run serve
       </pre>
     </div>
         

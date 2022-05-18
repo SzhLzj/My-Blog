@@ -21,7 +21,7 @@ function setRem() {
     return;
   }
   // docEl.style.fontSize = 400 * (clientWidth / 1000 / 3) + 'px'; 调整1rem = ？% 设备独立像素 目前为10%，在750px设计稿上，1rem = 100px
-  docEl.style.fontSize = 100 * (clientWidth / 1080) + 'px'; //调整rem 在1536px设计稿上，1rem = 100px
+  docEl.style.fontSize = 100 * (clientWidth / 393) + 'px'; //调整rem 在393px设计稿上，1rem = 100px
   
   //限制fontSize最大为 XXX px，根据项目不同而修改
   let fs = document.documentElement.style.fontSize;
