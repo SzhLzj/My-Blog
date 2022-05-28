@@ -1785,6 +1785,7 @@
       <pre>
         ! -快速生成Html基本构建
         rcc -快速生成react native基本构建
+        VueInit -快速生成Vue基本构建
       </pre>
     </div>
 
@@ -1894,6 +1895,71 @@
         网络请求天然是一种异步操作, Fetch 方法会返回一个Promise, 这种模式可以简化异步风格的代码, 关于Promise, 请参考: Promise
         处理服务器返回的数据, 我们已经在上面第二种和第三种的POST请求中实现了数据的处理。具体代码参考上面的实现代码。
         默认情况下, iOS会阻止所有非https的请求。如果你请求的接口是http协议, 那么首先需要添加一个App Transport Security的例外。
+
+
+        Vue
+        一、fetch
+          全局请求 不需要引入直接使用即可, 浏览器内置的
+          支持 get 和 post 请求 , 默认get
+
+        二、语法
+          fetch(url)
+          .then(res=>{return res.json()})
+          .then(res=>{res是数据})
+        注: 第一个then的res需要使用json方式处理成promise对象
+
+        三、举例
+        &lt;div id="root"&gt;
+          &lt;p&gt;{{msg}}&lt;/p&gt;
+        &lt;/div&gt;
+   
+        &lt;script&gt;
+          const vm = new Vue({
+            data: {
+              msg:'我是fetch请求'
+            },
+            mounted() {
+              // 挂载后触发fetch get请求
+              this.getOriDate()
+              // 触发fetch post请求 - json
+              this.postOriDate1()
+              // 触发fetch post请求 - 表单编码
+              this.postOriDate2()
+            },
+            methods: {
+              // get请求
+              getOriDate(){
+                fetch('https://api.i-lynn.cn/college')
+                .then(res=>{return res.json()})
+                .then(res=>{console.log('默认get请求',res)})
+              },
+              // post请求 - json格式
+              postOriDate1(){
+                fetch('https://api.i-lynn.cn/college',{
+                  method:'POST',
+                  headers:{
+                    'Content-Type':"application/json"
+                  },
+                  body:JSON.stringify({name:'王霜',age:20})
+                })
+                .then(res=>{ return res.json()})
+                .then(res=>{console.log('post请求json格式',res)})
+              },
+              // post请求 - 表单编码格式
+              postOriDate2(){
+                fetch('https://api.i-lynn.cn/college',{
+                  method:'POST',
+                  headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                  },
+                  body:'name=小李&age=18'
+                })
+                .then(res=>{return res.json()})
+                .then(res=>{console.log('post请求表单编码格式',res)})
+              }
+            },
+          }).$mount('#root')
+        &lt;/script&gt;
       </pre>
     </div>
 
@@ -2363,40 +2429,568 @@
     </div>
         
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue Cli Router 配置<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-      </pre>
-    </div>
-        
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-      </pre>
-    </div>
-        
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-      </pre>
-    </div>
-        
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-      </pre>
-    </div>
-        
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-      </pre>
-    </div>
+        第一步: 安装vue-router
+          npm install vue-router --save
 
+        1.创建路由实例
+          在src目录下新建一个文件夹 router
+          在 router 文件夹里面新建文件 index.js
+          配置相关信息
+
+          //1.配置路由相关信息
+          import { createRouter,createWebHashHistory} from "vue-router";
+
+          //2.引入路由组件
+          import AppMain from "@/components/AppMain.vue"
+          import Img from "@/components/Img.vue"
+
+          const routes = [
+            { path: "/", redirect: "/AppMain" },
+            { path: "/AppMain", component: AppMain, name: 'AppMain', },
+            { path: "/AppMain/Img", component: Img, name: 'Img', },
+          ]
+
+          //3.创建 router对象
+          const router = createRouter({
+            routes,
+            history: createWebHashHistory(),
+          })
+
+          4.导出router对象
+          export default router
+
+        2.将router挂载到Vue实例中
+          src目录下的main.js文件中
+
+          1.导入路由实例
+            import router from '@/router/index'
+            或
+            import router from '@/router'
+          2.注册
+            const app = createApp(App)
+            app.use(router)
+            app.mount('#app')
+
+        3.在路由组件中
+          1.使用router-link
+            &lt;router-link to="/AppMain/Img"&gt;
+              &lt;div&gt;&lt;/div&gt;
+            &lt;/router-link&gt;
+
+        4.在App.vue中配置router-view
+          &lt;div id="app"&gt;
+            &lt;router-view&gt;&lt;/router-view&gt;
+          &lt;/div&gt;
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>Vue 请求<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        1.vue-resource
+        2.axios
+        3.fetch-jsonp
+
+        一、vue-resource
+          1. 安装vue-resource
+            在项目根目录进行安装：cnpm install vue-resource --save
+            save说明：将此插件名插入到pachage.json文件中，别人在使用时，直接npm install，就会安装package.json里的所配置的软件插件名称了。
+
+          2.引入vue-resource
+            在main.js中引入这个插件，并使用这个插件
+
+            import VueResource from 'vue-resource'
+            #引入插件，VueResource 是别名 ；vue-resource 是我们下载的插件
+            Vue.use(VueResource );
+            #使用插件
+ 
+          3.使用示例：
+          &lt;template&gt;
+            &lt;div&gt;
+              &lt;p&gt;vue-resource方式&lt;/p&gt;
+              &lt;button @click="getData()"&gt;resource&lt;/button&gt;
+              &lt;hr /&gt;
+              &lt;ul&gt;
+                &lt;li v-for="item in list"&gt;
+                  {{item.title}}
+                &lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/template&gt;
+
+          &lt;script&gt;
+            export default {
+              name: "app",
+              data() {
+                return {
+                  list:[]
+                }
+              },
+              methods:{
+                getData(){
+                  //请求数据
+                  var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+                  this.$http.get(api).then(function (response) {
+                    console.log(response)
+                    //注意this指向
+                    this.list = response.body.result;
+                  },function (err) {
+                    console.log(err)
+                  })
+                }
+              }
+            }
+          &lt;/script&gt;
+
+
+          二、axios
+            1.安装axios
+              在项目根目录进行安装：cnpm install axios --save
+
+            2.引入axios
+              在哪个.vue文件里使用就在哪里引入，例如我在App.vue里使用，就在App.vue里引入，注意要在script标签开始处引入。
+
+              import Axios from 'axios';
+
+            3.使用示例
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;p&gt;vue-resource方式&lt;/p&gt;
+                &lt;button @click="getData()"&gt;resource&lt;/button&gt;
+                &lt;hr /&gt;
+                &lt;ul&gt;
+                  &lt;li v-for="item in list"&gt;
+                    {{item.title}}
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              import Axios from 'axios';
+
+              export default {
+                name: "app",
+                data() {
+                  return {
+                    list:[]
+                  }
+                },
+                methods:{
+                  getData(){
+                    //请求数据
+                    var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+                    Axios.get(api).then((response)=&gt; {
+                      console.log(response);
+                      this.list = response.data.result;
+                    }).catch((error)=&gt;{
+                      console.log(error);
+                    })
+                  }
+                }
+              }
+            &lt;/script&gt;
+
+
+            三、fetch-jsonp
+              1.安装
+                在项目根目录进行安装：cnpm install fetch-jsonp --save
+
+              2.引入
+                在哪个.vue文件里使用就在哪里引入，例如我在App.vue里使用，就在App.vue里引入，注意要在script标签开始处引入。
+
+              3.使用示例
+              &lt;template&gt;
+                &lt;div&gt;
+                  &lt;p&gt;vue-resource方式&lt;/p&gt;
+                  &lt;button @click="getData()"&gt;resource&lt;/button&gt;
+                  &lt;hr /&gt;
+                  &lt;ul&gt;
+                    &lt;li v-for="item in list"&gt;
+                      {{item.title}}
+                    &lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/div&gt;
+              &lt;/template&gt;
+
+              &lt;script&gt;
+                import FetchJsonp from 'fetch-jsonp';
+
+                export default {
+                  name: "app",
+                  data() {
+                    return {
+                      list:[]
+                    }
+                  },
+                  methods:{
+                    getData(){
+                      //请求数据
+                      var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+                      FetchJsonp(api).then((response)=&gt;{
+                        return response.json()
+                      }).then((json)=&gt;{
+                        console.log('parsed json',json)
+                        this.list = json.result;
+                      }).catch((ex)=&gt;{
+                        console.log('parsing failed',ex)
+                      })
+                    }
+                  }
+                }
+              &lt;/script&gt;
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>router-link 带参数跳转<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        1. 不带参数
+        &lt;router-link :to="{name:'home'}"&gt;
+        &lt;router-link :to="{path:'/home'}"&gt;//name,path都行, 建议用name  
+        // 注意：router-link中链接如果是'/'开始就是从根路由开始，如果开始不带'/'，则从当前路由开始。
+        
+        
+        2.带参数
+        &lt;router-link :to="{name:'home', params: {id:1},}"&gt; 
+        // params传参数 (类似post)
+        // 路由配置 path: "/home/:id" 或者 path: "/home:id" 
+        // 不配置path ,第一次可请求,刷新页面id会消失
+        // 配置path,刷新页面id会保留
+        
+        // html 取参  $route.params.id
+        // script 取参  this.$route.params.id
+        
+        
+        &lt;router-link :to="{name:'home', query: {id:1},}"&gt;
+        // query传参数 (类似get,url后面会显示参数)
+        // 路由可不配置
+        
+        // html 取参  $route.query.id
+        // script 取参  this.$route.query.id
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>Vue 修改 title标题和icon<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        title在 vue.config.js -> module.exports 里面加上下面的配置即可
+        chainWebpack: config => {
+          config
+            .plugin('html')
+            .tap(args => {
+              args[0].title= '绍兴乡音'
+              return args
+            })
+        }
+
+        icon在public -> favicon.ico 修改成同名文件即可
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>vue打包后,非服务器根目录时，地址不匹配<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        在 vue.config.js -> module.exports 里面加上下面的配置即可
+        publicPath: '/xxxx/',
+        //xxxx就是服务器的根目录到目标文件的路径
+        例如
+        你打包后放在服务器的 https://xxxx.com/wyz/yzy 目录
+        那就配置publicPath: '/wyz/yzy/',
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>ssh 配置<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        生成私匙 -设置邮箱，不改动名字
+        ssh-keygen -t rsa -C "your_email@example.com"
+        生成私匙 -设置邮箱，改动名字
+        ssh-keygen -t rsa -C "your_email@example.com"  -f  ~/.ssh/id_rsa_java8642
+
+
+        因为ssh默认查找 id_rsa 这个私钥，所以改名的话需要一个配置文件
+        生成私匙配置文件
+        vim ~/.ssh/config
+        内容如下：
+        IdentityFile  ~/.ssh/id_rsa_java8642
+        IdentityFile  ~/.ssh/id_rsa
+        系统会 挨个地去 尝试这些私钥文件
+
+
+        添加私匙
+        ssh-add 私钥路径
+
+
+        将公匙复制到git平台上
+
+        以上
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>es6之扩展运算符 三个点（…）<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        一句话总结
+        对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>vue项目打包后, 怎么在本地运行<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        找到 vue.config.js文件 也有可能是在config文件夹下的index.js里
+        反正就是找到 module.exports 这个对象,
+
+        添加一个键值对进去
+        publicPath: './',
+
+        打包后的dist可以直接点击index.html运行
+      </pre>
+    </div>
+            
+    <hr>
+    <h2>禁用eslint 的四种方式<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        方法一：创建配置文件来定义禁用范围
+          在根目录创建文件.eslintignore
+          加入如下内容
+          */.js
+          */.vue
+
+        方法二：在文件某行上面写以下标识，禁用下一行
+          // eslint-disable-next-line to ignore the next line.
+          console.log("这行esline不检查")
+          
+        方法三：在文件中写上以下标识，禁用整个文件
+          /* eslint-disable */
+
+        方法四：修改package.json文件禁用全局：
+          "no-unused-vars":"off", //新增此行
+          
+          网上搜到的常见解决办法是将 webpack.base.conf.js 中的 (config.dev.useEslint ? [createLintingRule()] : []),注释掉，
+          这种办法解决问题的根本原因是直接去掉了 eslint 的语法检查，这显然是不合适的，我们正确的操作应该是让 eslint 认为标签换行不是一个语法错误。
+          修改方法是在 package.json 文件中的 eslintConfig 下的 rules 中添加 一些规则
+          例如
+          'eslint-disable-next-line':false
+          "no-unused-vars":"off"
+          no-unused-vars - 这个名字可以在报错的最后面看出来
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>
+            
+    <hr>
+    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+      </pre>
+    </div>  
   </div>
 
   <!-- <script src="./js/rem.js"></script> -->
