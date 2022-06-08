@@ -127,7 +127,7 @@
       <button id="yjzk" onclick="sqzk(this)">一键展开所有下拉栏↓</button>
     </div>
     <p>如果我哪里疏忽大意,抑或是你有更好建议,可以联系QQ:1204184336,邮箱:1204184336@qq.com</p>
-    <p>这里汇总了一些工作中遇到的困难,便于以后查阅。</p>
+    <p>这里汇总了一些工作中遇到的困难和解决方案,便于以后查阅。</p>
     
     <hr>
     <h2>JavaScript事件循环机制 event-loop Chrome篇 其他浏览器有不同顺序 没时间验证<span class="down" onclick="clickondown(this)">\/</span></h2>
@@ -158,8 +158,8 @@
     <div class="code_1">
       <p>字符串被``包裹</p>
       <p>字符串中的${}内填写变量</p>
-      <p>例： `我是第${index}个人`</p>
-      <p>模板字符串用于替代传统的字符串拼接,例如：'a'+'b'</p>
+      <p>例: `我是第${index}个人`</p>
+      <p>模板字符串用于替代传统的字符串拼接,例如:'a'+'b'</p>
     </div>
 
     <hr>
@@ -167,9 +167,21 @@
     <div class="code_1">
       <p>ajax从服务器请求到的参数res(success:function (res))一般是一串字符串</p>
       <p>可以使用JSON.parse(a,b)方法将数据转换为 JavaScript 对象</p>
-      <p>就像这样：let a = JSON.parse(res);</p>
+      <p>就像这样:let a = JSON.parse(res);</p>
     </div>
+            
+    <hr>
+    <h2>传参,参数变成[Object object]<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        传出去时把对象转换一下
+        JSON.stringify(Obj)
 
+        接收的时候
+        JSON.parse(this.$route.query.Obj);
+      </pre>
+    </div>
+    
     <hr>
     <h2>beforeSend<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -272,7 +284,7 @@
     <h2>取消点击a标签出现的阴影<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <p>1.css添加:-webkit-tap-highlight-color: transparent;</p>
-      <pre>2.CSS配置即可：
+      <pre>2.CSS配置即可:
         body{
           -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
@@ -286,7 +298,7 @@
     <hr>
     <h2>js元素对象的方法<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>内容部分来源：https://www.runoob.com/jsref/dom-obj-all.html</p>
+      <p>内容部分来源:https://www.runoob.com/jsref/dom-obj-all.html</p>
       <pre>
         element.appendChild()                        为元素添加一个新的子元素
         element.childNodes                           返回元素的一个子节点的数组,会返回文本节点和空白节点
@@ -386,15 +398,15 @@
     <h2>script的可选属性<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <p>我觉得这个知识点肯定有人遗漏,所以我拿出来讲讲,才不是因为我遗漏了呢</p>
-      <p>script：会阻碍 HTML 解析,只有下载好并执行完脚本才会继续解析 HTML。</p>
-      <p>script async：解析 HTML 过程中异步下载脚本,下载成功立马执行,执行脚本时阻碍 HTML 的解析。</p>
-      <p>script defer：解析 HTML 过程中异步下载脚本,不会阻碍 HTML 的解析, HTML 解析完成之后再按照顺序执行脚本。</p>
+      <p>script:会阻碍 HTML 解析,只有下载好并执行完脚本才会继续解析 HTML。</p>
+      <p>script async:解析 HTML 过程中异步下载脚本,下载成功立马执行,执行脚本时阻碍 HTML 的解析。</p>
+      <p>script defer:解析 HTML 过程中异步下载脚本,不会阻碍 HTML 的解析, HTML 解析完成之后再按照顺序执行脚本。</p>
     </div>
 
     <hr>
     <h2>什么叫迭代<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>官方定义：迭代是重复反馈过程的活动,其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”,而每一次迭代得到的结果会作为下一次迭代的初始值。</p>
+      <p>官方定义:迭代是重复反馈过程的活动,其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”,而每一次迭代得到的结果会作为下一次迭代的初始值。</p>
       <p>最容易理解的迭代应该就是for循环了</p>
       <p>for (let i = 0; i < 10; i++)</p>
       <p>其中i会不停的迭代,直到i = 11,迭代停止</p>
@@ -404,7 +416,7 @@
     <h2>什么叫递归<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <p>递归就是在运行的过程中调用自己,子问题须与原始问题为同样的事,且更为简单,不能无限制地调用本身,须有个出口</p>
-      <p>好像懂了,但是又没懂,还是懵逼,给你打个比方：</p>
+      <p>好像懂了,但是又没懂,还是懵逼,给你打个比方:</p>
       <p>1.你在学习DNS是怎么解析的,发现网上说DNS解析是个一个递归 + 迭代的过程</p>
       <p>2.你懵逼了一会,不知道什么是递归,然后你去查递归是什么意思</p>
       <p>3.然后网上说递归就是一种算法,然后你更懵了,然后你去查算法</p>
@@ -518,18 +530,18 @@
 
       </pre>
       <p>DNS 有缓存机制,有了缓存,大多数 DNS 查询都绕过了根 DNS 服务器,需要向根 DNS 服务器发起查询的请求很少。</p>
-      <p>DNS的多级缓存 ：浏览器缓存,系统缓存,路由器缓存,IPS服务器缓存,根域名服务器缓存,顶级域名服务器缓存,主域名服务器缓存</p>
-      <p>DNS负载均衡：你访问baidu.com的时候,每次响应的并非是同一个服务器(IP地址不同),一般大公司都有成百上千台服务器来支撑访问,
+      <p>DNS的多级缓存 :浏览器缓存,系统缓存,路由器缓存,IPS服务器缓存,根域名服务器缓存,顶级域名服务器缓存,主域名服务器缓存</p>
+      <p>DNS负载均衡:你访问baidu.com的时候,每次响应的并非是同一个服务器(IP地址不同),一般大公司都有成百上千台服务器来支撑访问,
          DNS可以返回一个合适的机器的IP给用户,例如可以根据每台机器的负载量,该机器离用户地理位置的距离等等,这种过程就是DNS负载均衡</p>
       <p>-------------</p>
       <p>2.TCP连接,三次握手</p>
-      <p>TCP：首部的数据格式 https://juejin.cn/post/6844903832435032072#heading-6</p>
+      <p>TCP:首部的数据格式 https://juejin.cn/post/6844903832435032072#heading-6</p>
       <p>三次握手</p>
       <p>1.客户端发送syn包(Seq=x)到服务器,并进入SYN_SEND状态,等待服务器确认；</p>
       <p>2.服务器收到syn包,必须确认客户的SYN(ack=x+1),同时自己也发送一个SYN包(Seq=y),即SYN+ACK包,此时服务器进入SYN_RECV状态；</p>
       <p>3.客户端收到服务器的SYN＋ACK包,向服务器发送确认包ACK(ack=y+1),此包发送完毕,客户端和服务器进入ESTABLISHED状态,完成三次握手。</p>
       <p>为什么不是二次或四次握手？</p>
-      <p>参考：红军协同对抗蓝军问题</p>
+      <p>参考:红军协同对抗蓝军问题</p>
       <p>处于两地的红军A与红军B要与蓝军作战,红1和红2联合必定能战胜蓝方,单打独斗是必输的局面,在通信信道不完全可靠的情况下,如何设计出完全可靠的通信协议,使红军必胜</p>
       <pre>
         红1          红2
@@ -545,7 +557,7 @@
       </pre>
 
       <p>6.TCP断开连接,四次挥手</p>
-      <p>1.客户端发送一个FIN,用来关闭客户端到服务器的数据传送,也就是客户端告诉服务器：我已经不 会再给你发数据了(当然,在fin包之前发送出去的数据,如果没有收到对应的ack确认报文,客户端依然会重发这些数据),
+      <p>1.客户端发送一个FIN,用来关闭客户端到服务器的数据传送,也就是客户端告诉服务器:我已经不 会再给你发数据了(当然,在fin包之前发送出去的数据,如果没有收到对应的ack确认报文,客户端依然会重发这些数据),
         但是,此时客户端还可 以接受数据。FIN=1,其序列号为seq=u(等于前面已经传送过来的数据的最后一个字节的序号加1),此时,客户端进入FIN-WAIT-1(终止等待1)状态。 TCP规定,FIN报文段即使不携带数据,也要消耗一个序号。</p>
       <p>2.服务器收到FIN包后,发送一个ACK给对方并且带上自己的序列号seq,确认序号为收到序号+1(与SYN相同,一个FIN占用一个序号)。此时,服务端就进入了CLOSE-WAIT(关闭等待)状态。TCP服务器通知高层的应用进程,客户端向服务器的方向就释放了,
         这时候处于半关闭状态,即客户端已经没有数据要发送了,但是服务器若发送数据,客户端依然要接受。这个状态还要持续一段时间,也就是整个CLOSE-WAIT状态持续的时间。此时,客户端就进入FIN-WAIT-2(终止等待2)状态,等待服务器发送连接释放报文(在这之前还需要接受服务器发送的最后的数据)。</p>
@@ -559,7 +571,7 @@
     <div class="code_1">
       <p>box-sizing:content-box 将元素盒模型设置为标准盒模型</p>
       <p>box-sizing:border-box  将元素盒模型设置为IE(替代)盒模型</p>
-      <p>IE盒模型的好处：</p>
+      <p>IE盒模型的好处:</p>
       <p>如果在标准盒模型下,当一行左右各有一个div,他们的width都为50%,也就是说content都是50%</p>
       <p>这时,来了一个新需求,两个div都要有边框,且两个div依旧是各占50%</p>
       <p>这时候,标准盒模型content的50%就需要把border考虑进去了,这样会很麻烦,因为一个是%,一个px,自适应变的无比难解</p>
@@ -628,15 +640,15 @@
       <p>前面说过,回流这一阶段主要是计算节点的位置和几何信息,那么当页面布局和几何信息发生变化的时候,就需要回流,比如下面的情况</p>
       <p>1.添加或删除可见的DOM元素</p>
       <p>2.元素的位置发生变化</p>
-      <p>3.元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）</p>
+      <p>3.元素的尺寸发生变化(包括外边距、内边框、边框大小、高度和宽度等)</p>
       <p>4.内容发生变化,比如文本变化或图片被另一个不同尺寸的图片所替代。</p>
-      <p>5.页面一开始渲染的时候（这肯定避免不了）</p>
-      <p>6.浏览器的窗口尺寸变化（因为回流是根据视口的大小来计算元素的位置和大小的）</p>
+      <p>5.页面一开始渲染的时候(这肯定避免不了)</p>
+      <p>6.浏览器的窗口尺寸变化(因为回流是根据视口的大小来计算元素的位置和大小的)</p>
       <p>-----------------------------</p>
       <p>七、现代浏览器的优化机制</p>
       <p>现代的浏览器都是很聪明的,由于每次重排都会造成额外的计算消耗,因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程</p>
       <p>浏览器会将修改操作放入到队列里,直到过了一段时间或者操作达到了一个阈值,才清空队列。</p>
-      <p>但是！当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法：</p>
+      <p>但是！当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法:</p>
       <p>1.offsetTop、offsetLeft、offsetWidth、offsetHeight</p>
       <p>2.scrollTop、scrollLeft、scrollWidth、scrollHeight</p>
       <p>3.clientTop、clientLeft、clientWidth、clientHeight</p>
@@ -665,20 +677,20 @@
     <hr>
     <h2>获取一些可视区的数据<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>BODY对象宽度： document.body.clientWidth</p>
-      <p>BODY对象高度： document.body.clientHeight</p>
-      <p>可见区域宽度： document.documentElement.clientWidth </p>
-      <p>可见区域高度： document.documentElement.clientHeight </p>
+      <p>BODY对象宽度: document.body.clientWidth</p>
+      <p>BODY对象高度: document.body.clientHeight</p>
+      <p>可见区域宽度: document.documentElement.clientWidth </p>
+      <p>可见区域高度: document.documentElement.clientHeight </p>
       <p>若是body没有margin和padding,BODY对象的宽高等同于可视区域的宽高</p>
       <p>---------------------</p>
-      <p>网页可见区域宽： document.body.offsetWidth (包括边线的宽)</p>
-      <p>网页可见区域高： document.body.offsetHeight (包括边线的高)</p>
-      <p>网页正文部分上： window.screenTop</p>
-      <p>网页正文部分左： window.screenLeft</p>
-      <p>屏幕分辨率的高： window.screen.height</p>
-      <p>屏幕分辨率的宽： window.screen.width</p>
-      <p>屏幕可用工作区高度： window.screen.availHeight</p>
-      <p>屏幕可用工作区宽度： window.screen.availWidth</p>
+      <p>网页可见区域宽: document.body.offsetWidth (包括边线的宽)</p>
+      <p>网页可见区域高: document.body.offsetHeight (包括边线的高)</p>
+      <p>网页正文部分上: window.screenTop</p>
+      <p>网页正文部分左: window.screenLeft</p>
+      <p>屏幕分辨率的高: window.screen.height</p>
+      <p>屏幕分辨率的宽: window.screen.width</p>
+      <p>屏幕可用工作区高度: window.screen.availHeight</p>
+      <p>屏幕可用工作区宽度: window.screen.availWidth</p>
       <p>-----------------------------</p>
       <p>// 部分jQuery函数</p>
       <p>$(window).height() 　//浏览器时下窗口可视区域高度</p>
@@ -709,27 +721,27 @@
     <hr>
     <h2>js控制页面方法大全<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>1.reload --语法：location.reload([bForceGet]) 相当于客户端点击 F5("刷新")</p>
-      <p>参数：bForceGet,可选参数</p>
+      <p>1.reload --语法:location.reload([bForceGet]) 相当于客户端点击 F5("刷新")</p>
+      <p>参数:bForceGet,可选参数</p>
       <p>默认为false,从客户端缓存里取当前页。</p>
       <p>true, 则以 GET 方式,从服务端取最新的页面,</p>
       <p>------</p>
-      <p>2.replace 方法,该方法通过指定URL替换当前缓存在历史里（客户端）的项目,因此当使用replace方法之后,你不能通过“前进”和“后退”来访问已经被替换的URL。
-      <p>语法： location.replace(URL)</p>
-      <p>通常使用： location.reload() 或者是 history.go(0) 来做。</p>
+      <p>2.replace 方法,该方法通过指定URL替换当前缓存在历史里(客户端)的项目,因此当使用replace方法之后,你不能通过“前进”和“后退”来访问已经被替换的URL。
+      <p>语法: location.replace(URL)</p>
+      <p>通常使用: location.reload() 或者是 history.go(0) 来做。</p>
       <p>此方法类似客户端点F5刷新页面,所以页面method="post"时,会出现"网页过期"的提示。</p>
       <p>因为Session的安全保护机制。</p>
       <p>当调用 location.reload() 方法时, aspx页面此时在服务端内存里已经存在, 因此必定是 IsPostback 的。</p>
-      <p>如果有这种应用： 需要重新加载该页面,也就是说期望页面能够在服务端重新被创建,期望是 Not IsPostback 的。</p>
+      <p>如果有这种应用: 需要重新加载该页面,也就是说期望页面能够在服务端重新被创建,期望是 Not IsPostback 的。</p>
       <p>这里,location.replace() 就可以完成此任务。被replace的页面每次都在服务端重新生成。</p>
-      <p>代码： location.replace(location.href);</p>
+      <p>代码: location.replace(location.href);</p>
       <p>------</p>
       <p>3.返回并刷新页面</p>
       <p>location.replace(document.referrer);</p>
       <p>document.referrer //前一个页面的URL</p>
       <p>不要用 history.go(-1),或 history.back();来返回并刷新页面,这两种方法不会刷新页面。</p>
       <p>------</p>
-      <p>4.Javascript刷新页面的几种方法：</p>
+      <p>4.Javascript刷新页面的几种方法:</p>
       <p>1,history.go(0)</p>
       <p>2,location.reload()</p>
       <p>3,location=location</p>
@@ -742,7 +754,7 @@
       <p>5.自动刷新页面的方法: 把如下代码加入 head 区域中</p>
       <p>&lt;meta http-equiv="refresh" content="20"&gt;</p>
       <p>------</p>
-      <p>6.页面自动跳转：把如下代码加入 head 区域中</p>
+      <p>6.页面自动跳转:把如下代码加入 head 区域中</p>
       <p>&lt;meta http-equiv="refresh" content="20;url=https://www.jb51.net"&gt;</p>
       <p>------</p>
       <p>7.页面自动刷新js版</p>
@@ -773,7 +785,7 @@
         &lt;/script&gt;
       </pre>
       <p>------</p>
-      <p>9.如果想关闭窗口时刷新或想开窗时刷新，在 body 中调用以下语句即可。</p>
+      <p>9.如果想关闭窗口时刷新或想开窗时刷新,在 body 中调用以下语句即可。</p>
       <pre>
         &lt;body onload="opener.location.reload()"&gt; 开窗时刷新
         &lt;body onUnload="opener.location.reload()"&gt; 关闭时刷新
@@ -782,7 +794,7 @@
         &lt;/script&gt;
       </pre>
       <p>------</p>
-      <p>10.父框架中，第一个top子框架对第二个bottom子框架的刷新方式</p>
+      <p>10.父框架中,第一个top子框架对第二个bottom子框架的刷新方式</p>
       <pre>
         下列代码位于top子框架中
         &lt;input type=button value="刷新1" onclick="window.parent.frames[1].location.reload()"&gt;&lt;br&gt;
@@ -815,7 +827,7 @@
       <p>1.已知父元素和子元素宽高</p>
       <p>margin、position、padding等等 根据已知的宽高写死</p>
       <p>------</p>
-      <p>2.父元素宽高未知，子元素宽高已知</p>
+      <p>2.父元素宽高未知,子元素宽高已知</p>
       <p>子元素css</p>
       <p>定位 + margin-top + margin-left方案</p>
       <pre>
@@ -842,7 +854,7 @@
       <p>------</p>
       <p>3.啥都未知</p>
       <p>子元素css</p>
-      <p>transform 方案: 存在兼容问题：比如元素已经被transform旋转过后，再使用这个方案会导致transform重复使用，transform属性会相互覆盖</p>
+      <p>transform 方案: 存在兼容问题:比如元素已经被transform旋转过后,再使用这个方案会导致transform重复使用,transform属性会相互覆盖</p>
       <pre>
         position: relative; 
         left: 50%; 
@@ -876,8 +888,8 @@
     <hr>
     <h2>你不知道的z-index<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>如果我说，一个z-index为1的元素会被一个z-index为auto的元素盖住，你相信吗</p>
-      <p>你可能不信，但是实现的方法很简单，只需要在z-index:1元素的父元素的css中再加一个小于1的opacity即可</p>
+      <p>如果我说,一个z-index为1的元素会被一个z-index为auto的元素盖住,你相信吗</p>
+      <p>你可能不信,但是实现的方法很简单,只需要在z-index:1元素的父元素的css中再加一个小于1的opacity即可</p>
       <p>就像这样</p>
       <div style="position: relative;">
         <div style="width: 100%; opacity: 0.99;">
@@ -898,24 +910,24 @@
         &lt;/div&gt;
       </pre>
       <p>上面是代码片段</p>
-      <p>现象已经出现，源头是父元素的opacity，那为什么父元素的opacity会影响子元素的堆叠呢</p>
+      <p>现象已经出现,源头是父元素的opacity,那为什么父元素的opacity会影响子元素的堆叠呢</p>
       <p>原因其实也很简单</p>
       <p>同一个父元素下面的元素会受父元素的堆叠顺序影响</p>
-      <p>我们可以简单的将父元素和子元素的集合理解为一个阶级(层)，不同的父元素是不同的阶级(层)</p>
+      <p>我们可以简单的将父元素和子元素的集合理解为一个阶级(层),不同的父元素是不同的阶级(层)</p>
       <p>而在计算机中,阶级划分的十分严格</p>
       <p>比如.a爹牛逼,b爹不行,那a子就算是垃圾,也能站在b子的上面</p>
 
       <pre>
-        CSS为盒模型的布局提供了三种不同的定位方案：
+        CSS为盒模型的布局提供了三种不同的定位方案:
 
         常规文档流
         浮动
         绝对定位
 
-        其中,最后一种定位方案将一个元素从常规流中移除，完全依赖开发者来确定元素显示的位置。
-        通过赋予top, left, bottom 和 right 属性值，可以在二维平面上放置元素，此外CSS也允许使用z-index属性以在第三维上放置元素。
+        其中,最后一种定位方案将一个元素从常规流中移除,完全依赖开发者来确定元素显示的位置。
+        通过赋予top, left, bottom 和 right 属性值,可以在二维平面上放置元素,此外CSS也允许使用z-index属性以在第三维上放置元素。
         
-        事实上在一个层叠上下文中一共可以有7种层叠等级，列举如下：
+        事实上在一个层叠上下文中一共可以有7种层叠等级,列举如下:
 
         背景和边框 —— 形成层叠上下文的元素的背景和边框。 层叠上下文中的最低等级。
         负z-index值 —— 层叠上下文内有着负z-index值的子元素。
@@ -925,7 +937,7 @@
         z-index: 0 —— 定位元素。 这些元素形成了新的层叠上下文。
         正z-index值 —— 定位元素。 层叠上下文中的最高等级
       </pre>
-      <!-- <p>那问题来了，为什么红色和其父元素是一层，而蓝色与父元素不是同一层呢</p> -->
+      <!-- <p>那问题来了,为什么红色和其父元素是一层,而蓝色与父元素不是同一层呢</p> -->
     </div>
 
     <hr>
@@ -947,93 +959,93 @@
     </div>
 
     <hr>
-    <h2>input type=file 同一个文件做两次上传操作，第二次无效解决方法<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>input type=file 同一个文件做两次上传操作,第二次无效解决方法<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>因为是通过onchange来触发函数，同一个文件的值是一样的，因此第二次的时候onchange未触发</p>
-      <p>解决方案：在每次上传文件的值处理完后，用e.target.value='';来清除掉上一次留下的值</p>
+      <p>因为是通过onchange来触发函数,同一个文件的值是一样的,因此第二次的时候onchange未触发</p>
+      <p>解决方案:在每次上传文件的值处理完后,用e.target.value='';来清除掉上一次留下的值</p>
     </div>
 
     <hr>
     <h2>三元表达式<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <p>表达式 (expr1) ? (expr2) : (expr3)</p>
-      <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p>
+      <p>在 expr1 求值为 TRUE 时的值为 expr2,在 expr1 求值为 FALSE 时的值为 expr3。</p>
     </div>
 
     <hr>
     <h2>Vue-cli 从零搭建<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>准备工作、首先需要一些环境，<br>
+      <p>准备工作、首先需要一些环境,<br>
         1.node.js(必选)(node -v看版本) <br>
         2.webpack(必选) <br>
         3.淘宝镜像(非必选)(npm install -g cnpm --registry=https://registry.npm.taobao.org)</p>
       <br>
 
-      <p>一、全局安装过旧版本的 vue-cli(1.x 或 2.x)要先卸载它，否则跳过此步：npm uninstall vue-cli -g //或者 yarn global remove vue-cli</p>
+      <p>一、全局安装过旧版本的 vue-cli(1.x 或 2.x)要先卸载它,否则跳过此步:npm uninstall vue-cli -g //或者 yarn global remove vue-cli</p>
       <br>
 
-      <p>二(新资料)、新建文件夹，取好名，在地址栏中直接打上cmd，打开命令行(cmd)后，<br>
+      <p>二(新资料)、新建文件夹,取好名,在地址栏中直接打上cmd,打开命令行(cmd)后,<br>
         输入"cnpm install -g @vue/cli" or "npm install -g @vue/cli" or "yarn global add @vue/cli" (Vue cli3.0)</p>
       <br>
 
       <p>vue -V 检查版本</p>
       <br>
 
-      <p>二(老资料了)、新建文件夹，取好名，在地址栏中直接打上cmd，打开命令行(cmd)后，输入"vue create 项目名称xxx"  ,<br>
+      <p>二(老资料了)、新建文件夹,取好名,在地址栏中直接打上cmd,打开命令行(cmd)后,输入"vue create 项目名称xxx"  ,<br>
         他会弹出三个选项<br>
         1.默认的vue2<br>
         2.默认的vue3<br>
         3.自定义<br>
         此案例使用vue3作为演示<br>
-        然后等待安装（从远程仓库拉取默认的vue cli代码）</p>
+        然后等待安装(从远程仓库拉取默认的vue cli代码)</p>
       <br>
 
       <p>三、先认识一下里面的各各文件夹以及文件都是什么<br>
         1.node_modules文件夹<br>
-        &emsp;这里面放置着项目的依赖，上传代码时不需要将这些“庞然大物”上传，只需要在拉取代码完毕后使用npm install重新安装一下依赖即可<br>
-        &emsp;例如里面的babel，可以将ES6的语法“翻译”成ES5，使兼容性更佳<br>
+        &emsp;这里面放置着项目的依赖,上传代码时不需要将这些“庞然大物”上传,只需要在拉取代码完毕后使用npm install重新安装一下依赖即可<br>
+        &emsp;例如里面的babel,可以将ES6的语法“翻译”成ES5,使兼容性更佳<br>
         2.public文件夹<br>
-        &emsp;public文件夹里面一般放置一些静态资源，例如图片，ico，index等等<br>
-        &emsp;注意：在public文件夹中的静态资源，在被webpack进行打包时，会原封不动的打包到dist文件夹中，<br>
+        &emsp;public文件夹里面一般放置一些静态资源,例如图片,ico,index等等<br>
+        &emsp;注意:在public文件夹中的静态资源,在被webpack进行打包时,会原封不动的打包到dist文件夹中,<br>
         3.src文件夹<br>
-        &emsp;这里面放置着我们写的源代码，里面的文件夹有点多，挑一些说道说道<br>
-        &emsp;1.assets文件夹：一般放置一些组件共用的静态资源（例如rem.js在每个组件中都会用到）<br>
-        &emsp;注意：在assets文件夹中的静态资源，在被webpack进行打包时，webpack会把静态资源当做一个模块，打包在Js文件中<br>
-        &emsp;2.components文件夹：一般放置非路由组件或全局组件<br>
-        &emsp;3.pages|views文件夹：一般放置路由组件<br>
-        &emsp;4.App.vue：整个项目中唯一的根组件<br>
-        &emsp;5.main.js：项目程序的入口文件，也是整个项目最先执行的文件<br>
+        &emsp;这里面放置着我们写的源代码,里面的文件夹有点多,挑一些说道说道<br>
+        &emsp;1.assets文件夹:一般放置一些组件共用的静态资源(例如rem.js在每个组件中都会用到)<br>
+        &emsp;注意:在assets文件夹中的静态资源,在被webpack进行打包时,webpack会把静态资源当做一个模块,打包在Js文件中<br>
+        &emsp;2.components文件夹:一般放置非路由组件或全局组件<br>
+        &emsp;3.pages|views文件夹:一般放置路由组件<br>
+        &emsp;4.App.vue:整个项目中唯一的根组件<br>
+        &emsp;5.main.js:项目程序的入口文件,也是整个项目最先执行的文件<br>
         4.gitignore文件<br>
-        &emsp;git忽略文件，里面写着git上传时要忽略掉的文件，因此你不必每次上传都要删除node_modules文件夹，git会按该文件忽略node_modules文件夹，一般不碰，了解即可<br>
+        &emsp;git忽略文件,里面写着git上传时要忽略掉的文件,因此你不必每次上传都要删除node_modules文件夹,git会按该文件忽略node_modules文件夹,一般不碰,了解即可<br>
         5.babel.config.js文件<br>
-        &emsp;这是一个跟babel相关的配置文件，一般不碰，了解即可<br>
+        &emsp;这是一个跟babel相关的配置文件,一般不碰,了解即可<br>
         6.package.json文件<br>
-        &emsp;这个文件记录着这个项目的详细信息，例如name:项目名称，version:版本，scripts:怎么运行，以及有哪些依赖等等。<br>
+        &emsp;这个文件记录着这个项目的详细信息,例如name:项目名称,version:版本,scripts:怎么运行,以及有哪些依赖等等。<br>
         7.package-lock.json文件<br>
-        &emsp;这是一个缓存性的文件，记录着你依赖的一些缓存，使下次安装时更快，可以删除，也可以不删<br>
+        &emsp;这是一个缓存性的文件,记录着你依赖的一些缓存,使下次安装时更快,可以删除,也可以不删<br>
         8.README.md文件<br>
         &emsp;整个项目的说明文件<br>
-        &emsp;里面一般写着怎么安装，怎么运行等等信息<br>
+        &emsp;里面一般写着怎么安装,怎么运行等等信息<br>
       </p>
       <br>
       <p>四、一些项目常用的其他配置<br>
-        1.项目运行完毕时，自动打开浏览器<br>
-        &emsp;先打开package.json文件，<br>
-        &emsp;在scripts代码块中的指令最后添加一个" --open"，注意！别遗漏了前面的空格<br>
-        &emsp;例如在这句中，将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
-        &emsp;这样，npm run serve完后就会自动打开浏览器<br>
+        1.项目运行完毕时,自动打开浏览器<br>
+        &emsp;先打开package.json文件,<br>
+        &emsp;在scripts代码块中的指令最后添加一个" --open",注意！别遗漏了前面的空格<br>
+        &emsp;例如在这句中,将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
+        &emsp;这样,npm run serve完后就会自动打开浏览器<br>
         2.eslint校验功能的关闭<br>
-        &emsp;这个eslint是个好东西，他可以检测你的代码是否有错误<br>
-        &emsp;但是他有点死脑筋，比如说你声明了一个变量a，但没用他，eslint就会报错说你没用变量a，这不行<br>
-        &emsp;关键是他报错也就算了，他还不让你继续解析，你的浏览器页面就出现了灰色报错，因此有时候并不需要他<br>
-        &emsp;怎么关闭呢，很简单，在项目的根目录下，创建一个vue.config.js文件（必须是这个名）<br>
-        &emsp;里面写：<br>
+        &emsp;这个eslint是个好东西,他可以检测你的代码是否有错误<br>
+        &emsp;但是他有点死脑筋,比如说你声明了一个变量a,但没用他,eslint就会报错说你没用变量a,这不行<br>
+        &emsp;关键是他报错也就算了,他还不让你继续解析,你的浏览器页面就出现了灰色报错,因此有时候并不需要他<br>
+        &emsp;怎么关闭呢,很简单,在项目的根目录下,创建一个vue.config.js文件(必须是这个名)<br>
+        &emsp;里面写:<br>
         &emsp;module.exports = {<br>
         &emsp;&emsp;lintOnSave: false;<br>
         &emsp;}<br>
         3.配置文件夹的别名<br>
         &emsp;以src文件夹为例<br>
-        &emsp;在项目的根目录下，创建一个jsconfig.json文件<br>
+        &emsp;在项目的根目录下,创建一个jsconfig.json文件<br>
         &emsp;里面写上<br>
         &emsp;{<br>
         &emsp;&emsp;"compilerOptions": {<br>
@@ -1054,7 +1066,7 @@
         &emsp;<br>
       </p>
       <br>
-      <p>番外：vue组件的格式规范</p>
+      <p>番外:vue组件的格式规范</p>
       <pre>
         &lt;template&gt;
       
@@ -1093,7 +1105,7 @@
         &lt;/style&gt;
       </pre>
       <br>
-      <p>番外：vue-cli 路由的格式规范</p>
+      <p>番外:vue-cli 路由的格式规范</p>
       <pre>
         创建项目后
         书写路由规则
@@ -1104,15 +1116,15 @@
           },
           {
             path: '/home',
-            component: Home // home组件页面（第一层）
+            component: Home // home组件页面(第一层)
           },
           {
-            path: '/about', // about组件页面（第一层）
+            path: '/about', // about组件页面(第一层)
             component: () => import('../views/About.vue'),
             children: [
               { 
               /* 
-              注意：path的写法
+              注意:path的写法
               path: 'son1' -> 表示 /about/son1路径
               path: '/son1' -> 表示 /son1 路径
               path: '/about/son1' -> 表示/about/son1
@@ -1121,12 +1133,12 @@
                 component: () => import('../views/AboutSon1.vue'),
                 children: [
                   {  // 第三层
-                  // 同理，这里也是一样的：表示/about/son1/sonson1
+                  // 同理,这里也是一样的:表示/about/son1/sonson1
                     path: 'sonson1',
                     component: () => import('../views/AboutSonSon1.vue')
                   },
                   { // 第三层
-                  // 同理，这里也是一样的：表示/about/son1/sonson2
+                  // 同理,这里也是一样的:表示/about/son1/sonson2
                     path: 'sonson2',
                     component: () => import('../views/AboutSonSon2.vue')
                   }
@@ -1139,28 +1151,28 @@
             ]
           }
         ]
-        可以无限套下去，但是记得一点：二层上有children子路由，那么记得在第二层那个组件上添加router-view以及路由跳转事件或其他方式来进行跳转
+        可以无限套下去,但是记得一点:二层上有children子路由,那么记得在第二层那个组件上添加router-view以及路由跳转事件或其他方式来进行跳转
       </pre>
       <br>
       <p>五、使用组件的步骤<br>
-      &emsp;1.创建与定义：即使用html和css绘制成.vue的组件<br>
-      &emsp;2.引入：在需要引入的vue组件中，例如在App.vue的script中，写上import xxx from './components/xxx'<br>
-      &emsp;3.注册：在需要引入的vue组件中，例如在App.vue > script的export default{}中，写上components:{ xxx },这里用了ES6语法，kv一致省略v<br>
-      &emsp;4.使用：在需要引入的vue组件中，例如在App.vue的template中，写上&lt;xxx&gt;&lt;/xxx&gt;，即是使用了xxx组件<br>
+      &emsp;1.创建与定义:即使用html和css绘制成.vue的组件<br>
+      &emsp;2.引入:在需要引入的vue组件中,例如在App.vue的script中,写上import xxx from './components/xxx'<br>
+      &emsp;3.注册:在需要引入的vue组件中,例如在App.vue > script的export default{}中,写上components:{ xxx },这里用了ES6语法,kv一致省略v<br>
+      &emsp;4.使用:在需要引入的vue组件中,例如在App.vue的template中,写上&lt;xxx&gt;&lt;/xxx&gt;,即是使用了xxx组件<br>
 
       </p>
       <br>
       <p>六、路由组件的搭建<br>
       &emsp;1.安装 vue-router<br>
-      &emsp;2.创建与定义：即使用html和css绘制成.vue的组件<br>
-      &emsp;3.一般来说，路由组件都会放置在pages|views文件夹中，所以放进去吧<br>
-      &emsp;4.一般来说，项目中配置的路由一般放在router文件夹中，所以在这里新建吧<br>
-      &emsp;5.引入：在router文件夹的index.js中<br>
-      &emsp;先引入Vue，import Vue from 'vue'<br>
-      &emsp;再引入Router，import VueRouter from 'vue-router'<br>
-      &emsp;再引入需要路由的组件，写上import xxx from '@/pages或views/xxx'<br>
-      &emsp;6.使用'vue-router'插件，Vue.use(VueRouter);<br>
-      &emsp;7.配置路由：<br>
+      &emsp;2.创建与定义:即使用html和css绘制成.vue的组件<br>
+      &emsp;3.一般来说,路由组件都会放置在pages|views文件夹中,所以放进去吧<br>
+      &emsp;4.一般来说,项目中配置的路由一般放在router文件夹中,所以在这里新建吧<br>
+      &emsp;5.引入:在router文件夹的index.js中<br>
+      &emsp;先引入Vue,import Vue from 'vue'<br>
+      &emsp;再引入Router,import VueRouter from 'vue-router'<br>
+      &emsp;再引入需要路由的组件,写上import xxx from '@/pages或views/xxx'<br>
+      &emsp;6.使用'vue-router'插件,Vue.use(VueRouter);<br>
+      &emsp;7.配置路由:<br>
       <pre>
         export default new Vuerouter({
           routes:[
@@ -1171,47 +1183,47 @@
           ]
         })
       </pre>
-      &emsp;8.注册：去main.js中写上import router from '@/router'<br>
-      &emsp;在new Vue里写上router,  (这里用了ES6语法，kv一致省略v)注册<br>
-      &emsp;9.使用：去App.vue写上路由组件出口<br>
+      &emsp;8.注册:去main.js中写上import router from '@/router'<br>
+      &emsp;在new Vue里写上router,  (这里用了ES6语法,kv一致省略v)注册<br>
+      &emsp;9.使用:去App.vue写上路由组件出口<br>
       &emsp;在使用组件的地方写上router-view标签<br>
       </p>
       <p>总结</p>
       <pre>
         路由组件与非路由组件的区别?
-        1:路由组件一般放置在pages|views文件夹，非路由组件一般放置components文件夹中
-        2:;路由组件一般需要在router文件夹中进行注册（使用的即为组件的名字)，非路由组件在使用的时候，一般都是以标签的形式使用
-        3:注册完路由，不管路由路由组件、还是非路由组件身上都有$route、$router属性
+        1:路由组件一般放置在pages|views文件夹,非路由组件一般放置components文件夹中
+        2:;路由组件一般需要在router文件夹中进行注册(使用的即为组件的名字),非路由组件在使用的时候,一般都是以标签的形式使用
+        3:注册完路由,不管路由路由组件、还是非路由组件身上都有$route、$router属性
         $route:一般获取路由信息【路径、query、params等等】
         $router:一般进行编程式导航进行路由跳转【push|replace】
         5.3路由的跳转?
         路由的跳转有两种形式;
         声明式导航router-link,可以进行路由的跳转
-        编程式导航push|replace，可以进行路由跳转
-        编程式导航:声明式导航能做的，编程式导航都能在，
-        但是编程式导航除了可以进行路由跳转，还可以做一些其他的业务逻辑。
+        编程式导航push|replace,可以进行路由跳转
+        编程式导航:声明式导航能做的,编程式导航都能在,
+        但是编程式导航除了可以进行路由跳转,还可以做一些其他的业务逻辑。
       </pre>
     </div>
 
     <hr>
     <h2>配置vue文件的标签自动补全<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>先下载一个插件，叫HTML Snippets</p>
+      <p>先下载一个插件,叫HTML Snippets</p>
       <p>然后去设置找到Files: Associations</p>
-      <p>项填：*.vue</p>
-      <p>值填：html</p>
+      <p>项填:*.vue</p>
+      <p>值填:html</p>
       <p>确定即可</p>
     </div>
 
     <hr>
-    <h2>番外：html引入vue的基本格式规范<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>番外:html引入vue的基本格式规范<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
         &lt;!DOCTYPE html&gt;
         &lt;html lang="zh"&gt;
           &lt;head&gt;
             &lt;meta charset="UTF-8"&gt;
-            &lt;title&gt;没错，我就是标题&lt;/title&gt;
+            &lt;title&gt;没错,我就是标题&lt;/title&gt;
             &lt;style&gt;
               div{
                 width: 1050px;
@@ -1295,12 +1307,41 @@
           border-width: 3px 3px 0 0;
           border-color: #0177ff;
           border-style: solid;
-          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0); //四个0.71是整体大小，负号在不同的值上，即可以使箭头朝向不同
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0); //四个0.71是整体大小,负号在不同的值上,即可以使箭头朝向不同
+        }
+
+        第二种:
+        &lt;div style="width: 0.07rem; height: 0.07rem; border-color: #0B5CB8; border-style: solid; border-width: 0 0.02rem 0.02rem 0; transform: rotate(45deg); display: inline-block;"&gt;&lt;/div&gt;
+
+下面是效果图
+      </pre>
+      第一种:
+      <span style="display: inline-block; content: ' '; height: 13px; width: 13px; border-width: 3px 3px 0 0; border-color: #0177ff; border-style: solid; transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);"></span>
+      第二种:
+      <div style="width: 7px; height: 7px; border-color: #0B5CB8; border-style: solid; border-width: 0 2px 2px 0; transform: rotate(45deg); display: inline-block;"></div>
+    </div>
+
+    <hr>
+    <h2>自己画个 "√" 这种样子的√<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        HTML
+        &lt;div class="checkMark"&gt;&lt;/div&gt;
+
+
+        CSS
+        .checkMark {
+          width: 0.07rem;
+          height: 0.14rem;
+          border-color: #0B5CB8;
+          border-style: solid;
+          border-width: 0 0.02rem 0.02rem 0;
+          transform: rotate(45deg);
         }
 
 下面是效果图
       </pre>
-      <span style="display: inline-block; content: ' '; height: 13px; width: 13px; border-width: 3px 3px 0 0; border-color: #0177ff; border-style: solid; transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);"></span>
+      <div style="width: 7px; height: 14px; border-color: #0B5CB8; border-style: solid; border-width: 0 2px 2px 0; transform: rotate(45deg);"></div>
     </div>
 
     <hr>
@@ -1313,12 +1354,12 @@
 
         CSS
         .triangle{
-          width: 0px; /*设置宽高为0，所以div的内容为空，从才能形成三角形尖角，因为没有内容，边框才是三角形*/
+          width: 0px; /*设置宽高为0,所以div的内容为空,从才能形成三角形尖角,因为没有内容,边框才是三角形*/
           height: 0px;
           /* 去掉border-top即可得到下半部分的div */
           border-bottom: 200px solid #00a3af;
           border-left: 200px solid transparent; /*transparent 表示透明*/
-          border-right: 200px solid transparent; /* 隐藏了 left 和 right 后只剩bottom，即只剩一个三角形 */
+          border-right: 200px solid transparent; /* 隐藏了 left 和 right 后只剩bottom,即只剩一个三角形 */
         }
 
 下面是效果图
@@ -1417,8 +1458,8 @@
     <h2>letter-spacing 和 word-spacing<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        word-spacing（词间距，添加每个单词之间的空白）
-        letter-spacing（字间距，添加每个字母或汉字之间的空白）
+        word-spacing(词间距,添加每个单词之间的空白)
+        letter-spacing(字间距,添加每个字母或汉字之间的空白)
       </pre>
     </div>
     
@@ -1444,10 +1485,10 @@
     <h2>JS获取元素属性和自定义属性<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        获取元素的属性分为两种类型：
-        1-获取元素常见的属性（class,id,type,value……）
-        2-获取自定义的元素的属性（data-value,data-mess…….）
-        获取元素的属性，设置元素的属性：
+        获取元素的属性分为两种类型:
+        1-获取元素常见的属性(class,id,type,value……)
+        2-获取自定义的元素的属性(data-value,data-mess…….)
+        获取元素的属性,设置元素的属性:
 
         1-原生JS
         设置属性 .setAttribute("属性","值")
@@ -1466,7 +1507,7 @@
         $.ajax({
           url:"http://www.microsoft.com",    //请求的url地址
           dataType:"json",   //返回格式为json
-          async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+          async:true,//请求是否异步,默认为异步,这也是ajax重要特性
           data:{"id":"value"},    //参数值
           type:"GET",   //请求方式
           beforeSend:function(data){
@@ -1512,13 +1553,23 @@
         例:this.$refs[`${函数传的name}`][0]
         如果你需要在script中动态的使用ref的同时,还有多个同样的ref时,将[0]改为index即可
         例:this.$refs[`${函数传的name}`][index]
+
+        第二种方式
+
+        例:&lt;div @click="likes(index,'cultivatelike')" ref="cultivatelike"&gt;&lt;/div&gt;
+
+        //在script中直接引入
+        const { cultivatelike } = this.$refs;
+
+        //这样就可以直接使用了
+        cultivatelike.style.zIndex = 100;
       </pre>
     </div>
 
     <hr>
     <h2>关于一个div块中的一堆img之间会出现空隙<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
-      <p>解决方案:写成一排可以去掉img之间的空隙，也可以将父容器的font-size设置成0，二选一即可</p>
+      <p>解决方案:写成一排可以去掉img之间的空隙,也可以将父容器的font-size设置成0,二选一即可</p>
 
       <div>
         <p>示例1: 有空隙</p>
@@ -1609,7 +1660,7 @@
             },
             methods:{
               clickMe:function(){
-                alert("你删除的id为：" + current_id); //这里要弹出我点删除的id为多少
+                alert("你删除的id为:" + current_id); //这里要弹出我点删除的id为多少
               }
             }
           })
@@ -1640,18 +1691,18 @@
     <div class="code_1">
       <pre>
         函数的四种定义方式
-        1.函数声明的方式（常用）
+        1.函数声明的方式(常用)
         function sum (num1,num2) {
           return num1 + num2;
         }
-        注意函数定义最后没有加分号。必须有名字，会函数提升，在预解析阶段就已经创建，声明前后都可以调用。
+        注意函数定义最后没有加分号。必须有名字,会函数提升,在预解析阶段就已经创建,声明前后都可以调用。
 
 
         2、函数表达式的方式
         let sum = function(num1,num2) {
           return num1 + num2;
         };
-        一种变量赋值，函表达式可以没有名字（匿名函数）,没有函数提升。函数表达式创建方式和函数声明几乎是等价的，
+        一种变量赋值,函表达式可以没有名字(匿名函数),没有函数提升。函数表达式创建方式和函数声明几乎是等价的,
         这里代码定义了一个变量sum并将其初始化为一个函数, 这个函数可以通过sum来引用。注意这里函数末尾是有分号的, 与任何变量初始化语句一样。
 
 
@@ -1665,7 +1716,7 @@
         let double = x => { return 2 * x };
         //没有参数需要括号
         let getRandom = () => { return Math.random() };
-        注意：箭头函数在参数和箭头之间不能换行, 但是, 可以通过在 '=>' 之后换行, 或者用 '( )'、'{ }'来实现换行
+        注意:箭头函数在参数和箭头之间不能换行, 但是, 可以通过在 '=>' 之后换行, 或者用 '( )'、'{ }'来实现换行
         任何可以使用函数表达式的地方, 都可以使用箭头函数。箭头函数语法简单, 非常适合嵌入函数的场景。
         let ints = [1,2,3];
         console.log(ints.map(function (i){
@@ -1765,11 +1816,11 @@
     <div class="code_1">
       <pre>
         &`#32;    == 普通的英文半角空格
-        &`#160;   == &`nbsp; == &`#xA0; == no-break space （普通的英文半角空格但不换行）
-        &`#12288; == 中文全角空格 （一个中文宽度）
-        &`#8194;  == &`ensp; == en空格 （半个中文宽度）
-        &`#8195;  == &`emsp; == em空格 （一个中文宽度）
-        &`#8197;  == 四分之一em空格 （四分之一中文宽度）
+        &`#160;   == &`nbsp; == &`#xA0; == no-break space (普通的英文半角空格但不换行)
+        &`#12288; == 中文全角空格 (一个中文宽度)
+        &`#8194;  == &`ensp; == en空格 (半个中文宽度)
+        &`#8195;  == &`emsp; == em空格 (一个中文宽度)
+        &`#8197;  == 四分之一em空格 (四分之一中文宽度)
 
         &`lt;  =  &`#60;    小于号  <
         &`gt;  =  &`#62;    大于号  >
@@ -1793,7 +1844,7 @@
     <h2>fetch请求<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        在react native的函数式结构中,在const App = (props) => {};之后或之前即可调用fetch，其他框架还没用过
+        在react native的函数式结构中,在const App = (props) => {};之后或之前即可调用fetch,其他框架还没用过
 
         来源: https://www.gxlcms.com/JavaScript-252463.html
 
@@ -1843,7 +1894,7 @@
         POST.3(推荐):
         let REQUEST_URL = 'http://www.yousite.com/xxxx.ashx';
 
-        // `首先我们需要自己创建一个FormData，来存请求参数`
+        // `首先我们需要自己创建一个FormData,来存请求参数`
         
         let parameters = new FormData();
         parameters.append("mt", "30013");
@@ -1969,7 +2020,7 @@
       <pre>
         父组件 调用子组件时 传参数给子组件
         1.在调用子组件的地方写上要传入的参数
-        例如：
+        例如:
         实例&lt;Rotation imgsdata={imgs}/&gt;
         解释&lt;子组件名 传入的名字={数据}/&gt;
 
@@ -1989,7 +2040,7 @@
         &lt;Pressable onPress={()=&gt;{props.navigation.navigate('DetailsPage',{ id: item.id, })}}&gt;
 
         B组件
-        函数式：
+        函数式:
         在const App = (props) => {};return前
         const navigation = this.props;
         let id = navigation.getParam("id");
@@ -2007,7 +2058,7 @@
     <h2>Vue注册原生事件<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        .native 事件修饰符就是用来注册元素的原生事件而不是组件自定义事件的，例如elementUI里就可以用到这个
+        .native 事件修饰符就是用来注册元素的原生事件而不是组件自定义事件的,例如elementUI里就可以用到这个
       </pre>
     </div>
 
@@ -2019,15 +2070,15 @@
 
         三种方法
         1. sessionStorage(不推荐)
-          1). 仅在当前会话下有效，关闭浏览器窗口后就被清除了
+          1). 仅在当前会话下有效,关闭浏览器窗口后就被清除了
           2). 存放数据大小一般为5MB
           3). 不与服务器进行交互通信
         2. localStorage
-          1). 除非主动清除localStorage里的信息，否则将永远存在，关闭浏览器窗口后下次启动任然存在
+          1). 除非主动清除localStorage里的信息,否则将永远存在,关闭浏览器窗口后下次启动任然存在
           2). 存放数据大小一般为5MB
           3). 不与服务器进行交互通信
         3. cookies
-          1). 可以手动设置过期时间，超过有效期则失效。未设置过期时间，关闭浏览器窗口后就被清除了
+          1). 可以手动设置过期时间,超过有效期则失效。未设置过期时间,关闭浏览器窗口后就被清除了
           2). 存放数据大小一般为4K
           3). 每次请求都会被传送到服务器
 
@@ -2139,7 +2190,7 @@
                     let password = Base64.encode(this.loginForm.password); // base64加密
                     this.setCookie(this.loginForm.userId, password, 7);
                   } else {
-                    this.setCookie("", "", -1); // 修改2值都为空，天数为负1天就好了
+                    this.setCookie("", "", -1); // 修改2值都为空,天数为负1天就好了
                   }
                   /* ------ http登录请求 ------ */
                 } else {
@@ -2165,7 +2216,7 @@
               if (document.cookie.length > 0) {
                 let arr = document.cookie.split("; "); //分割成一个个独立的“key=value”的形式
                 for (let i = 0; i < arr.length; i++) {
-                  let arr2 = arr[i].split("="); // 再次切割，arr2[0]为key值，arr2[1]为对应的value
+                  let arr2 = arr[i].split("="); // 再次切割,arr2[0]为key值,arr2[1]为对应的value
                   if (arr2[0] === "userId") {
                     this.loginForm.userId = arr2[1];
                   } else if (arr2[0] === "password") {
@@ -2189,7 +2240,7 @@
         上面那可以修改 页面标题后缀
 
 
-        找到Cookies.set,在第三个值，那个对象中可设置sameSite属性
+        找到Cookies.set,在第三个值,那个对象中可设置sameSite属性
         例如 
         const options = {
           domain: process.env.VUE_APP_DOMAIN,
@@ -2236,9 +2287,9 @@
     <h2>JavaScript怎么终止循环<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        1、使用break语句退出整个循环，立刻退出包含在最内层的循环或者退出一个switch语句。
-        2、使用continue语句退出当前循环，不是退出整个循环，而是开始循环的一次新迭代。
-        3、使用return语句退出整个函数，只能出现在函数体内。
+        1、使用break语句退出整个循环,立刻退出包含在最内层的循环或者退出一个switch语句。
+        2、使用continue语句退出当前循环,不是退出整个循环,而是开始循环的一次新迭代。
+        3、使用return语句退出整个函数,只能出现在函数体内。
       </pre>
     </div>
     
@@ -2249,7 +2300,7 @@
         npm安装模块
         【npm install xxx】利用 npm 安装xxx模块到当前命令行所在目录；
         【npm install -g xxx】利用npm安装全局模块xxx；
-        本地安装时将模块写入package.json中：
+        本地安装时将模块写入package.json中:
 
         【npm install xxx】安装但不写入package.json；
         【npm install xxx –save】 安装并写入package.json的”dependencies”中；
@@ -2265,13 +2316,13 @@
     <h2>react native Android 键盘将底部导航栏/按钮顶起<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        找到文件 android/app/src/main/AndroidManifest.xml，修改android:windowSoftInputMode 属性值
-          1. 搜索：`android:windowSoftInputMode`
-          2. 原内容：
+        找到文件 android/app/src/main/AndroidManifest.xml,修改android:windowSoftInputMode 属性值
+          1. 搜索:`android:windowSoftInputMode`
+          2. 原内容:
             android:windowSoftInputMode="adjustResize"
-            修改后：
+            修改后:
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-          3. 重启 Android Studio，即可生效喔喔喔 (这个是安卓的配置文件，需要重新生成apk才有效果)
+          3. 重启 Android Studio,即可生效喔喔喔 (这个是安卓的配置文件,需要重新生成apk才有效果)
       </pre>
     </div>
         
@@ -2280,16 +2331,16 @@
     <div class="code_1">
       <pre>
         1、单行文本溢出显示省略号
-          overflow: hidden;（文字长度超出限定宽度，则隐藏超出的内容）
-          white-space: nowrap;（设置文字在一行显示，不能换行）
-          text-overflow: ellipsis;（规定当文本溢出时，显示省略符号来代表被修剪的文本）
+          overflow: hidden;(文字长度超出限定宽度,则隐藏超出的内容)
+          white-space: nowrap;(设置文字在一行显示,不能换行)
+          text-overflow: ellipsis;(规定当文本溢出时,显示省略符号来代表被修剪的文本)
 
         2、多行文本溢出显示省略号
-          -webkit-line-clamp: 2;（用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性）
-          display: -webkit-box;（和 1 结合使用，将对象作为弹性伸缩盒子模型显示 ）
-          -webkit-box-orient: vertical;（和 1 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ）
-          overflow: hidden;（文本溢出限定的宽度就隐藏内容）
-          text-overflow: ellipsis;（多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本)
+          -webkit-line-clamp: 2;(用来限制在一个块元素显示的文本的行数,2 表示最多显示 2 行。为了实现该效果,它需要组合其他的 WebKit 属性)
+          display: -webkit-box;(和 1 结合使用,将对象作为弹性伸缩盒子模型显示 )
+          -webkit-box-orient: vertical;(和 1 结合使用 ,设置或检索伸缩盒对象的子元素的排列方式 )
+          overflow: hidden;(文本溢出限定的宽度就隐藏内容)
+          text-overflow: ellipsis;(多行文本的情况下,用省略号 “…” 隐藏溢出范围的文本)
       </pre>
     </div>
         
@@ -2311,21 +2362,7 @@
         return true;
       </pre>
     </div>
-        
-    <hr>
-    <h2>Vue 跳转刷新<span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-        @click.native='flushCom'
-        
-        flushCom:function(){
-          //router是路由实例,例如:var router = new Router({})
-          //router.go(n)是路由的一个方法，意思是在history记录中前进或者后退多少步，0就表示还是当前，类似window.history.go(n)
-          this.$router.go(0);
-        },
-      </pre>
-    </div>
-        
+
     <hr>
     <h2>react native logcat报错提示<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -2350,7 +2387,7 @@
         4、设置或获取与 URL 关联的端口号码
         window.location.port
 
-        5、设置或获取与 URL 的路径部分（就是文件地址）
+        5、设置或获取与 URL 的路径部分(就是文件地址)
         window.location.pathname
 
         6、设置或获取 href 属性中跟在问号后面的部分
@@ -2390,7 +2427,7 @@
     <h2>番外: 免费商用字体<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        系统自带的黑体、宋体、仿宋、隶书、楷体、幼圆这六款字体属于通用字体，没有具体的著作权，可作商用
+        系统自带的黑体、宋体、仿宋、隶书、楷体、幼圆这六款字体属于通用字体,没有具体的著作权,可作商用
         https://www.zcool.com.cn/special/zcoolfonts/
         https://www.maoken.com/
         https://www.5iyuyan.com/29204.html
@@ -2423,7 +2460,7 @@
         1.安装本地访问服务插件serve
         npm install -g serve
 
-        2.在dist文件夹里，运行
+        2.在dist文件夹里,运行
         npm run serve
       </pre>
     </div>
@@ -2486,6 +2523,118 @@
           &lt;/div&gt;
       </pre>
     </div>
+                
+    <hr>
+    <h2>vue的几种路由跳转方式<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+
+        1、router-link跳转
+          //不带参数跳转
+          &lt;router-link to="/register"&gt;
+             &lt;span&gt;跳转&lt;/span&gt;
+          &lt;/router-link&gt;
+ 
+          //带参跳转 路由显示
+          &lt;router-link :to="{path:'register',query:{setid:123456}}"&gt;
+             &lt;span&gt;跳转&lt;/span&gt;
+          &lt;/router-link&gt;
+ 
+          //带参跳转 路由不显示
+          &lt;router-link :to="{path:'register',params:{setid:123456}}"&gt;
+             &lt;span&gt;跳转&lt;/span&gt;
+          &lt;/router-link&gt;
+
+        2、this.$router.push()
+          //不带参数跳转
+          this.$router.push("/register")
+
+          //带参跳转 路由显示
+          this.$router.push({path:"/register",query:{setid:123456}})
+
+          //带参跳转 路由不显示 页面刷新数据丢失
+          this.$router.push({name:"register",params:{setid:123456}})
+
+        3、this.$router.go(1);
+          // 后退一步记录,等同于 history.back()
+          this.$router.go(-1);
+                  
+          // 在浏览器记录中前进一步,等同于 history.forward()
+          this.$router.go(1);
+
+        4、this.$router.replace
+          1.跳转到指定URL,替换history栈中最后一个记录,点击后退会返回至上上一个页面
+          (A----->B----->C 结果B被C替换 A----->C)
+          2.设置 replace 属性(默认值: false)的话,当点击时,会调用 router.replace() 而不是 router.push(),于是导航后不会留下 history 记录。即使点击返回按钮也不会回到这个页面
+          加上replace: true后,它不会向 history 添加新记录,而是跟它的方法名一样 —— 替换掉当前的 history 记录。
+
+          //跳转后无法返回到上一页
+          this.$router.replace("/register")
+          //声明式：
+          &lt;router-link :to="/register" replace&gt;&lt;/router-link&gt;
+          // 编程式:
+          this.$router.replace('/register')
+          //push方法也可以传replace
+          this.$router.push({path: '/register', replace: true})
+
+          报错：
+          [Vue Router warn]: Path "/AppMain/Flow" was passed with params but they will be ignored. Use a named route alongside params instead.
+
+          因为用的是路径路由
+          解决方案：
+          https://stackoverflow.com/questions/68435072/vue-router-warning-message-passed-with-params-but-they-will-be-ignored
+          警告基本上是让您知道如果要传递参数，则需要使用命名路由而不是路径。
+          this.$router.push({path: '/AppMain/Flow', replace: true, params:{ FormDataFillInValue: FormDataValue }})
+
+          改为命名路由即可
+          this.$router.push({name: 'Flow', replace: true, params:{ FormDataFillInValue: FormDataValue }})
+
+      </pre>
+    </div>
+        
+    <hr>
+    <h2>router-link 带参数跳转<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        1. 不带参数
+        &lt;router-link :to="{name:'home'}"&gt;
+        &lt;router-link :to="{path:'/home'}"&gt;//name,path都行, 建议用name  
+        // 注意:router-link中链接如果是'/'开始就是从根路由开始,如果开始不带'/',则从当前路由开始。
+        
+        
+        2.带参数
+        &lt;router-link :to="{name:'home', params: {id:1},}"&gt; 
+        // params传参数 (类似post)
+        // 路由配置 path: "/home/:id" 或者 path: "/home:id" 
+        // 不配置path ,第一次可请求,刷新页面id会消失
+        // 配置path,刷新页面id会保留
+        
+        // html 取参  $route.params.id
+        // script 取参  this.$route.params.id
+        
+        
+        &lt;router-link :to="{name:'home', query: {id:1},}"&gt;
+        // query传参数 (类似get,url后面会显示参数)
+        // 路由可不配置
+        
+        // html 取参  $route.query.id
+        // script 取参  this.$route.query.id
+      </pre>
+    </div>
+              
+    <hr>
+    <h2>Vue 跳转刷新<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        @click.native='flushCom'
+        
+        flushCom:function(){
+          //router是路由实例,例如:var router = new Router({})
+          //router.go(n)是路由的一个方法,意思是在history记录中前进或者后退多少步,0就表示还是当前,类似window.history.go(n)
+          this.$router.go(0);
+        },
+      </pre>
+    </div>
         
     <hr>
     <h2>Vue 请求<span class="down" onclick="clickondown(this)">\/</span></h2>
@@ -2497,18 +2646,18 @@
 
         一、vue-resource
           1. 安装vue-resource
-            在项目根目录进行安装：cnpm install vue-resource --save
-            save说明：将此插件名插入到pachage.json文件中，别人在使用时，直接npm install，就会安装package.json里的所配置的软件插件名称了。
+            在项目根目录进行安装:cnpm install vue-resource --save
+            save说明:将此插件名插入到pachage.json文件中,别人在使用时,直接npm install,就会安装package.json里的所配置的软件插件名称了。
 
           2.引入vue-resource
-            在main.js中引入这个插件，并使用这个插件
+            在main.js中引入这个插件,并使用这个插件
 
             import VueResource from 'vue-resource'
-            #引入插件，VueResource 是别名 ；vue-resource 是我们下载的插件
+            #引入插件,VueResource 是别名 ；vue-resource 是我们下载的插件
             Vue.use(VueResource );
             #使用插件
  
-          3.使用示例：
+          3.使用示例:
           &lt;template&gt;
             &lt;div&gt;
               &lt;p&gt;vue-resource方式&lt;/p&gt;
@@ -2549,10 +2698,10 @@
 
           二、axios
             1.安装axios
-              在项目根目录进行安装：cnpm install axios --save
+              在项目根目录进行安装:cnpm install axios --save
 
             2.引入axios
-              在哪个.vue文件里使用就在哪里引入，例如我在App.vue里使用，就在App.vue里引入，注意要在script标签开始处引入。
+              在哪个.vue文件里使用就在哪里引入,例如我在App.vue里使用,就在App.vue里引入,注意要在script标签开始处引入。
 
               import Axios from 'axios';
 
@@ -2598,10 +2747,10 @@
 
             三、fetch-jsonp
               1.安装
-                在项目根目录进行安装：cnpm install fetch-jsonp --save
+                在项目根目录进行安装:cnpm install fetch-jsonp --save
 
               2.引入
-                在哪个.vue文件里使用就在哪里引入，例如我在App.vue里使用，就在App.vue里引入，注意要在script标签开始处引入。
+                在哪个.vue文件里使用就在哪里引入,例如我在App.vue里使用,就在App.vue里引入,注意要在script标签开始处引入。
 
               3.使用示例
               &lt;template&gt;
@@ -2645,37 +2794,7 @@
               &lt;/script&gt;
       </pre>
     </div>
-        
-    <hr>
-    <h2>router-link 带参数跳转<span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-        1. 不带参数
-        &lt;router-link :to="{name:'home'}"&gt;
-        &lt;router-link :to="{path:'/home'}"&gt;//name,path都行, 建议用name  
-        // 注意：router-link中链接如果是'/'开始就是从根路由开始，如果开始不带'/'，则从当前路由开始。
-        
-        
-        2.带参数
-        &lt;router-link :to="{name:'home', params: {id:1},}"&gt; 
-        // params传参数 (类似post)
-        // 路由配置 path: "/home/:id" 或者 path: "/home:id" 
-        // 不配置path ,第一次可请求,刷新页面id会消失
-        // 配置path,刷新页面id会保留
-        
-        // html 取参  $route.params.id
-        // script 取参  this.$route.params.id
-        
-        
-        &lt;router-link :to="{name:'home', query: {id:1},}"&gt;
-        // query传参数 (类似get,url后面会显示参数)
-        // 路由可不配置
-        
-        // html 取参  $route.query.id
-        // script 取参  this.$route.query.id
-      </pre>
-    </div>
-        
+  
     <hr>
     <h2>Vue 修改 title标题和icon<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -2695,7 +2814,7 @@
     </div>
         
     <hr>
-    <h2>vue打包后,非服务器根目录时，地址不匹配<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>vue打包后,非服务器根目录时,地址不匹配<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
         在 vue.config.js -> module.exports 里面加上下面的配置即可
@@ -2711,16 +2830,16 @@
     <h2>ssh 配置<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        生成私匙 -设置邮箱，不改动名字
+        生成私匙 -设置邮箱,不改动名字
         ssh-keygen -t rsa -C "your_email@example.com"
-        生成私匙 -设置邮箱，改动名字
+        生成私匙 -设置邮箱,改动名字
         ssh-keygen -t rsa -C "your_email@example.com"  -f  ~/.ssh/id_rsa_java8642
 
 
-        因为ssh默认查找 id_rsa 这个私钥，所以改名的话需要一个配置文件
+        因为ssh默认查找 id_rsa 这个私钥,所以改名的话需要一个配置文件
         生成私匙配置文件
         vim ~/.ssh/config
-        内容如下：
+        内容如下:
         IdentityFile  ~/.ssh/id_rsa_java8642
         IdentityFile  ~/.ssh/id_rsa
         系统会 挨个地去 尝试这些私钥文件
@@ -2737,11 +2856,11 @@
     </div>
         
     <hr>
-    <h2>es6之扩展运算符 三个点（…）<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>es6之扩展运算符 三个点(…)<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
         一句话总结
-        对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中
+        对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性,拷贝到当前对象之中
       </pre>
     </div>
         
@@ -2763,24 +2882,24 @@
     <h2>禁用eslint 的四种方式<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        方法一：创建配置文件来定义禁用范围
+        方法一:创建配置文件来定义禁用范围
           在根目录创建文件.eslintignore
           加入如下内容
           */.js
           */.vue
 
-        方法二：在文件某行上面写以下标识，禁用下一行
+        方法二:在文件某行上面写以下标识,禁用下一行
           // eslint-disable-next-line to ignore the next line.
           console.log("这行esline不检查")
           
-        方法三：在文件中写上以下标识，禁用整个文件
+        方法三:在文件中写上以下标识,禁用整个文件
           /* eslint-disable */
 
-        方法四：修改package.json文件禁用全局：
+        方法四:修改package.json文件禁用全局:
           "no-unused-vars":"off", //新增此行
           
-          网上搜到的常见解决办法是将 webpack.base.conf.js 中的 (config.dev.useEslint ? [createLintingRule()] : []),注释掉，
-          这种办法解决问题的根本原因是直接去掉了 eslint 的语法检查，这显然是不合适的，我们正确的操作应该是让 eslint 认为标签换行不是一个语法错误。
+          网上搜到的常见解决办法是将 webpack.base.conf.js 中的 (config.dev.useEslint ? [createLintingRule()] : []),注释掉,
+          这种办法解决问题的根本原因是直接去掉了 eslint 的语法检查,这显然是不合适的,我们正确的操作应该是让 eslint 认为标签换行不是一个语法错误。
           修改方法是在 package.json 文件中的 eslintConfig 下的 rules 中添加 一些规则
           例如
           'eslint-disable-next-line':false
@@ -2790,37 +2909,136 @@
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>.vue 文件引入CDN<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        在mounted调用这个方法就行
+        注: 会出现在body最下面,调用的太晚,可能会影响到某些函数的运行
+        scriptUrl(){
+          //css
+          // const link = document.createElement('link');
+          // link.rel = 'stylesheet';
+          // link.href = `https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css`;
+          // document.body.appendChild(link);
+          //js
+          const script= document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = `https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js`;
+          document.body.appendChild(script);
+        },
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>本地储存数据<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        本地存储
+          vuex存储的数据会在页面刷新后被移除,但本地存储的数据却不会。本地存储分两种:localStorage和sessionStorage
+          区别:
+          localStorage:可长期存储数据,除非用户清除localStorage信息,否则数据会一直存在。同一中浏览器之间,不同页面,数据可以共享。
+          sessionStorage:短期存储数据,用户关闭标签页后或直接关闭浏览器后数据会清空。同一浏览器不同页面之间,数据不可共享
+          使用方法相同。
+
+          1.存储数据
+          本地存储可直接使用,不需要引入,代码如下:
+          // 将this.pickerItem的数据存储入insuranceCode,需提前转化成string类型
+          localStorage.setItem("insuranceCode", JSON.stringify(this.pickerItem));
+          sessionStorage.setItem("insuranceCode", JSON.stringify(this.pickerItem));
+
+          2.取出数据
+          现在我要把数据放入vuex中存起来,相当于把苹果放入果盘,我们需要在页面中的方法里面这样使用,代码如下:
+          JSON.parse(localStorage.getItem("insuranceCode"));
+          JSON.parse(sessionStorage.getItem("insuranceCode"));
+
+          3.清除数据
+          可清楚指定的数据,也可清楚所有数据,代码如下:
+          // 清除insuranceCode
+          localStorage.removeItem("insuranceCode");
+          sessionStorage.removeItem("insuranceCode");
+          // 清除所有
+          localStorage.clear();
+          sessionStorage.clear();
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue3 data里不能写data的值<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-      </pre>
-    </div>
-            
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
-      </pre>
-    </div>
-            
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
+        data() {
+          return {
+            a: this.b,
+            b: 1,
+          }
+        },
+
+        mounted() {
+          console.log(this.a);
+          console.log(this.b);
+          this.b = 10;
+          console.log(this.a);
+          console.log(this.b);
+        },
+
+        这样打印出来是
+        undefined
+        1
+        undefined
+        10
+
+
+        原因:
+        戒码第一天: 
+        @影追音ᝰ data 内,你无法使用 this
+        无法访问到this。this不指向当前组件实例,所以读取不了,自然无反应@影追音ᝰ
+
+        影追音ᝰ:
+        @戒码第一天 这样啊,那有什么办法可以实现吗,watch?
+
+        戒码第一天: 
+        @影追音ᝰ  看功能,但如果你只是希望拿到 data 内的两个属性进行修改啥的,用computed就行
+        computed能够使用this访问到当前组件内的任何属性、方法
+        
+        影追音ᝰ:
+        我现在的问题就是setup的值没法直接给到data里,想中转一下
+
+        戒码第一天: 
+        你是vue3么
+
+        影追音ᝰ:
+        嗯
+
+        戒码第一天: 
+        一样用computed
+        而且,vue3内,不建议写 data 这些配置的api了
+        这些是兼容vue2 的
+        用组合api
+        你在vue3内使用vue2的语法就很怪,所以会造成一些很奇葩的现象,setup 是没有this的,然后你数据又放data,又用 computed 配置项,你干脆用vue2好过
+        否则的话,还是用vue3 的语法,不参vue2 的一些
+
+        影追音ᝰ:
+        vue3的值都用setup存吗
+
+        戒码第一天: 
+        @影追音ᝰ 直接用 &lt;script setup&gt; 更爽
+        setup 是 vue3 的声明周期,完完全全替代了 vue2 里的 beforecreate、created 周期,并且比这两个都要更先调用
+        所以,你如果要用data配置项,只能老老实实跟写 vue2 一样写,不出现 setup
+
+        影追音ᝰ:
+        我还在想为什么ref和reactive的功能和data这么像
+
+        戒码第一天: 
+        ref、reactive 就是用来响应的
+
+        影追音ᝰ:
+        我以为只是多了个创建响应式的api
+
+        戒码第一天: 
+        你不使用 ref、reactive 的话,数据就不会被响应更新
+        除非你使用 vue2写法,也就是不去使用 vue3 的任何新的api
+
+
       </pre>
     </div>
             
