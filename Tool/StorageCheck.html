@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/x-icon"
+    href="https://github.com/SzhLzj/My-Blog/blob/aa53eb4c385b2007859082f8fb4f1a84e2645398/img/szh.jpg?raw=true">
+  <link rel='icon'  type="images/x-icon" href="/img/szh.jpg"></link>
+  <title>Storage验证</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 0.51rem;
+      text-align: center;
+    }
+    h3{
+      font-size: 0.31rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center;">
+
+    <h3 id="localStorage"></h3>
+    <h3 id="sessionStorage"></h3>
+    <h3 id="localStorageMax"></h3>
+    <h3 id="sessionStorageMax"></h3>
+
+  </div>
+
+  <script src="../js/rem.js"></script>
+  <!-- 适应性修改 -->
+  <script>
+
+    function get_cache_size(Storage){
+      Storage = Storage == undefined ? "localStorage" : Storage;
+      let obj = "";
+      if (Storage==='localStorage') {
+        if (!window.localStorage) {
+          console.log('浏览器不支持localStorage');
+        } else {
+          obj = window.localStorage;
+        }
+      } else {
+        if (!window.sessionStorage) {
+          console.log('浏览器不支持sessionStorage');
+        } else {
+          obj = window.sessionStorage;
+        }
+      }
+      if(obj!==""){
+        let size = 0;
+        for(item in obj) {
+          if(obj.hasOwnProperty(item)) {
+            size += obj.getItem(item).length;
+          }
+        }
+        console.log('当前已用存储：' + (size / 1024).toFixed(2) + 'KB');
+        document.getElementById(Storage).innerHTML = `当前 ${Storage} 已用存储：${(size / 1024).toFixed(2)}KB`;
+      }
+    };
+    get_cache_size('localStorage');//localStorage当前大小
+    get_cache_size('sessionStorage');//sessionStorage当前大小
+
+
+
+    let w1   = '0'; //1B
+    let w10  = '01234567890'; //10B
+    let w32  = '01234567890123456789012345678901'; //32B
+    let w64  = '0123456789012345678901234567890101234567890123456789012345678901'; //64B
+    let w1K  = '';  //1KB
+    let w8K  = ''; //8KB
+    // let w10K = ''; //10KB
+    let w32K = ''; //32KB
+    let w64K = ''; //64KB
+    let w1M  = '';  //1MB
+    let n = 1;
+
+    function addByte(InitialByteNum,FinalByteNum,MaxByteNum) {
+      n++;
+      // console.log(n);
+      // console.log(InitialByteNum.length);
+      InitialByteNum += InitialByteNum;
+      if(InitialByteNum.length == MaxByteNum) { //10240B = 10KB
+        switch (FinalByteNum) {
+          case 'w1K':
+            w1K = InitialByteNum;
+            break;
+          case 'w8K':
+            w8K = InitialByteNum;
+            break;
+          // case 'w10K':
+            // w10K = InitialByteNum;
+            // break;
+          case 'w32K':
+            w32K = InitialByteNum;
+            break;
+          case 'w64K':
+            w64K = InitialByteNum;
+            break;
+          case 'w1M':
+            w1M = InitialByteNum;
+            break;
+          default:
+            break;
+        }
+        console.log(InitialByteNum.length,FinalByteNum,MaxByteNum,n);
+        return;
+      }
+      addByte(InitialByteNum,FinalByteNum,MaxByteNum);
+    }
+
+    addByte(w64,'w1K',1024);
+    addByte(w1K,'w8K',8192);
+    // addByte(w1K,'w10K',10240);
+    addByte(w8K,'w32K',32768);
+    addByte(w32K,'w64K',65536);
+    addByte(w64K,'w1M',1048576);
+
+    // console.log(`-w1:${w1.length}--w10:${w10.length}--w32:${w32.length}--w64:${w64.length}--w1K:${w1K.length}--w8K:${w8K.length}--w10K:${w10K.length}--w32K:${w32K.length}--w64K:${w64K.length}--w1M:${w1M.length}-`);
+
+    //Storage最大值
+    function StorageMaxNum2(StorageName,StorageNum) {
+      // console.log(StorageNum.length);
+      // window[StorageName].removeItem('test');
+      // window[StorageName].setItem('test', StorageNum);
+      let StorageNum2 = StorageNum;
+      let setTiem2 = setInterval(function(){
+        StorageNum2 += w1;
+        try {
+          window[StorageName].removeItem('test');
+          window[StorageName].setItem('test', StorageNum2);
+          // console.log(StorageNum2.length / 1024 + 'KB');
+        } catch(e) {
+          // alert(StorageNum2.length / 1024 + 'KB超出最大限制');
+          console.log(StorageNum.length / 1024 + 'KB');
+          console.log(StorageNum2.length / 1024 + 'KB超出最大限制');
+          document.getElementById(`${StorageName}Max`).innerHTML = `当前 ${StorageName} 最大存储为: ${(StorageNum.length / 1024).toFixed(2)}KB`;
+          clearInterval(setTiem2);
+          // StorageMaxNum2(StorageName,StorageNum);
+        }
+      }, 20)
+    }
+
+    function StorageMaxNum(StorageName) {
+      let StorageNum = w1M;
+      let setTiem = setInterval(function(){
+        StorageNum += w1M;
+        try {
+          window[StorageName].removeItem('test');
+          window[StorageName].setItem('test', StorageNum);
+          // console.log(StorageNum.length / 1024 + 'KB');
+        } catch(e) {
+          // alert(StorageNum.length / 1024 + 'KB超出最大限制');
+          // console.log((StorageNum+w1M).length / 1024 + 'KB超出最大限制');
+          clearInterval(setTiem);
+          StorageMaxNum2(StorageName,StorageNum);
+        }
+      }, 20)
+    };
+
+    StorageMaxNum('localStorage');
+    StorageMaxNum('sessionStorage');
+
+  </script>
+
+  <!-- 原方法 -->
+  <!-- <script>
+    function get_cache_size(t){
+      t = t == undefined ? "l" : t;
+      var obj = "";
+      if(t==='l'){
+        if(!window.localStorage) {
+          console.log('浏览器不支持localStorage');
+        }else{
+          obj = window.localStorage;
+        }
+      }else{
+        if(!window.sessionStorage) {
+          console.log('浏览器不支持sessionStorage');
+        }else{
+          obj = window.sessionStorage;
+        }
+      }
+      if(obj!==""){
+        var size = 0;
+        for(item in obj) {
+          if(obj.hasOwnProperty(item)) {
+            size += obj.getItem(item).length;
+          }
+        }
+        console.log(t+'当前已用存储：' + (size / 1024).toFixed(2) + 'KB');
+      }
+    };
+    get_cache_size('l');//localStorage当前大小
+    get_cache_size('s');//sessionStorage当前大小
+
+    //localStorage最大值
+    function localStorageMax() {
+      (function() {
+        if(!window.localStorage) {
+          console.log('当前浏览器不支持localStorage!')
+        }    
+        var test = '0123456789'; //10B
+        var add = function(num) {
+          num += num;
+          if(num.length == 10240) { //10240B = 10KB
+            test = num;
+            return;
+          }
+          add(num);
+        }
+        add(test);
+        var sum = test;
+        var show = setInterval(function(){
+          sum += test;
+          try {
+            window.localStorage.removeItem('test');
+            window.localStorage.setItem('test', sum);
+            console.log(sum.length / 1024 + 'KB');
+          } catch(e) {
+            alert(sum.length / 1024 + 'KB超出最大限制');
+            clearInterval(show);
+          }
+        }, 20)
+      })();
+    }
+  </script> -->
+</body>
+</html>

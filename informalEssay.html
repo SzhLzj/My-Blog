@@ -1366,6 +1366,69 @@
       </pre>
       <div style="width: 0px; height: 0px; border-bottom: 20px solid #00a3af; border-left: 20px solid transparent; border-right: 20px solid transparent;"></div>
     </div>
+    
+    <hr>
+    <h2>自己画一个"暂停"<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        &lt;div style="height: 0.5rem; width: 0.5rem; display: flex; justify-content: center; align-items: center;"&gt;
+          &lt;div style="height: 0.4rem; width: 0.4rem; border-radius: 0.4rem; border: 0.04rem solid #000;"&gt;&lt;/div&gt;
+          &lt;div style="position: absolute; margin-left: 0.05rem; border-radius: 0.05rem; width: 0px; height: 0px; border-left: 0.15rem solid #000; border-top: 0.10rem solid transparent; border-bottom: 0.10rem solid transparent;"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+下面是效果图
+      </pre>
+      <div style="height: 50px; width: 50px; display: flex; justify-content: center; align-items: center;">
+        <div style="height: 40px; width: 40px; border-radius: 40px; border: 4px solid #000;"></div>
+        <div style="position: absolute; margin-left: 5px; border-radius: 3px; width: 0px; height: 0px; border-left: 15px solid #000; border-top: 10px solid transparent; border-bottom: 10px solid transparent;"></div>
+      </div>
+    </div>
+            
+    <hr>
+    <h2>自定义滚动条<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        先搞一个容器
+        &lt;div style="height: 2.1rem; width: 11.56rem; overflow-x: hidden; overflow-y: auto;" class="SegmentSelection"&gt;
+        &lt;/div&gt;
+
+        然后修改样式
+        /* 修改滚动条样式 */
+        /*  width height分别对应竖向滚动条和横向滚动条  */
+        .SegmentSelection::-webkit-scrollbar {
+          width: 0.05rem;
+          height: 0.05rem;
+          background-color: #ffffff;
+        }
+      
+        /* 修改滚动条中的小滑块 */
+        .SegmentSelection::-webkit-scrollbar-thumb {
+          width: 0.1rem;
+          border-radius: 0.1rem;
+          background-color: #535353;
+          box-shadow: inset 0 0 0.05rem rgba(0, 0, 0, 0.2);
+        }
+      
+        /* 定义滚动条的轨道 */
+        .SegmentSelection::-webkit-scrollbar-track {
+          background-color: #ededed;
+          border-radius: 0.05rem;
+          box-shadow: inset 0 0 0.05rem rgba(0, 0, 0, 0.2);
+        }
+      
+        /* 定义轨道两端的按钮 */
+        .SegmentSelection::-webkit-scrollbar-button {
+          height: 0px;
+          background-color: initial;
+        }
+      
+        /*  给小滑块添加hover事件，鼠标悬浮在滑块上面的样式  */
+        .SegmentSelection::-webkit-scrollbar-thumb:hover {
+          background-color: #ac1c22;
+        }
+
+      </pre>
+    </div>
 
     <hr>
     <h2>自己画个radio 或 checkbox<span class="down" onclick="clickondown(this)">\/</span></h2>
@@ -1852,9 +1915,9 @@
         fetch('https://facebook.github.io/react-native/movies.json') //请求接口
           .then((response) => response.json()) //response就是返回值,用.json()解析一下
           .then((responseJson) => { //解析后的值(responseJson),就是完整的接口返回
-            console.error(responseJson);
-            console.error(responseJson.result);
-            return responseJson.result;
+            console.log(responseJson);
+            //console.log(responseJson.result);
+            //return responseJson.result;
           })
           .catch((error) => {
             console.error(error);
@@ -2861,6 +2924,10 @@
       <pre>
         一句话总结
         对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性,拷贝到当前对象之中
+
+        let a = [100,200,300,400,500,600,700,800,900];
+        console.log({...a});
+        去试试?
       </pre>
     </div>
         
@@ -3043,37 +3110,272 @@
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>与或非<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        与 && 两个同时true, 结果才为true, 否则为false
+        或 || 两个中一个或两个为true, 结果就为true, 否则为false
+        非 !  取反, true为false, false为true
+
+        if( !true ){
+          console.log(true);
+        }else{
+          console.log(false);
+        }
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>vue3中获取proxy包裹的数据<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        vue3打印数组时发现,数组是个proxy对象
+        查资料了解到: vue3使用proxy代替vue2的object.defineProperty, 相当于在对象前设置的“拦截”
+
+        有两种方法
+        //第一种获取target值的方式, 通过vue中的响应式对象可使用toRaw()方法获取原始对象
+        import { toRaw } from '@vue/reactivity'
+        var list = toRaw(store.state.menuList)
+
+        //第二种获取target值的方式, 通过json序列化之后可获取值
+        JSON.parse(JSON.stringify(store.getters.menuList))
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue实现动态样式的多种方法汇总<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        0.根据data来
+        :style="{right: aaa}"
+        export default {
+          data() {
+            return {
+              aaa: '2rem',
+            }
+          }
+        }
+
+        1. 三元运算符判断
+        &lt;text :style="{color:state?'#ff9933':'#ff0000'}"&gt;hello world &lt;/text&gt;
+        &lt;script&gt;
+        export default {
+            data() {
+                return {
+                    state: true
+                }
+            }
+        }
+        &lt;/script&gt;
+
+
+        2. 动态设置class
+        2.1 主要运用于：实现循环列表中点击时，相应的元素高亮；（默认首个元素高亮）
+        &lt;template&gt;
+          &lt;div class="wrapper" v-for="(item,index) in houseList" :key="index" @click="rightTap(index)"&gt;
+            &lt;div class="houseTitle" :class="{'active' : index === rightIndex}"&gt;
+              {{item.name}}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/template&gt;
+        &lt;script&gt;
+        export default {
+          data() {
+            return {
+              rightIndex:0,
+              houseList:[]
+            };
+          },
+          methods:{
+            rightTap(index){ 
+              this.rightIndex = index
+            }
+          }
+        }
+        &lt;/script&gt;
+        &lt;style lang="scss" scoped&gt;
+        .wrapper{
+          width: 118px;
+          height: 60px;
+          margin: 6px auto 0 auto;
+          .houseTitle{
+            font-size: 22px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .active{
+            color:#2a7ffa;
+             background-color: pink;
+          }
+        }
+        &lt;/style&gt;
+
+        2.2 主要运用于：为特定数值设置相应样式；
+        &lt;div 
+          :class="activeId === item.id?'activeStyle':'machineBar'" 
+          v-for="(item,index) in List" :key="index" @click="clickEvent"&gt;    
+            &lt;p&gt;{{item.name}}&lt;/p&gt;    
+        &lt;/div&gt;
+    
+        3. 方法判断
+        3.1 主要运用于：为不同的数据值设置相应的样式；
+        &lt;template&gt;
+          &lt;div v-for="(item,index) in houseList" :key="index"&gt;             
+             &lt;div :style="getStyle(item.status)"&gt;{{item.name}}&lt;/div&gt;    
+          &lt;/div&gt; 
+        &lt;/template&gt;
+        &lt;script&gt;
+        export default { 
+          data(){
+            return{
+            houseList:[
+                { 
+                  id:1,
+                  name:1,
+                  status:'a'
+                },{
+                  id:2,
+                  name:2,
+                  status:'b'
+                },{
+                  id:3,
+                  name:3,
+                  status:'c'
+                }
+              ]
+            }
+          },
+          methods:{
+            getStyle(e){        
+              console.log('值',e)        
+              if(e === 'a'){            
+                return {                
+                  width:'60px',
+                  height:'60px',                
+                  background:'yellow',                 
+                  margin: '10px auto'             
+                }        
+              }else if(e === 'b'){            
+                return {                
+                  width:'60px',
+                  height:'60px',                  
+                  background:'red',                 
+                  margin: '10px auto'            
+                }        
+              }else if(e === 'c'){            
+                return {                
+                  width:'60px',
+                  height:'60px',                 
+                  background:'pink',                 
+                  margin: '10px auto'             
+                }        
+              }
+            }
+          }
+        }
+        &lt;/script&gt;
+
+        3.2 主要运用于：在元素多从事件下，显示相应的样式；
+        &lt;template&gt;
+          &lt;div 
+              class="homeWrap" :class="{'select': selected === 1,'click': clicked === 1}" 
+              @click="handleClick(1)" @mousedown="menuOnSelect(1)"&gt;
+             主页
+          &lt;/div&gt;   
+        &lt;/template&gt;
+        &lt;script&gt;
+        export default {
+          return {
+              selected: 0,
+              clicked: 0
+          }
+          methods:{
+            menuOnSelect(value){
+              this.selected = value;
+            },
+            handleClick(value){
+              this.selected = 0
+              this.clicked = value
+            }
+          }
+         }
+        &lt;/script&gt;
+        &lt;style lang="stylus" scoped&gt;
+          .homeWrap.select 
+            background red
+          .homeWrap.click 
+            background yellow
+        &lt;/style&gt;
+
+        4. 数组绑定
+        &lt;div :class="[isActive,isSort]"&gt;&lt;/div&gt;
+        // 数组与三元运算符结合判断选择需要的class
+        &lt;div class="item" :class="[item.name? 'lg':'sm']"&gt;&lt;/div&gt;
+        &lt;div class="item" :class="[item.age&lt;18? 'gray':'']"&gt;&lt;/div&gt;
+        // 数组对象结合
+        &lt;div :class="[{ active: isActive }, 'sort']"&gt;&lt;/div&gt;
+
+        data() {
+          return{
+            isActive:'active',
+            isSort:'sort'
+         }
+        }
+        // css
+        .active{
+            /*这里写需要设置的第一种样式*/
+          } 
+        .sort{
+            /*这里写需要设置的第二种样式*/
+          }
+
+          5. computed结合es6对象的计算属性名方法
+          &lt;div :class="classObject"&gt;&lt;/div&gt;
+ 
+          export default {
+            data(){
+              return{
+                isActive:true
+              }
+            },
+            computed:{
+              classObject() {
+                return{
+                  class_a:this.isActive,
+                  class_b:!this.isActive
+                //  这里要结合自身项目情况修改填写
+                }
+              }
+            }
+          }
+
+          // css
+          .class_a{
+             /*这里写需要设置的第一种样式*/
+          }
+
+          .class_b{
+            /*这里写需要设置的第二种样式*/
+          }
+
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>字节的换算关系<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-      </pre>
-    </div>
-            
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
+        中文标点占三个字节，一个英文字母占一个字节，英文标点占一个字节，一个数字占一个字节
+        字节的换算关系为：
+        1字节(Byte)=8字位=8个二进制数
+        1字位(bit)=1个二进制数
+        1B=8b
+        1KB=1024B
+        1MB=1024KB
+        1GB=1024MB
+        b称为字位、B称为字节、KB称为千字节、MB称为兆字节、GB称为吉字节。
       </pre>
     </div>
             
