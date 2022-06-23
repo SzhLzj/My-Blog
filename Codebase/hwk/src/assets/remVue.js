@@ -18,7 +18,7 @@ function setRem() {
   if (!clientWidth) {
     return;
   }
-  docEl.style.fontSize = 100 * (clientWidth / 2560) + 'px'; //调整rem 在393px设计稿上，1rem = 100px
+  docEl.style.fontSize = 100 * (clientWidth / 1920) + 'px'; //调整rem 在393px设计稿上，1rem = 100px
   
   //限制fontSize最大为 XXX px，根据项目不同而修改
   // let fs = document.documentElement.style.fontSize;
