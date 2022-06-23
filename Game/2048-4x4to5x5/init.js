@@ -185,7 +185,7 @@ function doAction(arr, direction) {
             easyMerge(arr[i], np);
         }
     }
-    if(isMove){     //如果本次操作有块移动了，则放置一个新块
+    if(isMove){     //如果本次操作有块移动了,则放置一个新块
         window.setTimeout(function () {
             randomAdd();
             if(plusScore !== 1)
@@ -245,7 +245,7 @@ function placeABlock(value) {
 }
 
 /**
- *  获取合适的size，根据当前屏幕的大小
+ *  获取合适的size,根据当前屏幕的大小
  * @param ratio
  * @returns {*}
  */
@@ -259,8 +259,8 @@ function getSuitableSize(ratio) {
 }
 
 /**
- * 向指定的空块中添加一个活动块（该位置若有活动块，则不做任何操作）
- * @param position 向哪个位置添加，第一个容器的位置为0
+ * 向指定的空块中添加一个活动块（该位置若有活动块,则不做任何操作）
+ * @param position 向哪个位置添加,第一个容器的位置为0
  * @param value
  */
 function addNewCellTo(position, value) {
@@ -298,7 +298,7 @@ function checkValue(position) {
 }
 
 /**
- * 试图随机选择一个空闲容器，若没有空闲容器，则返回-1，游戏结束
+ * 试图随机选择一个空闲容器,若没有空闲容器,则返回-1,游戏结束
  * @returns {number}
  */
 function selectAIdleCell() {

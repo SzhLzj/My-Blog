@@ -18,11 +18,11 @@ var EventUtil = {
     /**
      * 监听触摸的方向
      * @param target            要绑定监听的目标元素
-     * @param isPreventDefault  是否屏蔽掉触摸滑动的默认行为（例如页面的上下滚动，缩放等）
-     * @param upCallback        向上滑动的监听回调（若不关心，可以不传，或传false）
-     * @param rightCallback     向右滑动的监听回调（若不关心，可以不传，或传false）
-     * @param downCallback      向下滑动的监听回调（若不关心，可以不传，或传false）
-     * @param leftCallback      向左滑动的监听回调（若不关心，可以不传，或传false）
+     * @param isPreventDefault  是否屏蔽掉触摸滑动的默认行为（例如页面的上下滚动,缩放等）
+     * @param upCallback        向上滑动的监听回调（若不关心,可以不传,或传false）
+     * @param rightCallback     向右滑动的监听回调（若不关心,可以不传,或传false）
+     * @param downCallback      向下滑动的监听回调（若不关心,可以不传,或传false）
+     * @param leftCallback      向左滑动的监听回调（若不关心,可以不传,或传false）
      */
     listenTouchDirection: function (target, isPreventDefault, upCallback, rightCallback, downCallback, leftCallback) {
         this.addHandler(target, "touchstart", handleTouchEvent);

@@ -251,7 +251,7 @@
               }
             }
             if(!isnext){
-              alert("不接受此文件类型！");
+              alert("不接受此文件类型!");
               that.value ="";
               return false;
             }
@@ -435,7 +435,7 @@
       <p>}</p>
       <p>打印结果为20、17、14、11、8、5、2</p>
       <p>思考一下,是不是发现只要你率先拿到上面除20的任意一数,接下来的节奏就由你把控了,进入了必胜局面</p>
-      <p>你可能会想,这不就是迭代吗？跟递归有什么关系</p>
+      <p>你可能会想,这不就是迭代吗?跟递归有什么关系</p>
       <p>那是为了方便你理解,下面就是递归的正常写法</p>
       <pre>
         let num = 20;
@@ -455,7 +455,7 @@
       <p>2.迭代是逐渐逼近,用新值覆盖旧值,直到满足条件后结束,不保存中间值,空间利用率高</p>
       <p>就比如这个for (let i = 0; i < 10; i++),中间的1-10没有意义,因为我的要求就是要大于10,所以i在不断的逼近11,最后得到了11,完成了计算</p>
       <p>3.递归是将一个问题分解为若干相对小一点的问题,遇到递归出口再原路返回,因此必须保存相关的中间值,这些中间值压入栈保存,问题规模较大时会占用大量内存。</p>
-      <p>以上面的为例子,我将问题如何先到20,拆成了如何先到17,确保我必定到20,然后接着拆,拆到最后,我得到了答案是2,但是中间的数据就无意义了吗？</p>
+      <p>以上面的为例子,我将问题如何先到20,拆成了如何先到17,确保我必定到20,然后接着拆,拆到最后,我得到了答案是2,但是中间的数据就无意义了吗?</p>
       <p>不,中间的数据依旧有着意义,因为你拿到2是为了抢5,拿到5是为了抢8,下面这的内容应该能帮您更加深刻的理解上面的例子</p>
       <pre>
         为了抢到20
@@ -540,7 +540,7 @@
       <p>1.客户端发送syn包(Seq=x)到服务器,并进入SYN_SEND状态,等待服务器确认；</p>
       <p>2.服务器收到syn包,必须确认客户的SYN(ack=x+1),同时自己也发送一个SYN包(Seq=y),即SYN+ACK包,此时服务器进入SYN_RECV状态；</p>
       <p>3.客户端收到服务器的SYN＋ACK包,向服务器发送确认包ACK(ack=y+1),此包发送完毕,客户端和服务器进入ESTABLISHED状态,完成三次握手。</p>
-      <p>为什么不是二次或四次握手？</p>
+      <p>为什么不是二次或四次握手?</p>
       <p>参考:红军协同对抗蓝军问题</p>
       <p>处于两地的红军A与红军B要与蓝军作战,红1和红2联合必定能战胜蓝方,单打独斗是必输的局面,在通信信道不完全可靠的情况下,如何设计出完全可靠的通信协议,使红军必胜</p>
       <pre>
@@ -625,7 +625,7 @@
       <p>6.Painting(重绘):根据渲染树以及回流得到的几何信息,得到节点的绝对像素</p>
       <p>7.Display:将像素发送给GPU,展示在页面上。(这一步其实还有很多内容,比如会在GPU将多个合成层合并为同一个层,并展示在页面中。而css3硬件加速的原理则是新建合成层,有兴趣自己百度)</p>
       <p>-----------------------------</p>
-      <p>二、上面说到可见节点,那哪些是可见的节点？哪些是不可见的节点呢？</p>
+      <p>二、上面说到可见节点,那哪些是可见的节点?哪些是不可见的节点呢?</p>
       <p>答:除了script、meta、link等不会参与渲染的标签外,还有一个display:none;也是不可见的节点,其余全是可见的,包括利用visibility和opacity隐藏的节点</p>
       <p>-----------------------------</p>
       <p>三、什么是回流</p>
@@ -648,7 +648,7 @@
       <p>七、现代浏览器的优化机制</p>
       <p>现代的浏览器都是很聪明的,由于每次重排都会造成额外的计算消耗,因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程</p>
       <p>浏览器会将修改操作放入到队列里,直到过了一段时间或者操作达到了一个阈值,才清空队列。</p>
-      <p>但是！当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法:</p>
+      <p>但是!当你获取布局信息的操作的时候,会强制队列刷新,比如当你访问以下属性或者使用以下方法:</p>
       <p>1.offsetTop、offsetLeft、offsetWidth、offsetHeight</p>
       <p>2.scrollTop、scrollLeft、scrollWidth、scrollHeight</p>
       <p>3.clientTop、clientLeft、clientWidth、clientHeight</p>
@@ -668,7 +668,7 @@
         当然,那是因为我不知道有cssText这么好用的东西
         现在我知道了,是时候跟上一下时代了,你可以直接这样写
         main.style.cssText += 'border-left: 1px; border-right: 2px; padding: 5px;';
-        卧槽都无法形容我现在的感受,卧槽！太强了
+        卧槽都无法形容我现在的感受,卧槽!太强了
       </pre>
       <p>2.添加或删除class来改变样式</p>
       <p>main.className += ' metamorphosis';</p>
@@ -1031,7 +1031,7 @@
       <p>四、一些项目常用的其他配置<br>
         1.项目运行完毕时,自动打开浏览器<br>
         &emsp;先打开package.json文件,<br>
-        &emsp;在scripts代码块中的指令最后添加一个" --open",注意！别遗漏了前面的空格<br>
+        &emsp;在scripts代码块中的指令最后添加一个" --open",注意!别遗漏了前面的空格<br>
         &emsp;例如在这句中,将"serve": "vue-cli-service serve",修改成"serve": "vue-cli-service serve --open"<br>
         &emsp;这样,npm run serve完后就会自动打开浏览器<br>
         2.eslint校验功能的关闭<br>
@@ -1056,7 +1056,7 @@
         &emsp;&emsp;},<br>
         &emsp;&emsp;"exclude": ["node_modules","dist"]<br>
         &emsp;}<br>
-        &emsp;注意！@在node_modules和dist文件夹中不能使用哦<br>
+        &emsp;注意!@在node_modules和dist文件夹中不能使用哦<br>
         &emsp;<br>
         4.组件名称需为多个单词<br>
         &emsp;以大写字母分辨是否为两个单词<br>
@@ -1422,7 +1422,7 @@
           background-color: initial;
         }
       
-        /*  给小滑块添加hover事件，鼠标悬浮在滑块上面的样式  */
+        /*  给小滑块添加hover事件,鼠标悬浮在滑块上面的样式  */
         .SegmentSelection::-webkit-scrollbar-thumb:hover {
           background-color: #ac1c22;
         }
@@ -1691,7 +1691,7 @@
                   &lt;h4 class="modal-title" id="myModalLabel"&gt;提示&lt;/h4&gt;
                 &lt;/div&gt;
                 &lt;div class="modal-body"&gt;
-                  你确定要删除吗？
+                  你确定要删除吗?
                 &lt;/div&gt;
                 &lt;div class="modal-footer"&gt;
                   &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;取消&lt;/button&gt;
@@ -2162,7 +2162,7 @@
             &lt;!-- 记住我 --&gt;
             &lt;el-checkbox v-model="checked" class="rememberMe"&gt;记住我&lt;/el-checkbox&gt;
             &lt;!-- 找回密码 --&gt;
-            &lt;el-button type="text" @click="open()" class="forgetPw"&gt;忘记密码？&lt;/el-button&gt;
+            &lt;el-button type="text" @click="open()" class="forgetPw"&gt;忘记密码?&lt;/el-button&gt;
           &lt;/div&gt;
           &lt;!-- 登录 --&gt;
           &lt;el-form-item&gt;
@@ -2633,20 +2633,20 @@
 
           //跳转后无法返回到上一页
           this.$router.replace("/register")
-          //声明式：
+          //声明式:
           &lt;router-link :to="/register" replace&gt;&lt;/router-link&gt;
           // 编程式:
           this.$router.replace('/register')
           //push方法也可以传replace
           this.$router.push({path: '/register', replace: true})
 
-          报错：
+          报错:
           [Vue Router warn]: Path "/AppMain/Flow" was passed with params but they will be ignored. Use a named route alongside params instead.
 
           因为用的是路径路由
-          解决方案：
+          解决方案:
           https://stackoverflow.com/questions/68435072/vue-router-warning-message-passed-with-params-but-they-will-be-ignored
-          警告基本上是让您知道如果要传递参数，则需要使用命名路由而不是路径。
+          警告基本上是让您知道如果要传递参数,则需要使用命名路由而不是路径。
           this.$router.push({path: '/AppMain/Flow', replace: true, params:{ FormDataFillInValue: FormDataValue }})
 
           改为命名路由即可
@@ -3170,7 +3170,7 @@
 
 
         2. 动态设置class
-        2.1 主要运用于：实现循环列表中点击时，相应的元素高亮；（默认首个元素高亮）
+        2.1 主要运用于:实现循环列表中点击时,相应的元素高亮；（默认首个元素高亮）
         &lt;template&gt;
           &lt;div class="wrapper" v-for="(item,index) in houseList" :key="index" @click="rightTap(index)"&gt;
             &lt;div class="houseTitle" :class="{'active' : index === rightIndex}"&gt;
@@ -3212,7 +3212,7 @@
         }
         &lt;/style&gt;
 
-        2.2 主要运用于：为特定数值设置相应样式；
+        2.2 主要运用于:为特定数值设置相应样式；
         &lt;div 
           :class="activeId === item.id?'activeStyle':'machineBar'" 
           v-for="(item,index) in List" :key="index" @click="clickEvent"&gt;    
@@ -3220,7 +3220,7 @@
         &lt;/div&gt;
     
         3. 方法判断
-        3.1 主要运用于：为不同的数据值设置相应的样式；
+        3.1 主要运用于:为不同的数据值设置相应的样式；
         &lt;template&gt;
           &lt;div v-for="(item,index) in houseList" :key="index"&gt;             
              &lt;div :style="getStyle(item.status)"&gt;{{item.name}}&lt;/div&gt;    
@@ -3277,7 +3277,7 @@
         }
         &lt;/script&gt;
 
-        3.2 主要运用于：在元素多从事件下，显示相应的样式；
+        3.2 主要运用于:在元素多从事件下,显示相应的样式；
         &lt;template&gt;
           &lt;div 
               class="homeWrap" :class="{'select': selected === 1,'click': clicked === 1}" 
@@ -3367,8 +3367,8 @@
     <h2>字节的换算关系<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-        中文标点占三个字节，一个英文字母占一个字节，英文标点占一个字节，一个数字占一个字节
-        字节的换算关系为：
+        中文标点占三个字节,一个英文字母占一个字节,英文标点占一个字节,一个数字占一个字节
+        字节的换算关系为:
         1字节(Byte)=8字位=8个二进制数
         1字位(bit)=1个二进制数
         1B=8b
@@ -3380,9 +3380,13 @@
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>input type=number取消上下加减器<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none !important;
+          margin: 0;
+        }
       </pre>
     </div>
             

@@ -62,8 +62,8 @@
             size += obj.getItem(item).length;
           }
         }
-        console.log('当前已用存储：' + (size / 1024).toFixed(2) + 'KB');
-        document.getElementById(Storage).innerHTML = `当前 ${Storage} 已用存储：${(size / 1024).toFixed(2)}KB`;
+        console.log('当前已用存储:' + (size / 1024).toFixed(2) + 'KB');
+        document.getElementById(Storage).innerHTML = `当前 ${Storage} 已用存储:${(size / 1024).toFixed(2)}KB`;
       }
     };
     get_cache_size('localStorage');//localStorage当前大小
@@ -196,7 +196,7 @@
             size += obj.getItem(item).length;
           }
         }
-        console.log(t+'当前已用存储：' + (size / 1024).toFixed(2) + 'KB');
+        console.log(t+'当前已用存储:' + (size / 1024).toFixed(2) + 'KB');
       }
     };
     get_cache_size('l');//localStorage当前大小
