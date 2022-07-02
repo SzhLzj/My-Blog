@@ -1518,6 +1518,208 @@
     </div>
 
     <hr>
+    <h2>自动补全字符串<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        很多时候都会碰到字符串补全的需求，典型的例子就时间或者日期中的补零操作，例如
+        2021-12-31
+        2022-03-03
+
+        通常的做法是
+        if (num < 10) {
+          num = '0' + num
+        }
+
+        后来,JS 中出现了原生的补全方法padStart()和padEnd(),如下
+        '3'.padStart(2, '0')
+        // 结果是 '03'
+        '12'.padStart(2, '0')
+        // 结果是 '12'
+
+        CSS 也能自动补全字符串
+        一、flex-end 对齐
+          先介绍一个比较容易理解的方案，也非常简单，假设 HTML 是这样的
+          &lt;span&gt;2&lt;/span&gt; - &lt;span&gt;28&lt;/span&gt;
+
+          一般情况下，还会设置等宽字体，看起来更加协调、美观
+          span{
+            font-family: Consolas, Monaco, monospace;
+          }
+
+          我们需要在数字前用伪元素生成一个“0”
+          span::before{
+            content: '0'
+          }
+
+          接下来，给元素设置一个固定宽度，这里由于是等宽字体，所以可以直接设置为2ch，注意这个ch单位，它表示字符0的宽度，然后设置右对齐就行了
+          span{
+            /**/
+            display: inline-flex;
+            width: 2ch;
+            justify-content: flex-end;
+          }
+
+          原理很简单，在 2 个字符宽度的空间里放置 3 个字符，以右对齐的方式，是不是就自动把最左边的 0 给挤出去了？然后超出隐藏就可以了
+
+          完整代码如下
+          span::before{
+            content: '0'
+          }
+          span{
+            display: inline-flex;
+            width: 2ch;
+            justify-content: flex-end;
+            overflow: hidden;
+          }
+
+          效果图如下
+          <span class="CssTime1">2</span> - <span class="CssTime1">21</span>
+          <style>
+            .CssTime1::before{
+              content: '0'
+            }
+            .CssTime1{
+              display: inline-flex;
+              width: 2ch;
+              justify-content: flex-end;
+              overflow: hidden;
+            }
+          </style>
+
+        二、CSS 变量动态计算
+          由于 CSS 无法获取标签的文本内容，所以这里需要构建一个 CSS 变量传递下去，如下
+          &lt;span style="--num:2"&gt;2&lt;/span&gt; - &lt;span style="--num:12"&gt;28&lt;/span&gt;
+
+          通过 var(--num)拿到变量以后，就可以进行一系列的逻辑判断了，那么，如何在小于 10 的情况下自动补零呢？
+          同样我们需要在数字前用伪元素生成一个“0”
+          span::before{
+            content: '0'
+          }
+
+          然后，只需要根据 CSS 变量动态隐藏这个伪元素就行了，先设置透明度，如下
+          span::before{
+            /**/
+            opacity: calc(10 - var(--num));
+          }
+
+          具体的逻辑就是
+          当 --num等于 10 时，透明度的计算值就是 0，直接按照 0 来渲染
+          当 --num大于 10 时，透明度的计算值就是负数值，会按照 0 来渲染
+          当 --num小于 10 时，透明度的计算值就是大于等于1的值，会按照 1 来渲染
+
+          所以，最终的表现就是当大于等于10时不可见，小于10的时候可见
+          但是，这样还是有点问题的，透明度不会影响元素的位置，导致前面会空出来一截
+          如何消除这个位置呢？方法有很多，这里采用 margin-left 的方式，如下
+          span::before{
+            margin-left: clamp(-1ch, calc((9 - var(--num)) * 1ch),0ch);
+          }
+
+          这里用到了clamp，你可以理解为一个区间，有 3 个值 [Min, Val, Max]，前后分别是最小、最大值，中间是可变值（注意这里是和 9 比较），所以这里的逻辑就是
+          当 --num大于等于 10 时，假设为 15，中间 calc 值计算为 -5ch，clamp 取值为最小值 -1ch
+          当 --num小于 10 时，假设为 5，中间 calc 值计算为 5ch，clamp 取值为最大值 0ch
+
+          所以，最终的表现就是当大于等于10时margin-left为-1ch，小于10的时候margin-left为0，这样就比较完美了
+
+          完整代码如下
+          span::before{
+            content: '0';
+            opacity: calc(10 - var(--num));
+            margin-left: clamp(-1ch, calc((9 - var(--num)) * 1ch),0ch)；
+          }
+
+          效果图如下
+          <span  class="CssTime2" style="--num:2">2</span> - <span  class="CssTime2" style="--num:21">21</span>
+          <style>
+            .CssTime2::before{
+              content: '0';
+              opacity: calc(10 - var(--num));
+              margin-left: clamp(-1ch, calc((9 - var(--num)) * 1ch),0ch);
+            }
+          </style>
+
+        三、定义计数器样式
+          利用计数器也能实现这一效果，首先看默认的计数器效果，我们需要隐藏原有的文字，利用计数器让 CSS 变量通过伪元素展示出来，如下
+          span::before{
+            counter-reset: num var(--num);
+            content: counter(num);
+          }
+
+          接下来需要用到 counter的第 2 个参数 ，计数器样式。这是干什么的呢？相信大家都用过一个属性 list-style-type，就是和这个相通的，可以定义序列的样式，比如按照小写英文字母的顺序
+          list-style-type: lower-latin;
+
+          这里我们需要一个 10 以内自动补零的计数器，刚好有个现成的，叫做 decimal-leading-zero，翻译过来就是，十进制前置零
+          list-style-type: decimal-leading-zero;
+
+          回到这里，需要做的就很简单了，补上这个参数就行了，完整代码如下
+          span::before{
+            counter-reset: num var(--num);
+            content: counter(num, decimal-leading-zero);
+          }
+
+          效果图如下
+          <span  class="CssTime3"></span> - <span  class="CssTime3"></span>
+          <span  class="CssTime3" style="--num:2"></span> - <span  class="CssTime3" style="--num:21"></span>
+          <style>
+            .CssTime3::before{
+              counter-reset: num var(--num);
+              content: counter(num, decimal-leading-zero);
+            }
+          </style>
+
+        四、计数器的扩展
+          上面的计数器只适用于2位数的，如果需要 3 位数的怎么办呢? 例如
+          001、002、...、010、012、...、098、099、100
+
+          JS 中的 padStart 可以指定填充后的位数
+          '1'.padStart(3, '0')
+          // 结果是 ’001‘
+          '99'.padStart(3, '0')
+          // 结果是 ’099‘
+          '101'.padStart(3, '0')
+          // 结果是 ’101‘
+
+          其实，CSS 中也是有这样的能力的，叫做@counter-style/pad，严格来说，这才是官方的补全方案，语法也非常类似
+          pad: 3 "0";
+
+          但是，这个需要用在自定义计数器上，也就是@counter-style，这里简单介绍一下用法，假设定义一个计数器叫做pad-num，实现如下
+          @counter-style pad-num {
+            system: extends numeric;
+            pad: 3 "0";
+          }
+
+          语法是这样的：这里的system表示“系统”，就是内置的一些计数器，比如这里用到了extends numeric，后面的numeric表示数字技术系统，前面的extends表示扩展，以这个为基础，然后pad: 3 "0"就和 JS 的意义一样了，表示不足 3 位的地方补“0”
+          然后运用到计数器中：
+          span::before{
+            counter-reset: num var(--num);
+            content: counter(num, pad-num);
+          }
+
+          效果图如下
+          <span  class="CssTime4"></span> - <span  class="CssTime4"></span>
+          <span  class="CssTime4" style="--num:2"></span> - <span  class="CssTime4" style="--num:21"></span>
+          <style>
+            @counter-style pad-num {
+              system: extends numeric;
+              pad: 3 "0";
+            }
+            .CssTime4::before{
+              counter-reset: num var(--num);
+              content: counter(num, pad-num);
+            }
+          </style>
+
+          当然，这个兼容性略差，根据实际需求即可
+          以上完整代码可以访问 CSS pad(codepen.io)
+
+        五、总结一下
+          以上3种 CSS 字符串补全方法，各有千秋，比较一下各自优缺点：
+          第一种方案非常容易理解，也容易扩展，如果需要补全 3 位，只需要改变整体宽度即可，不足之处在于依赖等宽字体。
+          第二种方案比较符合 JS 逻辑，比较灵活，不足在于计算比较啰嗦，而且还要考虑 CSS 取值的容错性。
+          第三种方案是我比较推荐的了，无需计算，也不依赖布局，可能知道的同学不多，而且如果要自定义计数器，兼容性有点差。
+      </pre>
+    </div>
+
+    <hr>
     <h2>letter-spacing 和 word-spacing<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
@@ -2684,7 +2886,42 @@
         // script 取参  this.$route.query.id
       </pre>
     </div>
-              
+                
+    <hr>
+    <h2>Vue Cli组件传值<span class="down" onclick="clickondown(this)">\/</span></h2>
+    <div class="code_1">
+      <pre>
+        1.父传子
+
+        &lt;父组件&gt;
+          &lt;子组件 :传进去的参名="传进去的值"/&gt;
+        &lt;/父组件&gt;
+
+        &lt;子组件&gt;
+          export default {
+            props: ["传进来的参名"], //这时候，传进来的参就像是在data里一样了，用 this.参名 即可访问到了
+          }
+        &lt;/子组件&gt;
+
+        2.子传父
+        子组件调用this.$emit('方法名',参);
+
+        &lt;父组件 @调用的方法名="传出来的方法名"/&gt;
+        
+        调用的方法名(参){
+          console.log(参)
+        },
+
+        注意，子传父中，有个问题牛文督遇到过，方法名用驼峰写法就会失效
+        答案来源csdn，如下
+          首先，这个问题很鬼畜，有说不能用驼峰的，这个我没遇到过
+          然后，我知道大家跟我一样很仔细的在排错，但是麻烦大家再仔细一点儿
+          因为我的这个错误是标点符号没有注意（特别父组件中，回调是@符号不是:）
+        
+        提醒自己要注意
+      </pre>
+    </div>
+
     <hr>
     <h2>Vue 跳转刷新<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
@@ -3391,37 +3628,146 @@
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Git 操作<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        1.创建代码仓库
+          Step 1：先配置下我们的身份吧，这样在提交代码的时候Git就可以知道是谁提交的，命令如下：
+            git config --global user.name "Wyz"
+            git config --global user.email "1204184336@qq.com"
+            配置完成后，我们可以再次输入，不包括名称，可以看到我们已经配置成功了
+            git config --global user.name
+            git config --global user.email
+          Step 2：找个地方创建我们的代码仓库，然后我创建了一个新的项目：TestForGit，来到工程的目录下，右键，打开我们的Git Bash，键入 'git init' 指令完成代码仓库的建立！
+          另外这个代码仓库其实是用来保存版本管理所需的一些信息，我们本地提交的代码都会提交到代码仓库中，于是乎我们可以选择还原到某个版本，当然，如果需要的话，
+          我们还可以将保存在代码仓库中的代码推送那个到远程仓库中！比如GitHub!
+          一个简单的代码，代码仓库就创建完毕了！继续输入：ls - al可以看到下目录下有个.git的文件夹就是他了！
+          也可以打开工程目录，同样看也看到.git文件夹；如果我们想删除代码仓库只需把这个文件夹删掉即可！
+        
+        2.提交本地代码
+          创建完代码仓库，接下来说下如何提交代码，我们是先用add命令把要提交的内容都加进来，然后commit才是真的去执行提交操作！
+          命令例子如下，你可以一次次慢慢添加，当然也可以全部提交，直接git add.即可完成！ 我们现在工程目录下创建一个readme.txt的文件试试，随便写点东西，然后依次输入下述指令：
+          git add Wyz.txt
+          git commit -m "Add a Wyz file"
+          当然如果你可以add多个文件后再一次性commit，不过如果我们改动的文件很多的话，我们可以git add.一次添加全部，但有一些是几百年都不变一次的又或者自动生成的，比如lib，gen，bin文件夹等等，
+          我们可以在代码仓库的根目录下创建一个名为.gitignore的文件，然后编辑里面的内容，把不需提交的文件忽略掉！
+          示例：
+          # 忽略所有.a结尾的文件
+          *.a
+          # 但lib.a除外
+          !lib.a
+          # 仅仅忽略项目根目录下的'试验文件'文件，不包括'其他文件夹内的/试验文件'
+          /试验文件
+          # 忽略vscode/目录下的所有文件
+          .vscode/
+          # 会忽略'doc内/所有.txt' 但不包括'doc内/server其他文件夹内/的.txt'
+          doc/*.txt 
+
+          提交声明：
+          那么我们git add .的时候，这里的文件就不会add，另外可能你会觉的commit后面写-m "xxx"很麻烦，想偷懒，但还是写上吧！输入的是本次提交的一些声明，比如自己修改了些什么！
+          就好像写代码的时候，你偷懒不写注释，过几天你连自己写的什么鬼都不知道...
+
+        3.查看修改内容
+          好吧，前面我们用git add提交了整个项目到本地仓库，接下来我们改点东西，然后使用git status可以查看 修改的部分，比如，我们删掉MainActivity.java里的菜单的代码以及多余的菜单相关的包！
+          他就会提示我们哪些文件发生了改变，但是还没有提交，如果我们想看下具体更改了什么，我们可以用到git diff命令，另外，按Q可以退回命令行输入！
+
+        4.查看提交记录
+          当然随着我们项目的深入，Commit的次数也会越来越多，可能你早已忘记每次提交都修改了什么内容， 没事，Git帮你记着呢，使用git log即可查看历史提交信息！键入 git log
+          我们取其中一小部分来分析：
+          commit defd8af52be5183dfceb3e5cf23f78ea47d013b0
+          Author: coder-pig &lt;779878443@qq.com&gt;
+          Date:   Fri Jun 19 17:00:36 2015 +0800
+          MainActivity Delete Menu
+          依次是：
+
+          此次提交对应的版本号
+          提交人：姓名 邮箱
+          提交的时间
+          提交版本修改的内容：就是我们commit -m "xxx"里的xxx
+
+        5.撤销未提交的修改
+          比如我们刚提交了一个版本，然后又乱七八糟地写了一堆东西，突然发现不小心误删了一些东西，然后ctrl + s保存了，这个时候是不是欲哭无泪，
+          不过有Git，只需一个checkout命令即可撤销更改，当然是你还没add的情况，比如我们在MainActivity里随便添加一条语句，然后ctrl + s保存代码！
+          然后命令行键入：git diff：
+          嗯，这里可以看到我们改的内容，我们可以回去把这句代码删掉，但是如果改的有上千行你怎么改， 于是乎这个时候我们可以使用
+          git checkout src/com/jay/example/testforgit/MainActivity.java
+          然后会神奇的发现，我们新写的代码没了！duang一下就没了，不信你可以自己试试
+          当然，如果我们已经add了的话，那么checkout是没任何作用的，我们要先取消添加才可以撤回提交，使用下述指令：
+          git reset HEAD src/com/jay/example/testforgit/MainActivity.java
+          git checkout src/com/jay/example/testforgit/MainActivity.java
+
+        6.版本回退
+          第五点我们教了大家撤销未提交的修改，但加入提交了，我们想回退到之前的某一个版本怎么办? 
+          第四点中我们可以通过git log查看我们的提交记录，我们需要从这里获取一个版本号， 一般我们只需要前七位字符就够了；
+          另外在Git中，用HEAD代表当前版本，上一个版本就是HEAD^， 再上一个版本就是HEAD^^依次类推！我们先Git Log看下版本历史先！
+          我们回到前一个提交的版本吧，依次键入下述指令：
+           git reset --hard HEAD
+           git reset --hard HEAD^
+           git log
+          这时看下我们的控制台：
+          可以看到我们已经回退到了前一个版本了，当然你可以直接这样写：
+          git reset --hard ad2080c
+          就是这么简单！回退后，你突然后悔了，想回退回新的那个版本， 可是遗憾的是，你键入git log却发现没有了最新的那个版本号，这怎么办呢... 没事，Git中给你提供了这颗"后悔药"，Git记录着你输入的每一条指令呢！键入：
+          git reflog
+          你会发现，版本号就在这里：
+          然后键入：
+          git reset --hard ad2080c
+          可以看到我们又回到了最新的那个版本了，就是这么*
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>Vue3 Cli + EChart5 遇到的报错：Cannot read properties of undefined (reading 'type')<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        这个问题需要搞清楚两个关键方法：
+        toRaw：
+        作用：将一个由reactive生成的响应式对象转为普通对象。
+        使用场景：
+        用于读取响应式对象对应的普通对象，对这个普通对象的所有操作，不会引起页面更新。
+
+        markRaw：
+        作用：标记一个对象，使其永远不会再成为响应式对象。
+        应用场景:
+        有些值不应被设置为响应式的，例如复杂的第三方类库等。
+        当渲染具有不可变数据源的大列表时，跳过响应式转换可以提高性能。
+
+
+        1.第一步在所在的组件引入
+        import { markRaw } from 'vue'
+
+        2.第二步初始化
+        //初始化时将其标记为非响应式对象
+        this.chartInstance = markRaw(this.$echarts.init(this.$refs.rank_ref))//获取dom元素
+
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>前端点击下载文件<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
+        &lt;a href="文件的路径(本地网络的都可以)" download="你想要的名字" target="view_window"&gt;下载&lt;/a&gt;
+        路径在vue打包后会改变，需要用require()包裹路径，这样路径就不会错了
+        webpack打包时，可能会不认识文件后缀，例如docx，
+        两个方案，
+        1.如果修改不了webpack.config.js文件，可以先把源文件改成webpack认识的文件后缀，例如jpg，
+          然后路径也别忘了改为jpg，最后在download里写上正确的文件名和后缀，这样下载下来就是正确的文件内容了。
+        2.第二种就是修改webpack.config.js文件，没修改过，到时候再说
       </pre>
     </div>
             
     <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
+    <h2>js 获取时间<span class="down" onclick="clickondown(this)">\/</span></h2>
     <div class="code_1">
       <pre>
-      </pre>
-    </div>
-            
-    <hr>
-    <h2><span class="down" onclick="clickondown(this)">\/</span></h2>
-    <div class="code_1">
-      <pre>
+        new Date().getFullYear(); //年
+        new Date().getMonth()+1; //月
+        new Date().getDate(); //日
+        new Date().getHours(); //时
+        new Date().getMinutes()&lt;10 ? '0'+new Date().getMinutes() : new Date().getMinutes(); //分
+        new Date().getSeconds()&lt;10 ? '0'+new Date().getSeconds() : new Date().getSeconds(); //秒
+        new Date().getDay() //星期
       </pre>
     </div>
             

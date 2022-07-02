@@ -47,18 +47,18 @@
 
         <div>
           <p style="color:#606266; font-size: 0.4rem; margin-bottom: 0.2rem;">结果：</p>
-          <div style="display: flex; justify-content: space-between;">
-            <div>
-              <p style="color:#606266; font-size: 0.2rem; margin-bottom: 0.2rem;" v-for="(item, index) in Data1" :key="index">{{ item }}</p>
+          <div style="display: flex;">
+            <div style=" border: #606266 solid 0.01rem;" v-if="Median1">
+              <p style="color:#606266; font-size: 0.2rem; padding: 0.12rem 0.55rem; border-bottom: #606266 solid 0.01rem;" v-for="(item, index) in Data1" :key="index">{{ item }}</p>
             </div>
-            <div>
-              <p style="color:#606266; font-size: 0.2rem; margin-bottom: 0.2rem;" v-for="(item, index) in Data2" :key="index">{{ item }}</p>
+            <div style=" border: #606266 solid 0.01rem;" v-if="Median2">
+              <p style="color:#606266; font-size: 0.2rem; padding: 0.12rem 0.55rem; border-bottom: #606266 solid 0.01rem;" v-for="(item, index) in Data2" :key="index">{{ item }}</p>
             </div>
-            <div>
-              <p style="color:#606266; font-size: 0.2rem; margin-bottom: 0.2rem;" v-for="(item, index) in Data3" :key="index">{{ item }}</p>
+            <div style=" border: #606266 solid 0.01rem;" v-if="Median3">
+              <p style="color:#606266; font-size: 0.2rem; padding: 0.12rem 0.55rem; border-bottom: #606266 solid 0.01rem;" v-for="(item, index) in Data3" :key="index">{{ item }}</p>
             </div>
-            <div>
-              <p style="color:#606266; font-size: 0.2rem; margin-bottom: 0.2rem;" v-for="(item, index) in Data4" :key="index">{{ item }}</p>
+            <div style=" border: #606266 solid 0.01rem;" v-if="Median4">
+              <p style="color:#606266; font-size: 0.2rem; padding: 0.12rem 0.55rem; border-bottom: #606266 solid 0.01rem;" v-for="(item, index) in Data4" :key="index">{{ item }}</p>
             </div>
           </div>
         </div>
